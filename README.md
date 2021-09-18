@@ -26,8 +26,7 @@ Los clientes del negocio recibirán notificaciones por correo electronico, en do
 1. Dar click en la parte derecha superior, precisamente en la foto de perfil, les aparecera un menu despegable.
 2. Seleccionar la opción Settings
 3. Buscar la opción Developer settings, seguidamente dar click en Personal access tokens
-
- 1. Si aparece que ya tiene un token, es decir, les debe aparecer un cuadro con una descripción y en la parte derecha de ese cuadro aparece el boton "delete". Entonces pueden dar click en el nombres que les aparece en azul, en la parte izquierda.
+3. 1. Si aparece que ya tiene un token, es decir, les debe aparecer un cuadro con una descripción y en la parte derecha de ese cuadro aparece el boton "delete". Entonces pueden dar click en el nombres que les aparece en azul, en la parte izquierda.
   1. Al entrar puede dar click en el boton "Regenerate token".
   2. Les va salir que expiración va tener el token, selecciona "No expiration".
   3. Seguidamente les aparece una llave ssh que es el token que van a guardar, copiar y pegar. Es importante que lo haga para poder usar el repositorio.
