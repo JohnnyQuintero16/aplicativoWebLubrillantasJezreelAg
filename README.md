@@ -44,8 +44,11 @@ Los clientes del negocio recibirán notificaciones por correo electronico, en do
       7. Listo completado el primer paso. :smile:
 
 4. teniendo el token, se dirige a su carpeta local en el que desea guardar el repositorio.
-5. Abre la terminal para que escriba el siguiente comando: git clone [https://github.com/JohnnyQuintero16/aplicativoWebLubrillantasJezreelAg.git](https://github.com/JohnnyQuintero16/aplicativoWebLubrillantasJezreelAg.git)
-6. Aparecera lo siguiente: 
+5. Abre la terminal para que escriba el siguiente comando: 
+
+git clone [https://github.com/JohnnyQuintero16/aplicativoWebLubrillantasJezreelAg.git](https://github.com/JohnnyQuintero16/aplicativoWebLubrillantasJezreelAg.git)
+
+7. Aparecera lo siguiente: 
 
 Cloning into 'aplicativoWebLubrillantasJezreelAg'...
 
