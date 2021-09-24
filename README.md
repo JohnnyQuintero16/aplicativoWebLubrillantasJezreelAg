@@ -2,10 +2,6 @@
 
 ## Tabla de contenido
 1. [Resumen](#Resumen)
-2. [Estructura Repositorio](#Estructura-Repositorio)
-3. [Manejo de Cambios](#Manejo-de-Cambios)
-
-
 
 
 
@@ -31,7 +27,3 @@ Los clientes del negocio recibirán notificaciones por correo electronico, en do
 * Módulo Cotización: Los clientes del negocio podran cotizar los servicios que ofrece la empresa por medio de un apartado tipo simulacion que le da la opcion de esocger los servicios y le muestra los productos que se usaran y el precio del servicio y los insumos utilizados.
 
 * Modulo de reporte y estadisticas: en este modulo el adminitrador del sistema podra consultar y obtener reportes de los agendamientos,clientes y servicios realizados en el mes, asi como realizar comparaciones entre varios meses y  mostrar gráficos estadisticos.
-
-### Estructura Repositorio
-
-### Manejo de Cambios
