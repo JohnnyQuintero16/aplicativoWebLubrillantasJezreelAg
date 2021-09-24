@@ -1,4 +1,17 @@
 # Aplicativo Web LubrillantasJezreelAg
+
+## Tabla de contenido
+1. [Resumen](#Resumen)
+2. [Estructura Repositorio](#Estructura-Repositorio)
+3. [Manejo de Cambios](#Manejo-de-Cambios)
+
+
+
+
+
+
+
+### Resumen
 #### LUBRILLANTAS JEZREEL AG es una micro-empresa que se desempeña en el sector comercial relacionado con los vehiculos, en el que ofrece todo tipo de servicios de mantenimiento de cambio de aceite, servicio de frenos de suspension, montallantas y venta de productos. Se desea tener una mayor visiblidad de sus servicios y productos por medio de un aplicativo web, el cual permita llevar un control y registro de sus clientes, por medio de fichas tecnicas ademas que los clientas tengan la opcion de agendar su cita para un mejor servicio y que puedan realizar cotizaciones para que tengan claro los precios al momento de llevar su vehiculo. 
 
 ### El aplicativo web tendra los siguientes modulos: 
@@ -19,4 +32,6 @@ Los clientes del negocio recibirán notificaciones por correo electronico, en do
 
 * Modulo de reporte y estadisticas: en este modulo el adminitrador del sistema podra consultar y obtener reportes de los agendamientos,clientes y servicios realizados en el mes, asi como realizar comparaciones entre varios meses y  mostrar gráficos estadisticos.
 
+### Estructura Repositorio
 
+### Manejo de Cambios
