@@ -3,7 +3,7 @@
 ## Tabla de contenido
 1. [¿Para que es?](#¿Para-que-es?)
 2. [Permisos para fusionar la rama Test](#Permisos-para-fusionar-la-rama-Test)
-3. [Envio de cambios a la rama main](Envio-de-cambios-a-la-rama-main)
+3. [Envio de cambios a la rama main](#Envio-de-cambios-a-la-rama-main)
 
 ### ¿Para que es?
 La rama test es la rama donde se va poder testear el código si esta correcto o se sugiere algún cambio, en esta rama se reciben dos pull request, que son:
