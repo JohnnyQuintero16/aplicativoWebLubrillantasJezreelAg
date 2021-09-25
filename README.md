@@ -118,5 +118,5 @@ Que son los mismo solo cambian es la base y la rama a comparar, lo cual pondran 
 
 Eso esta dependiendo que rol estan trabjando.
 
-Y listo, a coder 🤙
+Y listo, a codear 🤙
 ## Nota: Es importante que se cumpa este orden de asignación sobre quien aprueba y quien puede hacer los pull request, de lo contrario surgirian conflictos.
