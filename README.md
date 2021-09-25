@@ -12,7 +12,7 @@ Esta rama solo se va enviar cambios para fusionar a la rama Test, es decir, la r
 ### Permisos para fusionar la rama Frontend
 
 Los que aprueban los cambios en esta rama es: Susana Rojas y Jarlin Fonseca 🏅. 
-* EL único que puede hacer pull request desde la rama Frontend es: cualquiera.
+* EL único que puede hacer pull request para la rama Frontend es: cualquiera.
 
 ### Envio de cambios a la rama Test
 A continuación los pasos para hacer pull request (osea lo que debe hacer Susana Rojas):
