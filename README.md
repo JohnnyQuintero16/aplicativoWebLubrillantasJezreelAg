@@ -53,4 +53,4 @@ A continuación los pasos para hacer pull request (osea lo que debe hacer Yoel):
 4. En la parte izquierda aparece para poder solicitar aprobación de los encargados, en este caso seria Jarlin y Samantha, los selecciona y listo ya le da en crear la pull request.
 5. Por ultimo esperar la aprobación de los jefes.
 
-## Nota: Es importante que se cumpa este orden de aginación sobre quien aprueba y quien puede hacer los pull request, de lo contrario surgirian conflictos.
+## Nota: Es importante que se cumpa este orden de asignación sobre quien aprueba y quien puede hacer los pull request, de lo contrario surgirian conflictos.
