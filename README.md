@@ -47,7 +47,7 @@ Los que aprueban los cambios en esta rama son: Jarlin Fonseca y Samantha Zamora.
 EL único que puede hacer pull request desde la rama [Test](https://github.com/JohnnyQuintero16/aplicativoWebLubrillantasJezreelAg/tree/Test) es: Yunior Castilla.
 
 A continuación los pasos para hacer pull request (osea lo que debe hacer Yoel):
-1. Ingresar al apartado de pull resquest [link](https://github.com/JohnnyQuintero16/aplicativoWebLubrillantasJezreelAg/pulls), click en <p style="color:green; display:inline;">New Pull Request</p>
+1. Ingresar al apartado de pull resquest [link](https://github.com/JohnnyQuintero16/aplicativoWebLubrillantasJezreelAg/pulls), click en New Pull Request.
 2. En este [link](https://drive.google.com/file/d/1b063nnV-WOM20CJssUnW5CyaTySwL2Ma/view?usp=sharing) podra ver un ejemplo sobre como debe configurar los ramas para crear el pull request.
 3. En este [link](https://drive.google.com/file/d/1du_5xyo5k_lhq8DXNflXDRETj-4cknB8/view?usp=sharing) podra ver la interfaz para crear la pull request, en nombre de rama va la asignada para crear el pull, en este caso, se pone test y abajo la descripción.
 4. En la parte izquierda aparece para poder solicitar aprobación de los encargados, en este caso seria Jarlin y Samantha, los selecciona y listo ya le da en crear la pull request.
