@@ -14,7 +14,13 @@
 
     <!--Importar CSS y script del menú -->
     <link rel="stylesheet" href="./css/menu.css"/>
-    <script src="./js/menu.js" defer></script> <!--Atributo defer: Para que cargue después de nuestro contenido html-->
+    <script src="./js/menu.js" defer></script> 
+    <!--Atributo defer: Para que cargue después de nuestro contenido html-->
+
+    <!--Link del boostrap-->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
 
 </head>
 <body>
@@ -40,6 +46,74 @@
     </nav>
     <!--Fin Menú -->
 
-    
+    <!--Carrusel-->
+    <div id="carouselExampleFade" class="carousel slide carousel-fade " data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="img/header.jpeg" class="d-inline-block m-0 h-auto w-100" alt="..." style="filter:brightness(30%)">
+            <div class="row">
+              <div class="col-12">
+                <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel">
+                  <h1 class="tittle-carrusel">Lubrillantas <p style="color: blue; display: inline;">Jezreel</p> AG</h1>
+                </div>
+                <div class="carousel-caption d-flex flex-column  h-100 " style="top: 35rem;">
+                  <button type="button" style="background:blue; margin-left: 40%; margin-right: 40%; height: 3em; color:#FFF; font-size: 30px; font-weight:bold; border-radius: 10px;" class="btn">Agendar Servicio</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="img/header_2.jpeg" class="d-inline-block m-0 h-auto w-100" alt="..." style="filter:brightness(30%)">
+            <div class="row">
+              <div class="col-12">
+                <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel">
+                  <h1  class="tittle-carrusel">Lubrillantas <p style="color: blue; display: inline;">Jezreel</p> AG</h1>
+                </div>
+               <div class="carousel-caption d-flex flex-column  h-100" style="top: 35rem;">
+                  <button type="button" style="background:blue; margin-left: 40%; margin-right: 40%; height: 3em; color:#FFF; font-size: 30px; font-weight:bold; border-radius: 10px;" class="btn">Agendar Servicio</button>
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <!--Fin de carrusel-->
+
+      <!--Sobre nosotros-->
+      <div class="row">
+        <div class="col">
+          <img src="img/home.jpeg" alt="" id = "imgNosotros">
+        </div>
+        <div class="col" style="margin-top: 7%;">
+          <div class="row">
+            <h1 style="color: #858585; font-weight: boild;">SOBRE NOSOTROS</h1>
+          </div>
+          <div class="row">
+            <h1>Quiénes <p style="color: blue;">somos</p></h1>
+          </div>
+          <hr size="20"  style="background-color:#2F80ED;">
+          <div class="row">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit quasi a ipsam, consequuntur laboriosam, molestiae veniam commodi quos provident beatae temporibus voluptate facilis, vel deleniti doloribus repellat dicta illum possimus!
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto unde laborum fugit aspernatur, corrupti voluptatum culpa, accusantium harum nisi molestiae, minima excepturi ea veritatis provident similique mollitia dolorem sed architecto.
+          </div>
+          <button type="button" id ="btnLeermas">Leer más</button>
+        </div>
+      </div>
+      <!--Fin sobre nosotros-->
+
+    <!--Link del boostrap-->
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
 </body>
 </html>
