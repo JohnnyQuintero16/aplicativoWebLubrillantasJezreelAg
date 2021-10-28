@@ -1,169 +1,21 @@
-*, *::before, *::after{
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    box-sizing: border-box;}
-html,body{
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-nav {
-    font-family: 'Open Sans',Arial, Helvetica, sans-serif;
-    font-weight: bold;
+.navbar{
+    background-color: #001971 !important;
+    font-size: 16px;
+    /* font-family: Arial, Helvetica, sans-serif; */
 }
 
-.menu{
-    background-color: #001971;
-    height: 140px;
-    width: 100vw; /* Use todo el ancho del viewport*/
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    border-bottom: 1px solid #fff;
-    box-shadow: 5px 0 10px rgba(0, 0, 0, .6);
+.navbar-nav{
+    padding: 10px;
 }
 
-.logo{
-    padding: 0px;
-    margin-bottom: 30px;
+.navbar-nav li a{
+    border-radius: 8px;
+    margin: 5px;
+    color: #ffffff !important;
+    text-align: center;
 }
 
-.logo img{
-    width: 160px;
-    height: 170px;
-}
-
-.items-menu{
-    display: flex; /* Posicionar los elementos uno al lado del otro */
-    list-style: none;
-    margin-right: 30px;
-}
-
-.items-menu li {
-    border-radius: 3px;
-    margin: 0 5px;
-}
-
-.items-menu li a {
-    padding: 7px 13px;
-    text-decoration: none;
-    font-size: 18px;
-    display: block; /* Ocupen todos los espacios disponibles dentro de los li */
-    color:#fff;
-}
-
-.items-menu li:hover, li.activo{
-    background-color: rgba(0, 0, 0, .50);
+.navbar-nav li .active, .navbar-nav li a:hover{
+    background-color: rgba(0, 0, 0, .50) !important;
     transition: .4s;
 }
-
-.btn-menu{
-    margin-right: 30px;
-    font-size: 35px;
-    color: #fff;
-    cursor: pointer;
-    display: none; /* No se muestra */
-}
-
-ul.mostrar{
-    top: 108px;
-}
-
-.tittle-carrusel{
-    display: inline-flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    font-size: 8rem;
-    font-weight: 800;
-    color: #FFF;
-    margin-bottom: 20%;
-}
-/* mediaquery menu responsive */
-
-@media screen and (max-width:952px) {
-    .items-menu li a {
-        font-size: 16px;
-    }
-    
-}
-
-    /* Pantallas más pequeñas */
-
-@media screen and (max-width: 858px){
-    .menu{
-        height: 110px;
-    }
-    .btn-menu{  /* Mostrar el boton*/
-        display: inline-flex;
-    }
-    .items-menu{
-        position: fixed;
-        width: 100vw;
-        height: calc(100% - 65px); /* Calcule el alto entre el 100% y el alto del menú */
-        background: #a0a0a0;
-        top: -100vh;
-        text-align: center;
-        transition: all .4s;
-        flex-direction: column; /* Mostrar los elementos unos sobre el otro */
-        z-index: 100;
-    }
-    .items-menu li {
-        margin: 30px 0 0 0;
-        line-height: 30px;
-    }
-    .items-menu li:hover{
-        background: none;
-    }
-    .items-menu li a{
-        font-size: 20px;
-        color: #fff;
-        font-weight: bold;
-    }
-    .items-menu li a:hover{
-         color:#001971;
-    }
-    .tittle-carrusel{
-        font-size: 3em;
-        font-weight:500;
-        margin-bottom: 7em;
-    }
-   
-}
-
-/* Para cuando se gire la pantalla | Orientación: horizontal */
-
-@media screen and(max-width:85px) and(orientation:landscape){
-    .items-menu li {
-        margin: 5px 0 0 0;
-    }
-    .menu_items{
-        overflow: scroll;
-        height: calc(100% - 65px);
-    }
-}
-.carousel-item{
-    height: 100vh;
-    width: 100vh;
-    margin-right: 0;   
-}
-#btnLeermas{
-    width: 55%;
-    height: 5%;
-    background: blue;
-    color:#fff;
-    border-radius: 20px;
-    margin-top: 10%;
-    margin-left: 18%;
-}
-#imgNosotros{
-    width: 80%;
-    height: 85%;
-    margin: 10%;
-    object-fit: cover;
-    border-radius: 30px;
-    box-shadow: 40px 40px 40px 0px #00000040;
-}
-
