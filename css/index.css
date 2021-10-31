@@ -1,0 +1,92 @@
+body, html{
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+* {
+	box-sizing: border-box;
+}
+
+.txt-carousel > h1{
+    font-size: 7vw;
+    margin-bottom: 55%;
+}
+.btnAgendar{
+    color:#FFF; 
+    background: transparent;
+    border: transparent;
+}
+.contBtn{
+    background:blue; 
+    top: 35rem;
+    border-radius: 10px;
+    border-color: transparent;
+}
+
+@media only screen and (min-width:1200px){
+    .contBtn{
+        margin-left: 25%;
+        margin-right: 30%;
+        height: 6em;
+        width: 20em;
+        transform: translate(0,calc(100% - 5em));
+    }
+    .btnAgendar{
+        font-size: 2em;
+    }
+}
+
+@media only screen and (min-width:960px) and (max-width: 1200px){
+    .contBtn{
+        margin-left: 25%;
+        margin-right: 35%;
+        height: 5em;
+        width: 15em;
+        transform: translate(0,calc(100% - 20em));
+    }
+    .btnAgendar{
+        font-size: 1.7em;
+    }
+}
+
+@media only screen and (min-width:720px) and (max-width:960px){
+    
+    .contBtn{
+        margin-left: 20%;
+        margin-right: 35%;
+        height: 4em;
+        width: 13em;
+        transform: translate(0,calc(100% - 20em));
+    }
+    .btnAgendar{
+        font-size: 1.4em;
+    }
+}
+
+@media only screen and (min-width:540px) and (max-width:720px){
+    .contBtn{
+        margin-left: 22%;
+        margin-right: 30%;
+        height: 3em;
+        width: 10em;
+        transform: translate(0,calc(100% - 23em));
+    }
+    .btnAgendar{
+        font-size: 1.2em;
+    }
+}
+@media only screen and (min-width:0px) and (max-width:540px){
+    .contBtn{
+        margin-left: 20%;
+        margin-right: 35%;
+        height: 4em;
+        width: 5em;
+        transform: translate(0,calc(100% - 30em));
+    }
+    .btnAgendar{
+        font-size: 0.9em;
+        margin:auto;
+    }
+}
