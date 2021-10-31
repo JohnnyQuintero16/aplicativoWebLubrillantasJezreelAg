@@ -5,6 +5,7 @@
 }
 
 .navbar-nav{
+    padding: 10px;
     padding: 5px;
 }
 
@@ -19,3 +20,5 @@
     background-color: rgba(0, 0, 0, .50) !important;
     transition: .4s;
 }
+
+
