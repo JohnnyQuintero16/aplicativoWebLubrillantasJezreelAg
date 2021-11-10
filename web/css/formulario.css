@@ -1,10 +1,9 @@
-* {
-	box-sizing: border-box;
-}
-
 body {
 	font-family: 'Roboto', sans-serif;
-	background: #505050;
+	/* background: #505050; */
+	background-image: url(../img/header_2.jpeg);
+	background-repeat: no-repeat; /* Evitar que se repita la imagen por todo el body */
+	background-size: cover; /* Cambia el tamaño de la imagen de fondo para cubrir todo el contenedor body */
 }
 
 main {
