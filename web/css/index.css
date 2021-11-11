@@ -45,6 +45,16 @@ footer p {
   margin:auto;
 }
 
+#imgNosotros{
+    height: 60%;
+    padding: auto;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    margin-top: 10%;
+    margin-bottom: 0;;
+}
+
 .redes {
   display: flex;
   justify-content: center;
