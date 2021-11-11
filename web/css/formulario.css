@@ -3,7 +3,9 @@ body {
 	/* background: #505050; */
 	background-image: url(../img/header_2.jpeg);
 	background-repeat: no-repeat; /* Evitar que se repita la imagen por todo el body */
+	background-position: center;
 	background-size: cover; /* Cambia el tamaño de la imagen de fondo para cubrir todo el contenedor body */
+	background-attachment: fixed; /* Dejar fija la imagen al momento de bajar o subir*/
 }
 
 main {
@@ -58,7 +60,8 @@ h1, h2{
 }
 
 .formulario__input-error {
-	font-size: 12px;
+	font-size: 15px;
+	margin-top: 8px;
 	margin-bottom: 0;
 	display: none;
 }
@@ -166,6 +169,10 @@ h1, h2{
 	.formulario__mensaje,
 	.formulario__grupo-btn-enviar {
 		grid-column: 1;
+	}
+
+	.formulario__mensaje{
+		height: 100%;
 	}
 
 	.formulario__btn {
