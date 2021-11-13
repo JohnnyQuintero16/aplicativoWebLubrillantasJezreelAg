@@ -4,9 +4,25 @@
         <servlet-name>Prueba.do</servlet-name>
         <servlet-class>ControladorVistas.Prueba</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Registro.do</servlet-name>
+        <servlet-class>ControladorVistas.Registro</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Registro</servlet-name>
+        <servlet-class>ControladorVistas.Registro</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Prueba.do</servlet-name>
         <url-pattern>/Prueba</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Registro.do</servlet-name>
+        <url-pattern>/Registro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Registro</servlet-name>
+        <url-pattern>/Registro.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

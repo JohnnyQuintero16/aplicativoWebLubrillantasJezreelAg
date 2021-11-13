@@ -17,7 +17,7 @@ public class main {
         
         
         RolDAO ro = new RolDAO();
-        Rol r = new Rol((short)3, "mecanico", "compra productos en la tienda");
+        Rol r = new Rol((short)5, "yo tambien", "quiero cancelar");
         ro.create(r);
         System.out.println("hola");
         

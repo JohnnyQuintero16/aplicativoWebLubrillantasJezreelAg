@@ -8,6 +8,7 @@ body {
 	background-position: center;
 	background-size: cover; /* Cambia el tamaño de la imagen de fondo para cubrir todo el contenedor body */
 	background-attachment: fixed; /* Dejar fija la imagen al momento de bajar o subir*/
+}
 * {
 	box-sizing: border-box;
 }
@@ -27,7 +28,7 @@ h2{
 	color: #5372F0;
     text-align: center;
 	font-size: 30px;
-
+}
 .registro{
     padding: 30px;
     border-radius: 10px;
