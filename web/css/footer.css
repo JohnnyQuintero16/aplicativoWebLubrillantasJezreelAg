@@ -1,0 +1,61 @@
+.redes{
+    text-align: center;
+}
+
+/* FOOTER */
+
+footer p {
+    color: white;
+    font-size: 18px;
+    text-align: center;
+
+}
+
+#imgFooter{
+  width:200px;
+  height:200px;
+  display:block;
+  margin:auto;
+}
+
+#imgNosotros{
+    height: 60%;
+    padding: auto;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    margin-top: 10%;
+    margin-bottom: 0;;
+}
+
+.redes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.redes img {
+  height: 50px;
+  margin: 1rem;
+  
+  
+}
+
+.horario h4 , .footer-contacto h4 {
+  color: gray;
+  text-align: center;
+  margin-top: 10%;
+  font-weight: bold;
+  
+}
+
+@media (min-width: 780px) {
+    
+.redes img {
+    height: 50px;
+    margin: 2rem;
+    
+    
+  }
+}
