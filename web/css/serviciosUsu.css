@@ -1,0 +1,96 @@
+*{
+    font-family: 'Roboto', sans-serif;
+    color: #000000;
+}
+
+h4{
+    text-align: center;
+}
+
+p{
+    text-align: justify;
+}
+
+strong{
+    color: gray;
+    font-size: 110%;
+}
+
+/* CARDS */
+.centrado{
+    margin-left: auto;
+    margin-right: auto;  
+    display: block;
+}
+
+#cardt{
+    background-color: #616060a1;
+    --bs-gutter-x: 0;
+}
+
+#boton{
+    background: #001971;
+    color:white;
+}
+
+#imgServicio{
+    width:200px;
+    height:150px;
+    border-radius: 8px;
+    display:block;
+    margin:auto;
+}
+
+
+/* columna  perfil */
+.verticalLine{
+    border-right:  0.2px solid #5554545d;
+    height: 100%; 
+}
+
+.titulo{
+    margin-top: 25px;
+}
+
+.servicios{
+    border-left:   solid #001971;
+}
+
+#servi{
+    color: black;
+}
+
+
+/* Foto responsive  del perfil*/
+#Perfil{
+    width:30%;
+    height:auto;
+    display:block;
+    margin:auto;
+}
+
+@media (min-width: 768px) { 
+    #Perfil{
+        width:80%;
+        height:auto;
+        display:block;
+        margin:auto;
+    }
+}
+
+
+  /* Hacer que la img desaparezca desde de 967 */
+@media only screen and (max-width: 967px) {
+    .user {
+       display: none !important;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .colum-datos {
+        width: 100%;
+        height:auto;
+        background-color: gray;
+    }
+}
