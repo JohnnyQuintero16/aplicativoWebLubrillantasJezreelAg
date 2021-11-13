@@ -19,32 +19,32 @@ import java.util.logging.Logger;
  */
 public class RolDAO {
     
-    RolJpaController dep;
+    RolJpaController rol;
 
     public RolDAO() {
         Conexion con = Conexion.getConexion();
-        dep = new RolJpaController(con.getBd());
+        rol = new RolJpaController(con.getBd());
     }
     
-    public void create(Rol rol){
+    public void create(Rol r){
         try {
-            dep.create(rol);
+            rol.create(r);
         } catch (Exception ex) {
             Logger.getLogger(RolDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public List<Rol> read(){  //devuelve todos los depmnos
-        return dep.findRolEntities();
+    public List<Rol> read(){  //devuelve todos los rolmnos
+        return rol.findRolEntities();
     }
     
     public Rol readRol(short id){
-        return dep.findRol(id);
+        return rol.findRol(id);
     }
     
     public void update(Rol d){
         try {
-            dep.edit(d);
+            rol.edit(d);
         } catch (Exception ex) {
             Logger.getLogger(RolDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -53,7 +53,7 @@ public class RolDAO {
     public void delete(short id) throws IllegalOrphanException{
         
         try {
-            dep.destroy(id);
+            rol.destroy(id);
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(RolDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

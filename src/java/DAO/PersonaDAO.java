@@ -19,32 +19,32 @@ import java.util.logging.Logger;
  */
 public class PersonaDAO {
     
-    PersonaJpaController dep;
+    PersonaJpaController per;
 
     public PersonaDAO() {
         Conexion con = Conexion.getConexion();
-        dep = new PersonaJpaController(con.getBd());
+        per = new PersonaJpaController(con.getBd());
     }
     
-    public void create(Persona departamento){
+    public void create(Persona persona){
         try {
-            dep.create(departamento);
+            per.create(persona);
         } catch (Exception ex) {
             Logger.getLogger(PersonaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public List<Persona> read(){  //devuelve todos los depmnos
-        return dep.findPersonaEntities();
+    public List<Persona> read(){  //devuelve todos los permnos
+        return per.findPersonaEntities();
     }
     
     public Persona readPersona(String id){
-        return dep.findPersona(id);
+        return per.findPersona(id);
     }
     
     public void update(Persona d){
         try {
-            dep.edit(d);
+            per.edit(d);
         } catch (Exception ex) {
             Logger.getLogger(PersonaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -53,7 +53,7 @@ public class PersonaDAO {
     public void delete(String id) throws IllegalOrphanException{
         
         try {
-            dep.destroy(id);
+            per.destroy(id);
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(PersonaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
