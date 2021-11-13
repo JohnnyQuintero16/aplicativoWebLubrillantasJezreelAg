@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author USUARIO
+ * @author Jefersonrr@ufps.edu.co
  */
 public class ProductoDAO {
         ProductoJpaController prod;

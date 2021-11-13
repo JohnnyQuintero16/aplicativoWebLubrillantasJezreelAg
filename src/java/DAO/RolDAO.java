@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Cristian
+ *@author Jefersonrr@ufps.edu.co
  */
 public class RolDAO {
     
