@@ -1,0 +1,13 @@
+
+.tabla-vehiculo {
+    border-collapse:separate;
+    border-spacing: 10;
+    border:solid rgb(114, 111, 111) 1px;
+    border-radius:50px;
+    -moz-border-radius:50px;
+    -webkit-border-radius: 15px;  
+    width: 90%;
+    text-align: center;
+    background-color: #e5e6e9;
+    margin-left: 2rem;
+  }
