@@ -19,10 +19,51 @@ body, html{
     border: transparent;
 }
 .contBtn{
-    background:blue; 
+
+    background:#0000ff; 
     top: 35rem;
     border-radius: 10px;
     border-color: transparent;
+}
+
+.redes{
+    text-align: center;
+}
+
+/* FOOTER */
+
+footer p {
+    color: white;
+    font-size: 18px;
+    text-align: center;
+
+}
+
+#imgFooter{
+  width:200px;
+  height:200px;
+  display:block;
+  margin:auto;
+}
+
+.redes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.redes img {
+  height: 50px;
+  margin: 2rem;
+  
+}
+
+.horario h4 , .footer-contacto h4 {
+  color: gray;
+  text-align: center;
+  margin-top: 10%;
+  font-weight: bold;
+  
 }
 
 @media only screen and (min-width:1200px){

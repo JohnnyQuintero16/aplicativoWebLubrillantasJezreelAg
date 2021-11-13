@@ -47,3 +47,13 @@ footer p {
   font-weight: bold;
   
 }
+
+@media (min-width: 780px) {
+    
+.redes img {
+    height: 50px;
+    margin: 2rem;
+    
+    
+  }
+}
