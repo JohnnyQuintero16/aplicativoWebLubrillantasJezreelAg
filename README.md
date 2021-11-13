@@ -1,7 +1,6 @@
 # Aplicativo Web LubrillantasJezreelAg
 
 ## Tabla de contenido
-<<<<<<< HEAD
 1. [Resumen](#Resumen)
 2. [Estructura del Repositorio](#Estructura-del-Repositorio)
 3. [Ramas con restricciones](#Ramas-con-restricciones)
@@ -121,6 +120,3 @@ Eso esta dependiendo que rol estan trabjando.
 
 Y listo, a codear 🤙
 ## Nota: Es importante que se cumpa este orden de asignación sobre quien aprueba y quien puede hacer los pull request, de lo contrario surgirian conflictos.
-=======
-1. [indicaciones]
->>>>>>> b275f09 (Update README.md)
