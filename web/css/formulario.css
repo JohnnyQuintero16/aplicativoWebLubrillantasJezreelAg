@@ -8,9 +8,12 @@ body {
 	background-position: center;
 	background-size: cover; /* Cambia el tamaño de la imagen de fondo para cubrir todo el contenedor body */
 	background-attachment: fixed; /* Dejar fija la imagen al momento de bajar o subir*/
+<<<<<<< HEAD
 }
 * {
 	box-sizing: border-box;
+=======
+>>>>>>> main
 }
 
 main {
