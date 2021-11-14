@@ -1,49 +1,49 @@
 .redes{
-    text-align: center;
+  text-align: center;
 }
 
 /* FOOTER */
 
 footer p {
-    color: white;
-    font-size: 18px;
-    text-align: center;
+  color: white;
+  font-size: 18px;
+  text-align: center;
 
 }
 
 #imgFooter{
-  width:200px;
-  height:200px;
-  display:block;
-  margin:auto;
+width:200px;
+height:200px;
+display:block;
+margin:auto;
 }
 
 #imgNosotros{
-    height: 60%;
-    padding: auto;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    margin-top: 10%;
-    margin-bottom: 0;;
+  height: 60%;
+  padding: auto;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  margin-top: 10%;
+  margin-bottom: 0;;
 }
 
 .redes {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 .redes img {
-  height: 50px;
-  margin: 2rem;
-  
+height: 50px;
+margin: 2rem;
+
 }
 
 .horario h4 , .footer-contacto h4 {
-  color: gray;
-  text-align: center;
-  margin-top: 10%;
-  font-weight: bold;
-  
+color: gray;
+text-align: center;
+margin-top: 10%;
+font-weight: bold;
+
 }

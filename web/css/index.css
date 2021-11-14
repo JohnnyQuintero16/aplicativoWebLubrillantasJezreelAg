@@ -574,7 +574,7 @@ input[id="3"]:checked~ .pagination .pagination-item[for="3"]{
         
         #left img{
             width: 800px;
-            height: 340px;
+            height: 380px;
         }
         
         
@@ -598,7 +598,7 @@ input[id="3"]:checked~ .pagination .pagination-item[for="3"]{
     @media only screen and (min-width:1366px){
 
         #left img{
-            height: 340px;
+            height: 380px;
         }
 
         #left{
@@ -623,7 +623,7 @@ input[id="3"]:checked~ .pagination .pagination-item[for="3"]{
     @media only screen and (min-width:1600px) and (max-width: 1900px){
         #left img{
          width: 100%;
-            height: 340px;
+            height: 380px;
         }
 
         #left{
@@ -648,7 +648,7 @@ input[id="3"]:checked~ .pagination .pagination-item[for="3"]{
     @media only screen and (min-width:1920px) {
           #left img{
          width: 100%;
-            height: 340px;
+            height: 380px;
         }
 
         #left{
@@ -713,5 +713,29 @@ input[id="3"]:checked~ .pagination .pagination-item[for="3"]{
   }
 
   .boton2:hover{
+      background: #5168bb;
+  }
+
+  .texto{
+      text-align: justify;
+  }
+
+  .boton3{
+    background:  #001971;
+    border-bottom: 5px solid #5168bb;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: 900;
+    width: 200px;
+    height: 50px;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease 0s;
+    
+    
+  }
+
+  .boton3:hover{
       background: #5168bb;
   }

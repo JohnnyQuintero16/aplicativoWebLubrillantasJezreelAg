@@ -136,7 +136,7 @@ inputs.forEach((input) => {
 
 */
 formulario.addEventListener('submit', (e) => {
-	e.preventDefault(); //No haga nada al enviar, cuando enviemos los datos debemos quitarlo.
+	/* e.preventDefault(); */ //No haga nada al enviar, cuando enviemos los datos debemos quitarlo.
 
 	const terminos = document.getElementById('terminos');
 	if(campos.nombre && campos.apellido && campos.password && campos.cedula && campos.correo && campos.telefono && campos.direccion && terminos.checked ){

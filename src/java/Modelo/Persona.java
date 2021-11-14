@@ -5,12 +5,16 @@
  */
 package Modelo;
 
+import DAO.RolDAO;
+import DTO.Rol;
+
 /**
  *
  * @author johnny
  */
 public class Persona {
     public static void main(String[] args) {
-        
+        RolDAO rol = new RolDAO();
+        rol.create(new Rol((short)4,"ayuda","quiero cancelar"));
     }
 }
