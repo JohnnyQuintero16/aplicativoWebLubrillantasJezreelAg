@@ -19,6 +19,7 @@
 	<!--Importar CSS -->
     <link rel="stylesheet" href="../css/menu.css"/>
     <link rel="stylesheet" href="../css/formulario.css"/>
+	<link rel="stylesheet" href="../css/footer.css">
     
 
 </head>
@@ -28,8 +29,7 @@
 		<div class="container-fluid">
 
 			<a class="navbar-brand" href="../index.html">
-				<img src="../img/LogoLJAG.png" alt="" width="100px" height="100px"/>
-
+				<img src="../img/LogoLJAG.png" alt="" width="140px" height="120px"/>
 			</a>
 
 		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,20 +46,16 @@
 				<a class="nav-link" href="#">NOSOTROS</a>
 			  </li>
 			  <li class="nav-item">
-
 				<a class="nav-link" href="../html/servicios.html">SERVICIOS</a>
 			  </li>
 			  <li class="nav-item">
 				<a class="nav-link" href="../html/productos.html">PRODUCTOS</a>
-
 			  </li>
 			</ul>
 
 			<ul class="navbar-nav ml-auto m-4">
 				<li class="nav-item">
-
 					<a class="nav-link" href="../html/iniciarsesion.html">INICIAR SESIÓN</a>
-
 				</li>
 				<li class="nav-item">
 					<a class="nav-link active" aria-current="page" href="#">REGISTRARSE</a>
@@ -98,24 +94,20 @@
 			<div class="formulario__grupo" id="grupo__nombre">
 				<label for="nombre" class="formulario__label">Nombres</label>
 				<div class="formulario__grupo-input">
-
-					<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="XXXXXXXX">
+					<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Nombres completos">
 					<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
-				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-
+				<p class="formulario__input-error">El nombre solo puede contener letras y espacios.</p>
 			</div>
 
             <!--Apellido: -->
 			<div class="formulario__grupo" id="grupo__apellido">
 				<label for="apellido" class="formulario__label">Apellidos</label>
 				<div class="formulario__grupo-input">
-
-					<input type="text" class="formulario__input" name="apellido" id="apellido" placeholder="XXXXXXXX">
+					<input type="text" class="formulario__input" name="apellido" id="apellido" placeholder="Apellidos completos">
 					<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
-				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
-
+				<p class="formulario__input-error">El apellido solo puede contener letras y espacios.</p>
 			</div>
 
             <!-- Grupo: Contraseña -->
@@ -156,7 +148,6 @@
 						<i class="formulario__validacion-estado fas fa-times-circle"></i>
 					</div>
 					<p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
-
 			</div>
 
             <!-- Grupo: Teléfono -->
@@ -189,22 +180,6 @@
 
 			<div class="formulario__mensaje" id="formulario__mensaje">
 				<p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
-
-					<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="4491234567">
-					<i class="formulario__validacion-estado fas fa-times-circle"></i>
-				</div>
-				<p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 14 dígitos.</p>
-			</div>
-
-            <!-- Grupo: Correo Electronico -->
-			<div class="formulario__grupo" id="grupo__correo">
-				<label for="correo" class="formulario__label">Correo Electrónico</label>
-				<div class="formulario__grupo-input">
-					<input type="email" class="formulario__input" name="correo" id="correo" placeholder="correo@correo.com">
-					<i class="formulario__validacion-estado fas fa-times-circle"></i>
-				</div>
-				<p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
-
 			</div>
 
             <div class="formulario__grupo formulario__grupo-btn-enviar">
@@ -216,8 +191,45 @@
         </section>
         <!-- Fin formulario-->
     </main>
-
-    <script src="../js/formulario.js""></script>
+  
+ <!--FOOTER-->
+ <footer>
+	<div class="container-fluid">
+	  <div class="row ">
+		<div class="col-12 redes" style="background-color: #00114e;">
+		  <img src="../img/whatsapp.png" >
+		  <img src="../img/facebook.png" >
+		  <img src="../img/instagram.png" >
+		</div>
+	  </div>
+	  <div class="row" style="background-color: #001971;">
+  
+		<div class="col-12 col-sm-4 col-md-4 col-lg-4">
+		  <img src="../img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
+		</div>
+  
+		<div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
+		  <h4 >HORARIOS DE ATENCIÓN</h4>
+		  <p>Lunes a Viernes</p>
+		  <p>7:30 AM a 6:00 PM</p>
+		  <p>Sábado</p>
+		  <p>7:30 AM a 5:00 PM</p>
+		</div>
+  
+		<div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
+		  <h4 > CONTACTO </h4>
+		  <P>Av 5 # 0N-54 Barrio La Merced</P>
+		  <p>San José de Cúcuta - Colombia</p>
+		  <p>albeirofonseca74@gmail.com</p>
+		  <p>+57 3112810082</p>
+		</div>
+  
+	  </div>
+	</div>
+  </footer>
+  <!--FIN FOOTER-->
+ 
+    <script src="../js/formulario.js"></script>
 	<!-- Enlace a los iconos que se trabajan. -->
 	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </body>
