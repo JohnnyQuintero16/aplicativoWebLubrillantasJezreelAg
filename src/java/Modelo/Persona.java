@@ -15,6 +15,6 @@ import DTO.Rol;
 public class Persona {
     public static void main(String[] args) {
         RolDAO rol = new RolDAO();
-        rol.create(new Rol((short)4,"ayuda","quiero cancelar"));
+        rol.create(new Rol((short)1,"ayuda","quiero cancelar"));
     }
 }
