@@ -5,6 +5,9 @@
  */
 package ControladorVistas;
 
+import DAO.PersonaDAO;
+import DAO.RolDAO;
+import DTO.Persona;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -29,9 +32,33 @@ public class Registro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            
+            String nombre = request.getParameter("nombre");
+            String apellido = request.getParameter("apellido");
+            String contrasenia = request.getParameter("password");
+            String cedula = request.getParameter("cedula");
+            String correo = request.getParameter("correo");
+            String telef = request.getParameter("telefono");
+            String direccion = request.getParameter("direccion");
+            PersonaDAO p = new PersonaDAO();
+            boolean existe = p.existePersona(cedula);
+            
+            if(existe){
+                String esta = "existe";
+                request.getSession().setAttribute("existe", esta);
+                request.getRequestDispatcher("html/registrarse.jsp").forward(request, response);
+            }
+            else{
+                RolDAO r = new RolDAO();
+                p.crearPersona(nombre,apellido,contrasenia,cedula,correo,telef,direccion,r.readRol((short)2));
+                request.getRequestDispatcher("html/iniciarsesion.jsp").forward(request, response);
+            }
+            
+                
+            }
+            
         
-        request.getRequestDispatcher("html/servicios.html").forward(request, response);
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

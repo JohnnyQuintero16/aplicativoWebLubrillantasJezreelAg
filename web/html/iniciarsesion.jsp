@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <%
+        String path = request.getContextPath();
+        String basePath = request.getScheme() + "://" + request.getServerName() + ":" +     
+        request.getServerPort() + path + "/";
+%>
+<base href="<%=basePath%>">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,9 +24,9 @@
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     
     <!--Importar CSS -->
-    <link rel="stylesheet" href="../css/menu.css"/>
-    <link rel="stylesheet" href="../css/iniciarsesion.css">
-    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="<%=basePath%>css/menu.css"/>
+    <link rel="stylesheet" href="<%=basePath%>css/iniciarsesion.css">
+    <link rel="stylesheet" href="<%=basePath%>css/footer.css">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
@@ -32,8 +38,8 @@
      <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
 		<div class="container-fluid">
 
-			<a class="navbar-brand" href="../index.html">
-				<img src="../img/LogoLJAG.png" alt="" width="140px" height="120px"/>
+			<a class="navbar-brand" href="<%=basePath%>index.html">
+				<img src="<%=basePath%>img/LogoLJAG.png" alt="" width="140px" height="120px"/>
 			</a>
 
 		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,25 +50,25 @@
 
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 			  <li class="nav-item">
-				<a class="nav-link" href="../index.html">INICIO</a>
+				<a class="nav-link" href="<%=basePath%>index.html">INICIO</a>
 			  </li>
 			  <li class="nav-item">
 				<a class="nav-link" href="#">NOSOTROS</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link" href="../html/servicios.html">SERVICIOS</a>
+				<a class="nav-link" href="<%=basePath%>html/servicios.html">SERVICIOS</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link" href="../html/productos.html">PRODUCTOS</a>
+				<a class="nav-link" href="<%=basePath%>html/productos.html">PRODUCTOS</a>
 			  </li>
 			</ul>
 
 			<ul class="navbar-nav ml-auto m-4">
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="#">INICIAR SESIÓN</a>
+					<a class="nav-link active" aria-current="page" href="#">INICIAR SESION</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="../html/registrarse.html">REGISTRARSE</a>
+					<a class="nav-link" href="<%=basePath%>html/registrarse.html">REGISTRARSE</a>
 				</li>
 			</ul>
 
@@ -86,29 +92,29 @@
     <main>
         <div class="wrapper">
             <div class="encabezado">
-                <h1>Iniciar Sesión</h1>
+                <h1>Iniciar Sesion</h1>
             </div>
         <form action="#">
             <div class="field cedula">
               <div class="input-area">
-                <input type="text" placeholder="Número de cédula">
+                <input type="text" placeholder="Numero de cedula">
                 <i class="icon fas fa-user"></i>
                 <i class="error error-icon fas fa-exclamation-circle"></i>
               </div>
-              <div class="error error-txt">La cédula no puede estar en blanco</div>
+              <div class="error error-txt">La cedula no puede estar en blanco</div>
             </div>
             <div class="field password">
               <div class="input-area">
-                <input type="password" placeholder="Contraseña">
+                <input type="password" placeholder="Contrase�a">
                 <i class="icon fas fa-lock"></i>
                 <i class="error error-icon fas fa-exclamation-circle"></i>
               </div>
-              <div class="error error-txt">La contraseña no puede estar en blanco</div>
+              <div class="error error-txt">La contrase�a no puede estar en blanco</div>
             </div>
-            <div class="pass-txt"><a href="#">¿Olvidaste tu contraseña?</a></div>
+            <div class="pass-txt"><a href="#">�Olvidaste tu contrase�a?</a></div>
             <input type="submit" value="Ingresar">
           </form>
-          <div class="sign-txt">¿No eres miembro? <a href="../html/registrarse.html">Registrate</a></div>
+          <div class="sign-txt">�No eres miembro? <a href="<%=basePath%>html/registrarse.html">Registrate</a></div>
         </div>
 
     </main>
@@ -119,29 +125,29 @@
   <div class="container-fluid">
     <div class="row ">
       <div class="col-12 redes" style="background-color: #00114e;">
-        <img src="../img/whatsapp.png" >
-        <img src="../img/facebook.png" >
-        <img src="../img/instagram.png" >
+        <img src="<%=basePath%>img/whatsapp.png" >
+        <img src="<%=basePath%>img/facebook.png" >
+        <img src="<%=basePath%>img/instagram.png" >
       </div>
     </div>
     <div class="row" style="background-color: #001971;">
 
       <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-        <img src="../img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
+        <img src="<%=basePath%>img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
       </div>
 
       <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
-        <h4 >HORARIOS DE ATENCIÓN</h4>
+        <h4 >HORARIOS DE ATENCION</h4>
         <p>Lunes a Viernes</p>
         <p>7:30 AM a 6:00 PM</p>
-        <p>Sábado</p>
+        <p>Sabado</p>
         <p>7:30 AM a 5:00 PM</p>
       </div>
 
       <div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
         <h4 > CONTACTO </h4>
         <P>Av 5 # 0N-54 Barrio La Merced</P>
-        <p>San José de Cúcuta - Colombia</p>
+        <p>San Jose de Cucuta - Colombia</p>
         <p>albeirofonseca74@gmail.com</p>
         <p>+57 3112810082</p>
       </div>
@@ -151,7 +157,7 @@
 </footer>
 <!--FIN FOOTER-->
 
-    <script src="../js/iniciarsesion.js"></script>
+    <script src="<%=basePath%>js/iniciarsesion.js"></script>
     
 </body>
 </html>

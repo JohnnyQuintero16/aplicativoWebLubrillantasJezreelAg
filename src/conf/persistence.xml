@@ -18,11 +18,7 @@
     <class>DTO.Servicio</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-<<<<<<< HEAD
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://54.234.75.176:3306/bdJezreel?serverTimezone=UTC"/>
-=======
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://54.234.75.176:3306/bdJezreel?serverTimeZone=UTC:3306/bdJezreel?serverTimezone=UTC"/>
->>>>>>> main
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://3.91.35.248:3306/bdJezreel?serverTimeZone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root2"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="api1234"/>

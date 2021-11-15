@@ -5,23 +5,19 @@
         <data xmlns="http://www.netbeans.org/ns/web-project/3">
             <name>LubrillantasJezreel</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
-            <explicit-platform explicit-source-supported="true"/>
             <web-module-libraries>
                 <library dirs="200">
                     <file>${file.reference.mysql-connector-java-8.0.25.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
+                    <file>${file.reference.javaee-web-api-8.0.jar-1}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
                     <file>${libs.eclipselink.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
-<<<<<<< HEAD
-=======
-                <library dirs="200">
-                    <file>${file.reference.javaee-web-api-8.0.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
->>>>>>> main
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>
@@ -31,8 +27,6 @@
                 <root id="test.src.dir"/>
             </test-roots>
         </data>
-        <libraries xmlns="http://www.netbeans.org/ns/ant-project-libraries/1">
-            <definitions>./lib/nblibraries.properties</definitions>
-        </libraries>
+        <libraries xmlns="http://www.netbeans.org/ns/cdnjs-libraries/1"/>
     </configuration>
 </project>

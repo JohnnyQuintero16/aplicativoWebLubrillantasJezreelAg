@@ -1,6 +1,20 @@
+<%-- 
+    Document   : registrarse
+    Created on : 14/11/2021, 12:49:28 PM
+    Author     : Cristian
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <%
+        String path = request.getContextPath();
+        String basePath = request.getScheme() + "://" + request.getServerName() + ":" +     
+        request.getServerPort() + path + "/";
+%>
+<base href="<%=basePath%>">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,19 +31,17 @@
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
 
 	<!--Importar CSS -->
-    <link rel="stylesheet" href="../css/menu.css"/>
-    <link rel="stylesheet" href="../css/formulario.css"/>
-	<link rel="stylesheet" href="../css/footer.css">
-    
-
+        <link href="<%=basePath%>css/menu.css" rel="stylesheet" type="text/css"/>
+        <link href="<%=basePath%>css/formulario.css" rel="stylesheet" type="text/css"/>
+        <link href="<%=basePath%>css/footer.css" rel="stylesheet" type="text/css"/>
 </head>
-<body>
+<body onload="exist()">
 	<!-- Inicio menú-->
 	<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
 		<div class="container-fluid">
 
-			<a class="navbar-brand" href="../index.html">
-				<img src="../img/LogoLJAG.png" alt="" width="140px" height="120px"/>
+			<a class="navbar-brand" href="<%=basePath%>index.html">
+				<img src="<%=basePath%>img/LogoLJAG.png" alt="" width="140px" height="120px"/>
 			</a>
 
 		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,22 +52,22 @@
 
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 			  <li class="nav-item">
-				<a class="nav-link" href="../index.html">INICIO</a>
+				<a class="nav-link" href="<%=basePath%>index.html">INICIO</a>
 			  </li>
 			  <li class="nav-item">
 				<a class="nav-link" href="#">NOSOTROS</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link" href="../html/servicios.html">SERVICIOS</a>
+				<a class="nav-link" href="<%=basePath%>html/servicios.html">SERVICIOS</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link" href="../html/productos.html">PRODUCTOS</a>
+				<a class="nav-link" href="<%=basePath%>html/productos.html">PRODUCTOS</a>
 			  </li>
 			</ul>
 
 			<ul class="navbar-nav ml-auto m-4">
 				<li class="nav-item">
-					<a class="nav-link" href="../html/iniciarsesion.html">INICIAR SESIÓN</a>
+					<a class="nav-link" href="<%=basePath%>html/iniciarsesion.html">INICIAR SESIÓN</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link active" aria-current="page" href="#">REGISTRARSE</a>
@@ -89,7 +101,8 @@
                 <h2>1.  Datos personales</h2>
                 <br>
             </div>
-            <form action="../Registro.do" class="formulario" id="formulario">
+            
+            <form action="Registro.do" class="formulario" id="formulario">
             <!--Grupo: Nombre -->
 			<div class="formulario__grupo" id="grupo__nombre">
 				<label for="nombre" class="formulario__label">Nombres</label>
@@ -129,7 +142,6 @@
 				</div>
 				<p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
 			</div>
-
             <!--Grupo: Cédula-->
 			<div class="formulario__grupo" id="grupo__cedula">
 				<label for="cedula" class="formulario__label">Cedula</label>
@@ -149,7 +161,9 @@
 					</div>
 					<p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
 			</div>
-
+                        <% String valor = request.getSession().getAttribute("existe")==null?"no existe":request.getSession().getAttribute("existe").toString();
+                           
+                        %>
             <!-- Grupo: Teléfono -->
 			<div class="formulario__grupo" id="grupo__telefono">
 				<label for="telefono" class="formulario__label">Teléfono</label>
@@ -177,33 +191,12 @@
 					Acepto los Terminos y Condiciones
 				</label>
 			</div>
-                       
+
 			<div class="formulario__mensaje" id="formulario__mensaje">
-<<<<<<< HEAD
-				 <div>
-                                     <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
-
-					<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="4491234567">
-					<i class="formulario__validacion-estado fas fa-times-circle"></i>
-				</div>
-				<p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 14 dígitos.</p>
-			</div>
-
-            <!-- Grupo: Correo Electronico -->
-			<div class="formulario__grupo" id="grupo__correo">
-				<label for="correo" class="formulario__label">Correo Electrónico</label>
-				<div class="formulario__grupo-input">
-					<input type="email" class="formulario__input" name="correo" id="correo" placeholder="correo@correo.com">
-					<i class="formulario__validacion-estado fas fa-times-circle"></i>
-				</div>
-				<p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
-
-=======
 				<p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
->>>>>>> main
 			</div>
 
-                        <div class="formulario__grupo formulario__grupo-btn-enviar">
+            <div class="formulario__grupo formulario__grupo-btn-enviar">
 				<button type="submit" class="formulario__btn">Continuar</button>
 				<p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
 			</div>
@@ -212,24 +205,21 @@
         </section>
         <!-- Fin formulario-->
     </main>
-<<<<<<< HEAD
-
-=======
   
  <!--FOOTER-->
  <footer>
 	<div class="container-fluid">
 	  <div class="row ">
 		<div class="col-12 redes" style="background-color: #00114e;">
-		  <img src="../img/whatsapp.png" >
-		  <img src="../img/facebook.png" >
-		  <img src="../img/instagram.png" >
+		  <img src="<%=basePath%>img/whatsapp.png" >
+		  <img src="<%=basePath%>img/facebook.png" >
+		  <img src="<%=basePath%>img/instagram.png" >
 		</div>
 	  </div>
 	  <div class="row" style="background-color: #001971;">
   
 		<div class="col-12 col-sm-4 col-md-4 col-lg-4">
-		  <img src="../img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
+		  <img src="<%=basePath%>img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
 		</div>
   
 		<div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
@@ -253,8 +243,16 @@
   </footer>
   <!--FIN FOOTER-->
  
->>>>>>> main
-    <script src="../js/formulario.js"></script>
+  <script src="<%=basePath%>js/formulario.js" type="text/javascript"></script>
+  <script>
+    
+function exist(){            
+    let existe = '<%=valor%>';
+                if(existe==="existe"){
+                    alert('El usuario ya existe!');
+                }
+            }
+            </script>
 	<!-- Enlace a los iconos que se trabajan. -->
 	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </body>
