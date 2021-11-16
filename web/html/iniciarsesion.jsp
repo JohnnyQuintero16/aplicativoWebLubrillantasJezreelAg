@@ -99,7 +99,7 @@
                 <i class="icon fas fa-user"></i>
                 <i class="error error-icon fas fa-exclamation-circle"></i>
               </div>
-              <div class="error error-txt">La cédula no puede estar en blanco</div>
+              <div class="error error-txt">La cedula no puede estar en blanco</div>
             </div>
             <div class="field password">
               <div class="input-area">
@@ -107,9 +107,9 @@
                 <i class="icon fas fa-lock"></i>
                 <i class="error error-icon fas fa-exclamation-circle"></i>
               </div>
-              <div class="error error-txt">La contraseña no puede estar en blanco</div>
+              <div class="error error-txt">La contrase�a no puede estar en blanco</div>
             </div>
-            <div class="pass-txt"><a href="#">¿Olvidaste tu contraseña?</a></div>
+            <div class="pass-txt"><a href="#">�Olvidaste tu contrase�a?</a></div>
             <input type="submit" value="Ingresar">
           </form>
           <div class="sign-txt">¿No eres miembro? <a href="<%=basePath%>/html/registrarse.jsp">Registrate</a></div>
@@ -135,17 +135,17 @@
       </div>
 
       <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
-        <h4 >HORARIOS DE ATENCIÓN</h4>
+        <h4 >HORARIOS DE ATENCION</h4>
         <p>Lunes a Viernes</p>
         <p>7:30 AM a 6:00 PM</p>
-        <p>Sábado</p>
+        <p>Sabado</p>
         <p>7:30 AM a 5:00 PM</p>
       </div>
 
       <div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
         <h4 > CONTACTO </h4>
         <P>Av 5 # 0N-54 Barrio La Merced</P>
-        <p>San José de Cúcuta - Colombia</p>
+        <p>San Jose de Cucuta - Colombia</p>
         <p>albeirofonseca74@gmail.com</p>
         <p>+57 3112810082</p>
       </div>

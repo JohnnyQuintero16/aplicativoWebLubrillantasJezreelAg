@@ -5,9 +5,17 @@
         <servlet-name>IniciarSesion</servlet-name>
         <servlet-class>ControladorVistas.IniciarSesion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Registro</servlet-name>
+        <servlet-class>ControladorVistas.Registro</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Registro</servlet-name>
+        <url-pattern>/Registro.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -24,7 +24,6 @@ public class RolDAO {
     public RolDAO() {
         Conexion con = Conexion.getConexion();
         rol = new RolJpaController(con.getBd());
-        System.out.println("Entra");
     }
     
     public void create(Rol r){

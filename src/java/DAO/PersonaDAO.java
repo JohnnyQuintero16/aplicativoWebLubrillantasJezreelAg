@@ -6,6 +6,7 @@
 package DAO;
 
 import DTO.Persona;
+import DTO.Rol;
 import Persistencia.PersonaJpaController;
 import Persistencia.exceptions.IllegalOrphanException;
 import Persistencia.exceptions.NonexistentEntityException;
@@ -42,12 +43,27 @@ public class PersonaDAO {
         return per.findPersona(id);
     }
     
+    public boolean existePersona(String cedula){
+        return this.readPersona(cedula)!=null;
+    }
+    
     public void update(Persona d){
         try {
             per.edit(d);
         } catch (Exception ex) {
             Logger.getLogger(PersonaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public String getCedulas(){
+    
+        List<Persona> personas = this.read();
+        String rta = "";
+        
+        for (Persona pe : personas) {
+            rta+=pe.getCedula()+",";
+        }
+        return rta;
     }
     
     public void delete(String id) throws IllegalOrphanException{
@@ -58,6 +74,14 @@ public class PersonaDAO {
             Logger.getLogger(PersonaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+
+    public void crearPersona(String nombre, String apellido, String contrasenia, String cedula, String correo, String telef, String direccion, Rol rol) {
+        
+       Persona p = new Persona(cedula, nombre, apellido, correo, telef, direccion);
+       p.setContraseña(contrasenia);
+       p.setIdRol(rol);
+       this.create(p);
     }
     
 }
