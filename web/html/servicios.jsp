@@ -153,62 +153,15 @@
 	<!--  <section class="contenido  mt-3"> -->
 
 		<section class="container ctn">
-			<div class="card">
-	
-				<div class="row g-0 ">
-					<div class="col-md-5">
-					  <img src="https://academiarallymontecarlo.com/wp-content/uploads/2020/03/bigstock-sistema-de-lubricaci%C3%B3n-aceite-auto.jpg" class="img-fluid rounded-start" alt="...">
-					</div>
-					<div class="col-md-7 mt-4">
-						<h2 class="card-title ">Cambio de aceite</h2>
-						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-					</div>
-				  </div>
 		
-	
-			</div>
-
-			<div class="card">
-			
-				<div class="row g-0 ">
-					<div class="col-md-5">
-					  <img src="https://i.blogs.es/f21c04/frenos-coche/450_1000.jpg" class="img-fluid rounded-start" alt="...">
-					</div>
-					<div class="col-md-7 mt-4">
-					  
-						<h2 class="card-title">Frenos de Suspensión</h2>
-						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-					
-				
-					</div>
-				  </div>
+                    <%
+                    String listaServicios= request.getSession().getAttribute("listaServicios").toString();
+                    %>
+                    
+                    <%=listaServicios%>
+                   
 		
-	
-			</div>
-
-
-			<div class="card">
-			
-					<div class="row g-0 ">
-						<div class="col-md-5">
-						  <img src="https://www.sanvicentedechucuri.com/wp-content/uploads/2020/04/montallantas-1.jpg" class="img-fluid rounded-start" alt="...">
-						</div>
-						<div class="col-md-7 mt-4">
-						  
-							<h2 class="card-title">Montallantas</h2>
-							<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						
-					
-						</div>
-					  </div>
-			
-		
-				</div>
-
-			</section>
-
-		
-	 <!-- </section> -->
+	  </section>
 
 	 <section class="contenido mt-5 mb-3">
 
