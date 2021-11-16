@@ -6,6 +6,7 @@
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/MarcaDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/js/menu.js</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/TipoDAO.java</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/img/header_2.jpeg</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarServiciosAdmin.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/ProductoJpaController.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/VehiculoJpaController.java</file>
@@ -16,13 +17,20 @@
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/VehiculoDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/DetallesServicioJpaController.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/exceptions/IllegalOrphanException.java</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/img/facebook.png</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/img/close.png</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/DetallesServicioDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/ServicioJpaController.java</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/html/iniciarsesion.jsp</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/WEB-INF/web.xml</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/html/servicios.jsp</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/html/registrarse.jsp</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/Conexion.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DTO/Tipo.java</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/img/home.jpeg</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/FacturaDAO.java</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/img/LogoLJAG.png</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/html/nosotros.jsp</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/exceptions/NonexistentEntityException.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/IniciarSesion.java</file>
