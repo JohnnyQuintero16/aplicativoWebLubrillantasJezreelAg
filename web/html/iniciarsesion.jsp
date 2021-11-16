@@ -54,10 +54,10 @@
 				<a class="nav-link" href="<%=basePath%>/nosotros.jsp">NOSOTROS</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link" href="<%=basePath%>/html/servicios.jsp">SERVICIOS</a>
+				<a class="nav-link" href="<%=basePath%>/MostrarServiciosAdmin.do">SERVICIOS</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link" href="<%=basePath%>/html/productos.jsp">PRODUCTOS</a>
+				<a class="nav-link" href="<%=basePath%>/MostrarProductos.do">PRODUCTOS</a>
 			  </li>
 			</ul>
 

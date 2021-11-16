@@ -38,7 +38,7 @@
             <div class="container-fluid">
 
                 <a class="navbar-brand" href="#">
-                    <img src="../img/LogoLJAG.png" alt="" width="140px" height="120px"/>
+                    <img src="<%=basePath%>img/LogoLJAG.png" alt="" width="140px" height="120px"/>
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +55,7 @@
                             <a class="nav-link" href="./nosotros.jsp">NOSOTROS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./servicios.jsp">SERVICIOS</a>
+                            <a class="nav-link" href="<%=basePath%>/MostrarServiciosAdmin.do">SERVICIOS</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page"href="#">PRODUCTOS</a>
@@ -85,7 +85,7 @@
 
                 <div class="slide">
                     <div class="item-slide">
-                        <img id="background" src="../img/header.jpeg" style="filter:brightness(45%)">
+                        <img id="background" src="<%=basePath%>img/header.jpeg" style="filter:brightness(45%)">
                         <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel">
                             <h1  class="tittle-carrusel ">NUESTROS <p style="color: blue; display: inline;">PRODUCTOS</p></h1>
                         </div>
@@ -93,14 +93,14 @@
                     </div>
 
                     <div class="item-slide">
-                        <img id="background" src="../img/header_2.jpeg" style="filter:brightness(45%)">
+                        <img id="background" src="<%=basePath%>img/header_2.jpeg" style="filter:brightness(45%)">
                         <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel">
                             <h1  class="tittle-carrusel ">NUESTROS <p style="color: blue; display: inline;">PRODUCTOS</p></h1>
                         </div>
                     </div>
 
                     <div class="item-slide">
-                        <img id="background" src="../img/home.jpeg" style="filter:brightness(45%)">
+                        <img id="background" src="<%=basePath%>img/home.jpeg" style="filter:brightness(45%)">
                         <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel">
                             <h1  class="tittle-carrusel ">NUESTROS <p style="color: blue; display: inline;">PRODUCTOS</p></h1>
                         </div>
@@ -111,16 +111,16 @@
                 <div class="pagination">
 
                     <label class="pagination-item" for="1">
-                        <img id="background-p" src="../img/header.jpeg">
+                        <img id="background-p" src="<%=basePath%>img/header.jpeg">
 
                     </label>
 
                     <label class="pagination-item" for="2">
-                        <img id="background-p" src="../img/header_2.jpeg">
+                        <img id="background-p" src="<%=basePath%>img/header_2.jpeg">
                     </label>
 
                     <label class="pagination-item" for="3">
-                        <img id="background-p" src="../img/home.jpeg">
+                        <img id="background-p" src="<%=basePath%>img/home.jpeg">
                     </label>
 
                 </div>
@@ -239,15 +239,15 @@
             <div class="container-fluid">
                 <div class="row ">
                     <div class="col-12 redes" style="background-color: #00114e;">
-                        <img src="../img/whatsapp.png" >
-                        <img src="../img/facebook.png" >
-                        <img src="../img/instagram.png" >
+                        <img src="<%=basePath%>img/whatsapp.png" >
+                        <img src="<%=basePath%>img/facebook.png" >
+                        <img src="<%=basePath%>img/instagram.png" >
                     </div>
                 </div>
                 <div class="row" style="background-color: #001971;">
 
                     <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-                        <img src="../img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
+                        <img src="<%=basePath%>img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
                     </div>
 
                     <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
