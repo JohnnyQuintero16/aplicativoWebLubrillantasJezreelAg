@@ -23,6 +23,17 @@
 	<!--Normallize css: proyecto que corrige estilos predeterminados de los diferentes navegadores, para evitar usar el selector universal
     en la hoja de estilos CSS. -->
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+<<<<<<< HEAD:web/html/iniciarsesion.jsp
+=======
+    
+    <!--Importar CSS -->
+    <link rel="stylesheet" href="<%=basePath%>css/menu.css"/>
+    <link rel="stylesheet" href="<%=basePath%>css/iniciarsesion.css">
+    <link rel="stylesheet" href="<%=basePath%>css/footer.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+>>>>>>> origin/Test:web/html/iniciarsesion.html
 
 	<!--Importar CSS -->
          <link href="<%=basePath%>css/menu.css" rel="stylesheet" type="text/css"/>
@@ -36,8 +47,13 @@
      <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
 		<div class="container-fluid">
 
+<<<<<<< HEAD:web/html/iniciarsesion.jsp
 			<a class="navbar-brand" href="<%=basePath%>/index.jsp">
 				<img src="<%=basePath%>/img/LogoLJAG.png" alt="" width="140px" height="120px"/>
+=======
+			<a class="navbar-brand" href="<%=basePath%>index.html">
+				<img src="<%=basePath%>img/LogoLJAG.png" alt="" width="140px" height="120px"/>
+>>>>>>> origin/Test:web/html/iniciarsesion.html
 			</a>
 
 		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,25 +64,43 @@
 
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 			  <li class="nav-item">
+<<<<<<< HEAD:web/html/iniciarsesion.jsp
 				<a class="nav-link" href="<%=basePath%>/index.jsp">INICIO</a>
+=======
+				<a class="nav-link" href="<%=basePath%>index.html">INICIO</a>
+>>>>>>> origin/Test:web/html/iniciarsesion.html
 			  </li>
 			  <li class="nav-item">
 				<a class="nav-link" href="<%=basePath%>/nosotros.jsp">NOSOTROS</a>
 			  </li>
 			  <li class="nav-item">
+<<<<<<< HEAD:web/html/iniciarsesion.jsp
 				<a class="nav-link" href="<%=basePath%>/MostrarServiciosAdmin.do">SERVICIOS</a>
 			  </li>
 			  <li class="nav-item">
 				<a class="nav-link" href="<%=basePath%>/MostrarProductos.do">PRODUCTOS</a>
+=======
+				<a class="nav-link" href="<%=basePath%>html/servicios.html">SERVICIOS</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="<%=basePath%>html/productos.html">PRODUCTOS</a>
+>>>>>>> origin/Test:web/html/iniciarsesion.html
 			  </li>
 			</ul>
 
 			<ul class="navbar-nav ml-auto m-4">
 				<li class="nav-item">
+<<<<<<< HEAD:web/html/iniciarsesion.jsp
 					<a class="nav-link active" aria-current="page" href="<%=basePath%>/iniciarsesion.jsp">INICIAR SESIÓN</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="<%=basePath%>/html/registrarse.jsp">REGISTRARSE</a>
+=======
+					<a class="nav-link active" aria-current="page" href="#">INICIAR SESION</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="<%=basePath%>html/registrarse.html">REGISTRARSE</a>
+>>>>>>> origin/Test:web/html/iniciarsesion.html
 				</li>
 			</ul>
 
@@ -90,29 +124,46 @@
     <main>
         <div class="wrapper">
             <div class="encabezado">
+<<<<<<< HEAD:web/html/iniciarsesion.jsp
                 <h1>Iniciar Sesión</h1>
             </div>3
             <form action='../IniciarSesion.do' method="GET">
             <div class="field cedula">
               <div class="input-area">
                 <input type="text" name="cedula" placeholder="Número de cédula">
+=======
+                <h1>Iniciar Sesion</h1>
+            </div>
+        <form action="#">
+            <div class="field cedula">
+              <div class="input-area">
+                <input type="text" placeholder="Numero de cedula">
+>>>>>>> origin/Test:web/html/iniciarsesion.html
                 <i class="icon fas fa-user"></i>
                 <i class="error error-icon fas fa-exclamation-circle"></i>
               </div>
-              <div class="error error-txt">La cédula no puede estar en blanco</div>
+              <div class="error error-txt">La cedula no puede estar en blanco</div>
             </div>
             <div class="field password">
               <div class="input-area">
+<<<<<<< HEAD:web/html/iniciarsesion.jsp
                 <input type="password" name="clave" placeholder="Contraseña">
+=======
+                <input type="password" placeholder="Contrase�a">
+>>>>>>> origin/Test:web/html/iniciarsesion.html
                 <i class="icon fas fa-lock"></i>
                 <i class="error error-icon fas fa-exclamation-circle"></i>
               </div>
-              <div class="error error-txt">La contraseña no puede estar en blanco</div>
+              <div class="error error-txt">La contrase�a no puede estar en blanco</div>
             </div>
-            <div class="pass-txt"><a href="#">¿Olvidaste tu contraseña?</a></div>
+            <div class="pass-txt"><a href="#">�Olvidaste tu contrase�a?</a></div>
             <input type="submit" value="Ingresar">
           </form>
+<<<<<<< HEAD:web/html/iniciarsesion.jsp
           <div class="sign-txt">¿No eres miembro? <a href="<%=basePath%>/html/registrarse.jsp">Registrate</a></div>
+=======
+          <div class="sign-txt">�No eres miembro? <a href="<%=basePath%>html/registrarse.html">Registrate</a></div>
+>>>>>>> origin/Test:web/html/iniciarsesion.html
         </div>
 
     </main>
@@ -123,29 +174,39 @@
   <div class="container-fluid">
     <div class="row ">
       <div class="col-12 redes" style="background-color: #00114e;">
+<<<<<<< HEAD:web/html/iniciarsesion.jsp
         <img src="<%=basePath%>/img/whatsapp.png" >
         <img src="<%=basePath%>/img/facebook.png" >
         <img src="<%=basePath%>/img/instagram.png" >
+=======
+        <img src="<%=basePath%>img/whatsapp.png" >
+        <img src="<%=basePath%>img/facebook.png" >
+        <img src="<%=basePath%>img/instagram.png" >
+>>>>>>> origin/Test:web/html/iniciarsesion.html
       </div>
     </div>
     <div class="row" style="background-color: #001971;">
 
       <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+<<<<<<< HEAD:web/html/iniciarsesion.jsp
         <img src="<%=basePath%>/img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
+=======
+        <img src="<%=basePath%>img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
+>>>>>>> origin/Test:web/html/iniciarsesion.html
       </div>
 
       <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
-        <h4 >HORARIOS DE ATENCIÓN</h4>
+        <h4 >HORARIOS DE ATENCION</h4>
         <p>Lunes a Viernes</p>
         <p>7:30 AM a 6:00 PM</p>
-        <p>Sábado</p>
+        <p>Sabado</p>
         <p>7:30 AM a 5:00 PM</p>
       </div>
 
       <div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
         <h4 > CONTACTO </h4>
         <P>Av 5 # 0N-54 Barrio La Merced</P>
-        <p>San José de Cúcuta - Colombia</p>
+        <p>San Jose de Cucuta - Colombia</p>
         <p>albeirofonseca74@gmail.com</p>
         <p>+57 3112810082</p>
       </div>
@@ -155,7 +216,11 @@
 </footer>
 <!--FIN FOOTER-->
 
+<<<<<<< HEAD:web/html/iniciarsesion.jsp
     <script src="<%=basePath%>/js/iniciarsesion.js"></script>
+=======
+    <script src="<%=basePath%>js/iniciarsesion.js"></script>
+>>>>>>> origin/Test:web/html/iniciarsesion.html
     
 </body>
 </html>
