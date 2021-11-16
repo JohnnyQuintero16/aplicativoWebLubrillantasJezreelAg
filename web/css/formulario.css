@@ -1,10 +1,13 @@
-* {
-	box-sizing: border-box;
-}
 
 body {
-	font-family: 'Roboto', sans-serif;
-	background: #505050;
+	/* font-family: 'Roboto', sans-serif; */
+	/* background: #505050; */
+	background: linear-gradient(rgba(5, 7, 12, 0.5), rgba(5, 7, 12, 0.5)),
+    url(../img/header_2.jpeg);
+	background-repeat: no-repeat; /* Evitar que se repita la imagen por todo el body */
+	background-position: center;
+	background-size: cover; /* Cambia el tamaño de la imagen de fondo para cubrir todo el contenedor body */
+	background-attachment: fixed; /* Dejar fija la imagen al momento de bajar o subir*/
 }
 
 main {
@@ -13,11 +16,16 @@ main {
 	margin: auto;
 	padding: 40px;
 }
-
-h1, h2{
-    text-align: center;
+h1{
+	color: #5372F0;
+	text-align: center;
 }
 
+h2{
+	color: #5372F0;
+    text-align: center;
+	font-size: 30px;
+}
 .registro{
     padding: 30px;
     border-radius: 10px;
@@ -59,7 +67,8 @@ h1, h2{
 }
 
 .formulario__input-error {
-	font-size: 12px;
+	font-size: 15px;
+	margin-top: 8px;
 	margin-bottom: 0;
 	display: none;
 }
@@ -167,6 +176,10 @@ h1, h2{
 	.formulario__mensaje,
 	.formulario__grupo-btn-enviar {
 		grid-column: 1;
+	}
+
+	.formulario__mensaje{
+		height: 100%;
 	}
 
 	.formulario__btn {
