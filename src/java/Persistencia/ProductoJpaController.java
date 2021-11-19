@@ -208,6 +208,10 @@ public class ProductoJpaController implements Serializable {
         return busqueda;
     }
 
+   
+
+    
+
     public int getProductoCount() {
         EntityManager em = getEntityManager();
         try {
@@ -220,5 +224,5 @@ public class ProductoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

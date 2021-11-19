@@ -3,12 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/IniciarSesion.java</file>
-            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/html/vehiculos.jsp</file>
-            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/index.html</file>
-            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/html/servicios.jsp</file>
-            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/html/serviciosUsu.jsp</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/dontCacheFilter.java</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/WEB-INF/web.xml</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/nosotros.jsp</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/index.jsp</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/vehiculos.jsp</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/ProductoJpaController.java</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/iniciarsesion.jsp</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarServicios.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/Registro.java</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/serviciosUsu.jsp</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/IniciarSesion.java</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/servicios.jsp</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/nbproject/build-impl.xml</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/conf/persistence.xml</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/PersonaJpaController.java</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/cerrarSesion.java</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarProductos.java</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/registrarse.jsp</file>
+            <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/productos.jsp</file>
         </group>
     </open-files>
 </project-private>

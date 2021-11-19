@@ -58,7 +58,6 @@ public class ProductoDAO {
         }
         
     }
-    
     public List<Producto> findProductoTipo(String tipo){
         return prod.findProductoTipo(tipo);
     }

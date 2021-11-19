@@ -48,7 +48,7 @@ public class Jezreel {
 
     }
 
-    public String [] mostrarProductos() {
+    public String[] mostrarProductos() {
 
         String[] tipo = {"ACEITES", "FILROS", "VALVULINAS", "ADICTIVOS", "OTROS"};
         ProductoDAO da = new ProductoDAO();
@@ -56,30 +56,27 @@ public class Jezreel {
         for (int i = 0; i < tipo.length; i++) {
 
             List<Producto> pt = da.findProductoTipo(tipo[i]);
-            
-            if(pt.size()!=0){
-                System.out.println("HOLA AUN VOY AQUI");
-                rta[i]="";
-            for (Producto pro : pt) {
-               
-                rta[i] += "					<div class=\"card\">\n"
-                        + "						<img src="+ '"'+pro.getImgUrl() +'"' +" alt=\"\">\n"
-                        + "						<h4 class=\"titulo-card>"+ pro.getNombre()+"</h4>\n"
-                        + "						<p  id=\"desc>" + pro.getDescripcion() +"</p>\n"
-                        + "						<p><strong id=\"ref-prec\">Referencia:</strong>"+ pro.getCodigo()+ "</p>				\n"
-                        + "						<p><strong id=\"ref-prec\">Precio:</strong>"+ pro.getPrecioVenta()+ "</p>\n"
-                        + "\n"
-                        + "						\n"
-                        + "					</div> \n";
-                   
-                   
-               
+
+            if (pt.size() != 0) {
+                rta[i] = "";
+                for (Producto pro : pt) {
+
+                    rta[i] += "					<div class=\"card\">\n"
+                            + "						<img src=" + '"' + pro.getImgUrl() + '"' + " alt=\"\">\n"
+                            + "						<h4 class=\"titulo-card>" + pro.getNombre() + "</h4>\n"
+                            + "						<p  id=\"desc>" + pro.getDescripcion() + "</p>\n"
+                            + "						<p><strong id=\"ref-prec\">Referencia:</strong>" + pro.getCodigo() + "</p>				\n"
+                            + "						<p><strong id=\"ref-prec\">Precio:</strong>" + pro.getPrecioVenta() + "</p>\n"
+                            + "\n"
+                            + "						\n"
+                            + "					</div> \n";
+
+                }
+            } else {
+
+                rta[i] = "<h4> No se econtraron resultados</h4>";
             }
-            }else{
             
-            rta[i] = "<h4> No se econtraron resultados</h4>";
-        }
-            System.out.println(rta[i]);
         }
         return rta;
 
