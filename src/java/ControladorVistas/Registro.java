@@ -19,11 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author johnny
  */
-<<<<<<< HEAD:src/java/ControladorVistas/IniciarSesion.java
-public class IniciarSesion extends HttpServlet {
-=======
 public class Registro extends HttpServlet {
->>>>>>> origin/Test:src/java/ControladorVistas/Registro.java
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,21 +32,6 @@ public class Registro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<<<<<<< HEAD:src/java/ControladorVistas/IniciarSesion.java
-        response.setContentType("text/html;charset=UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        String c = request.getParameter("cedula");
-        String cla = request.getParameter("clave");
-        if(c.equals("88243257") && cla.equals("1111")){
-            request.getSession().setAttribute("rta", "Correcto");
-            request.getRequestDispatcher("./html/nosotros.jsp");
-            request.getRequestDispatcher("./html/nosotros.jsp").forward(request, response);
-        }else{
-            request.getSession().setAttribute("rta", "inCorrecto");
-            request.getRequestDispatcher("./index.jsp").forward(request, response);
-        }
-    }
-=======
             
             String nombre = request.getParameter("nombre");
             String apellido = request.getParameter("apellido");
@@ -78,7 +59,6 @@ public class Registro extends HttpServlet {
             
         
     
->>>>>>> origin/Test:src/java/ControladorVistas/Registro.java
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

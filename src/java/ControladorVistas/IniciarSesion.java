@@ -19,11 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author johnny
  */
-<<<<<<< HEAD:src/java/ControladorVistas/IniciarSesion.java
 public class IniciarSesion extends HttpServlet {
-=======
-public class Registro extends HttpServlet {
->>>>>>> origin/Test:src/java/ControladorVistas/Registro.java
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +32,6 @@ public class Registro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<<<<<<< HEAD:src/java/ControladorVistas/IniciarSesion.java
         response.setContentType("text/html;charset=UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         String c = request.getParameter("cedula");
@@ -50,35 +45,6 @@ public class Registro extends HttpServlet {
             request.getRequestDispatcher("./index.jsp").forward(request, response);
         }
     }
-=======
-            
-            String nombre = request.getParameter("nombre");
-            String apellido = request.getParameter("apellido");
-            String contrasenia = request.getParameter("password");
-            String cedula = request.getParameter("cedula");
-            String correo = request.getParameter("correo");
-            String telef = request.getParameter("telefono");
-            String direccion = request.getParameter("direccion");
-            PersonaDAO p = new PersonaDAO();
-            boolean existe = p.existePersona(cedula);
-            
-            if(existe){
-                String esta = "existe";
-                request.getSession().setAttribute("existe", esta);
-                request.getRequestDispatcher("html/registrarse.jsp").forward(request, response);
-            }
-            else{
-                RolDAO r = new RolDAO();
-                p.crearPersona(nombre,apellido,contrasenia,cedula,correo,telef,direccion,r.readRol((short)2));
-                request.getRequestDispatcher("html/iniciarsesion.jsp").forward(request, response);
-            }
-            
-                
-            }
-            
-        
-    
->>>>>>> origin/Test:src/java/ControladorVistas/Registro.java
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
