@@ -43,7 +43,7 @@ public class Producto implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "codigo")
-    private Integer codigo;
+    private String codigo;
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
@@ -75,11 +75,11 @@ public class Producto implements Serializable {
     public Producto() {
     }
 
-    public Producto(Integer codigo) {
+    public Producto(String codigo) {
         this.codigo = codigo;
     }
 
-    public Producto(Integer codigo, String nombre, String imgUrl, String marca, double precioUnitario, double precioVenta, int cantidad, String descripcion, String tipo) {
+    public Producto(String codigo, String nombre, String imgUrl, String marca, double precioUnitario, double precioVenta, int cantidad, String descripcion, String tipo) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.imgUrl = imgUrl;
@@ -91,11 +91,11 @@ public class Producto implements Serializable {
         this.tipo = tipo;
     }
 
-    public Integer getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 

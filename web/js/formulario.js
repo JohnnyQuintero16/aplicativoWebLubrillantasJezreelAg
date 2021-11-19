@@ -54,7 +54,7 @@ const validarFormulario = (e) => {
 		break;
 
 		case "cedula":
-			validarCampo(expresiones.cedula, e.target, 'cedula');
+                        validarCampo(expresiones.cedula, e.target, 'cedula');
 		break;
 
 		case "correo":
@@ -136,11 +136,13 @@ inputs.forEach((input) => {
 
 */
 formulario.addEventListener('submit', (e) => {
-	/* e.preventDefault(); */ //No haga nada al enviar, cuando enviemos los datos debemos quitarlo.
+
+	//e.preventDefault(); //No haga nada al enviar, cuando enviemos los datos debemos quitarlo.
+
 
 	const terminos = document.getElementById('terminos');
 	if(campos.nombre && campos.apellido && campos.password && campos.cedula && campos.correo && campos.telefono && campos.direccion && terminos.checked ){
-		formulario.reset(); //Reinice todos los campos del formulario.
+		//formulario.reset(); //Reinice todos los campos del formulario.
 
 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
 		// Elimine el mensaje de éxito después de 5 segundos.
