@@ -52,22 +52,22 @@
 
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 			  <li class="nav-item">
-				<a class="nav-link" href="<%=basePath%>index.html">INICIO</a>
+				<a class="nav-link" href="<%=basePath%>index.jsp">INICIO</a>
 			  </li>
 			  <li class="nav-item">
 				<a class="nav-link" href="#">NOSOTROS</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link" href="<%=basePath%>html/servicios.html">SERVICIOS</a>
+				<a class="nav-link" href="<%=basePath%>html/servicios.jsp">SERVICIOS</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link" href="<%=basePath%>html/productos.html">PRODUCTOS</a>
+				<a class="nav-link" href="<%=basePath%>html/productos.jsp">PRODUCTOS</a>
 			  </li>
 			</ul>
 
 			<ul class="navbar-nav ml-auto m-4">
 				<li class="nav-item">
-					<a class="nav-link" href="<%=basePath%>html/iniciarsesion.html">INICIAR SESIÓN</a>
+					<a class="nav-link" href="<%=basePath%>html/iniciarsesion.jsp">INICIAR SESIÓN</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link active" aria-current="page" href="#">REGISTRARSE</a>

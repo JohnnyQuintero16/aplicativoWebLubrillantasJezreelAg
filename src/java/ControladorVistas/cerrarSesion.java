@@ -5,9 +5,6 @@
  */
 package ControladorVistas;
 
-import DAO.PersonaDAO;
-import DAO.RolDAO;
-import DTO.Persona;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -21,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author johnny
  */
-public class IniciarSesion extends HttpServlet {
+public class cerrarSesion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,6 +32,12 @@ public class IniciarSesion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        session.invalidate();
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
+        //RequestDispatcher dispatcher = request.getRequestDispatcher("./index.jsp");
+        //dispatcher.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -65,33 +68,6 @@ public class IniciarSesion extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
 
-        String cedula = request.getParameter("cedula");
-        String clave = request.getParameter("clave");
-        PersonaDAO p = new PersonaDAO();
-
-        try {
-            HttpSession sesion = request.getSession();;
-            sesion.invalidate();
-            String page = "html/iniciarsesion.jsp";
-            String msg = "check";
-            if (p.existePersona(cedula)) {
-                if (p.usuarioValido(cedula, clave)) {
-                    sesion = request.getSession();
-                    sesion.setAttribute("usuario", cedula);
-                    //sesion.setMaxInactiveInterval(100); No he mirao el time
-                    page = "./index.jsp";
-                } else {
-                    msg = "err2"; //El usuario digito mal la clave
-                }
-            } else {
-                msg = "err1";//El usuario digito mal la cedula
-            }
-            request.setAttribute("mensaje", msg);
-            RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-            dispatcher.forward(request, response);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     /**

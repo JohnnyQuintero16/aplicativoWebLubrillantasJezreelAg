@@ -5,23 +5,20 @@
  */
 package ControladorVistas;
 
-import DAO.PersonaDAO;
-import DAO.RolDAO;
-import DTO.Persona;
+import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author johnny
+ * @author USUARIO
  */
-public class IniciarSesion extends HttpServlet {
+public class MostrarServiciosUsu extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,7 +31,16 @@ public class IniciarSesion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+
+        Jezreel je = new Jezreel();
+        String ser = je.mostrarServicios();
+        System.out.println("ENTRAAAAAAAAAAAAAAAAAA");
+        if(ser.equals(" ")){
+        ser="No hay servicios para mostrar";}
+
+        request.getSession().setAttribute("listaServicios",ser );
+        request.getRequestDispatcher("./html/servicios.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -64,34 +70,6 @@ public class IniciarSesion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
-        String cedula = request.getParameter("cedula");
-        String clave = request.getParameter("clave");
-        PersonaDAO p = new PersonaDAO();
-
-        try {
-            HttpSession sesion = request.getSession();;
-            sesion.invalidate();
-            String page = "html/iniciarsesion.jsp";
-            String msg = "check";
-            if (p.existePersona(cedula)) {
-                if (p.usuarioValido(cedula, clave)) {
-                    sesion = request.getSession();
-                    sesion.setAttribute("usuario", cedula);
-                    //sesion.setMaxInactiveInterval(100); No he mirao el time
-                    page = "./index.jsp";
-                } else {
-                    msg = "err2"; //El usuario digito mal la clave
-                }
-            } else {
-                msg = "err1";//El usuario digito mal la cedula
-            }
-            request.setAttribute("mensaje", msg);
-            RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-            dispatcher.forward(request, response);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     /**

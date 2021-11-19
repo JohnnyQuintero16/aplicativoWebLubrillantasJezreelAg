@@ -37,7 +37,7 @@ public class ProductoDAO {
         return prod.findProductoEntities();
     }
     
-    public Producto readProducto(int codigo){
+    public Producto readProducto(String codigo){
         return prod.findProducto(codigo);
     }
     
@@ -57,5 +57,8 @@ public class ProductoDAO {
             Logger.getLogger(RolDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    public List<Producto> findProductoTipo(String tipo){
+        return prod.findProductoTipo(tipo);
     }
 }
