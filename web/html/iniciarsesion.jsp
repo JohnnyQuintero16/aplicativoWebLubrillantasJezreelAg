@@ -92,7 +92,7 @@
             <div class="encabezado">
                 <h1>Iniciar Sesión</h1>
             </div>3
-            <form action='../IniciarSesion.do' method="GET">
+            <form action='<%=basePath%>/IniciarSesion.do' method="GET">
             <div class="field cedula">
               <div class="input-area">
                 <input type="text" name="cedula" placeholder="Número de cédula">
