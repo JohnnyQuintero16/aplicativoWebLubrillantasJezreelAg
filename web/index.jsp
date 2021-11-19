@@ -58,7 +58,7 @@
                             <a class="nav-link active" aria-current="page" href="index.jsp">INICIO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./html/nosotros.jsp">NOSOTROS</a>
+                            <a class="nav-link" href="./jsp/nosotros.jsp">NOSOTROS</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<%=basePath%>MostrarServicios.do">SERVICIOS</a>
@@ -74,7 +74,7 @@
                                 <a class="nav-link" href="<%=basePath%>jsp/iniciarsesion.jsp">INICIAR SESIÓN</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./html/registrarse.jsp">REGISTRARSE</a>
+                                <a class="nav-link" href="./jsp/registrarse.jsp">REGISTRARSE</a>
                             </li>
                         </ul>
                     </template>
