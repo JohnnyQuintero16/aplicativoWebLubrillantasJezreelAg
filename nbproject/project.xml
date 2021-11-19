@@ -11,7 +11,7 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-<<<<<<< HEAD
+
                     <file>${file.reference.mysql-connector-java-8.0.25.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -20,16 +20,12 @@
                     <path-in-war>WEB-INF/classes</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.lib-javaee-endorsed-api-7.0}</file>
-                    <path-in-war>WEB-INF/classes</path-in-war>
-                </library>
-                <library dirs="200">
-=======
+   
                     <file>${file.reference.javaee-web-api-8.0.jar-1}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
->>>>>>> origin/Test
+
                     <file>${libs.eclipselink.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
