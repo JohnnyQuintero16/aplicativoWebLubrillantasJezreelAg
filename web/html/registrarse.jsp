@@ -40,13 +40,8 @@
 	<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
 		<div class="container-fluid">
 
-<<<<<<< HEAD:web/html/registrarse.jsp
 			<a class="navbar-brand" href="../index.jsp">
 				<img src="../img/LogoLJAG.png" alt="" width="140px" height="120px"/>
-=======
-			<a class="navbar-brand" href="<%=basePath%>index.html">
-				<img src="<%=basePath%>img/LogoLJAG.png" alt="" width="140px" height="120px"/>
->>>>>>> origin/Test:web/html/registrarse.html
 			</a>
 
 		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,37 +52,22 @@
 
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 			  <li class="nav-item">
-<<<<<<< HEAD:web/html/registrarse.jsp
-				<a class="nav-link" href="../index.jsp">INICIO</a>
-=======
 				<a class="nav-link" href="<%=basePath%>index.html">INICIO</a>
->>>>>>> origin/Test:web/html/registrarse.html
 			  </li>
 			  <li class="nav-item">
 				<a class="nav-link" href="#">NOSOTROS</a>
 			  </li>
 			  <li class="nav-item">
-<<<<<<< HEAD:web/html/registrarse.jsp
-				<a class="nav-link" href="../html/servicios.jsp">SERVICIOS</a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="../html/productos.jsp">PRODUCTOS</a>
-=======
 				<a class="nav-link" href="<%=basePath%>html/servicios.html">SERVICIOS</a>
 			  </li>
 			  <li class="nav-item">
 				<a class="nav-link" href="<%=basePath%>html/productos.html">PRODUCTOS</a>
->>>>>>> origin/Test:web/html/registrarse.html
 			  </li>
 			</ul>
 
 			<ul class="navbar-nav ml-auto m-4">
 				<li class="nav-item">
-<<<<<<< HEAD:web/html/registrarse.jsp
-					<a class="nav-link" href="../html/iniciarsesion.jsp">INICIAR SESIÓN</a>
-=======
 					<a class="nav-link" href="<%=basePath%>html/iniciarsesion.html">INICIAR SESIÓN</a>
->>>>>>> origin/Test:web/html/registrarse.html
 				</li>
 				<li class="nav-item">
 					<a class="nav-link active" aria-current="page" href="#">REGISTRARSE</a>
@@ -171,7 +151,7 @@
 				</div>
 				<p class="formulario__input-error">La cédula solo puede contener números y debe ser de 8 a 10 dígitos.</p>
 			</div>
-		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
+		<!--document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');-->
 
 			<!-- Grupo: Correo Electronico -->
 			<div class="formulario__grupo" id="grupo__correo">
@@ -269,11 +249,13 @@
     
 function exist(){            
     let existe = '<%=valor%>';
-                if(existe==="existe"){
+                if(existe==="existe Usuario"){
                     alert('El usuario ya existe!');
+                }else if(existe === "existe Correo"){
+                    alert('El correo digitado, ya exite!');
                 }
             }
-            </script>
+</script>
 	<!-- Enlace a los iconos que se trabajan. -->
 	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </body>
