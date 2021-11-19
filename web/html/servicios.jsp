@@ -1,6 +1,16 @@
+
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <%
+        String path = request.getContextPath();
+        String basePath = request.getScheme() + "://" + request.getServerName() + ":" +     
+        request.getServerPort() + path + "/";
+%>
+<base href="<%=basePath%>">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,19 +22,18 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     
+	<!--Normallize css: proyecto que corrige estilos predeterminados de los diferentes navegadores, para evitar usar el selector universal
+    en la hoja de estilos CSS. -->
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+
 	<!--Importar CSS -->
-    <link rel="stylesheet" href="../css/menu.css"/> 
-    <link rel="stylesheet" href="../css/servicios.css"/>
-	<link rel="stylesheet" href="../css/footer.css">
-    
-
+         <link href="<%=basePath%>css/menu.css" rel="stylesheet" type="text/css"/>
+        <link href="<%=basePath%>css/servicios.css" rel="stylesheet" type="text/css"/>
+        <link href="<%=basePath%>css/footer.css" rel="stylesheet" type="text/css"/>
 </head>
-<body>
-
-
 	<!-- Inicio menú-->
 
-	
+	<body>
 	<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
 		<div class="container-fluid">
 
@@ -40,22 +49,22 @@
 
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 			  <li class="nav-item">
-				<a class="nav-link" href="../index.html">INICIO</a>
+				<a class="nav-link" href="../index.jsp">INICIO</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link" href="./nosotros.html">NOSOTROS</a>
+				<a class="nav-link" href="./nosotros.jsp">NOSOTROS</a>
 			  </li>
 			  <li class="nav-item">
 				<a class="nav-link active" aria-current="page" href="#">SERVICIOS</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link" href="./productos.html">PRODUCTOS</a>
+				<a class="nav-link" href="./productos.jsp">PRODUCTOS</a>
 			  </li>
 			</ul>
 
 			<ul class="navbar-nav ml-auto m-4">
 				<li class="nav-item">
-					<a class="nav-link" href="./iniciarsesion.html">INICIAR SESIÓN</a>
+					<a class="nav-link" href="./iniciarsesion.jsp">INICIAR SESIÓN</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="./registrarse.jsp">REGISTRARSE</a>
@@ -205,7 +214,7 @@
 
 		<div class="col-md-2"></div>
 		<div class="col-md-8"> 		
-			<input class="boton" id="botonAgendar" type="button" value="Agendar Servicio" onclick="location.href='iniciarsesion.html'">
+			<input class="boton" id="botonAgendar" type="button" value="Agendar Servicio" onclick="location.href='iniciarsesion.jsp'">
          </div>
 		<div class="col-md-2"></div>
 	 </section>

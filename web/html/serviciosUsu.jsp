@@ -1,32 +1,35 @@
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lubrillantas Jezreel AG</title>
+    <%
+        String path = request.getContextPath();
+        String basePath = request.getScheme() + "://" + request.getServerName() + ":" +     
+        request.getServerPort() + path + "/";
+%>
+<base href="<%=basePath%>">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lubrillantas Jezreel AG</title>
 
-  <!-- Fuente de google: Open Sans - Regular 400 -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- Fuente de google: Open Sans - Regular 400 -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
 
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    
+	<!--Normallize css: proyecto que corrige estilos predeterminados de los diferentes navegadores, para evitar usar el selector universal
+    en la hoja de estilos CSS. -->
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
 
-  <!--Link del boostrap-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
-
-  <!--Importar CSS y script del menú -->
-  <link rel="stylesheet" href="../css/menu.css" />
-
-  <link rel="stylesheet" href="../css/footer.css">
-  <link rel="stylesheet" href="../css/serviciosUsu.css" />
-
-
+	<!--Importar CSS -->
+         <link href="<%=basePath%>css/menu.css" rel="stylesheet" type="text/css"/>
+        <link href="<%=basePath%>css/serviciosUsu.css" rel="stylesheet" type="text/css"/>
+        <link href="<%=basePath%>css/footer.css" rel="stylesheet" type="text/css"/>
 </head>
-
 <body>
   <!--Menú -->
   <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
@@ -47,16 +50,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="../index.html">INICIO</a>
+            <a class="nav-link " aria-current="page" href="../index.jsp">INICIO</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./nosotros.html">NOSOTROS</a>
+            <a class="nav-link" href="./nosotros.jsp">NOSOTROS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./servicios.html">SERVICIOS</a>
+            <a class="nav-link" href="./servicios.jsp">SERVICIOS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./productos.html">PRODUCTOS</a>
+            <a class="nav-link" href="./productos.jsp">PRODUCTOS</a>
           </li>
         </ul>
 
@@ -105,7 +108,7 @@
                 <strong color="gray"> Mis datos personales </strong></a>
             </li>
             <li>
-              <a href="./vehiculos.html" class="nav-link link-dark">
+              <a href="./vehiculos.jsp" class="nav-link link-dark">
                 <svg class="bi me-2" width="16" height="16">
                   <use xlink:href="#speedometer2" />
                 </svg>

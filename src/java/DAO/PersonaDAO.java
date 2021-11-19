@@ -46,7 +46,17 @@ public class PersonaDAO {
     public boolean existePersona(String cedula){
         return this.readPersona(cedula)!=null;
     }
-    
+    public boolean existeCorreo(String correo){
+        List<Persona> personas = this.read();
+        boolean existe = false;
+        for(Persona p: personas){
+            if(p.getEmail().equals(correo)){
+                existe = true;
+                break;
+            }
+        }
+        return existe;
+    }
     public void update(Persona d){
         try {
             per.edit(d);
@@ -55,16 +65,7 @@ public class PersonaDAO {
         }
     }
     
-    public String getCedulas(){
-    
-        List<Persona> personas = this.read();
-        String rta = "";
-        
-        for (Persona pe : personas) {
-            rta+=pe.getCedula()+",";
-        }
-        return rta;
-    }
+
     
     public void delete(String id) throws IllegalOrphanException{
         
