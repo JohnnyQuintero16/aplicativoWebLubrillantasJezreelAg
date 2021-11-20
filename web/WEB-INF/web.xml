@@ -32,6 +32,10 @@
         <servlet-name>MostrarServicios</servlet-name>
         <servlet-class>ControladorVistas.MostrarServicios</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MisServiciosUsu</servlet-name>
+        <servlet-class>ControladorVistas.MisServiciosUsu</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion.do</url-pattern>
@@ -51,6 +55,10 @@
     <servlet-mapping>
         <servlet-name>MostrarServicios</servlet-name>
         <url-pattern>/MostrarServicios.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MisServiciosUsu</servlet-name>
+        <url-pattern>/MisServiciosUsu.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

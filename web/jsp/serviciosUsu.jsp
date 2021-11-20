@@ -37,7 +37,7 @@
 
       <!-- LOGO DE LA EMPRESA -->
       <a class="navbar-brand" href="#">
-        <img src="../img/LogoLJAG.png" alt="" width="140px" height="120px"  />
+        <img src="<%=basePath%>/img/LogoLJAG.png" alt="" width="140px" height="120px"  />
       </a>
 
       <!-- BOTON DE NAV RESPONSIVO -->
@@ -50,16 +50,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="../index.jsp">INICIO</a>
+            <a class="nav-link " aria-current="page" href="<%=basePath%>/index.jsp">INICIO</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./nosotros.jsp">NOSOTROS</a>
+            <a class="nav-link" href="<%=basePath%>/jsp/nosotros.jsp">NOSOTROS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./servicios.jsp">SERVICIOS</a>
+            <a class="nav-link" href="<%=basePath%>MostrarServicios.do">SERVICIOS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./productos.jsp">PRODUCTOS</a>
+            <a class="nav-link" href="<%=basePath%>MostrarProductos.do">PRODUCTOS</a>
           </li>
         </ul>
 
@@ -83,7 +83,7 @@
 
       <!-- IMAGEN DE USARIO EN EL NAV -->
       <div class="user">
-        <img src="../img/user.png" width="70" height="70" class="rounded-circle me-2">
+        <img src="<%=basePath%>/img/user.png" width="70" height="70" class="rounded-circle me-2">
       </div>
     </div>
   </nav>
@@ -95,7 +95,7 @@
       <div class="col-md-3 col-lg-3 verticalLine">
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-light colum-datos">
           <!-- img grande de usuario -->
-          <img class="bd-placeholder-img rounded-circle" id="Perfil" src="../img/usuario.png">
+          <img class="bd-placeholder-img rounded-circle" id="Perfil" src="<%=basePath%>/img/usuario.png">
           <br>
           <h4>Nombre de Usuario</h4>
           <hr>
@@ -153,7 +153,7 @@
           <div class="card-body row">
             <!-- img servicio -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-              <img src="../img/serV1.jpg" id="imgServicio">
+              <img src="<%=basePath%>/img/serV1.jpg" id="imgServicio">
             </div>
 
             <!-- texto del servicio -->
@@ -248,7 +248,7 @@
           <div class="card-body row">
             <!-- img servicio -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-              <img src="../img/serV2.jpg" id="imgServicio">
+              <img src="<%=basePath%>/img/serV2.jpg" id="imgServicio">
             </div>
 
             <!-- texto del servicio -->
@@ -336,15 +336,15 @@
 	<div class="container-fluid">
 	  <div class="row ">
 		<div class="col-12 redes" style="background-color: #00114e;">
-		  <img src="../img/whatsapp.png" >
-		  <img src="../img/facebook.png" >
-		  <img src="../img/instagram.png" >
+		  <img src="<%=basePath%>/img/whatsapp.png" >
+		  <img src="<%=basePath%>/img/facebook.png" >
+		  <img src="<%=basePath%>/img/instagram.png" >
 		</div>
 	  </div>
 	  <div class="row" style="background-color: #001971;">
   
 		<div class="col-12 col-sm-4 col-md-4 col-lg-4">
-		  <img src="../img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
+		  <img src="<%=basePath%>/img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
 		</div>
   
 		<div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
