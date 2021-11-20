@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -50,6 +51,15 @@ public class IniciarSesion extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                cookie.setValue("");
+                cookie.setPath("/");
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+            }
+        }
     }
 
     /**
@@ -72,23 +82,32 @@ public class IniciarSesion extends HttpServlet {
         try {
             HttpSession sesion = request.getSession();;
             sesion.invalidate();
-            String page = "html/iniciarsesion.jsp";
+            String page = "jsp/iniciarsesion.jsp";
             String msg = "check";
-            if (p.existePersona(cedula)) {
+            String nameUser = " ";
+            if (p.existePersona(cedula) && !cedula.equals(" ") && !clave.equals(" ")) {
                 if (p.usuarioValido(cedula, clave)) {
                     sesion = request.getSession();
                     sesion.setAttribute("usuario", cedula);
+                    Persona perso = p.readPersona(cedula);
+                    nameUser = perso.getNombres().split(" ")[0] + " " + perso.getApellidos().split(" ")[0];
                     //sesion.setMaxInactiveInterval(100); No he mirao el time
-                    page = "./index.jsp";
+                    page = "index.jsp";
+                    request.getSession().setAttribute("nameUser", nameUser);
+                    response.sendRedirect(page);
                 } else {
-                    msg = "err2"; //El usuario digito mal la clave
+                    msg = "err"; //El usuario digito mal la clave
+                    request.getSession().setAttribute("mensaje", msg);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+                    dispatcher.forward(request, response);
                 }
-            } else {
-                msg = "err1";//El usuario digito mal la cedula
+            }else{
+                msg = "err"; //El usuario digito mal la clave
+                    request.getSession().setAttribute("mensaje", msg);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+                    dispatcher.forward(request, response);
             }
-            request.setAttribute("mensaje", msg);
-            RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-            dispatcher.forward(request, response);
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

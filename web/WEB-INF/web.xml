@@ -29,8 +29,16 @@
         <servlet-class>ControladorVistas.MostrarProductos</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>MostrarServiciosUsu</servlet-name>
-        <servlet-class>ControladorVistas.MostrarServiciosUsu</servlet-class>
+        <servlet-name>MostrarServicios</servlet-name>
+        <servlet-class>ControladorVistas.MostrarServicios</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>dontCookie</servlet-name>
+        <servlet-class>ControladorVistas.dontCookie</servlet-class>
+        <init-param>
+            <param-name>cookie</param-name>
+            <param-value>*</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
@@ -49,8 +57,12 @@
         <url-pattern>/MostrarProductos.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>MostrarServiciosUsu</servlet-name>
-        <url-pattern>/MostrarServiciosUsu.do</url-pattern>
+        <servlet-name>MostrarServicios</servlet-name>
+        <url-pattern>/MostrarServicios.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dontCookie</servlet-name>
+        <url-pattern>/dontCookie.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

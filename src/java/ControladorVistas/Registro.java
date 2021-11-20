@@ -49,11 +49,11 @@ public class Registro extends HttpServlet {
             if(existePersona) esta += " Usuario";
             if(existeCorreo) esta += " Correo";
             request.getSession().setAttribute("existe", esta);
-            request.getRequestDispatcher("html/registrarse.jsp").forward(request, response);
+            request.getRequestDispatcher("jsp/registrarse.jsp").forward(request, response);
         } else {
             RolDAO r = new RolDAO();
             p.crearPersona(nombre, apellido, contrasenia, cedula, correo, telef, direccion, r.readRol((short) 2));
-            request.getRequestDispatcher("html/iniciarsesion.jsp").forward(request, response);
+            request.getRequestDispatcher("jsp/iniciarsesion.jsp").forward(request, response);
         }
 
     }
