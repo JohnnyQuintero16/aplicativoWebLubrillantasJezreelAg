@@ -1,3 +1,4 @@
 build/
 ant-deploy.xml
 build-imple.xml
+/dist/
