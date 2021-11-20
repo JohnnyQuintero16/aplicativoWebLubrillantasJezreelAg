@@ -60,6 +60,7 @@
                         </li>
                     </ul>
 
+
                     <template id="NoSesion">
                         <ul class="navbar-nav ml-auto m-4">
                             <li class="nav-item">
@@ -91,6 +92,7 @@
 
                         </ul>
                     </template>
+
                 </div>
             </div>
         </nav>
@@ -292,6 +294,10 @@
         <!--FIN FOOTER-->
 
 
+<<<<<<< HEAD
+
+=======
 <script src="<%=basePath%>js/sesion.js"></script>
+>>>>>>> Test
     </body>
 </html> 
