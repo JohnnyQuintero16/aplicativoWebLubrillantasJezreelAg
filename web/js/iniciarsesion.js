@@ -1,8 +1,8 @@
-
+/*
 /*
 
 */// Step 2) Constante, accedemos al formulario: form action ...
-const formulario = document.getElementById('formulario');
+/*const formulario = document.getElementById('formulario');
 // Step 3) Constante, almacenamos todos los inputs del formulario, arreglo
 const inputs = document.querySelectorAll('#formulario input');
 
@@ -26,7 +26,7 @@ const campos = {
 	- Un switch case para identificar el caso en el que el input tenga un name X, ejecute una función..
 	- validarCampo(): Compruebe que lo escrito en el input coincida con la expresión regular, por medio de su input y name.
 */
-
+/*
 const validarFormulario = (e) => {
 	switch (e.target.name) { // Target identifica cuál es el campo que se está seleccionando gracias al name. 
 		case "password":
@@ -42,6 +42,7 @@ const validarFormulario = (e) => {
 /* Cambia clases de error a correcto, para los estilos css con sus colores e iconos. 
 o viceversa.
 */
+/*
 const validarCampo = (expresion, input, campo) => {
 	if(expresion.test(input.value)){
 		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
@@ -71,7 +72,7 @@ const validarCampo = (expresion, input, campo) => {
 - Evento | blur: Cuando el usuario de un clic fuera del input, ejecute la función validarFormulario para ir validando los campos al mismo
   tiempo.
 */
-
+/*
 inputs.forEach((input) => {
 	input.addEventListener('keyup', validarFormulario);
 	input.addEventListener('blur', validarFormulario);
@@ -84,10 +85,10 @@ inputs.forEach((input) => {
 
    Parámetro e = evento.
 
-*/
+*//*
 formulario.addEventListener('submit', (e) => {
 	/* e.preventDefault(); */ //No haga nada al enviar, cuando enviemos los datos debemos quitarlo.
-
+/*
 	const terminos = document.getElementById('terminos');
 	if(campos.password && campos.cedula  && terminos.checked ){
 		formulario.reset(); //Reinice todos los campos del formulario.
@@ -110,4 +111,4 @@ formulario.addEventListener('submit', (e) => {
 			document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
 		}, 4000);
 	}
-});
+});*/
