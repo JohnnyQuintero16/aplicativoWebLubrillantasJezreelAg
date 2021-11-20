@@ -34,7 +34,7 @@ public class cerrarSesion extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         session.invalidate();
-        response.sendRedirect(request.getContextPath() + "/index.jsp");
+        response.sendRedirect("index.jsp");
         //RequestDispatcher dispatcher = request.getRequestDispatcher("./index.jsp");
         //dispatcher.forward(request, response);
         

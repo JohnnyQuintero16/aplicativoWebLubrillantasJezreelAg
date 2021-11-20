@@ -58,7 +58,6 @@ public class Jezreel {
             List<Producto> pt = da.findProductoTipo(tipo[i]);
 
             if (pt.size() != 0) {
-                System.out.println("HOLA AUN VOY AQUI");
                 rta[i] = "";
                 for (Producto pro : pt) {
 
@@ -77,7 +76,7 @@ public class Jezreel {
 
                 rta[i] = "<h4> No se econtraron resultados</h4>";
             }
-            System.out.println(rta[i]);
+            
         }
         return rta;
 
