@@ -17,19 +17,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Cristian
+ * @author USUARIO
  */
 @Entity
 @Table(name = "Detalles_Servicio")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "DetallesServicio.findAll", query = "SELECT d FROM DetallesServicio d"),
-    @NamedQuery(name = "DetallesServicio.findById", query = "SELECT d FROM DetallesServicio d WHERE d.id = :id"),
-    @NamedQuery(name = "DetallesServicio.findByCosto", query = "SELECT d FROM DetallesServicio d WHERE d.costo = :costo")})
+    @NamedQuery(name = "DetallesServicio.findAll", query = "SELECT d FROM DetallesServicio d")
+    , @NamedQuery(name = "DetallesServicio.findById", query = "SELECT d FROM DetallesServicio d WHERE d.id = :id")
+    , @NamedQuery(name = "DetallesServicio.findByCosto", query = "SELECT d FROM DetallesServicio d WHERE d.costo = :costo")})
 public class DetallesServicio implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,6 +40,7 @@ public class DetallesServicio implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "costo")
     private int costo;
     @JoinColumn(name = "idAntencionServicio", referencedColumnName = "id")

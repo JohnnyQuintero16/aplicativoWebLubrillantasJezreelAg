@@ -18,60 +18,79 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Cristian
+ * @author USUARIO
  */
 @Entity
 @Table(name = "Vehiculo")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Vehiculo.findAll", query = "SELECT v FROM Vehiculo v"),
-    @NamedQuery(name = "Vehiculo.findByPlaca", query = "SELECT v FROM Vehiculo v WHERE v.placa = :placa"),
-    @NamedQuery(name = "Vehiculo.findByModelo", query = "SELECT v FROM Vehiculo v WHERE v.modelo = :modelo"),
-    @NamedQuery(name = "Vehiculo.findByColor", query = "SELECT v FROM Vehiculo v WHERE v.color = :color"),
-    @NamedQuery(name = "Vehiculo.findByRuedas", query = "SELECT v FROM Vehiculo v WHERE v.ruedas = :ruedas"),
-    @NamedQuery(name = "Vehiculo.findByCilindraje", query = "SELECT v FROM Vehiculo v WHERE v.cilindraje = :cilindraje"),
-    @NamedQuery(name = "Vehiculo.findByKilometraje", query = "SELECT v FROM Vehiculo v WHERE v.kilometraje = :kilometraje"),
-    @NamedQuery(name = "Vehiculo.findByCarroceria", query = "SELECT v FROM Vehiculo v WHERE v.carroceria = :carroceria"),
-    @NamedQuery(name = "Vehiculo.findByPeso", query = "SELECT v FROM Vehiculo v WHERE v.peso = :peso"),
-    @NamedQuery(name = "Vehiculo.findByNumeroMotor", query = "SELECT v FROM Vehiculo v WHERE v.numeroMotor = :numeroMotor"),
-    @NamedQuery(name = "Vehiculo.findByDimension", query = "SELECT v FROM Vehiculo v WHERE v.dimension = :dimension")})
+    @NamedQuery(name = "Vehiculo.findAll", query = "SELECT v FROM Vehiculo v")
+    , @NamedQuery(name = "Vehiculo.findByPlaca", query = "SELECT v FROM Vehiculo v WHERE v.placa = :placa")
+    , @NamedQuery(name = "Vehiculo.findByModelo", query = "SELECT v FROM Vehiculo v WHERE v.modelo = :modelo")
+    , @NamedQuery(name = "Vehiculo.findByColor", query = "SELECT v FROM Vehiculo v WHERE v.color = :color")
+    , @NamedQuery(name = "Vehiculo.findByRuedas", query = "SELECT v FROM Vehiculo v WHERE v.ruedas = :ruedas")
+    , @NamedQuery(name = "Vehiculo.findByCilindraje", query = "SELECT v FROM Vehiculo v WHERE v.cilindraje = :cilindraje")
+    , @NamedQuery(name = "Vehiculo.findByKilometraje", query = "SELECT v FROM Vehiculo v WHERE v.kilometraje = :kilometraje")
+    , @NamedQuery(name = "Vehiculo.findByCarroceria", query = "SELECT v FROM Vehiculo v WHERE v.carroceria = :carroceria")
+    , @NamedQuery(name = "Vehiculo.findByPeso", query = "SELECT v FROM Vehiculo v WHERE v.peso = :peso")
+    , @NamedQuery(name = "Vehiculo.findByNumeroMotor", query = "SELECT v FROM Vehiculo v WHERE v.numeroMotor = :numeroMotor")
+    , @NamedQuery(name = "Vehiculo.findByDimension", query = "SELECT v FROM Vehiculo v WHERE v.dimension = :dimension")})
 public class Vehiculo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "placa")
     private String placa;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 25)
     @Column(name = "modelo")
     private String modelo;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "color")
     private String color;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "ruedas")
     private short ruedas;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "cilindraje")
     private int cilindraje;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "kilometraje")
     private int kilometraje;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
     @Column(name = "carroceria")
     private String carroceria;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
     @Column(name = "peso")
     private String peso;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
     @Column(name = "numeroMotor")
     private String numeroMotor;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 25)
     @Column(name = "dimension")
     private String dimension;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVehiculo")

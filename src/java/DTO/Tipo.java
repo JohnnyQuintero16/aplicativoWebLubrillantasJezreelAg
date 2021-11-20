@@ -18,21 +18,23 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Cristian
+ * @author USUARIO
  */
 @Entity
 @Table(name = "Tipo")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Tipo.findAll", query = "SELECT t FROM Tipo t"),
-    @NamedQuery(name = "Tipo.findById", query = "SELECT t FROM Tipo t WHERE t.id = :id"),
-    @NamedQuery(name = "Tipo.findByNombre", query = "SELECT t FROM Tipo t WHERE t.nombre = :nombre"),
-    @NamedQuery(name = "Tipo.findByEstacionMatenimiento", query = "SELECT t FROM Tipo t WHERE t.estacionMatenimiento = :estacionMatenimiento")})
+    @NamedQuery(name = "Tipo.findAll", query = "SELECT t FROM Tipo t")
+    , @NamedQuery(name = "Tipo.findById", query = "SELECT t FROM Tipo t WHERE t.id = :id")
+    , @NamedQuery(name = "Tipo.findByNombre", query = "SELECT t FROM Tipo t WHERE t.nombre = :nombre")
+    , @NamedQuery(name = "Tipo.findByEstacionMatenimiento", query = "SELECT t FROM Tipo t WHERE t.estacionMatenimiento = :estacionMatenimiento")})
 public class Tipo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,9 +44,12 @@ public class Tipo implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 60)
     @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "estacionMatenimiento")
     private short estacionMatenimiento;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipo")

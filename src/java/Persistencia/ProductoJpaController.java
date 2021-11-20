@@ -22,7 +22,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author Cristian
+ * @author USUARIO
  */
 public class ProductoJpaController implements Serializable {
 
@@ -115,7 +115,7 @@ public class ProductoJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = producto.getCodigo();
+                String id = producto.getCodigo();
                 if (findProducto(id) == null) {
                     throw new NonexistentEntityException("The producto with id " + id + " no longer exists.");
                 }
@@ -128,7 +128,7 @@ public class ProductoJpaController implements Serializable {
         }
     }
 
-    public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(String id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -184,13 +184,27 @@ public class ProductoJpaController implements Serializable {
         }
     }
 
-    public Producto findProducto(Integer id) {
+    public Producto findProducto(String id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Producto.class, id);
         } finally {
             em.close();
         }
+    }
+    public List<Producto> findProductoTipo(String tipo) {
+        List<Producto> allproduct = findProductoEntities();
+        List<Producto> busqueda =new ArrayList<Producto>();
+        
+      
+        for(Producto pro: allproduct){
+            
+            if(pro.getTipo().equals(tipo)){
+            busqueda.add(pro);
+                    }
+        }
+        
+        return busqueda;
     }
 
     public int getProductoCount() {

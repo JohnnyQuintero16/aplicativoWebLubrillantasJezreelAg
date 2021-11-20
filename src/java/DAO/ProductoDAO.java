@@ -37,7 +37,7 @@ public class ProductoDAO {
         return prod.findProductoEntities();
     }
     
-    public Producto readProducto(int codigo){
+    public Producto readProducto(String codigo){
         return prod.findProducto(codigo);
     }
     
@@ -49,7 +49,7 @@ public class ProductoDAO {
         }
     }
     
-    public void delete(int codigo) throws IllegalOrphanException, NonexistentEntityException{
+    public void delete(String codigo) throws IllegalOrphanException, NonexistentEntityException{
         
         try {
             prod.destroy(codigo);
@@ -57,5 +57,8 @@ public class ProductoDAO {
             Logger.getLogger(RolDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    public List<Producto> findProductoTipo(String tipo){
+        return prod.findProductoTipo(tipo);
     }
 }

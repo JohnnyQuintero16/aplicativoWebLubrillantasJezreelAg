@@ -1,4 +1,4 @@
-# Aplicativo Web LubrillantasJezreelAg
+## Aplicativo Web LubrillantasJezreelAg
 
 ## Tabla de contenido
 1. [Resumen](#Resumen)
