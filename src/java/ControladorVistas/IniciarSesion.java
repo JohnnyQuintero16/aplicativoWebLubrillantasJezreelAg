@@ -91,24 +91,21 @@ public class IniciarSesion extends HttpServlet {
                     sesion.setAttribute("usuario", cedula);
                     Persona perso = p.readPersona(cedula);
                     nameUser = perso.getNombres().split(" ")[0] + " " + perso.getApellidos().split(" ")[0];
-                    System.out.println(nameUser);
                     //sesion.setMaxInactiveInterval(100); No he mirao el time
                     page = "index.jsp";
                     request.getSession().setAttribute("nameUser", nameUser);
                     response.sendRedirect(page);
                 } else {
-                    msg = "err2"; //El usuario digito mal la clave
-                    request.setAttribute("mensaje", msg);
-
+                    msg = "err"; //El usuario digito mal la clave
+                    request.getSession().setAttribute("mensaje", msg);
                     RequestDispatcher dispatcher = request.getRequestDispatcher(page);
                     dispatcher.forward(request, response);
                 }
-            } else {
-                msg = "err1";//El usuario digito mal la cedula
-                request.setAttribute("mensaje", msg);
-
-                RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-                dispatcher.forward(request, response);
+            }else{
+                msg = "err"; //El usuario digito mal la clave
+                    request.getSession().setAttribute("mensaje", msg);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+                    dispatcher.forward(request, response);
             }
 
         } catch (Exception e) {

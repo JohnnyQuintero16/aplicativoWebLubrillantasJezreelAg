@@ -4,7 +4,7 @@
     Author     : Cristian
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -75,20 +75,6 @@
                                 <a class="nav-link" href="<%=basePath%>/jsp/registrarse.jsp">REGISTRARSE</a>
                             </li>
                         </ul>
-                    </template>
-
-                    <template id="SiSesion">
-                        <li class="nav-item dropdown" style="list-style-type: none;">
-                            <a style="color: white;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src ="./img/imgUser.png" width="100px">
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="'<%=basePath%>/cerrarSesion.do'">Cerrar Sesión</a></li>
-                            </ul>
-                        </li>   
                     </template>
 		  </div>
 		</div>
