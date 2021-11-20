@@ -58,10 +58,10 @@
                             <a class="nav-link active" aria-current="page" href="index.jsp">INICIO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./html/nosotros.jsp">NOSOTROS</a>
+                            <a class="nav-link" href="./jsp/nosotros.jsp">NOSOTROS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<%=basePath%>MostrarServiciosUsu.do">SERVICIOS</a>
+                            <a class="nav-link" href="<%=basePath%>MostrarServicios.do">SERVICIOS</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<%=basePath%>MostrarProductos.do">PRODUCTOS</a>
@@ -71,30 +71,32 @@
                     <template id="NoSesion">
                         <ul class="navbar-nav ml-auto m-4">
                             <li class="nav-item">
-                                <a class="nav-link" href="./html/iniciarsesion.jsp">INICIAR SESIÓN</a>
+                                <a class="nav-link" href="<%=basePath%>jsp/iniciarsesion.jsp">INICIAR SESIÓN</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./html/registrarse.jsp">REGISTRARSE</a>
+                                <a class="nav-link" href="./jsp/registrarse.jsp">REGISTRARSE</a>
                             </li>
                         </ul>
                     </template>
 
                     <template id="SiSesion">
                         <li class="nav-item dropdown" style="list-style-type: none;">
+                            <p><%=request.getSession().getAttribute("nameUser")%></p>
                             <a style="color: white;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src ="./img/imgUser.png" width="100px">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                </svg>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href='<%=basePath%>./cerrarSesion.do'>Cerrar Sesión</a></li>
+                                <li><a class="dropdown-item" href="./cerrarSesion.do">Cerrar Sesión</a></li>
                             </ul>
+                            
                         </li>   
                     </template>
-
-
-
                 </div>
             </div>
         </nav>
