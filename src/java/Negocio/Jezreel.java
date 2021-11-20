@@ -63,10 +63,10 @@ public class Jezreel {
 
                     rta[i] += "					<div class=\"card\">\n"
                             + "						<img src=" + '"' + pro.getImgUrl() + '"' + " alt=\"\">\n"
-                            + "						<h4 class=\"titulo-card>" + pro.getNombre() + "</h4>\n"
-                            + "						<p  id=\"desc>" + pro.getDescripcion() + "</p>\n"
-                            + "						<p><strong id=\"ref-prec\">Referencia:</strong>" + pro.getCodigo() + "</p>				\n"
-                            + "						<p><strong id=\"ref-prec\">Precio:</strong>" + pro.getPrecioVenta() + "</p>\n"
+                            + "						<h4 class=\"titulo-card\">" + pro.getNombre()+ " </h4>\n"
+                            + "						<p  id=\"desc\">" + pro.getDescripcion() +"</p>\n"
+                            + "						<p><strong id=\"ref-prec\">Referencia:</strong>" + pro.getReferencia() + "</p>				\n"
+                            + "						<p><strong id=\"ref-prec\">Precio: $ </strong>" + pro.getPrecioVenta() + "</p>\n"
                             + "\n"
                             + "						\n"
                             + "					</div> \n";

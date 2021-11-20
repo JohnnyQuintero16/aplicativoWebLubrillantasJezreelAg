@@ -18,21 +18,23 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Cristian
+ * @author USUARIO
  */
 @Entity
 @Table(name = "Marca")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Marca.findAll", query = "SELECT m FROM Marca m"),
-    @NamedQuery(name = "Marca.findById", query = "SELECT m FROM Marca m WHERE m.id = :id"),
-    @NamedQuery(name = "Marca.findByNombre", query = "SELECT m FROM Marca m WHERE m.nombre = :nombre"),
-    @NamedQuery(name = "Marca.findByFabricante", query = "SELECT m FROM Marca m WHERE m.fabricante = :fabricante")})
+    @NamedQuery(name = "Marca.findAll", query = "SELECT m FROM Marca m")
+    , @NamedQuery(name = "Marca.findById", query = "SELECT m FROM Marca m WHERE m.id = :id")
+    , @NamedQuery(name = "Marca.findByNombre", query = "SELECT m FROM Marca m WHERE m.nombre = :nombre")
+    , @NamedQuery(name = "Marca.findByFabricante", query = "SELECT m FROM Marca m WHERE m.fabricante = :fabricante")})
 public class Marca implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,9 +44,13 @@ public class Marca implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
     @Column(name = "fabricante")
     private String fabricante;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMarca")

@@ -6,7 +6,6 @@
             String path = request.getContextPath();
             String basePath = request.getScheme() + "://" + request.getServerName() + ":"
                     + request.getServerPort() + path + "/";
-
         %>
         <base href="<%=basePath%>">
         <meta charset="UTF-8">
@@ -69,7 +68,6 @@
                             </li>
                         </ul>
                     </template>
-
 
                 </div>
             </div>

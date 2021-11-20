@@ -49,7 +49,7 @@ public class ProductoDAO {
         }
     }
     
-    public void delete(int codigo) throws IllegalOrphanException, NonexistentEntityException{
+    public void delete(String codigo) throws IllegalOrphanException, NonexistentEntityException{
         
         try {
             prod.destroy(codigo);
