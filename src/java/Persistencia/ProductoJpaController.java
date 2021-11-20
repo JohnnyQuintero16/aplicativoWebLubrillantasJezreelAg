@@ -208,8 +208,6 @@ public class ProductoJpaController implements Serializable {
         return busqueda;
     }
 
-   
-
     
 
     public int getProductoCount() {

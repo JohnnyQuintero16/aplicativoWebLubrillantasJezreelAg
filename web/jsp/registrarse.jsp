@@ -4,7 +4,7 @@
     Author     : Cristian
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +35,8 @@
         <link href="<%=basePath%>css/formulario.css" rel="stylesheet" type="text/css"/>
         <link href="<%=basePath%>css/footer.css" rel="stylesheet" type="text/css"/>
 </head>
-<body onload="exist()">
+
+<body onload="sesion('<%=request.getSession().getAttribute("usuario")%>')">
 	<!-- Inicio menú-->
 	<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
 		<div class="container-fluid">
@@ -65,27 +66,16 @@
 			  </li>
 			</ul>
 
-			<ul class="navbar-nav ml-auto m-4">
-				<li class="nav-item">
-					<a class="nav-link" href="<%=basePath%>jsp/iniciarsesion.jsp">INICIAR SESIÓN</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="<%=basePath%>jsp/registrarse.jsp">REGISTRARSE</a>
-				</li>
-			</ul>
-
-			<!-- <li class="nav-item dropdown" style="list-style-type: none;">
-				<a style="color: white;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-				  Dropdown
-				</a>
-				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-				  <li><a class="dropdown-item" href="#">Action</a></li>
-				  <li><a class="dropdown-item" href="#">Another action</a></li>
-				  <li><hr class="dropdown-divider"></li>
-				  <li><a class="dropdown-item" href="#">Something else here</a></li>
-				</ul>
-			</li> -->
-
+			<template id="NoSesion">
+                        <ul class="navbar-nav ml-auto m-4">
+                            <li class="nav-item">
+                                <a class="nav-link" href="<%=basePath%>/jsp/iniciarsesion.jsp">INICIAR SESIÓN</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<%=basePath%>/jsp/registrarse.jsp">REGISTRARSE</a>
+                            </li>
+                        </ul>
+                    </template>
 		  </div>
 		</div>
 	</nav>
@@ -247,7 +237,7 @@
   <script src="<%=basePath%>js/formulario.js" type="text/javascript"></script>
   <script>
     
-function exist(){            
+document.body.onload = function exist(){            
     let existe = '<%=valor%>';
                 if(existe==="existe Usuario"){
                     alert('El usuario ya existe!');
@@ -258,5 +248,6 @@ function exist(){
 </script>
 	<!-- Enlace a los iconos que se trabajan. -->
 	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+        <script src="<%=basePath%>js/sesion.js"></script>
 </body>
 </html>

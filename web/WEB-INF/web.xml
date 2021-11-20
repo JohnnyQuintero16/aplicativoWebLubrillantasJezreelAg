@@ -35,6 +35,12 @@
     <servlet>
         <servlet-name>MisServiciosUsu</servlet-name>
         <servlet-class>ControladorVistas.MisServiciosUsu</servlet-class>
+        <servlet-name>dontCookie</servlet-name>
+        <servlet-class>ControladorVistas.dontCookie</servlet-class>
+        <init-param>
+            <param-name>cookie</param-name>
+            <param-value>*</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
@@ -59,6 +65,8 @@
     <servlet-mapping>
         <servlet-name>MisServiciosUsu</servlet-name>
         <url-pattern>/MisServiciosUsu.do</url-pattern>
+        <servlet-name>dontCookie</servlet-name>
+        <url-pattern>/dontCookie.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

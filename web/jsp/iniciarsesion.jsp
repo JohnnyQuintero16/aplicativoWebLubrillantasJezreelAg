@@ -6,7 +6,6 @@
             String path = request.getContextPath();
             String basePath = request.getScheme() + "://" + request.getServerName() + ":"
                     + request.getServerPort() + path + "/";
-            
         %>
         <base href="<%=basePath%>">
         <meta charset="UTF-8">
@@ -31,10 +30,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     </head>
     <body onload="sesion('<%=request.getSession().getAttribute("usuario")%>')">
-        <%  response.setHeader("Pragma", "No-chache");
-            response.setHeader("Expires", "0");
-            response.setHeader("Cache-Control", "no-cache");
-            response.setHeader("Cache", "no-cache");%>
         <!-- Inicio menú-->
         <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
             <div class="container-fluid">
@@ -74,19 +69,6 @@
                         </ul>
                     </template>
 
-                    <template id="SiSesion">
-                        <li class="nav-item dropdown" style="list-style-type: none;">
-                            <a style="color: white;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src ="./img/imgUser.png" width="100px">
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="'<%=basePath%>/cerrarSesion.do'">Cerrar Sesión</a></li>
-                            </ul>
-                        </li>   
-                    </template>
                 </div>
             </div>
         </nav>
@@ -97,7 +79,7 @@
                 <div class="encabezado">
                     <h1>Iniciar Sesión</h1>
                 </div>
-                <form action='<%=basePath%>/IniciarSesion.do' method="POST">
+                <form action='<%=basePath%>/IniciarSesion.do' method="POST" class="formulario" id="formulario">
                     <div class="field cedula">
                         <div class="input-area">
                             <input type="text" name="cedula" placeholder="Número de cédula">
@@ -110,19 +92,46 @@
                         <div class="input-area">
                             <input type="password" name="clave" placeholder="Contraseña">
                             <i class="icon fas fa-lock"></i>
-                            <i class="error error-icon fas fa-exclamation-circle"></i>
-                            <template><i class="error error-icon fas fa-exclamation-circle"></i></template>
+                            <template id="errorClave" ><i class="error error-icon fas fa-exclamation-circle">Digito mal su clave</i></template>
                         </div>
-                        
+
                         <div class="error error-txt">La contrase�a no puede estar en blanco</div>
                     </div>
                     <div class="pass-txt"><a href="#">Olvidaste tu contraseña?</a></div>
-                    <input type="submit" value="Ingresar">
+                    <input type="submit" value="Ingresar" >
+
                 </form>
                 <div class="sign-txt">¿No eres miembro? <a href="<%=basePath%>/jsp/registrarse.jsp">Registrate</a></div>
             </div>
 
         </main>
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="statc" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-danger" id="Mymodal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel" style="color:red">¡¡Error!!</h5>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class = "row">
+                            Sus datos son incorrectos, por favor vuelva a digitarlos!!
+                        </div>
+                        <div class = "row" class = "display: flex; align-content: center;">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" style="color:#dc3545; " fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
 
         <!--FOOTER-->
@@ -162,8 +171,19 @@
         </footer>
         <!--FIN FOOTER-->
 
-        <script src="<%=basePath%>/js/iniciarsesion.js"></script>
-        <script src="./js/sesion.js"></script>
+        <script>
+            document.body.onload = function validarCampos(){
+            var campo = '<%=request.getSession().getAttribute("mensaje")%>';
+            if(campo === "err"){
+            var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+            keyboard: false,
+            focus: true
+            })
+            myModal.show();
+            }
+            }                      
+        </script>
+        <script src="<%=basePath%>js/sesion.js"></script>
 
     </body>
 </html>
