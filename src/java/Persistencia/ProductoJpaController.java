@@ -22,7 +22,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author Cristian
+ * @author USUARIO
  */
 public class ProductoJpaController implements Serializable {
 
@@ -128,7 +128,7 @@ public class ProductoJpaController implements Serializable {
         }
     }
 
-    public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(String id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -192,7 +192,6 @@ public class ProductoJpaController implements Serializable {
             em.close();
         }
     }
-    
     public List<Producto> findProductoTipo(String tipo) {
         List<Producto> allproduct = findProductoEntities();
         List<Producto> busqueda =new ArrayList<Producto>();
@@ -208,8 +207,6 @@ public class ProductoJpaController implements Serializable {
         return busqueda;
     }
 
-    
-
     public int getProductoCount() {
         EntityManager em = getEntityManager();
         try {
@@ -222,5 +219,5 @@ public class ProductoJpaController implements Serializable {
             em.close();
         }
     }
-
+    
 }

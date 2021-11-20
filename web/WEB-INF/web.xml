@@ -33,8 +33,6 @@
         <servlet-class>ControladorVistas.MostrarServicios</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>MisServiciosUsu</servlet-name>
-        <servlet-class>ControladorVistas.MisServiciosUsu</servlet-class>
         <servlet-name>dontCookie</servlet-name>
         <servlet-class>ControladorVistas.dontCookie</servlet-class>
         <init-param>
@@ -63,8 +61,6 @@
         <url-pattern>/MostrarServicios.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>MisServiciosUsu</servlet-name>
-        <url-pattern>/MisServiciosUsu.do</url-pattern>
         <servlet-name>dontCookie</servlet-name>
         <url-pattern>/dontCookie.do</url-pattern>
     </servlet-mapping>
