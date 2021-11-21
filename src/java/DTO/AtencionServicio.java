@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author USUARIO
+ * @author Cristian
  */
 @Entity
 @Table(name = "Atencion_Servicio")
@@ -70,24 +70,23 @@ public class AtencionServicio implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
-    @JoinColumn(name = "idFichaTecnica", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private FichaTecnica idFichaTecnica;
-    @JoinColumn(name = "idCalificacion", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Calificacion idCalificacion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "atencionServicio")
+    private List<Calificacion> calificacionList;
     @JoinColumn(name = "idCita", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Cita idCita;
     @JoinColumn(name = "idFactura", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Factura idFactura;
+    @JoinColumn(name = "idFichaTecnica", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private FichaTecnica idFichaTecnica;
     @JoinColumn(name = "idPersona", referencedColumnName = "cedula")
     @ManyToOne(optional = false)
     private Persona idPersona;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAtencionServicio")
     private List<DetallesProducto> detallesProductoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAntencionServicio")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAtencionServicio")
     private List<DetallesServicio> detallesServicioList;
 
     public AtencionServicio() {
@@ -145,20 +144,13 @@ public class AtencionServicio implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public FichaTecnica getIdFichaTecnica() {
-        return idFichaTecnica;
+    @XmlTransient
+    public List<Calificacion> getCalificacionList() {
+        return calificacionList;
     }
 
-    public void setIdFichaTecnica(FichaTecnica idFichaTecnica) {
-        this.idFichaTecnica = idFichaTecnica;
-    }
-
-    public Calificacion getIdCalificacion() {
-        return idCalificacion;
-    }
-
-    public void setIdCalificacion(Calificacion idCalificacion) {
-        this.idCalificacion = idCalificacion;
+    public void setCalificacionList(List<Calificacion> calificacionList) {
+        this.calificacionList = calificacionList;
     }
 
     public Cita getIdCita() {
@@ -175,6 +167,14 @@ public class AtencionServicio implements Serializable {
 
     public void setIdFactura(Factura idFactura) {
         this.idFactura = idFactura;
+    }
+
+    public FichaTecnica getIdFichaTecnica() {
+        return idFichaTecnica;
+    }
+
+    public void setIdFichaTecnica(FichaTecnica idFichaTecnica) {
+        this.idFichaTecnica = idFichaTecnica;
     }
 
     public Persona getIdPersona() {
