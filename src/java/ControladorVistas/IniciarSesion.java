@@ -80,7 +80,7 @@ public class IniciarSesion extends HttpServlet {
         PersonaDAO p = new PersonaDAO();
 
         try {
-            HttpSession sesion = request.getSession();;
+            HttpSession sesion = request.getSession();
             sesion.invalidate();
             String page = "jsp/iniciarsesion.jsp";
             String msg = "check";

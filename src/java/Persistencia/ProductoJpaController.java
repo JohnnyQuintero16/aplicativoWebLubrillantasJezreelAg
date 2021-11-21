@@ -22,7 +22,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author USUARIO
+ * @author Cristian
  */
 public class ProductoJpaController implements Serializable {
 
@@ -192,6 +192,7 @@ public class ProductoJpaController implements Serializable {
             em.close();
         }
     }
+    
     public List<Producto> findProductoTipo(String tipo) {
         List<Producto> allproduct = findProductoEntities();
         List<Producto> busqueda =new ArrayList<Producto>();
