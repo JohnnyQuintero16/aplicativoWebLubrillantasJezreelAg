@@ -47,6 +47,12 @@
     <servlet>
         <servlet-name>Prueba</servlet-name>
         <servlet-class>ControladorVistas.Prueba</servlet-class>
+        <servlet-name>MisVehiculos</servlet-name>
+        <servlet-class>ControladorVistas.MisVehiculos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarVehiculoUser</servlet-name>
+        <servlet-class>ControladorVistas.EliminarVehiculoUser</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
@@ -77,8 +83,13 @@
         <url-pattern>/MisServiciosUsu.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Prueba</servlet-name>
-        <url-pattern>/Prueba.do</url-pattern>
+        
+        <servlet-name>MisVehiculos</servlet-name>
+        <url-pattern>/MisVehiculos.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarVehiculoUser</servlet-name>
+        <url-pattern>/EliminarVehiculoUser.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

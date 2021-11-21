@@ -5,6 +5,7 @@
  */
 package Negocio;
 
+<<<<<<< HEAD
 import DAO.AtencionServicioDAO;
 import DAO.DetallesProductoDAO;
 import DAO.DetallesServicioDAO;
@@ -18,14 +19,25 @@ import DTO.DetallesProducto;
 import DTO.DetallesServicio;
 import DTO.Factura;
 import DTO.FichaTecnica;
+=======
+import DAO.MarcaDAO;
+import DAO.PersonaDAO;
+import DAO.ProductoDAO;
+import DAO.ServicioDAO;
+import DAO.TipoDAO;
+import DTO.Marca;
+>>>>>>> Test
 import DTO.Persona;
 import DTO.Producto;
 import DTO.Servicio;
 import DTO.Tipo;
 import DTO.Vehiculo;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Collections;
 import java.util.Comparator;
+=======
+>>>>>>> Test
 import java.util.List;
 
 /**
@@ -279,5 +291,59 @@ public class Jezreel {
                 + "          <br>\n"
                 + "        </div>\n"
                 + "        <br>";
+    }
+    
+    public String mostrarVehiculosUser(String cedula){
+    
+        PersonaDAO p = new PersonaDAO();
+        Persona per = p.readPersona(cedula);
+        List<Vehiculo> ve = per.getVehiculoList();
+        String rta = "";
+        
+        if(ve.isEmpty()){
+        
+            rta = "<table class=\"tabla-vehiculo\">\n" +
+                        "                <tr>\n" +
+                        "                  <th>No tienes ningun vehiculo registrado :(</th>\n" +
+                        "                </tr>\n" +
+                        "                <tr>\n" +
+                        "                  <td><img src=\"./img/vehicle.png\" style=\"width: 312px; height: 300px; /></td>\n" +
+                        "                </tr>\n" +
+                        "               \n" +
+                        "              </table> <br><br>";
+        
+        }else{
+        
+            for (Vehiculo vehiculo : ve) {
+                rta = "<form action=\"MisServicios.do\"><table class=\"tabla-vehiculo\">\n" +
+                        "                <tr>\n" +
+                        "                  <th>Placa</th>\n" +
+                        "                  <th>Marca</th>\n" +
+                        "                  <th>Kilometraje</th>\n" +
+                        "                </tr>\n" +
+                        "                <tr>\n" +
+                        "                  <input name=\"placa\" hidden value=\""+vehiculo.getPlaca()+"\" ><td>"+vehiculo.getPlaca()+"</td>\n" +
+                        "                  <td>"+vehiculo.getIdMarca().getNombre()+"</td>\n" +
+                        "                  <td>"+vehiculo.getKilometraje()+"</td>\n" +
+                        "                </tr>\n" +
+                        "               \n" +
+                        "                <tr>\n" +
+                        "                    <th>Modelo</th>\n" +
+                        "                    <th>Cilindraje</th>\n" +
+                        "                    <th>Opciones</th>\n" +
+                        "                  </tr>\n" +
+                        "\n" +
+                        "                  <tr>\n" +
+                        "                    <td>"+vehiculo.getModelo()+"</td>\n" +
+                        "                    <td>"+vehiculo.getCilindraje()+"</td>\n" +
+                        "                    <td><button class=\"btn btn-primary\" type=\"submit\">Ver historial</button></td>\n" +
+                        "                  </tr>\n" +
+                        "                  \n" +
+                        "              </table></form> <br><br>";
+            }
+            
+        
+        }
+    return rta;
     }
 }

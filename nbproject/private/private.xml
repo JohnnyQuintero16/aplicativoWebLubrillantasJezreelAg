@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MisServiciosUsu.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/serviciosUsu.jsp</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/Registro.java</file>
@@ -31,6 +32,37 @@
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/AtencionServicioDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DTO/DetallesServicio.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/registrarse.jsp</file>
+
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/DAO/PersonaDAO.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MisServiciosUsu.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MisVehiculos.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/DAO/RolDAO.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/IniciarSesion.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarProductos.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/conf/persistence.xml</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/DTO/Persona.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/index.jsp</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/js/formulario.js</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/PersonaJpaController.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/DTO/AtencionServicio.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/jsp/vehiculos.jsp</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/META-INF/context.xml</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/Registro.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/DAO/main.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/conf/MANIFEST.MF</file>
+            <file>file:/C:/Users/Jarlin/Desktop/aplicativoWebLubrillantasJezreelAg/web/css/admClientes.css</file>
+            <file>file:/C:/Users/Jarlin/Desktop/aplicativoWebLubrillantasJezreelAg/web/jsp/adminClientes.jsp</file>
+            <file>file:/C:/Users/Jarlin/Desktop/aplicativoWebLubrillantasJezreelAg/web/jsp/productos.jsp</file>
+            <file>file:/C:/Users/Jarlin/Desktop/aplicativoWebLubrillantasJezreelAg/web/jsp/registrarse.jsp</file>
+            <file>file:/C:/Users/Jarlin/Desktop/aplicativoWebLubrillantasJezreelAg/web/jsp/nosotros.jsp</file>
+            <file>file:/C:/Users/Jarlin/Desktop/aplicativoWebLubrillantasJezreelAg/web/jsp/servicios.jsp</file>
+            <file>file:/C:/Users/Jarlin/Desktop/aplicativoWebLubrillantasJezreelAg/web/jsp/productosAdmin.jsp</file>
+            <file>file:/C:/Users/Jarlin/Desktop/aplicativoWebLubrillantasJezreelAg/web/index.jsp</file>
+            <file>file:/C:/Users/Jarlin/Desktop/aplicativoWebLubrillantasJezreelAg/web/css/index.css</file>
+            <file>file:/C:/Users/Jarlin/Desktop/aplicativoWebLubrillantasJezreelAg/web/jsp/iniciarsesion.jsp</file>
+
         </group>
     </open-files>
 </project-private>

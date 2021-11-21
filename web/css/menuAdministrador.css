@@ -289,3 +289,10 @@ td{
 .fa-trash-alt{
   color: red;
 }
+
+table {
+  table-layout: fixed;
+  word-wrap: break-word;
+  text-align: justify;
+}
+

@@ -1,3 +1,22 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 20/11/2021, 08:44:29 PM
+    Author     : Jarlin
+*/
+
+.tablaPro{
+    
+    font-size: 14px;
+}
+
+td{
+    
+    font-size: 15px;
+}
+
 .form-label{
 
     font-weight: bold;

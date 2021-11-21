@@ -22,7 +22,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author USUARIO
+ * @author Cristian
  */
 public class ProductoJpaController implements Serializable {
 

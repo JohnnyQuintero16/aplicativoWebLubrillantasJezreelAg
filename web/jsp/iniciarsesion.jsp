@@ -95,7 +95,7 @@
                             <template id="errorClave" ><i class="error error-icon fas fa-exclamation-circle">Digito mal su clave</i></template>
                         </div>
 
-                        <div class="error error-txt">La contrase�a no puede estar en blanco</div>
+                        <div class="error error-txt">La contraseña no puede estar en blanco</div>
                     </div>
                     <div class="pass-txt"><a href="#">Olvidaste tu contraseña?</a></div>
                     <input type="submit" value="Ingresar" >

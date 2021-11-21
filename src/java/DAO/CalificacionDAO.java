@@ -38,8 +38,8 @@ public class CalificacionDAO {
         return califi.findCalificacionEntities();
     }
     
-    public Calificacion readCalificacion(CalificacionPK p){
-        return califi.findCalificacion(p);
+    public Calificacion readCalificacion(CalificacionPK id){
+        return califi.findCalificacion(id);
     }
     
     public void update(Calificacion d){
