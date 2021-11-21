@@ -1,3 +1,12 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 20/11/2021, 04:50:16 PM
+    Author     : Jarlin
+*/
+
 .form-label{
 
     font-weight: bold;
@@ -39,3 +48,19 @@
   .boton3:hover{
       background: #0342ee;
   }
+
+
+table td:first-child {
+  text-align: center;
+}
+table td:nth-child(2) {
+  text-align: center;
+}
+
+table td:nth-child(5) {
+  text-align: center;
+}
+table td:last-child {
+   text-align: center;
+}
+  
