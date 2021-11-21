@@ -139,7 +139,7 @@
             
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 nosotros-contenido">
                 <h3>SOBRE NOSOTROS</h3>
-                <h1 >QuiÃ©nes <p style="color: blue; display: inline;">somos</p></h1>
+                <h1 >Quiénes <p style="color: blue; display: inline;">somos</p></h1>
                 <hr size= "6" style="color: blue;">
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut rerum dolores numquam possimus, porro praesentium repellendus sequi velit eius facilis animi hic deserunt itaque quis. Veritatis quo voluptatem distinctio exercitationem.</p>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut rerum dolores numquam possimus, porro praesentium repellendus sequi velit eius facilis animi hic deserunt itaque quis. Veritatis quo voluptatem distinctio exercitationem.</p>
@@ -152,7 +152,7 @@
     <div style="background-color: #F4F4F4;"> 
       <div class="container-fluid contenido-mv" ">
         
-        <h1 >Nuestra <p style="color: blue; display: inline;">MisiÃ³n</p></h1> <br>
+        <h1 >Nuestra <p style="color: blue; display: inline;">Misión</p></h1> <br>
         <p class="texto">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque aut quasi, explicabo eveniet provident illo quisquam accusamus aperiam dolore maxime? Vel nostrum quisquam omnis quis, perspiciatis ex vitae officiis eius?
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae illum, quia eaque ab et laudantium qui saepe tempora quos autem nam fugiat sapiente corporis modi atque cum earum quam vitae.
         </p>
@@ -162,7 +162,7 @@
     
     <div class="container-fluid contenido-mv">
         
-        <h1 >Nuestra <p style="color: blue; display: inline;">VisiÃ³n</p></h1> <br>
+        <h1 >Nuestra <p style="color: blue; display: inline;">Visión</p></h1> <br>
         <p class="texto">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque aut quasi, explicabo eveniet provident illo quisquam accusamus aperiam dolore maxime? Vel nostrum quisquam omnis quis, perspiciatis ex vitae officiis eius?
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae illum, quia eaque ab et laudantium qui saepe tempora quos autem nam fugiat sapiente corporis modi atque cum earum quam vitae.
         </p>
@@ -188,17 +188,17 @@
                 </div>
         
                 <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
-                  <h4 >HORARIOS DE ATENCIÃN</h4>
+                  <h4 >HORARIOS DE ATENCIÓN</h4>
                   <p>Lunes a Viernes</p>
                   <p>7:30 AM a 6:00 PM</p>
-                  <p>SÃ¡bado</p>
+                  <p>Sábado</p>
                   <p>7:30 AM a 5:00 PM</p>
                 </div>
       
                 <div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
                   <h4 > CONTACTO </h4>
                   <P>Av 5 # 0N-54 Barrio La Merced</P>
-                  <p>San JosÃ© de CÃºcuta - Colombia</p>
+                  <p>San José de Cúcuta - Colombia</p>
                   <p>albeirofonseca74@gmail.com</p>
                   <p>+57 3112810082</p>
                 </div>
