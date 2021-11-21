@@ -67,7 +67,7 @@ public class DetallesServicioDAO {
         List<DetallesServicio> rta = new ArrayList<DetallesServicio>();
         for(DetallesServicio d : detalles){
             
-            if(d.getIdAntencionServicio().getId().equals(id)){
+            if(d.getIdAtencionServicio().getId().equals(id)){
             rta.add(d);
             }
         

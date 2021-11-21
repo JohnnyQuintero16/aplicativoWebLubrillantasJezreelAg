@@ -14,11 +14,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
-<<<<<<< HEAD
- * @author USUARIO
-=======
  * @author Cristian
->>>>>>> Test
  */
 @Embeddable
 public class CalificacionPK implements Serializable {

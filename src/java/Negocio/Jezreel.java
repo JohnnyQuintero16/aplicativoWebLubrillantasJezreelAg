@@ -5,7 +5,6 @@
  */
 package Negocio;
 
-<<<<<<< HEAD
 import DAO.AtencionServicioDAO;
 import DAO.DetallesProductoDAO;
 import DAO.DetallesServicioDAO;
@@ -19,25 +18,20 @@ import DTO.DetallesProducto;
 import DTO.DetallesServicio;
 import DTO.Factura;
 import DTO.FichaTecnica;
-=======
 import DAO.MarcaDAO;
 import DAO.PersonaDAO;
 import DAO.ProductoDAO;
 import DAO.ServicioDAO;
 import DAO.TipoDAO;
 import DTO.Marca;
->>>>>>> Test
 import DTO.Persona;
 import DTO.Producto;
 import DTO.Servicio;
 import DTO.Tipo;
 import DTO.Vehiculo;
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.Collections;
 import java.util.Comparator;
-=======
->>>>>>> Test
 import java.util.List;
 
 /**
@@ -315,7 +309,7 @@ public class Jezreel {
         }else{
         
             for (Vehiculo vehiculo : ve) {
-                rta = "<form action=\"MisServicios.do\"><table class=\"tabla-vehiculo\">\n" +
+                rta = "<form action=\"MisServiciosUsu.do\"><table class=\"tabla-vehiculo\">\n" +
                         "                <tr>\n" +
                         "                  <th>Placa</th>\n" +
                         "                  <th>Marca</th>\n" +

@@ -43,7 +43,7 @@ public class DetallesServicio implements Serializable {
     @NotNull
     @Column(name = "costo")
     private int costo;
-    @JoinColumn(name = "idAtencionServicio", referencedColumnName = "id")
+    @JoinColumn(name = "idAntencionServicio", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private AtencionServicio idAtencionServicio;
     @JoinColumn(name = "idServicio", referencedColumnName = "id")

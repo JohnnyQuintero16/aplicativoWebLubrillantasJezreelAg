@@ -72,12 +72,6 @@ public class AtencionServicio implements Serializable, Comparable<AtencionServic
     private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "atencionServicio")
     private List<Calificacion> calificacionList;
-<<<<<<< HEAD
-    @JoinColumn(name = "idFichaTecnica", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private FichaTecnica idFichaTecnica;
-=======
->>>>>>> Test
     @JoinColumn(name = "idCita", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Cita idCita;
@@ -153,25 +147,10 @@ public class AtencionServicio implements Serializable, Comparable<AtencionServic
     @XmlTransient
     public List<Calificacion> getCalificacionList() {
         return calificacionList;
-<<<<<<< HEAD
     }
 
     public void setCalificacionList(List<Calificacion> calificacionList) {
         this.calificacionList = calificacionList;
-    }
-
-    public FichaTecnica getIdFichaTecnica() {
-        return idFichaTecnica;
-    }
-
-    public void setIdFichaTecnica(FichaTecnica idFichaTecnica) {
-        this.idFichaTecnica = idFichaTecnica;
-=======
-    }
-
-    public void setCalificacionList(List<Calificacion> calificacionList) {
-        this.calificacionList = calificacionList;
->>>>>>> Test
     }
 
     public Cita getIdCita() {
