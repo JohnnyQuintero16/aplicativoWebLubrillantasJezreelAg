@@ -87,7 +87,7 @@ public class Persona implements Serializable {
     private Rol idRol;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersona")
     private List<Vehiculo> vehiculoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersona")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<Calificacion> calificacionList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersona")
     private List<Cita> citaList;

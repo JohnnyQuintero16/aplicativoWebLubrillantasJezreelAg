@@ -12,14 +12,13 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import DTO.FichaTecnica;
-import DTO.Calificacion;
 import DTO.Cita;
 import DTO.Factura;
 import DTO.Persona;
-import DTO.DetallesProducto;
+import DTO.Calificacion;
 import java.util.ArrayList;
 import java.util.List;
-import DTO.DetallesServicio;
+import DTO.DetallesProducto;
 import Persistencia.exceptions.IllegalOrphanException;
 import Persistencia.exceptions.NonexistentEntityException;
 import javax.persistence.EntityManager;
@@ -27,7 +26,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author Cristian
+ * @author USUARIO
  */
 public class AtencionServicioJpaController implements Serializable {
 
@@ -41,11 +40,11 @@ public class AtencionServicioJpaController implements Serializable {
     }
 
     public void create(AtencionServicio atencionServicio) {
+        if (atencionServicio.getCalificacionList() == null) {
+            atencionServicio.setCalificacionList(new ArrayList<Calificacion>());
+        }
         if (atencionServicio.getDetallesProductoList() == null) {
             atencionServicio.setDetallesProductoList(new ArrayList<DetallesProducto>());
-        }
-        if (atencionServicio.getDetallesServicioList() == null) {
-            atencionServicio.setDetallesServicioList(new ArrayList<DetallesServicio>());
         }
         EntityManager em = null;
         try {
@@ -55,11 +54,6 @@ public class AtencionServicioJpaController implements Serializable {
             if (idFichaTecnica != null) {
                 idFichaTecnica = em.getReference(idFichaTecnica.getClass(), idFichaTecnica.getId());
                 atencionServicio.setIdFichaTecnica(idFichaTecnica);
-            }
-            Calificacion idCalificacion = atencionServicio.getIdCalificacion();
-            if (idCalificacion != null) {
-                idCalificacion = em.getReference(idCalificacion.getClass(), idCalificacion.getId());
-                atencionServicio.setIdCalificacion(idCalificacion);
             }
             Cita idCita = atencionServicio.getIdCita();
             if (idCita != null) {
@@ -76,26 +70,22 @@ public class AtencionServicioJpaController implements Serializable {
                 idPersona = em.getReference(idPersona.getClass(), idPersona.getCedula());
                 atencionServicio.setIdPersona(idPersona);
             }
+            List<Calificacion> attachedCalificacionList = new ArrayList<Calificacion>();
+            for (Calificacion calificacionListCalificacionToAttach : atencionServicio.getCalificacionList()) {
+                calificacionListCalificacionToAttach = em.getReference(calificacionListCalificacionToAttach.getClass(), calificacionListCalificacionToAttach.getCalificacionPK());
+                attachedCalificacionList.add(calificacionListCalificacionToAttach);
+            }
+            atencionServicio.setCalificacionList(attachedCalificacionList);
             List<DetallesProducto> attachedDetallesProductoList = new ArrayList<DetallesProducto>();
             for (DetallesProducto detallesProductoListDetallesProductoToAttach : atencionServicio.getDetallesProductoList()) {
                 detallesProductoListDetallesProductoToAttach = em.getReference(detallesProductoListDetallesProductoToAttach.getClass(), detallesProductoListDetallesProductoToAttach.getId());
                 attachedDetallesProductoList.add(detallesProductoListDetallesProductoToAttach);
             }
             atencionServicio.setDetallesProductoList(attachedDetallesProductoList);
-            List<DetallesServicio> attachedDetallesServicioList = new ArrayList<DetallesServicio>();
-            for (DetallesServicio detallesServicioListDetallesServicioToAttach : atencionServicio.getDetallesServicioList()) {
-                detallesServicioListDetallesServicioToAttach = em.getReference(detallesServicioListDetallesServicioToAttach.getClass(), detallesServicioListDetallesServicioToAttach.getId());
-                attachedDetallesServicioList.add(detallesServicioListDetallesServicioToAttach);
-            }
-            atencionServicio.setDetallesServicioList(attachedDetallesServicioList);
             em.persist(atencionServicio);
             if (idFichaTecnica != null) {
                 idFichaTecnica.getAtencionServicioList().add(atencionServicio);
                 idFichaTecnica = em.merge(idFichaTecnica);
-            }
-            if (idCalificacion != null) {
-                idCalificacion.getAtencionServicioList().add(atencionServicio);
-                idCalificacion = em.merge(idCalificacion);
             }
             if (idCita != null) {
                 idCita.getAtencionServicioList().add(atencionServicio);
@@ -109,6 +99,15 @@ public class AtencionServicioJpaController implements Serializable {
                 idPersona.getAtencionServicioList().add(atencionServicio);
                 idPersona = em.merge(idPersona);
             }
+            for (Calificacion calificacionListCalificacion : atencionServicio.getCalificacionList()) {
+                AtencionServicio oldAtencionServicioOfCalificacionListCalificacion = calificacionListCalificacion.getAtencionServicio();
+                calificacionListCalificacion.setAtencionServicio(atencionServicio);
+                calificacionListCalificacion = em.merge(calificacionListCalificacion);
+                if (oldAtencionServicioOfCalificacionListCalificacion != null) {
+                    oldAtencionServicioOfCalificacionListCalificacion.getCalificacionList().remove(calificacionListCalificacion);
+                    oldAtencionServicioOfCalificacionListCalificacion = em.merge(oldAtencionServicioOfCalificacionListCalificacion);
+                }
+            }
             for (DetallesProducto detallesProductoListDetallesProducto : atencionServicio.getDetallesProductoList()) {
                 AtencionServicio oldIdAtencionServicioOfDetallesProductoListDetallesProducto = detallesProductoListDetallesProducto.getIdAtencionServicio();
                 detallesProductoListDetallesProducto.setIdAtencionServicio(atencionServicio);
@@ -116,15 +115,6 @@ public class AtencionServicioJpaController implements Serializable {
                 if (oldIdAtencionServicioOfDetallesProductoListDetallesProducto != null) {
                     oldIdAtencionServicioOfDetallesProductoListDetallesProducto.getDetallesProductoList().remove(detallesProductoListDetallesProducto);
                     oldIdAtencionServicioOfDetallesProductoListDetallesProducto = em.merge(oldIdAtencionServicioOfDetallesProductoListDetallesProducto);
-                }
-            }
-            for (DetallesServicio detallesServicioListDetallesServicio : atencionServicio.getDetallesServicioList()) {
-                AtencionServicio oldIdAntencionServicioOfDetallesServicioListDetallesServicio = detallesServicioListDetallesServicio.getIdAntencionServicio();
-                detallesServicioListDetallesServicio.setIdAntencionServicio(atencionServicio);
-                detallesServicioListDetallesServicio = em.merge(detallesServicioListDetallesServicio);
-                if (oldIdAntencionServicioOfDetallesServicioListDetallesServicio != null) {
-                    oldIdAntencionServicioOfDetallesServicioListDetallesServicio.getDetallesServicioList().remove(detallesServicioListDetallesServicio);
-                    oldIdAntencionServicioOfDetallesServicioListDetallesServicio = em.merge(oldIdAntencionServicioOfDetallesServicioListDetallesServicio);
                 }
             }
             em.getTransaction().commit();
@@ -143,19 +133,25 @@ public class AtencionServicioJpaController implements Serializable {
             AtencionServicio persistentAtencionServicio = em.find(AtencionServicio.class, atencionServicio.getId());
             FichaTecnica idFichaTecnicaOld = persistentAtencionServicio.getIdFichaTecnica();
             FichaTecnica idFichaTecnicaNew = atencionServicio.getIdFichaTecnica();
-            Calificacion idCalificacionOld = persistentAtencionServicio.getIdCalificacion();
-            Calificacion idCalificacionNew = atencionServicio.getIdCalificacion();
             Cita idCitaOld = persistentAtencionServicio.getIdCita();
             Cita idCitaNew = atencionServicio.getIdCita();
             Factura idFacturaOld = persistentAtencionServicio.getIdFactura();
             Factura idFacturaNew = atencionServicio.getIdFactura();
             Persona idPersonaOld = persistentAtencionServicio.getIdPersona();
             Persona idPersonaNew = atencionServicio.getIdPersona();
+            List<Calificacion> calificacionListOld = persistentAtencionServicio.getCalificacionList();
+            List<Calificacion> calificacionListNew = atencionServicio.getCalificacionList();
             List<DetallesProducto> detallesProductoListOld = persistentAtencionServicio.getDetallesProductoList();
             List<DetallesProducto> detallesProductoListNew = atencionServicio.getDetallesProductoList();
-            List<DetallesServicio> detallesServicioListOld = persistentAtencionServicio.getDetallesServicioList();
-            List<DetallesServicio> detallesServicioListNew = atencionServicio.getDetallesServicioList();
             List<String> illegalOrphanMessages = null;
+            for (Calificacion calificacionListOldCalificacion : calificacionListOld) {
+                if (!calificacionListNew.contains(calificacionListOldCalificacion)) {
+                    if (illegalOrphanMessages == null) {
+                        illegalOrphanMessages = new ArrayList<String>();
+                    }
+                    illegalOrphanMessages.add("You must retain Calificacion " + calificacionListOldCalificacion + " since its atencionServicio field is not nullable.");
+                }
+            }
             for (DetallesProducto detallesProductoListOldDetallesProducto : detallesProductoListOld) {
                 if (!detallesProductoListNew.contains(detallesProductoListOldDetallesProducto)) {
                     if (illegalOrphanMessages == null) {
@@ -164,24 +160,12 @@ public class AtencionServicioJpaController implements Serializable {
                     illegalOrphanMessages.add("You must retain DetallesProducto " + detallesProductoListOldDetallesProducto + " since its idAtencionServicio field is not nullable.");
                 }
             }
-            for (DetallesServicio detallesServicioListOldDetallesServicio : detallesServicioListOld) {
-                if (!detallesServicioListNew.contains(detallesServicioListOldDetallesServicio)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain DetallesServicio " + detallesServicioListOldDetallesServicio + " since its idAntencionServicio field is not nullable.");
-                }
-            }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
             if (idFichaTecnicaNew != null) {
                 idFichaTecnicaNew = em.getReference(idFichaTecnicaNew.getClass(), idFichaTecnicaNew.getId());
                 atencionServicio.setIdFichaTecnica(idFichaTecnicaNew);
-            }
-            if (idCalificacionNew != null) {
-                idCalificacionNew = em.getReference(idCalificacionNew.getClass(), idCalificacionNew.getId());
-                atencionServicio.setIdCalificacion(idCalificacionNew);
             }
             if (idCitaNew != null) {
                 idCitaNew = em.getReference(idCitaNew.getClass(), idCitaNew.getId());
@@ -195,6 +179,13 @@ public class AtencionServicioJpaController implements Serializable {
                 idPersonaNew = em.getReference(idPersonaNew.getClass(), idPersonaNew.getCedula());
                 atencionServicio.setIdPersona(idPersonaNew);
             }
+            List<Calificacion> attachedCalificacionListNew = new ArrayList<Calificacion>();
+            for (Calificacion calificacionListNewCalificacionToAttach : calificacionListNew) {
+                calificacionListNewCalificacionToAttach = em.getReference(calificacionListNewCalificacionToAttach.getClass(), calificacionListNewCalificacionToAttach.getCalificacionPK());
+                attachedCalificacionListNew.add(calificacionListNewCalificacionToAttach);
+            }
+            calificacionListNew = attachedCalificacionListNew;
+            atencionServicio.setCalificacionList(calificacionListNew);
             List<DetallesProducto> attachedDetallesProductoListNew = new ArrayList<DetallesProducto>();
             for (DetallesProducto detallesProductoListNewDetallesProductoToAttach : detallesProductoListNew) {
                 detallesProductoListNewDetallesProductoToAttach = em.getReference(detallesProductoListNewDetallesProductoToAttach.getClass(), detallesProductoListNewDetallesProductoToAttach.getId());
@@ -202,13 +193,6 @@ public class AtencionServicioJpaController implements Serializable {
             }
             detallesProductoListNew = attachedDetallesProductoListNew;
             atencionServicio.setDetallesProductoList(detallesProductoListNew);
-            List<DetallesServicio> attachedDetallesServicioListNew = new ArrayList<DetallesServicio>();
-            for (DetallesServicio detallesServicioListNewDetallesServicioToAttach : detallesServicioListNew) {
-                detallesServicioListNewDetallesServicioToAttach = em.getReference(detallesServicioListNewDetallesServicioToAttach.getClass(), detallesServicioListNewDetallesServicioToAttach.getId());
-                attachedDetallesServicioListNew.add(detallesServicioListNewDetallesServicioToAttach);
-            }
-            detallesServicioListNew = attachedDetallesServicioListNew;
-            atencionServicio.setDetallesServicioList(detallesServicioListNew);
             atencionServicio = em.merge(atencionServicio);
             if (idFichaTecnicaOld != null && !idFichaTecnicaOld.equals(idFichaTecnicaNew)) {
                 idFichaTecnicaOld.getAtencionServicioList().remove(atencionServicio);
@@ -217,14 +201,6 @@ public class AtencionServicioJpaController implements Serializable {
             if (idFichaTecnicaNew != null && !idFichaTecnicaNew.equals(idFichaTecnicaOld)) {
                 idFichaTecnicaNew.getAtencionServicioList().add(atencionServicio);
                 idFichaTecnicaNew = em.merge(idFichaTecnicaNew);
-            }
-            if (idCalificacionOld != null && !idCalificacionOld.equals(idCalificacionNew)) {
-                idCalificacionOld.getAtencionServicioList().remove(atencionServicio);
-                idCalificacionOld = em.merge(idCalificacionOld);
-            }
-            if (idCalificacionNew != null && !idCalificacionNew.equals(idCalificacionOld)) {
-                idCalificacionNew.getAtencionServicioList().add(atencionServicio);
-                idCalificacionNew = em.merge(idCalificacionNew);
             }
             if (idCitaOld != null && !idCitaOld.equals(idCitaNew)) {
                 idCitaOld.getAtencionServicioList().remove(atencionServicio);
@@ -250,6 +226,17 @@ public class AtencionServicioJpaController implements Serializable {
                 idPersonaNew.getAtencionServicioList().add(atencionServicio);
                 idPersonaNew = em.merge(idPersonaNew);
             }
+            for (Calificacion calificacionListNewCalificacion : calificacionListNew) {
+                if (!calificacionListOld.contains(calificacionListNewCalificacion)) {
+                    AtencionServicio oldAtencionServicioOfCalificacionListNewCalificacion = calificacionListNewCalificacion.getAtencionServicio();
+                    calificacionListNewCalificacion.setAtencionServicio(atencionServicio);
+                    calificacionListNewCalificacion = em.merge(calificacionListNewCalificacion);
+                    if (oldAtencionServicioOfCalificacionListNewCalificacion != null && !oldAtencionServicioOfCalificacionListNewCalificacion.equals(atencionServicio)) {
+                        oldAtencionServicioOfCalificacionListNewCalificacion.getCalificacionList().remove(calificacionListNewCalificacion);
+                        oldAtencionServicioOfCalificacionListNewCalificacion = em.merge(oldAtencionServicioOfCalificacionListNewCalificacion);
+                    }
+                }
+            }
             for (DetallesProducto detallesProductoListNewDetallesProducto : detallesProductoListNew) {
                 if (!detallesProductoListOld.contains(detallesProductoListNewDetallesProducto)) {
                     AtencionServicio oldIdAtencionServicioOfDetallesProductoListNewDetallesProducto = detallesProductoListNewDetallesProducto.getIdAtencionServicio();
@@ -258,17 +245,6 @@ public class AtencionServicioJpaController implements Serializable {
                     if (oldIdAtencionServicioOfDetallesProductoListNewDetallesProducto != null && !oldIdAtencionServicioOfDetallesProductoListNewDetallesProducto.equals(atencionServicio)) {
                         oldIdAtencionServicioOfDetallesProductoListNewDetallesProducto.getDetallesProductoList().remove(detallesProductoListNewDetallesProducto);
                         oldIdAtencionServicioOfDetallesProductoListNewDetallesProducto = em.merge(oldIdAtencionServicioOfDetallesProductoListNewDetallesProducto);
-                    }
-                }
-            }
-            for (DetallesServicio detallesServicioListNewDetallesServicio : detallesServicioListNew) {
-                if (!detallesServicioListOld.contains(detallesServicioListNewDetallesServicio)) {
-                    AtencionServicio oldIdAntencionServicioOfDetallesServicioListNewDetallesServicio = detallesServicioListNewDetallesServicio.getIdAntencionServicio();
-                    detallesServicioListNewDetallesServicio.setIdAntencionServicio(atencionServicio);
-                    detallesServicioListNewDetallesServicio = em.merge(detallesServicioListNewDetallesServicio);
-                    if (oldIdAntencionServicioOfDetallesServicioListNewDetallesServicio != null && !oldIdAntencionServicioOfDetallesServicioListNewDetallesServicio.equals(atencionServicio)) {
-                        oldIdAntencionServicioOfDetallesServicioListNewDetallesServicio.getDetallesServicioList().remove(detallesServicioListNewDetallesServicio);
-                        oldIdAntencionServicioOfDetallesServicioListNewDetallesServicio = em.merge(oldIdAntencionServicioOfDetallesServicioListNewDetallesServicio);
                     }
                 }
             }
@@ -302,19 +278,19 @@ public class AtencionServicioJpaController implements Serializable {
                 throw new NonexistentEntityException("The atencionServicio with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
+            List<Calificacion> calificacionListOrphanCheck = atencionServicio.getCalificacionList();
+            for (Calificacion calificacionListOrphanCheckCalificacion : calificacionListOrphanCheck) {
+                if (illegalOrphanMessages == null) {
+                    illegalOrphanMessages = new ArrayList<String>();
+                }
+                illegalOrphanMessages.add("This AtencionServicio (" + atencionServicio + ") cannot be destroyed since the Calificacion " + calificacionListOrphanCheckCalificacion + " in its calificacionList field has a non-nullable atencionServicio field.");
+            }
             List<DetallesProducto> detallesProductoListOrphanCheck = atencionServicio.getDetallesProductoList();
             for (DetallesProducto detallesProductoListOrphanCheckDetallesProducto : detallesProductoListOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
                 illegalOrphanMessages.add("This AtencionServicio (" + atencionServicio + ") cannot be destroyed since the DetallesProducto " + detallesProductoListOrphanCheckDetallesProducto + " in its detallesProductoList field has a non-nullable idAtencionServicio field.");
-            }
-            List<DetallesServicio> detallesServicioListOrphanCheck = atencionServicio.getDetallesServicioList();
-            for (DetallesServicio detallesServicioListOrphanCheckDetallesServicio : detallesServicioListOrphanCheck) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This AtencionServicio (" + atencionServicio + ") cannot be destroyed since the DetallesServicio " + detallesServicioListOrphanCheckDetallesServicio + " in its detallesServicioList field has a non-nullable idAntencionServicio field.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
@@ -323,11 +299,6 @@ public class AtencionServicioJpaController implements Serializable {
             if (idFichaTecnica != null) {
                 idFichaTecnica.getAtencionServicioList().remove(atencionServicio);
                 idFichaTecnica = em.merge(idFichaTecnica);
-            }
-            Calificacion idCalificacion = atencionServicio.getIdCalificacion();
-            if (idCalificacion != null) {
-                idCalificacion.getAtencionServicioList().remove(atencionServicio);
-                idCalificacion = em.merge(idCalificacion);
             }
             Cita idCita = atencionServicio.getIdCita();
             if (idCita != null) {

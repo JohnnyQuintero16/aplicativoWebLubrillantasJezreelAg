@@ -7,27 +7,21 @@ package DTO;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,17 +32,15 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Calificacion.findAll", query = "SELECT c FROM Calificacion c")
-    , @NamedQuery(name = "Calificacion.findById", query = "SELECT c FROM Calificacion c WHERE c.id = :id")
     , @NamedQuery(name = "Calificacion.findByFecha", query = "SELECT c FROM Calificacion c WHERE c.fecha = :fecha")
-    , @NamedQuery(name = "Calificacion.findByValor", query = "SELECT c FROM Calificacion c WHERE c.valor = :valor")})
+    , @NamedQuery(name = "Calificacion.findByValor", query = "SELECT c FROM Calificacion c WHERE c.valor = :valor")
+    , @NamedQuery(name = "Calificacion.findByIdPersona", query = "SELECT c FROM Calificacion c WHERE c.calificacionPK.idPersona = :idPersona")
+    , @NamedQuery(name = "Calificacion.findByIdAtencion", query = "SELECT c FROM Calificacion c WHERE c.calificacionPK.idAtencion = :idAtencion")})
 public class Calificacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
+    @EmbeddedId
+    protected CalificacionPK calificacionPK;
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha")
@@ -64,32 +56,37 @@ public class Calificacion implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
-    @JoinColumn(name = "idPersona", referencedColumnName = "cedula")
+    @JoinColumn(name = "idAtencion", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Persona idPersona;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCalificacion")
-    private List<AtencionServicio> atencionServicioList;
+    private AtencionServicio atencionServicio;
+    @JoinColumn(name = "idPersona", referencedColumnName = "cedula", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Persona persona;
 
     public Calificacion() {
     }
 
-    public Calificacion(Integer id) {
-        this.id = id;
+    public Calificacion(CalificacionPK calificacionPK) {
+        this.calificacionPK = calificacionPK;
     }
 
-    public Calificacion(Integer id, Date fecha, short valor, String descripcion) {
-        this.id = id;
+    public Calificacion(CalificacionPK calificacionPK, Date fecha, short valor, String descripcion) {
+        this.calificacionPK = calificacionPK;
         this.fecha = fecha;
         this.valor = valor;
         this.descripcion = descripcion;
     }
 
-    public Integer getId() {
-        return id;
+    public Calificacion(String idPersona, int idAtencion) {
+        this.calificacionPK = new CalificacionPK(idPersona, idAtencion);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public CalificacionPK getCalificacionPK() {
+        return calificacionPK;
+    }
+
+    public void setCalificacionPK(CalificacionPK calificacionPK) {
+        this.calificacionPK = calificacionPK;
     }
 
     public Date getFecha() {
@@ -116,27 +113,26 @@ public class Calificacion implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Persona getIdPersona() {
-        return idPersona;
+    public AtencionServicio getAtencionServicio() {
+        return atencionServicio;
     }
 
-    public void setIdPersona(Persona idPersona) {
-        this.idPersona = idPersona;
+    public void setAtencionServicio(AtencionServicio atencionServicio) {
+        this.atencionServicio = atencionServicio;
     }
 
-    @XmlTransient
-    public List<AtencionServicio> getAtencionServicioList() {
-        return atencionServicioList;
+    public Persona getPersona() {
+        return persona;
     }
 
-    public void setAtencionServicioList(List<AtencionServicio> atencionServicioList) {
-        this.atencionServicioList = atencionServicioList;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (calificacionPK != null ? calificacionPK.hashCode() : 0);
         return hash;
     }
 
@@ -147,7 +143,7 @@ public class Calificacion implements Serializable {
             return false;
         }
         Calificacion other = (Calificacion) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.calificacionPK == null && other.calificacionPK != null) || (this.calificacionPK != null && !this.calificacionPK.equals(other.calificacionPK))) {
             return false;
         }
         return true;
@@ -155,7 +151,7 @@ public class Calificacion implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.Calificacion[ id=" + id + " ]";
+        return "DTO.Calificacion[ calificacionPK=" + calificacionPK + " ]";
     }
     
 }

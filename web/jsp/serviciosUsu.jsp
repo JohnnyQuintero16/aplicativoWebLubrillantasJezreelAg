@@ -85,7 +85,7 @@
                                 </ul>
                             </li>
 
-                            <svg xmlns="http://www.w3.org/2000/svg" style="color:#fff" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <!--<svg xmlns="http://www.w3.org/2000/svg" style="color:#fff" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">-->
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                             </svg>
@@ -110,7 +110,9 @@
           <!-- img grande de usuario -->
           <img class="bd-placeholder-img rounded-circle" id="Perfil" src="<%=basePath%>/img/usuario.png">
           <br>
-          <h4>Nombre de Usuario</h4>
+          <h4>
+              <%=request.getSession().getAttribute("nameUser")%>
+          </h4>
           <hr>
           <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
@@ -146,199 +148,18 @@
       </div>
       <!-- end perfil -->
 
+      <%
+      String misServicios = request.getSession().getAttribute("misServicios").toString();
+ 
+      %>
       <!-- SERVICIOS -->
       <div class="col-12 col-sm-12 col-md-9 col-lg-9">
         <h2 class="titulo"> MIS SERVICIOS</h2>
         <hr>
-        <!-- INICIO CARD 1 -->
-        <div class="card">
-          <div class="card-header row " id="cardt">
-            <div class="col-4  verticalLine centrado">
-              <h4> Servicio No°</h4>
-            </div>
-            <div class="col-4  verticalLine centrado">
-              <h4> Fecha</h4>
-            </div>
-            <div class="col-4">
-              <h4>Total $</h4>
-            </div>
-          </div>
-          <div class="card-body row">
-            <!-- img servicio -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-              <img src="<%=basePath%>/img/serV1.jpg" id="imgServicio">
-            </div>
 
-            <!-- texto del servicio -->
-            <div class="col-12 col-sm-6 col-md-8 col-lg-8">
-              <p class="card-text">
-                Lorem, ipsum dolor sit amet consectetur   adipisicing elit. Reprehenderit amet sit distinctio similique inventore vero necessitatibus temporibus consequuntur hic quo sapiente veritatis aliquam, quis officia incidunt consectetur at nam nobis!
-              </p>
-
-              <!-- boton del servicio -->
-              <a href="#" class="btn" id="boton" type="button"  data-bs-toggle="modal" data-bs-target="#modal1">
-                Ver Servicio
-              </a>
-
-              <!-- ventana modal -->
-              <div class="modal fade" tabindex="-1" role="dialog" id="modal1" aria-labelledby="modal1" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h2 class="modal-title">Detalles del Servicio</h2>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table table-bordered table-responsive table-striped">
-                          <thead style="background-color: #616060a1;">
-                            <tr>
-                              <th scope="col">Concepto</th>
-                              <th scope="col">Und</th>
-                              <th scope="col">Precio</th>
-                              <th scope="col">IVA</th>
-                              <th scope="col">Total</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>XXXX</td>
-                              <td>1</td>
-                              <td>$3000</td>
-                              <td>$380</td>
-                              <td>$3380</td>
-                            </tr>
-                            <tr>
-                              <td>XXXX</td>
-                              <td>1</td>
-                              <td>$ 3000</td>
-                              <td>$380</td>
-                              <td>$3380</td>
-                            </tr>
-                            <tr>
-                              <td>XXXX</td>
-                              <td>1</td>
-                              <td>$ 3000</td>
-                              <td>$380</td>
-                              <td>$3380</td>
-                            </tr>
-                          </tbody>
-                        </table>
-
-                        <br>
-                        <h6>SUBTOTAL</h6>
-                        <hr width="30%">
-                        <h6>IVA</h6>
-                        <hr width="30%">
-                        <h6>TOTAL</h6>
-                        <hr width="30%">
-                    </div>
-                    <div class="modal-footer" id="foterM">
-                      <a href="#" class="btn" id="boton" type="button">Calificar servicio</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br>
-        </div>
-        <br>
-
-        <!-- INICIO CARD 2-->
-        <div class="card">
-          <div class="card-header row " id="cardt">
-            <div class="col-4  verticalLine centrado">
-              <h4> Servicio No°</h4>
-            </div>
-            <div class="col-4  verticalLine centrado">
-              <h4> Fecha</h4>
-            </div>
-            <div class="col-4">
-              <h4>Total $</h4>
-            </div>
-          </div>
-          <div class="card-body row">
-            <!-- img servicio -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-              <img src="<%=basePath%>/img/serV2.jpg" id="imgServicio">
-            </div>
-
-            <!-- texto del servicio -->
-            <div class="col-12 col-sm-6 col-md-8 col-lg-8">
-              <p class="card-text">
-                Lorem, ipsum dolor sit amet consectetur   adipisicing elit. Reprehenderit amet sit distinctio similique inventore vero necessitatibus temporibus consequuntur hic quo sapiente veritatis aliquam, quis officia incidunt consectetur at nam nobis!
-              </p>
-
-              <!-- boton del servicio -->
-              <a href="#" class="btn" id="boton" type="button"  data-bs-toggle="modal" data-bs-target="#modal1">
-                Ver Servicio
-              </a>
-
-              <!-- ventana modal -->
-              <div class="modal fade" tabindex="-1" role="dialog" id="modal1" aria-labelledby="modal1" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h2 class="modal-title">Detalles del Servicio</h2>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table table-bordered table-responsive table-striped">
-                          <thead style="background-color: #616060a1;">
-                            <tr>
-                              <th scope="col">Concepto</th>
-                              <th scope="col">Und</th>
-                              <th scope="col">Precio</th>
-                              <th scope="col">IVA</th>
-                              <th scope="col">Total</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>XXXX</td>
-                              <td>1</td>
-                              <td>$3000</td>
-                              <td>$380</td>
-                              <td>$3380</td>
-                            </tr>
-                            <tr>
-                              <td>XXXX</td>
-                              <td>1</td>
-                              <td>$ 3000</td>
-                              <td>$380</td>
-                              <td>$3380</td>
-                            </tr>
-                            <tr>
-                              <td>XXXX</td>
-                              <td>1</td>
-                              <td>$ 3000</td>
-                              <td>$380</td>
-                              <td>$3380</td>
-                            </tr>
-                          </tbody>
-                        </table>
-
-                        <br>
-                        <h6>SUBTOTAL</h6>
-                        <hr width="30%">
-                        <h6>IVA</h6>
-                        <hr width="30%">
-                        <h6>TOTAL</h6>
-                        <hr width="30%">
-                    </div>
-                    <div class="modal-footer" id="foterM">
-                      <a href="#" class="btn" id="boton" type="button">Calificar servicio</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br>
-        </div>
-        <br>
+        <%=misServicios %>
+       
+      
       </div>
       <!-- end servicios -->
     </div>

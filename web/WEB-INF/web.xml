@@ -40,6 +40,14 @@
             <param-value>*</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>MisServiciosUsu</servlet-name>
+        <servlet-class>ControladorVistas.MisServiciosUsu</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Prueba</servlet-name>
+        <servlet-class>ControladorVistas.Prueba</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion.do</url-pattern>
@@ -63,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>dontCookie</servlet-name>
         <url-pattern>/dontCookie.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MisServiciosUsu</servlet-name>
+        <url-pattern>/MisServiciosUsu.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Prueba</servlet-name>
+        <url-pattern>/Prueba.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

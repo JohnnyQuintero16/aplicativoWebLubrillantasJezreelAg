@@ -119,4 +119,6 @@ public class DetallesServicio implements Serializable {
         return "DTO.DetallesServicio[ id=" + id + " ]";
     }
     
+    
+    
 }
