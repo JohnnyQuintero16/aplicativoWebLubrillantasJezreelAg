@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author USUARIO
+ * @author Cristian
  */
 @Entity
 @Table(name = "Detalles_Servicio")
@@ -43,9 +43,9 @@ public class DetallesServicio implements Serializable {
     @NotNull
     @Column(name = "costo")
     private int costo;
-    @JoinColumn(name = "idAntencionServicio", referencedColumnName = "id")
+    @JoinColumn(name = "idAtencionServicio", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private AtencionServicio idAntencionServicio;
+    private AtencionServicio idAtencionServicio;
     @JoinColumn(name = "idServicio", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Servicio idServicio;
@@ -78,12 +78,12 @@ public class DetallesServicio implements Serializable {
         this.costo = costo;
     }
 
-    public AtencionServicio getIdAntencionServicio() {
-        return idAntencionServicio;
+    public AtencionServicio getIdAtencionServicio() {
+        return idAtencionServicio;
     }
 
-    public void setIdAntencionServicio(AtencionServicio idAntencionServicio) {
-        this.idAntencionServicio = idAntencionServicio;
+    public void setIdAtencionServicio(AtencionServicio idAtencionServicio) {
+        this.idAtencionServicio = idAtencionServicio;
     }
 
     public Servicio getIdServicio() {

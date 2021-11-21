@@ -38,7 +38,7 @@
     <div class="container-fluid">
 
         <a class="navbar-brand" href="#">
-            <img src="../img/LogoLJAG.png" alt="" width="140px" height="120px" />
+            <img src="<%=basePath%>img/LogoLJAG.png" alt="" width="140px" height="120px" />
           </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -49,7 +49,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="../index.jsp">INICIO</a>
+            <a class="nav-link " aria-current="page" href="<%=basePath%>index.jsp">INICIO</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./nosotros.jsp">NOSOTROS</a>
@@ -65,10 +65,11 @@
         <ul class="navbar-nav ml-auto m-4">
           <li class="nav-item dropdown" style="list-style-type: none;">
               <a  class="nav-link dropdown-toggle link-dark  " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
-                NOMBRE USUARIO
+                <%=request.getSession().getAttribute("nameUser")%>
               </a>
               <ul class="dropdown-menu text-small "    aria-labelledby="dropdownUser2"  >
                 <li><a class="dropdown-item" href="#" >Mi Cuenta</a></li>
+                <li><a class="dropdown-item" href="./MisVehiculos.do" >Mis Vehiculos</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Salir</a></li>
               </ul>
@@ -79,7 +80,7 @@
  
      
       <div class="user">
-        <img src="../img/user.png" alt="" width="70" height="70" class="rounded-circle me-2">
+        <img src="<%=basePath%>img/user.png" alt="" width="70" height="70" class="rounded-circle me-2">
       </div>
     </div>
   </nav>
@@ -92,7 +93,7 @@
         
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-light colum-datos"  >
           <div >
-            <img class="bd-placeholder-img rounded-circle" id ="Perfil"  src="../img/usuario.png">
+            <img class="bd-placeholder-img rounded-circle" id ="Perfil"  src="<%=basePath%>img/usuario.png">
           </div>
           <br>
           <h4>Nombre de Usuario</h4>
@@ -113,7 +114,7 @@
                 <strong id="servi"> Mis Vehículos</strong> </a>
             </li>
             <li>
-              <a href="./serviciosUsu.jsp" class="nav-link link-dark">
+              <a href="<%=basePath%>jsp/serviciosUsu.jsp" class="nav-link link-dark">
                 <svg class="bi me-2 " width="16" height="16" >
                   <use xlink:href="#table" />
                 </svg> 
@@ -136,64 +137,11 @@
         <h2 class="titulo"> MIS VEHICULOS</h2>
         <hr>
         <div class="vehiculo-datos">
-            <table class="tabla-vehiculo">
-                <tr>
-                  <th>No. Placa</th>
-                  <th>Marca</th>
-                  <th>Kilometraje</th>
-                </tr>
-                <tr>
-                  <td>CUX328</td>
-                  <td>Spark</td>
-                  <td>610258</td>
-                </tr>
-               
-                <tr>
-                    <th>Modelo</th>
-                    <th>Año</th>
-                    <th>Opción</th>
-                  </tr>
-
-                  <tr>
-                    <td>Lorem</td>
-                    <td>2021</td>
-                    <td><img src="../img/papelera.png" alt="papelera" style="width: 1.5rem; height: 1.5rem;"></td>
-                  </tr>
-                  
-              </table> <br><br>
-              <table class="tabla-vehiculo">
-                <tr>
-                  <th>No. Placa</th>
-                  <th>Marca</th>
-                  <th>Kilometraje</th>
-                </tr>
-                <tr>
-                  <td>CUX328</td>
-                  <td>Spark</td>
-                  <td>610258</td>
-                </tr>
-               
-                <tr>
-                    <th>Modelo</th>
-                    <th>Año</th>
-                    <th>Opción</th>
-                  </tr>
-
-                  <tr>
-                    <td>Lorem</td>
-                    <td>2021</td>
-                    <td><img src="../img/papelera.png" alt="papelera" style="width: 1.5rem; height: 1.5rem;"></td>
-                  </tr>
-                  
-              </table>
+            <%= request.getSession().getAttribute("vehiculos")%>
         </div>
-
         <br>
-
-
       </div>
 
-      
       <!-- end servicios -->
     </div>
   </div>
@@ -204,15 +152,15 @@
 	<div class="container-fluid">
 	  <div class="row ">
 		<div class="col-12 redes" style="background-color: #00114e;">
-		  <img src="../img/whatsapp.png" >
-		  <img src="../img/facebook.png" >
-		  <img src="../img/instagram.png" >
+		  <img src="<%=basePath%>img/whatsapp.png" >
+		  <img src="<%=basePath%>img/facebook.png" >
+		  <img src="<%=basePath%>img/instagram.png" >
 		</div>
 	  </div>
 	  <div class="row" style="background-color: #001971;">
   
 		<div class="col-12 col-sm-4 col-md-4 col-lg-4">
-		  <img src="../img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
+		  <img src="<%=basePath%>img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
 		</div>
   
 		<div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
