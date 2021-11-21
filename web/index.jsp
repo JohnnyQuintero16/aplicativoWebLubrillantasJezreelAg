@@ -192,7 +192,7 @@
 
                         <div class="col-md-4"></div>
                         <div class="col-md-6"> 	
-                            <input class="boton3" id="botonLeerMas" type="button" value="Leer mas" onclick="location.href='html/nosotros.jsp'">
+                            <input class="boton3" id="botonLeerMas" type="button" value="Leer mas" onclick="location.href='<%=basePath%>jsp/nosotros.jsp'">
                         </div>
                         <div class="col-md-2"></div>
                     </div>
@@ -255,7 +255,7 @@
         <section class="contenido mt-3 mb-5">
             <div class="col-md-2"></div>
             <div class="col-md-8"> 		
-                <input class="boton2" id="botonServicios" type="button" value="Ver todos" onclick="location.href='html/servicios.jsp'">
+                <input class="boton2" id="botonServicios" type="button" value="Ver todos" onclick="location.href='<%=basePath%>jsp/servicios.jsp'">
             </div>
             <div class="col-md-2"></div>
         </section>
