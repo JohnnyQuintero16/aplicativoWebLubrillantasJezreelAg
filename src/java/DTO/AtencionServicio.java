@@ -24,22 +24,24 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Cristian
+ * @author USUARIO
  */
 @Entity
 @Table(name = "Atencion_Servicio")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "AtencionServicio.findAll", query = "SELECT a FROM AtencionServicio a"),
-    @NamedQuery(name = "AtencionServicio.findById", query = "SELECT a FROM AtencionServicio a WHERE a.id = :id"),
-    @NamedQuery(name = "AtencionServicio.findByKilometraje", query = "SELECT a FROM AtencionServicio a WHERE a.kilometraje = :kilometraje"),
-    @NamedQuery(name = "AtencionServicio.findByFecha", query = "SELECT a FROM AtencionServicio a WHERE a.fecha = :fecha"),
-    @NamedQuery(name = "AtencionServicio.findByHora", query = "SELECT a FROM AtencionServicio a WHERE a.hora = :hora")})
+    @NamedQuery(name = "AtencionServicio.findAll", query = "SELECT a FROM AtencionServicio a")
+    , @NamedQuery(name = "AtencionServicio.findById", query = "SELECT a FROM AtencionServicio a WHERE a.id = :id")
+    , @NamedQuery(name = "AtencionServicio.findByKilometraje", query = "SELECT a FROM AtencionServicio a WHERE a.kilometraje = :kilometraje")
+    , @NamedQuery(name = "AtencionServicio.findByFecha", query = "SELECT a FROM AtencionServicio a WHERE a.fecha = :fecha")
+    , @NamedQuery(name = "AtencionServicio.findByHora", query = "SELECT a FROM AtencionServicio a WHERE a.hora = :hora")})
 public class AtencionServicio implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,18 +51,23 @@ public class AtencionServicio implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "kilometraje")
     private int kilometraje;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "hora")
     @Temporal(TemporalType.TIME)
     private Date hora;
     @Basic(optional = false)
+    @NotNull
     @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
     @JoinColumn(name = "idFichaTecnica", referencedColumnName = "id")

@@ -1,0 +1,60 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 20/11/2021, 08:44:29 PM
+    Author     : Jarlin
+*/
+
+.tablaPro{
+    
+    font-size: 14px;
+}
+
+td{
+    
+    font-size: 15px;
+}
+
+.form-label{
+
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.boton2{
+    background:  #ff0800;
+    border-bottom: 5px solid #bb5851;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 900;
+    width: 120px;
+    height: 50px;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease 0s;
+  }
+
+  .boton2:hover{
+      background: #f70000;
+  }
+
+  .boton3{
+    background:  #001971;
+    border-bottom: 5px solid #001971;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 900;
+    width: 120px;
+    height: 50px;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease 0s;
+  }
+
+  .boton3:hover{
+      background: #0342ee;
+  }
