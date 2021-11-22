@@ -129,9 +129,6 @@
                     <div> 
                         <h1 id="citas"> MIS CITAS</h1>
                     </div>	
-                    <div   >
-                        <a   href="<%=basePath%>jsp/citasUsu.jsp" class="btn btn-success" tabindex="-1" role="button" aria-disabled="false">Volver</a>
-                    </div>
                     <br>
                     <div class="row"> 
                         <div class="row align-items-center">
@@ -167,6 +164,7 @@
                     </div>
                     <div align="right" style="padding-right: 50px; padding-bottom: 50px"> 
                         <br><br>
+                          <a   href="<%=basePath%>jsp/citasUsu.jsp" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="false">Cancelar</a>
 <!--                        <button type="button" class="btn btn-danger" >Cancelar</button>-->
                          <button type="submit" class="btn btn-info">Guardar Cambios</button>
 
