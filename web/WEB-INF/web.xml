@@ -41,6 +41,12 @@
         </init-param>
     </servlet>
     <servlet>
+        <servlet-name>MisServiciosUsu</servlet-name>
+        <servlet-class>ControladorVistas.MisServiciosUsu</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Prueba</servlet-name>
+        <servlet-class>ControladorVistas.Prueba</servlet-class>
         <servlet-name>MisVehiculos</servlet-name>
         <servlet-class>ControladorVistas.MisVehiculos</servlet-class>
     </servlet>
@@ -73,6 +79,11 @@
         <url-pattern>/dontCookie.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>MisServiciosUsu</servlet-name>
+        <url-pattern>/MisServiciosUsu.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        
         <servlet-name>MisVehiculos</servlet-name>
         <url-pattern>/MisVehiculos.do</url-pattern>
     </servlet-mapping>
