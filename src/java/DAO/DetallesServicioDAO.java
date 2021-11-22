@@ -9,6 +9,7 @@ import DTO.DetallesServicio;
 import Persistencia.DetallesServicioJpaController;
 import Persistencia.exceptions.IllegalOrphanException;
 import Persistencia.exceptions.NonexistentEntityException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,6 +59,20 @@ public class DetallesServicioDAO {
             Logger.getLogger(DetallesServicioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+    public List<DetallesServicio> findDetalleServicioAtencion(int id){
+        
+        List<DetallesServicio> detalles = read();
+        List<DetallesServicio> rta = new ArrayList<DetallesServicio>();
+        for(DetallesServicio d : detalles){
+            
+            if(d.getIdAtencionServicio().getId().equals(id)){
+            rta.add(d);
+            }
+        
+        }
+    return rta;  
     }
     
 }
