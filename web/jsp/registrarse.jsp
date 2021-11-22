@@ -97,7 +97,7 @@
 			<div class="formulario__grupo" id="grupo__nombre">
 				<label for="nombre" class="formulario__label">Nombres</label>
 				<div class="formulario__grupo-input">
-					<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Nombres completos">
+					<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Nombres completos" required>
 					<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
 				<p class="formulario__input-error">El nombre solo puede contener letras y espacios.</p>
@@ -107,7 +107,7 @@
 			<div class="formulario__grupo" id="grupo__apellido">
 				<label for="apellido" class="formulario__label">Apellidos</label>
 				<div class="formulario__grupo-input">
-					<input type="text" class="formulario__input" name="apellido" id="apellido" placeholder="Apellidos completos">
+					<input type="text" class="formulario__input" name="apellido" id="apellido" placeholder="Apellidos completos" required>
 					<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
 				<p class="formulario__input-error">El apellido solo puede contener letras y espacios.</p>
@@ -117,17 +117,17 @@
 			<div class="formulario__grupo" id="grupo__password">
 				<label for="password" class="formulario__label">Contraseña</label>
 				<div class="formulario__grupo-input">
-					<input type="password" class="formulario__input" name="password" id="password">
+					<input type="password" class="formulario__input" name="password" id="password" required>
 					<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
-				<p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+				<p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos. No puede contener espacios</p>
 			</div>
 
 			<!-- Grupo: Contraseña 2 -->
 			<div class="formulario__grupo" id="grupo__password2">
-				<label for="password2" class="formulario__label">Repetir Contraseña</label>
+				<label for="password2" class="formulario__label" name="password2">Repetir Contraseña</label>
 				<div class="formulario__grupo-input">
-					<input type="password" class="formulario__input" name="password2" id="password2">
+					<input type="password" class="formulario__input" name="password2" id="password2" required>
 					<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
 				<p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
@@ -136,7 +136,7 @@
 			<div class="formulario__grupo" id="grupo__cedula">
 				<label for="cedula" class="formulario__label">Cedula</label>
 				<div class="formulario__grupo-input">
-					<input type="text" class="formulario__input" name="cedula" id="cedula" placeholder="Número de identificación">
+					<input type="text" class="formulario__input" name="cedula" id="cedula" placeholder="Número de identificación" required>
 					<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
 				<p class="formulario__input-error">La cédula solo puede contener números y debe ser de 8 a 10 dígitos.</p>
@@ -147,7 +147,7 @@
 			<div class="formulario__grupo" id="grupo__correo">
 				<label for="correo" class="formulario__label">Correo Electrónico</label>
 					<div class="formulario__grupo-input">
-						<input type="email" class="formulario__input" name="correo" id="correo" placeholder="correo@correo.com">
+						<input type="email" class="formulario__input" name="correo" id="correo" placeholder="correo@correo.com" required>
 						<i class="formulario__validacion-estado fas fa-times-circle"></i>
 					</div>
 					<p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
@@ -159,7 +159,7 @@
 			<div class="formulario__grupo" id="grupo__telefono">
 				<label for="telefono" class="formulario__label">Teléfono</label>
 				<div class="formulario__grupo-input">
-					<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Número de telefono celular">
+					<input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Número de telefono celular" required>
 					<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
 				<p class="formulario__input-error">El número de celular solo puede contener numeros y son 10 dígitos.</p>
@@ -169,7 +169,7 @@
 			<div class="formulario__grupo" id="grupo__direccion">
 				<label for="direccion" class="formulario__label">Dirección</label>
 				<div class="formulario__grupo-input">
-					<input type="text" class="formulario__input" name="direccion" id="direccion" placeholder="Dirección de residencia">
+					<input type="text" class="formulario__input" name="direccion" id="direccion" placeholder="Dirección de residencia" required>
 					<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
 				<p class="formulario__input-error">La dirección puede contener numeros, letras, guiones, númeral.</p>
@@ -178,7 +178,7 @@
 			<!-- Grupo: Terminos y Condiciones -->
 			<div class="formulario__grupo" id="grupo__terminos">
 				<label class="formulario__label">
-					<input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos">
+                                    <input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos" required>
 					Acepto los Terminos y Condiciones
 				</label>
 			</div>
@@ -188,7 +188,7 @@
 			</div>
 
             <div class="formulario__grupo formulario__grupo-btn-enviar">
-				<button type="submit" class="formulario__btn">Continuar</button>
+				<button id="boton" type="submit" class="btn formulario__btn" disabled>Continuar</button>
 				<p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
 			</div>
 
