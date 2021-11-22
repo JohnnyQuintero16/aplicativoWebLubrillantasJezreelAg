@@ -136,9 +136,9 @@ public class Jezreel {
         FichaTecnicaDAO fida = new FichaTecnicaDAO();
         FichaTecnica ficha = fida.findFichaVehiculo(placa);
         atendao.findServiciosFicha(ficha.getId(), servi);
-                    Collections.sort(servi);
-            System.out.println("SERVICIOS " + servi.toString());
-            rta = vistaMisServicios(servi);
+        Collections.sort(servi);
+        System.out.println("SERVICIOS " + servi.toString());
+        rta = vistaMisServicios(servi);
         return rta;
     }
 
@@ -286,58 +286,57 @@ public class Jezreel {
                 + "        </div>\n"
                 + "        <br>";
     }
-    
-    public String mostrarVehiculosUser(String cedula){
-    
+
+    public String mostrarVehiculosUser(String cedula) {
+
         PersonaDAO p = new PersonaDAO();
         Persona per = p.readPersona(cedula);
         List<Vehiculo> ve = per.getVehiculoList();
         String rta = "";
-        
-        if(ve.isEmpty()){
-        
-            rta = "<table class=\"tabla-vehiculo\">\n" +
-                        "                <tr>\n" +
-                        "                  <th>No tienes ningun vehiculo registrado :(</th>\n" +
-                        "                </tr>\n" +
-                        "                <tr>\n" +
-                        "                  <td><img src=\"./img/vehicle.png\" style=\"width: 312px; height: 300px; /></td>\n" +
-                        "                </tr>\n" +
-                        "               \n" +
-                        "              </table> <br><br>";
-        
-        }else{
-        
+
+        if (ve.isEmpty()) {
+
+            rta = "<table class=\"tabla-vehiculo\">\n"
+                    + "                <tr>\n"
+                    + "                  <th>No tienes ningun vehiculo registrado :(</th>\n"
+                    + "                </tr>\n"
+                    + "                <tr>\n"
+                    + "                  <td><img src=\"./img/vehicle.png\" style=\"width: 312px; height: 300px; /></td>\n"
+                    + "                </tr>\n"
+                    + "               \n"
+                    + "              </table> <br><br>";
+
+        } else {
+
             for (Vehiculo vehiculo : ve) {
-                rta = "<form action=\"MisServiciosUsu.do\"><table class=\"tabla-vehiculo\">\n" +
-                        "                <tr>\n" +
-                        "                  <th>Placa</th>\n" +
-                        "                  <th>Marca</th>\n" +
-                        "                  <th>Kilometraje</th>\n" +
-                        "                </tr>\n" +
-                        "                <tr>\n" +
-                        "                  <input name=\"placa\" hidden value=\""+vehiculo.getPlaca()+"\" ><td>"+vehiculo.getPlaca()+"</td>\n" +
-                        "                  <td>"+vehiculo.getIdMarca().getNombre()+"</td>\n" +
-                        "                  <td>"+vehiculo.getKilometraje()+"</td>\n" +
-                        "                </tr>\n" +
-                        "               \n" +
-                        "                <tr>\n" +
-                        "                    <th>Modelo</th>\n" +
-                        "                    <th>Cilindraje</th>\n" +
-                        "                    <th>Opciones</th>\n" +
-                        "                  </tr>\n" +
-                        "\n" +
-                        "                  <tr>\n" +
-                        "                    <td>"+vehiculo.getModelo()+"</td>\n" +
-                        "                    <td>"+vehiculo.getCilindraje()+"</td>\n" +
-                        "                    <td><button class=\"btn btn-primary\" type=\"submit\">Ver historial</button></td>\n" +
-                        "                  </tr>\n" +
-                        "                  \n" +
-                        "              </table></form> <br><br>";
+                rta = "<form action=\"MisServiciosUsu.do\"><table class=\"tabla-vehiculo\">\n"
+                        + "                <tr>\n"
+                        + "                  <th>Placa</th>\n"
+                        + "                  <th>Marca</th>\n"
+                        + "                  <th>Kilometraje</th>\n"
+                        + "                </tr>\n"
+                        + "                <tr>\n"
+                        + "                  <input name=\"placa\" hidden value=\"" + vehiculo.getPlaca() + "\" ><td>" + vehiculo.getPlaca() + "</td>\n"
+                        + "                  <td>" + vehiculo.getIdMarca().getNombre() + "</td>\n"
+                        + "                  <td>" + vehiculo.getKilometraje() + "</td>\n"
+                        + "                </tr>\n"
+                        + "               \n"
+                        + "                <tr>\n"
+                        + "                    <th>Modelo</th>\n"
+                        + "                    <th>Cilindraje</th>\n"
+                        + "                    <th>Opciones</th>\n"
+                        + "                  </tr>\n"
+                        + "\n"
+                        + "                  <tr>\n"
+                        + "                    <td>" + vehiculo.getModelo() + "</td>\n"
+                        + "                    <td>" + vehiculo.getCilindraje() + "</td>\n"
+                        + "                    <td><button class=\"btn btn-primary\" type=\"submit\">Ver historial</button></td>\n"
+                        + "                  </tr>\n"
+                        + "                  \n"
+                        + "              </table></form> <br><br>";
             }
-            
-        
+
         }
-    return rta;
+        return rta;
     }
 }
