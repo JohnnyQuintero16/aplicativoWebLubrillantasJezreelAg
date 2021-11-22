@@ -71,7 +71,7 @@
                 <li><a class="dropdown-item" href="#" >Mi Cuenta</a></li>
                 <li><a class="dropdown-item" href="./MisVehiculos.do" >Mis Vehiculos</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Salir</a></li>
+                <li><a class="dropdown-item" href="./cerrarSesion.do">Salir</a></li>
               </ul>
           </li>
         </ul>
