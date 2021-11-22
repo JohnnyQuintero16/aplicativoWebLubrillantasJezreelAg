@@ -60,28 +60,28 @@
           </li>
 
           <li>
-            <a href="#">
+            <a href="<%=basePath%>jsp/citasAdmin.jsp"">
               <i class="far fa-calendar-alt"></i>
               <span class="links_name">Agendamientos</span>
             </a>
              <span class="tooltip">Agendamientos</span>
           </li>
           <li>
-           <a href="jsp/adminClientes.jsp">
+           <a href="<%=basePath%>jsp/adminClientes.jsp">
              <i class="icon fas fa-user"></i>
              <span class="links_name">Clientes</span>
            </a>
            <span class="tooltip">Clientes</span>
          </li>
          <li>
-           <a href="jsp/serviciosAdmin.jsp">
+           <a href="<%=basePath%>jsp/serviciosAdmin.jsp">
             <i class="fas fa-user-cog"></i>
              <span class="links_name">Servicios</span>
            </a>
            <span class="tooltip">Servicios</span>
          </li>
          <li>
-            <a href="jsp/productosAdmin.jsp">
+            <a href="<%=basePath%>jsp/productosAdmin.jsp">
             <i class="fas fa-shopping-cart"></i>
               <span class="links_name" >Productos</span>
             </a>
@@ -375,8 +375,15 @@
                             ¿Estás seguro de eliminar el Servicio?
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="boton2" >Confirmar</button>
-                            <button type="button" class="boton3 " data-bs-dismiss="modal">Cancelar</button>
+                               <form >
+
+                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" data-bs-dismiss="modal" >
+                            <label class="botonSI" for="option1">Confirmar</label>
+
+                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" data-bs-dismiss="modal">
+                            <label class="botonNO" for="option2">Cancelar</label>
+
+                        </form>
                         </div>
                     </div>
                 </div>

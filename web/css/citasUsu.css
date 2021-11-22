@@ -1,0 +1,170 @@
+body, html{
+  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Francois One', sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+
+.sidebar {
+  position:inherit;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #ffffff;
+  color: #c0c0c0;
+  border-right: 1px solid #efefef;
+  font-size: 100%;
+}
+a {
+  -webkit-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+}
+a,
+a:hover {
+  text-decoration: none !important;
+}
+
+
+aside .side-inner .profile {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #efefef;
+
+  
+}
+aside .side-inner .profile img {
+   width: 30%;
+    height:auto;
+    display:block;
+    margin:auto;
+  }
+ 
+aside .side-inner .profile .name {
+  font-size: 25px;
+  margin-bottom: 0;
+  color: #0c0505;
+}
+
+aside .side-inner .nav-menu ul,
+aside .side-inner .nav-menu ul li {
+  padding: 0;
+  margin: 0px;
+  list-style: none;
+  font-size: 110%;
+}
+aside .side-inner .nav-menu ul li a {
+  display: block;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 12px;
+  padding-bottom: 10px;
+  color: #8b8b8b;
+  text-align: center;
+  position: relative;
+  -webkit-transition: 0.3s padding-left ease;
+  -o-transition: 0.3s padding-left ease;
+  transition: 0.3s padding-left ease;
+}
+aside .side-inner .nav-menu ul li a:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0px;
+  background-color: #05045a;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: 0.3s opacity ease, 0.3s visibility ease, 0.3s width ease;
+  -o-transition: 0.3s opacity ease, 0.3s visibility ease, 0.3s width ease;
+  transition: 0.3s opacity ease, 0.3s visibility ease, 0.3s width ease;
+}
+aside .side-inner .nav-menu ul li a:active,
+aside .side-inner .nav-menu ul li a:focus,
+aside .side-inner .nav-menu ul li a:hover {
+  outline: none;
+}
+aside .side-inner .nav-menu ul li a:hover {
+  background: #fcfcfc;
+  color: #000;
+}
+aside .side-inner .nav-menu ul li a:hover:before {
+  width: 4px;
+  opacity: 1;
+  visibility: visible;
+}
+aside .side-inner .nav-menu ul li.active a {
+  background: #fcfcfc;
+  color: #000;
+
+}
+aside .side-inner .nav-menu ul li.active a:before {
+  opacity: 1;
+  visibility: visible;
+  width: 4px;
+}
+
+
+#form{
+  border: 2px solid #9c9c9c;
+  border-radius: 30px;
+  padding: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 25px;
+}
+
+#fecha{
+  margin-top: 0;
+  border-radius: 20px;
+  border: 2px solid #6A79FF;
+  padding: 3px;
+  text-align:center;
+  background-color: #6A79FF;
+}
+#citas{
+ border-bottom: 1px solid #efefef;
+ padding: 10px;
+ margin-bottom: 20px;
+ width: auto; 
+}
+
+#newCita{
+  text-align:right; 
+  width: 90%;
+  margin-bottom: 10px;
+  padding: 10px;
+
+}
+#misCitas{
+  border-left: solid #05045a;
+}
+
+@media only screen and (max-width: 960px) {
+    .perfil-nav {
+       display: none !important;
+    }
+}
+
+@media (min-width: 1100px) { 
+    #profile{
+        width:50%;
+        height:auto;
+        display:block;
+        margin:auto;
+    }
+}
+@media (min-width: 766px) { 
+    #newCita{
+        width:95%;
+        font-size: 15px;
+    }
+}
