@@ -53,21 +53,21 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="<%=basePath%>jsp/citasAdmin.jsp"">
                         <i class="far fa-calendar-alt"></i>
                         <span class="links_name">Agendamientos</span>
                     </a>
                     <span class="tooltip">Agendamientos</span>
                 </li>
                 <li>
-                    <a href="<%=basePath%>/jsp/adminClientes.jsp">
+                    <a href="<%=basePath%>jsp/adminClientes.jsp">
                         <i class="icon fas fa-user"></i>
                         <span class="links_name">Clientes</span>
                     </a>
                     <span class="tooltip">Clientes</span>
                 </li>
                 <li>
-                    <a href="<%=basePath%>/jsp/serviciosAdmin.jsp">
+                    <a href="<%=basePath%>jsp/serviciosAdmin.jsp">
                         <i class="fas fa-user-cog"></i>
                         <span class="links_name">Servicios</span>
                     </a>
@@ -129,7 +129,7 @@
                             <td>3174535149</td>
                             <td>casadiegosgomezjs@ufps.edu.co</td>
                             <td>Calle 7 #05-50 La Pastora</td>
-                            <td> <a href="<%=basePath%>jsp/serviciosUsuAdmin.jsp"> <img src="<%=basePath%>img/lupa.png" style="display: block; width: 30px; height: 30px;            margin:auto;"/>
+                            <td> <a href="<%=basePath%>jsp/fichaTecnica.jsp"> <img src="<%=basePath%>img/lupa.png" style="display: block; width: 30px; height: 30px;            margin:auto;"/>
                                 </a></td>
                             <!-- Acciones: editar y cancelar. -->
                             <td>
@@ -265,17 +265,7 @@
 
 
                     </tbody>
-                    <!-- <tfoot>
-                        <tr>
-                          <th class="enc" scope="col">No</th>
-                          <th class="enc" scope="col">Nombre</th>
-                          <th class="enc" scope="col">Cédula</th>
-                          <th class="enc" scope="col">Celular</th>
-                          <th class="enc" scope="col">Correo Electronico</th>
-                          <th class="enc" scope="col">Ficha Técnica</th>
-                          <th class="enc" scope="col">Acciones</th>
-                        </tr>
-                    </tfoot> -->
+
                 </table>
 
                 <!-- <div class="boton">
