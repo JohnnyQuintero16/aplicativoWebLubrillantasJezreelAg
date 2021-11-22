@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "AtencionServicio.findByKilometraje", query = "SELECT a FROM AtencionServicio a WHERE a.kilometraje = :kilometraje")
     , @NamedQuery(name = "AtencionServicio.findByFecha", query = "SELECT a FROM AtencionServicio a WHERE a.fecha = :fecha")
     , @NamedQuery(name = "AtencionServicio.findByHora", query = "SELECT a FROM AtencionServicio a WHERE a.hora = :hora")})
-public class AtencionServicio implements Serializable {
+public class AtencionServicio implements Serializable, Comparable<AtencionServicio> {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -227,5 +227,30 @@ public class AtencionServicio implements Serializable {
     public String toString() {
         return "DTO.AtencionServicio[ id=" + id + " ]";
     }
+
+    @Override
+    public int compareTo(AtencionServicio a) {
+        return ( parseIntFecha(a.getFecha())).compareTo((parseIntFecha(fecha)));
+    }
     
+    public String formatoFecha(Date fecha){
+    
+         String[] split = fecha.toLocaleString().split(" ");
+        String[] split2 = split[0].split("/");
+
+        if (Integer.parseInt(split2[0]) < 10) {
+            split2[0]= "0"+ split2[0];
+        }
+
+        return split2[0] + "/" + split2[1] +"/"+ split2[2];
+    }
+
+    public Integer parseIntFecha(Date fecha) {
+
+        
+        String[] split = formatoFecha(fecha).split("/");      
+
+       return Integer.parseInt(split[2] + split[1] + split[0]);
+    }
+
 }
