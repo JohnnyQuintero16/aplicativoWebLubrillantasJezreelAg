@@ -6,6 +6,7 @@
 package DTO;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -234,15 +235,11 @@ public class AtencionServicio implements Serializable, Comparable<AtencionServic
     }
     
     public String formatoFecha(Date fecha){
-    
-         String[] split = fecha.toLocaleString().split(" ");
+        
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
+        String[] split = formatter.format(fecha).split(" ");
         String[] split2 = split[0].split("/");
-
-        if (Integer.parseInt(split2[0]) < 10) {
-            split2[0]= "0"+ split2[0];
-        }
-
-        return split2[0] + "/" + split2[1] +"/"+ split2[2];
+    return split2[0] + "/" + split2[1] +"/"+ split2[2];
     }
 
     public Integer parseIntFecha(Date fecha) {
