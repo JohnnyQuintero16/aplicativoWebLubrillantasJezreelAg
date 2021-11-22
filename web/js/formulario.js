@@ -2,12 +2,13 @@
 const formulario = document.getElementById('formulario');
 // Step 3) Constante, almacenamos todos los inputs del formulario, arreglo
 const inputs = document.querySelectorAll('#formulario input');
+console.log(inputs);
 
 // Step 1) Objeto expresiones regulares
 const expresiones = {
 	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
 	apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-	password: /^.{4,12}$/, // 4 a 12 digitos.
+	password: /^\S{4,12}$/, // 4 a 12 digitos.
 	cedula: /^\d{8,10}$/, // 8 a 10 numeros.
 	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 	telefono: /^\d{10}$/, // 10 numeros exactos.
@@ -19,6 +20,7 @@ const campos = {
 	nombre: false,
 	apellido: false,
 	password: false,
+        password2: false,
 	cedula: false,
 	correo: false,
 	telefono: false,
@@ -35,6 +37,7 @@ const campos = {
 */
 
 const validarFormulario = (e) => {
+   
 	switch (e.target.name) { // Target identifica cuál es el campo que se está seleccionando gracias al name. 
 		case "nombre":
 			validarCampo(expresiones.nombre, e.target, 'nombre');
@@ -50,7 +53,9 @@ const validarFormulario = (e) => {
 		break;
 
 		case "password2":
-			validarPassword2();
+                        if(validarPassword2()){
+                            validarCampo(expresiones.password, e.target, 'password2');
+                        }
 		break;
 
 		case "cedula":
@@ -67,7 +72,8 @@ const validarFormulario = (e) => {
 
 		case "direccion":
 			validarCampo(expresiones.direccion, e.target, 'direccion');
-		break;
+		break; 
+                
 	}
 }
 /* Cambia clases de error a correcto, para los estilos css con sus colores e iconos. 
@@ -101,15 +107,26 @@ const validarPassword2 = () => {
 		document.querySelector(`#grupo__password2 i`).classList.add('fa-times-circle');
 		document.querySelector(`#grupo__password2 i`).classList.remove('fa-check-circle');
 		document.querySelector(`#grupo__password2 .formulario__input-error`).classList.add('formulario__input-error-activo');
-		campos['password'] = false;
+		campos['password2'] = false;
 	} else {
 		document.getElementById(`grupo__password2`).classList.remove('formulario__grupo-incorrecto');
 		document.getElementById(`grupo__password2`).classList.add('formulario__grupo-correcto');
 		document.querySelector(`#grupo__password2 i`).classList.remove('fa-times-circle');
 		document.querySelector(`#grupo__password2 i`).classList.add('fa-check-circle');
 		document.querySelector(`#grupo__password2 .formulario__input-error`).classList.remove('formulario__input-error-activo');
-		campos['password'] = true;
+		campos['password2'] = true;
 	}
+        return campos['password2'];
+}
+
+const activarBoton = () => {
+    const boton = document.getElementById('boton');
+    const terminos = document.getElementById('terminos');
+    if(campos.nombre && campos.apellido && campos.password && campos.password2 && campos.cedula && campos.correo && campos.telefono && campos.direccion && terminos.checked ){
+        boton.disabled=false;
+    }else{
+        boton.disabled=true;
+    }
 }
 
 /*  Step 5)
@@ -125,6 +142,8 @@ const validarPassword2 = () => {
 inputs.forEach((input) => {
 	input.addEventListener('keyup', validarFormulario);
 	input.addEventListener('blur', validarFormulario);
+        input.addEventListener('keyup', activarBoton);
+        input.addEventListener('change', activarBoton);
 });
 
 /* Step 4)
@@ -136,12 +155,12 @@ inputs.forEach((input) => {
 
 */
 formulario.addEventListener('submit', (e) => {
-
+        
 	//e.preventDefault(); //No haga nada al enviar, cuando enviemos los datos debemos quitarlo.
 
 
 	const terminos = document.getElementById('terminos');
-	if(campos.nombre && campos.apellido && campos.password && campos.cedula && campos.correo && campos.telefono && campos.direccion && terminos.checked ){
+	if(campos.nombre && campos.apellido && campos.password && campos.password2 && campos.cedula && campos.correo && campos.telefono && campos.direccion && terminos.checked ){
 		//formulario.reset(); //Reinice todos los campos del formulario.
 
 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
@@ -161,5 +180,6 @@ formulario.addEventListener('submit', (e) => {
 		setTimeout(() =>{
 			document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
 		}, 4000);
+             
 	}
 });
