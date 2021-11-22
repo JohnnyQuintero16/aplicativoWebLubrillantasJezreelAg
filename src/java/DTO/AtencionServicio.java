@@ -216,7 +216,7 @@ public class AtencionServicio implements Serializable, Comparable<AtencionServic
         if (!(object instanceof AtencionServicio)) {
             return false;
         }
-        AtencionServicio other = (AtencionServicio) object;
+        AtencionServicio other = (AtencionServicio) object;String[] split = fecha.toLocaleString('en-GB', { timeZone: 'UTC' }).split(" ");
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -234,8 +234,8 @@ public class AtencionServicio implements Serializable, Comparable<AtencionServic
     }
     
     public String formatoFecha(Date fecha){
-    
-         String[] split = fecha.toLocaleString().split(" ");
+        System.out.println("FECHA CON LOCATE " + fecha.toLocaleString());
+        String[] split = fecha.toLocaleString().split(" ");
         String[] split2 = split[0].split("/");
 
         if (Integer.parseInt(split2[0]) < 10) {
