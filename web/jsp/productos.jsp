@@ -60,6 +60,7 @@
                         </li>
                     </ul>
 
+
                     <template id="NoSesion">
                         <ul class="navbar-nav ml-auto m-4">
                             <li class="nav-item">
@@ -79,6 +80,7 @@
                                 </a>
                                 <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
                                     <li><a class="dropdown-item" href="#" >Mi Cuenta</a></li>
+                                    <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="./cerrarSesion.do">Salir</a></li>
                                 </ul>
@@ -91,6 +93,7 @@
 
                         </ul>
                     </template>
+
                 </div>
             </div>
         </nav>
@@ -292,6 +295,10 @@
         <!--FIN FOOTER-->
 
 
+<<<<<<< HEAD
+
+=======
 <script src="<%=basePath%>js/sesion.js"></script>
+>>>>>>> Test
     </body>
 </html> 

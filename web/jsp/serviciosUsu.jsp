@@ -35,7 +35,7 @@
 
       <!-- LOGO DE LA EMPRESA -->
       <a class="navbar-brand" href="#">
-        <img src="../img/LogoLJAG.png" alt="" width="140px" height="120px"  />
+        <img src="<%=basePath%>/img/LogoLJAG.png" alt="" width="140px" height="120px"  />
       </a>
 
       <!-- BOTON DE NAV RESPONSIVO -->
@@ -48,16 +48,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="../index.jsp">INICIO</a>
+            <a class="nav-link " aria-current="page" href="<%=basePath%>/index.jsp">INICIO</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./nosotros.jsp">NOSOTROS</a>
+            <a class="nav-link" href="<%=basePath%>/jsp/nosotros.jsp">NOSOTROS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./servicios.jsp">SERVICIOS</a>
+            <a class="nav-link" href="<%=basePath%>MostrarServicios.do">SERVICIOS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./productos.jsp">PRODUCTOS</a>
+            <a class="nav-link" href="<%=basePath%>MostrarProductos.do">PRODUCTOS</a>
           </li>
         </ul>
 
@@ -80,12 +80,14 @@
                                 </a>
                                 <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
                                     <li><a class="dropdown-item" href="#" >Mi Cuenta</a></li>
+                                    <li><a class="dropdown-item" href="./MisVehiculos.do" >Mis Vehiculos</a></li>
+                                    <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="./cerrarSesion.do">Salir</a></li>
                                 </ul>
                             </li>
 
-                            <svg xmlns="http://www.w3.org/2000/svg" style="color:#fff" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <!--<svg xmlns="http://www.w3.org/2000/svg" style="color:#fff" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">-->
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                             </svg>
@@ -96,7 +98,7 @@
 
       <!-- IMAGEN DE USARIO EN EL NAV -->
       <div class="user">
-        <img src="../img/user.png" width="70" height="70" class="rounded-circle me-2">
+        <img src="<%=basePath%>/img/user.png" width="70" height="70" class="rounded-circle me-2">
       </div>
     </div>
   </nav>
@@ -108,9 +110,11 @@
       <div class="col-md-3 col-lg-3 verticalLine">
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-light colum-datos">
           <!-- img grande de usuario -->
-          <img class="bd-placeholder-img rounded-circle" id="Perfil" src="../img/usuario.png">
+          <img class="bd-placeholder-img rounded-circle" id="Perfil" src="<%=basePath%>/img/usuario.png">
           <br>
-          <h4>Nombre de Usuario</h4>
+          <h4>
+              <%=request.getSession().getAttribute("nameUser")%>
+          </h4>
           <hr>
           <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
@@ -146,199 +150,18 @@
       </div>
       <!-- end perfil -->
 
+      <%
+      String misServicios = request.getSession().getAttribute("misServicios").toString();
+ 
+      %>
       <!-- SERVICIOS -->
       <div class="col-12 col-sm-12 col-md-9 col-lg-9">
         <h2 class="titulo"> MIS SERVICIOS</h2>
         <hr>
-        <!-- INICIO CARD 1 -->
-        <div class="card">
-          <div class="card-header row " id="cardt">
-            <div class="col-4  verticalLine centrado">
-              <h4> Servicio No°</h4>
-            </div>
-            <div class="col-4  verticalLine centrado">
-              <h4> Fecha</h4>
-            </div>
-            <div class="col-4">
-              <h4>Total $</h4>
-            </div>
-          </div>
-          <div class="card-body row">
-            <!-- img servicio -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-              <img src="../img/serV1.jpg" id="imgServicio">
-            </div>
 
-            <!-- texto del servicio -->
-            <div class="col-12 col-sm-6 col-md-8 col-lg-8">
-              <p class="card-text">
-                Lorem, ipsum dolor sit amet consectetur   adipisicing elit. Reprehenderit amet sit distinctio similique inventore vero necessitatibus temporibus consequuntur hic quo sapiente veritatis aliquam, quis officia incidunt consectetur at nam nobis!
-              </p>
-
-              <!-- boton del servicio -->
-              <a href="#" class="btn" id="boton" type="button"  data-bs-toggle="modal" data-bs-target="#modal1">
-                Ver Servicio
-              </a>
-
-              <!-- ventana modal -->
-              <div class="modal fade" tabindex="-1" role="dialog" id="modal1" aria-labelledby="modal1" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h2 class="modal-title">Detalles del Servicio</h2>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table table-bordered table-responsive table-striped">
-                          <thead style="background-color: #616060a1;">
-                            <tr>
-                              <th scope="col">Concepto</th>
-                              <th scope="col">Und</th>
-                              <th scope="col">Precio</th>
-                              <th scope="col">IVA</th>
-                              <th scope="col">Total</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>XXXX</td>
-                              <td>1</td>
-                              <td>$3000</td>
-                              <td>$380</td>
-                              <td>$3380</td>
-                            </tr>
-                            <tr>
-                              <td>XXXX</td>
-                              <td>1</td>
-                              <td>$ 3000</td>
-                              <td>$380</td>
-                              <td>$3380</td>
-                            </tr>
-                            <tr>
-                              <td>XXXX</td>
-                              <td>1</td>
-                              <td>$ 3000</td>
-                              <td>$380</td>
-                              <td>$3380</td>
-                            </tr>
-                          </tbody>
-                        </table>
-
-                        <br>
-                        <h6>SUBTOTAL</h6>
-                        <hr width="30%">
-                        <h6>IVA</h6>
-                        <hr width="30%">
-                        <h6>TOTAL</h6>
-                        <hr width="30%">
-                    </div>
-                    <div class="modal-footer" id="foterM">
-                      <a href="#" class="btn" id="boton" type="button">Calificar servicio</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br>
-        </div>
-        <br>
-
-        <!-- INICIO CARD 2-->
-        <div class="card">
-          <div class="card-header row " id="cardt">
-            <div class="col-4  verticalLine centrado">
-              <h4> Servicio No°</h4>
-            </div>
-            <div class="col-4  verticalLine centrado">
-              <h4> Fecha</h4>
-            </div>
-            <div class="col-4">
-              <h4>Total $</h4>
-            </div>
-          </div>
-          <div class="card-body row">
-            <!-- img servicio -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-              <img src="../img/serV2.jpg" id="imgServicio">
-            </div>
-
-            <!-- texto del servicio -->
-            <div class="col-12 col-sm-6 col-md-8 col-lg-8">
-              <p class="card-text">
-                Lorem, ipsum dolor sit amet consectetur   adipisicing elit. Reprehenderit amet sit distinctio similique inventore vero necessitatibus temporibus consequuntur hic quo sapiente veritatis aliquam, quis officia incidunt consectetur at nam nobis!
-              </p>
-
-              <!-- boton del servicio -->
-              <a href="#" class="btn" id="boton" type="button"  data-bs-toggle="modal" data-bs-target="#modal1">
-                Ver Servicio
-              </a>
-
-              <!-- ventana modal -->
-              <div class="modal fade" tabindex="-1" role="dialog" id="modal1" aria-labelledby="modal1" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h2 class="modal-title">Detalles del Servicio</h2>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table table-bordered table-responsive table-striped">
-                          <thead style="background-color: #616060a1;">
-                            <tr>
-                              <th scope="col">Concepto</th>
-                              <th scope="col">Und</th>
-                              <th scope="col">Precio</th>
-                              <th scope="col">IVA</th>
-                              <th scope="col">Total</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>XXXX</td>
-                              <td>1</td>
-                              <td>$3000</td>
-                              <td>$380</td>
-                              <td>$3380</td>
-                            </tr>
-                            <tr>
-                              <td>XXXX</td>
-                              <td>1</td>
-                              <td>$ 3000</td>
-                              <td>$380</td>
-                              <td>$3380</td>
-                            </tr>
-                            <tr>
-                              <td>XXXX</td>
-                              <td>1</td>
-                              <td>$ 3000</td>
-                              <td>$380</td>
-                              <td>$3380</td>
-                            </tr>
-                          </tbody>
-                        </table>
-
-                        <br>
-                        <h6>SUBTOTAL</h6>
-                        <hr width="30%">
-                        <h6>IVA</h6>
-                        <hr width="30%">
-                        <h6>TOTAL</h6>
-                        <hr width="30%">
-                    </div>
-                    <div class="modal-footer" id="foterM">
-                      <a href="#" class="btn" id="boton" type="button">Calificar servicio</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br>
-        </div>
-        <br>
+        <%=misServicios %>
+       
+      
       </div>
       <!-- end servicios -->
     </div>
@@ -349,15 +172,15 @@
 	<div class="container-fluid">
 	  <div class="row ">
 		<div class="col-12 redes" style="background-color: #00114e;">
-		  <img src="../img/whatsapp.png" >
-		  <img src="../img/facebook.png" >
-		  <img src="../img/instagram.png" >
+		  <img src="<%=basePath%>/img/whatsapp.png" >
+		  <img src="<%=basePath%>/img/facebook.png" >
+		  <img src="<%=basePath%>/img/instagram.png" >
 		</div>
 	  </div>
 	  <div class="row" style="background-color: #001971;">
   
 		<div class="col-12 col-sm-4 col-md-4 col-lg-4">
-		  <img src="../img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
+		  <img src="<%=basePath%>/img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
 		</div>
   
 		<div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >

@@ -19,6 +19,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -30,11 +32,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "Servicio")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Servicio.findAll", query = "SELECT s FROM Servicio s"),
-    @NamedQuery(name = "Servicio.findById", query = "SELECT s FROM Servicio s WHERE s.id = :id"),
-    @NamedQuery(name = "Servicio.findByNombre", query = "SELECT s FROM Servicio s WHERE s.nombre = :nombre"),
-    @NamedQuery(name = "Servicio.findByDescripcion", query = "SELECT s FROM Servicio s WHERE s.descripcion = :descripcion"),
-    @NamedQuery(name = "Servicio.findByDuracion", query = "SELECT s FROM Servicio s WHERE s.duracion = :duracion")})
+    @NamedQuery(name = "Servicio.findAll", query = "SELECT s FROM Servicio s")
+    , @NamedQuery(name = "Servicio.findById", query = "SELECT s FROM Servicio s WHERE s.id = :id")
+    , @NamedQuery(name = "Servicio.findByNombre", query = "SELECT s FROM Servicio s WHERE s.nombre = :nombre")
+    , @NamedQuery(name = "Servicio.findByDescripcion", query = "SELECT s FROM Servicio s WHERE s.descripcion = :descripcion")
+    , @NamedQuery(name = "Servicio.findByDuracion", query = "SELECT s FROM Servicio s WHERE s.duracion = :duracion")})
 public class Servicio implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,16 +46,23 @@ public class Servicio implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 60)
     @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 200)
     @Column(name = "descripcion")
     private String descripcion;
     @Basic(optional = false)
+    @NotNull
     @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "imgUrl")
     private String imgUrl;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "duracion")
     private short duracion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idServicio")

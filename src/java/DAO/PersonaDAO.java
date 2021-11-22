@@ -57,6 +57,7 @@ public class PersonaDAO {
         }
         return existe;
     }
+    
     public boolean usuarioValido(String cedula, String clave){
         Persona user = readPersona(cedula);
         return user.getContraseña().equals(clave);
