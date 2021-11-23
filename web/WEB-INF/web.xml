@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <filter>
-        <filter-name>dontCacheFilter.do</filter-name>
-        <filter-class>ControladorVistas.dontCacheFilter</filter-class>
-        <init-param>
-            <param-name>jsp</param-name>
-            <param-value>*.jsp</param-value>
-        </init-param>
+        <filter-name>validarSesion.do</filter-name>
+        <filter-class>ControladorVistas.validarSesion</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>dontCacheFilter.do</filter-name>
-        <url-pattern>/*</url-pattern>
+        <filter-name>validarSesion.do</filter-name>
+        <url-pattern>/MisVehiculos.do</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>IniciarSesion</servlet-name>
@@ -31,14 +27,6 @@
     <servlet>
         <servlet-name>MostrarServicios</servlet-name>
         <servlet-class>ControladorVistas.MostrarServicios</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>dontCookie</servlet-name>
-        <servlet-class>ControladorVistas.dontCookie</servlet-class>
-        <init-param>
-            <param-name>cookie</param-name>
-            <param-value>*</param-value>
-        </init-param>
     </servlet>
     <servlet>
         <servlet-name>MisServiciosUsu</servlet-name>
@@ -67,6 +55,12 @@
     <servlet>
         <servlet-name>EliminarServicio</servlet-name>
         <servlet-class>ControladorVistas.EliminarServicio</servlet-class>
+        <servlet-name>adminAddCliente</servlet-name>
+        <servlet-class>ControladorVistas.adminAddCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminUpdateCliente</servlet-name>
+        <servlet-class>ControladorVistas.adminUpdateCliente</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
@@ -87,10 +81,6 @@
     <servlet-mapping>
         <servlet-name>MostrarServicios</servlet-name>
         <url-pattern>/MostrarServicios.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>dontCookie</servlet-name>
-        <url-pattern>/dontCookie.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MisServiciosUsu</servlet-name>
@@ -119,10 +109,14 @@
     <servlet-mapping>
         <servlet-name>EliminarServicio</servlet-name>
         <url-pattern>/EliminarServicio.do</url-pattern>
+        <servlet-name>adminAddCliente</servlet-name>
+        <url-pattern>/adminAddCliente.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminUpdateCliente</servlet-name>
+        <url-pattern>/adminUpdateCliente.do</url-pattern>
     </servlet-mapping>
     <session-config>
-        <session-timeout>
-            5
-        </session-timeout>
+        <session-timeout>5</session-timeout>
     </session-config>
 </web-app>

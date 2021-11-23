@@ -85,14 +85,17 @@ public class IniciarSesion extends HttpServlet {
             String page = "jsp/iniciarsesion.jsp";
             String msg = "check";
             String nameUser = " ";
-            if (p.existePersona(cedula) && !cedula.equals(" ") && !clave.equals(" ")) {
+            if (p.existePersona(cedula) && !cedula.equals("") && !clave.equals("")) {
                 if (p.usuarioValido(cedula, clave)) {
                     sesion = request.getSession();
                     sesion.setAttribute("usuario", cedula);
                     Persona perso = p.readPersona(cedula);
                     nameUser = perso.getNombres().split(" ")[0] + " " + perso.getApellidos().split(" ")[0];
-                    //sesion.setMaxInactiveInterval(100); No he mirao el time
-                    page = "index.jsp";
+                    if(perso.getIdRol().getId() == 1){
+                        page = "jsp/adminClientes.jsp";
+                    }else{
+                        page = "index.jsp";
+                    }
                     request.getSession().setAttribute("nameUser", nameUser);
                     response.sendRedirect(page);
                 } else {

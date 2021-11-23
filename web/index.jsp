@@ -40,10 +40,6 @@
 
     </head>
     <body onload="sesion('<%=request.getSession().getAttribute("usuario")%>')">
-        <%  response.setHeader("Pragma", "No-chache");
-            response.setHeader("Expires", "0");
-            response.setHeader("Cache-Control", "no-cache");
-            response.setHeader("Cache", "no-cache");%>
         <!--MenÃº -->
         <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
             <div class="container-fluid">
@@ -63,7 +59,7 @@
                             <a class="nav-link active" aria-current="page" href="index.jsp">INICIO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./jsp/nosotros.jsp">NOSOTROS</a>
+                            <a class="nav-link" href="<%=basePath%>jsp/nosotros.jsp">NOSOTROS</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<%=basePath%>MostrarServicios.do">SERVICIOS</a>

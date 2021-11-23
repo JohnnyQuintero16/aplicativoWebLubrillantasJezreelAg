@@ -69,7 +69,7 @@
                                 <a class="nav-link" href="<%=basePath%>jsp/iniciarsesion.jsp">INICIAR SESIÓN</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<%=basePath%>jsp/registrarse.jsp">REGISTRARSE</a>
+                                <a class="nav-link" href="./jsp/registrarse.jsp">REGISTRARSE</a>
                             </li>
                         </ul>
                     </template>
@@ -82,6 +82,7 @@
                                 </a>
                                 <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
                                     <li><a class="dropdown-item" href="#" >Mi Cuenta</a></li>
+                                    <li><a class="dropdown-item" href="./MisVehiculos.do" >Mis Vehiculos</a></li>
                                     <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="./cerrarSesion.do">Salir</a></li>
@@ -95,7 +96,6 @@
 
                         </ul>
                     </template>
-
                 </div>
             </div>
         </nav>
@@ -174,7 +174,7 @@
         </div>
 
         <div style="background-color: #F4F4F4;"> 
-            <div class="container-fluid contenido-mv" ">
+            <div class="container-fluid contenido-mv">
 
                 <h1 >Nuestra <p style="color: blue; display: inline;">Misión</p></h1> <br>
                 <p class="texto">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque aut quasi, explicabo eveniet provident illo quisquam accusamus aperiam dolore maxime? Vel nostrum quisquam omnis quis, perspiciatis ex vitae officiis eius?

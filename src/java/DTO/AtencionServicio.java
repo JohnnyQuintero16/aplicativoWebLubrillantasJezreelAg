@@ -38,11 +38,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "Atencion_Servicio")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "AtencionServicio.findAll", query = "SELECT a FROM AtencionServicio a")
-    , @NamedQuery(name = "AtencionServicio.findById", query = "SELECT a FROM AtencionServicio a WHERE a.id = :id")
-    , @NamedQuery(name = "AtencionServicio.findByKilometraje", query = "SELECT a FROM AtencionServicio a WHERE a.kilometraje = :kilometraje")
-    , @NamedQuery(name = "AtencionServicio.findByFecha", query = "SELECT a FROM AtencionServicio a WHERE a.fecha = :fecha")
-    , @NamedQuery(name = "AtencionServicio.findByHora", query = "SELECT a FROM AtencionServicio a WHERE a.hora = :hora")})
+    @NamedQuery(name = "AtencionServicio.findAll", query = "SELECT a FROM AtencionServicio a"),
+    @NamedQuery(name = "AtencionServicio.findById", query = "SELECT a FROM AtencionServicio a WHERE a.id = :id"),
+    @NamedQuery(name = "AtencionServicio.findByKilometraje", query = "SELECT a FROM AtencionServicio a WHERE a.kilometraje = :kilometraje"),
+    @NamedQuery(name = "AtencionServicio.findByFecha", query = "SELECT a FROM AtencionServicio a WHERE a.fecha = :fecha"),
+    @NamedQuery(name = "AtencionServicio.findByHora", query = "SELECT a FROM AtencionServicio a WHERE a.hora = :hora")})
 public class AtencionServicio implements Serializable, Comparable<AtencionServicio> {
 
     private static final long serialVersionUID = 1L;
@@ -231,8 +231,9 @@ public class AtencionServicio implements Serializable, Comparable<AtencionServic
 
     @Override
     public int compareTo(AtencionServicio a) {
-        return ( parseIntFecha(a.getFecha())).compareTo((parseIntFecha(fecha)));
+        return (parseIntFecha(a.getFecha())).compareTo((parseIntFecha(fecha)));
     }
+<<<<<<< HEAD
     
     public String formatoFecha(Date fecha){
         
@@ -240,14 +241,22 @@ public class AtencionServicio implements Serializable, Comparable<AtencionServic
         String[] split = formatter.format(fecha).split(" ");
         String[] split2 = split[0].split("/");
     return split2[0] + "/" + split2[1] +"/"+ split2[2];
+=======
+
+    public String formatoFecha(Date fecha) {
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
+        String[] split = formatter.format(fecha).split(" ");
+        String[] split2 = split[0].split("/");
+        return split2[0] + "/" + split2[1] + "/" + split2[2];
+>>>>>>> Test
     }
 
     public Integer parseIntFecha(Date fecha) {
 
-        
-        String[] split = formatoFecha(fecha).split("/");      
+        String[] split = formatoFecha(fecha).split("/");
 
-       return Integer.parseInt(split[2] + split[1] + split[0]);
+        return Integer.parseInt(split[2] + split[1] + split[0]);
     }
 
 }
