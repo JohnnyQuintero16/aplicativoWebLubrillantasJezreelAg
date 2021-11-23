@@ -136,9 +136,9 @@ public class Jezreel {
         FichaTecnicaDAO fida = new FichaTecnicaDAO();
         FichaTecnica ficha = fida.findFichaVehiculo(placa);
         atendao.findServiciosFicha(ficha.getId(), servi);
-                    Collections.sort(servi);
-            System.out.println("SERVICIOS " + servi.toString());
-            rta = vistaMisServicios(servi);
+        Collections.sort(servi);
+        System.out.println("SERVICIOS " + servi.toString());
+        rta = vistaMisServicios(servi);
         return rta;
     }
 
@@ -269,7 +269,7 @@ public class Jezreel {
                 + "                        <hr width=\"30%\">\n"
                 + "                        <h6>IVA: $ " + costo.get(1) + "</h6>\n"
                 + "                        <hr width=\"30%\">\n"
-                + "                         <h6>DESCUENTO: $ " + (costo.get(0) + costo.get(1)) * (f.getDescuento() / 100.0) + "</h6>\n"
+                + "                         <h6>DESCUENTO: $ " + (Math.round(((costo.get(0) + costo.get(1)) * (f.getDescuento() / 100.0))*100.0)/100.0) + "</h6>\n"
                 + "                        <hr width=\"30%\">\n"
                 + "                        <h6>TOTAL : $ " + ((costo.get(0) + costo.get(1)) - (costo.get(0) + costo.get(1)) * (f.getDescuento() / 100.0)) + "</h6>\n"
                 + "                        <hr width=\"30%\">\n"
@@ -286,58 +286,83 @@ public class Jezreel {
                 + "        </div>\n"
                 + "        <br>";
     }
-    
-    public String mostrarVehiculosUser(String cedula){
-    
+
+    public String mostrarVehiculosUser(String cedula) {
+
         PersonaDAO p = new PersonaDAO();
         Persona per = p.readPersona(cedula);
         List<Vehiculo> ve = per.getVehiculoList();
         String rta = "";
-        
-        if(ve.isEmpty()){
-        
-            rta = "<table class=\"tabla-vehiculo\">\n" +
-                        "                <tr>\n" +
-                        "                  <th>No tienes ningun vehiculo registrado :(</th>\n" +
-                        "                </tr>\n" +
-                        "                <tr>\n" +
-                        "                  <td><img src=\"./img/vehicle.png\" style=\"width: 312px; height: 300px; /></td>\n" +
-                        "                </tr>\n" +
-                        "               \n" +
-                        "              </table> <br><br>";
-        
-        }else{
-        
+
+        if (ve.isEmpty()) {
+
+            rta = "<table class=\"tabla-vehiculo\">\n"
+                    + "                <tr>\n"
+                    + "                  <th>No tienes ningun vehiculo registrado :(</th>\n"
+                    + "                </tr>\n"
+                    + "                <tr>\n"
+                    + "                  <td><img src=\"./img/vehicle.png\" style=\"width: 312px; height: 300px; /></td>\n"
+                    + "                </tr>\n"
+                    + "               \n"
+                    + "              </table> <br><br>";
+
+        } else {
+
             for (Vehiculo vehiculo : ve) {
-                rta = "<form action=\"MisServiciosUsu.do\"><table class=\"tabla-vehiculo\">\n" +
-                        "                <tr>\n" +
-                        "                  <th>Placa</th>\n" +
-                        "                  <th>Marca</th>\n" +
-                        "                  <th>Kilometraje</th>\n" +
-                        "                </tr>\n" +
-                        "                <tr>\n" +
-                        "                  <input name=\"placa\" hidden value=\""+vehiculo.getPlaca()+"\" ><td>"+vehiculo.getPlaca()+"</td>\n" +
-                        "                  <td>"+vehiculo.getIdMarca().getNombre()+"</td>\n" +
-                        "                  <td>"+vehiculo.getKilometraje()+"</td>\n" +
-                        "                </tr>\n" +
-                        "               \n" +
-                        "                <tr>\n" +
-                        "                    <th>Modelo</th>\n" +
-                        "                    <th>Cilindraje</th>\n" +
-                        "                    <th>Opciones</th>\n" +
-                        "                  </tr>\n" +
-                        "\n" +
-                        "                  <tr>\n" +
-                        "                    <td>"+vehiculo.getModelo()+"</td>\n" +
-                        "                    <td>"+vehiculo.getCilindraje()+"</td>\n" +
-                        "                    <td><button class=\"btn btn-primary\" type=\"submit\">Ver historial</button></td>\n" +
-                        "                  </tr>\n" +
-                        "                  \n" +
-                        "              </table></form> <br><br>";
+                rta = "<form action=\"MisServiciosUsu.do\"><table class=\"tabla-vehiculo\">\n"
+                        + "                <tr>\n"
+                        + "                  <th>Placa</th>\n"
+                        + "                  <th>Marca</th>\n"
+                        + "                  <th>Kilometraje</th>\n"
+                        + "                </tr>\n"
+                        + "                <tr>\n"
+                        + "                  <input name=\"placa\" hidden value=\"" + vehiculo.getPlaca() + "\" ><td>" + vehiculo.getPlaca() + "</td>\n"
+                        + "                  <td>" + vehiculo.getIdMarca().getNombre() + "</td>\n"
+                        + "                  <td>" + vehiculo.getKilometraje() + "</td>\n"
+                        + "                </tr>\n"
+                        + "               \n"
+                        + "                <tr>\n"
+                        + "                    <th>Modelo</th>\n"
+                        + "                    <th>Cilindraje</th>\n"
+                        + "                    <th>Opciones</th>\n"
+                        + "                  </tr>\n"
+                        + "\n"
+                        + "                  <tr>\n"
+                        + "                    <td>" + vehiculo.getModelo() + "</td>\n"
+                        + "                    <td>" + vehiculo.getCilindraje() + "</td>\n"
+                        + "                    <td><button class=\"btn btn-primary\" type=\"submit\">Ver historial</button></td>\n"
+                        + "                  </tr>\n"
+                        + "                  \n"
+                        + "              </table></form> <br><br>";
             }
-            
-        
+
         }
-    return rta;
+        return rta;
     }
+
+    public String mostrarServiciosIndex() {
+
+        ServicioDAO da = new ServicioDAO();
+        List<Servicio> servicios = da.read();
+
+        int cantidad = 4;
+        if (servicios.size() < 4) {
+            cantidad = servicios.size();
+        }
+        String cardServicios = " ";
+        for (int j = 0; j< cantidad ; j++) {
+
+            cardServicios += "<div class=\"col-md-6  mb-5 colum\">\n"
+                    + "\n"
+                    + "                    <a href=" + '"' + servicios.get(j).getImgUrl() + '"' + " data-lightbox=\"galeriaS\" data-title=\"Nombre servicio\"> <img src=" + '"' + servicios.get(j).getImgUrl() + '"' + " alt=\"\"></a>\n"
+                    + "                    <div class=\"titulo\">" + servicios.get(j).getNombre() + " </div>\n"
+                    + "\n"
+                    + "                </div>";
+
+        }
+
+        return cardServicios;
+    }
+    
+   
 }

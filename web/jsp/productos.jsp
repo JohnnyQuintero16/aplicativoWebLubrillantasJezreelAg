@@ -80,6 +80,7 @@
                                 </a>
                                 <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
                                     <li><a class="dropdown-item" href="#" >Mi Cuenta</a></li>
+                                    <li><a class="dropdown-item" href="<%=basePath%>/MisVehiculos.do" >Mis Vehiculos</a></li>
                                     <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="./cerrarSesion.do">Salir</a></li>
@@ -294,11 +295,7 @@
         </footer>
         <!--FIN FOOTER-->
 
-
-<<<<<<< HEAD
-
-=======
 <script src="<%=basePath%>js/sesion.js"></script>
->>>>>>> Test
+
     </body>
 </html> 

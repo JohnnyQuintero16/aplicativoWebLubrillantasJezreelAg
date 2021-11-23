@@ -8,6 +8,11 @@
             String basePath = request.getScheme() + "://" + request.getServerName() + ":"
                     + request.getServerPort() + path + "/";
             
+
+                if(request.getSession().getAttribute("listaServiciosIndex")== null){
+                  request.getRequestDispatcher(("MostrarServiciosIndex.do")).forward(request, response);
+                
+                }
         %>
         <base href="<%=basePath%>">
         <meta charset="UTF-8">
@@ -87,7 +92,7 @@
                                 </a>
                                 <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
                                     <li><a class="dropdown-item" href="#" >Mi Cuenta</a></li>
-                                    <li><a class="dropdown-item" href="./MisVehiculos.do" >Mis Vehiculos</a></li>
+                                    <li><a class="dropdown-item" href="<%=basePath%>/MisVehiculos.do" >Mis Vehiculos</a></li>
                                     <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="./cerrarSesion.do">Salir</a></li>
@@ -217,35 +222,14 @@
             </div>
         </section>
 
-
+        <%
+        String listServicios = request.getSession().getAttribute("listaServiciosIndex").toString();
+        %>
 
 
         <div class="container">
             <div class="row galeria">
-                <div class="col-md-6  mb-5 colum">
-
-                    <a href="https://academiarallymontecarlo.com/wp-content/uploads/2020/03/bigstock-sistema-de-lubricaci%C3%B3n-aceite-auto.jpg"  data-lightbox="galeriaS" data-title="Nombre servicio"> <img src="https://academiarallymontecarlo.com/wp-content/uploads/2020/03/bigstock-sistema-de-lubricaci%C3%B3n-aceite-auto.jpg" alt=""></a>
-                    <div class="titulo">Titulo imagen ejemplo </div>
-
-                </div>
-
-                <div class="col-md-6 mb-5 colum">
-                    <a href="https://i.blogs.es/f21c04/frenos-coche/1366_2000.jpg" data-lightbox="galeriaS" data-title="Nombre servicio"> <img src="https://i.blogs.es/f21c04/frenos-coche/1366_2000.jpg" alt="" ></a>
-                    <div class="titulo">Titulo imagen ejemplo </div>
-                </div>
-
-                <div class="col-md-6 mb-5 colum">
-
-                    <a href="https://www.sanvicentedechucuri.com/wp-content/uploads/2020/04/montallantas-1.jpg" data-lightbox="galeriaS" data-title="Nombre servicio"> <img src="https://www.sanvicentedechucuri.com/wp-content/uploads/2020/04/montallantas-1.jpg" alt="" ></a>
-                    <div class="titulo">Titulo imagen ejemplo </div>
-                </div>
-
-                <div class="col-md-6 mb-5 colum">
-
-                    <a href="https://noticias.coches.com/wp-content/uploads/2013/11/filtro-de-aire-sucio.jpg"  data-lightbox="galeriaS" data-title="Nombre servicio"> <img src="https://noticias.coches.com/wp-content/uploads/2013/11/filtro-de-aire-sucio.jpg" alt=""></a>
-                    <div class="titulo">Titulo imagen ejemplo </div>
-                </div> 
-
+               <%=listServicios%>
 
             </div>
 
@@ -256,7 +240,7 @@
         <section class="contenido mt-3 mb-5">
             <div class="col-md-2"></div>
             <div class="col-md-8"> 		
-                <input class="boton2" id="botonServicios" type="button" value="Ver todos" onclick="location.href='<%=basePath%>jsp/servicios.jsp'">
+                <input class="boton2" id="botonServicios" type="button" value="Ver todos" onclick="location.href='<%=basePath%>MostrarServicios.do'">
             </div>
             <div class="col-md-2"></div>
         </section>

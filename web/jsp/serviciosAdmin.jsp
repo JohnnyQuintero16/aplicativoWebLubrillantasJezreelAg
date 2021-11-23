@@ -4,6 +4,8 @@
     Author     : Jarlin
 --%>
 
+<%@page import="DTO.Servicio"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,9 +121,15 @@
 
           </div>
 
+          <%
+          
+          List<Servicio> servicios = (List<Servicio>)(request.getSession().getAttribute("servicios"));
+          
+          %>
 
       <div class="table-responsive table-style">
         <table id="example" class="table table-bordered table-striped table-hover">
+            <%for(Servicio s: servicios){%>
           <thead class="table-secondary">
               <tr>
                 <th class="enc" style="width: 6%" scope="col">No</th>
@@ -134,11 +142,11 @@
           </thead>
           <tbody>
               <tr>
-                <th class="enc" scope="row">1</th>
-                  <td >Cambio de aceite</td>
-                  <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor accusantium expedita corrupti quam fugiat nostrum harum quisquam. Laboriosam esse dignissimos nisi ea magnam maiores ratione.</td>
-                  <td>https://blog.reparacion-vehiculos.es/hubfs/Im%C3%A1genes_Post/Julio%202018/errores%20cambio-aceite.jpg</td>
-                  <td>30</td>
+                <th class="enc" scope="row"><%=s.getId() %></th>
+                  <td ><%=s.getNombre() %></td>
+                  <td><%= s.getDescripcion() %></td>
+                  <td><%=s.getImgUrl() %></td>
+                  <td><%=s.getDuracion() %></td>
                   <!-- Acciones: editar y cancelar. -->
                   <td>
                     <div class="icons-acciones">
@@ -152,31 +160,9 @@
                     </div>
                   </td>
               </tr>
-
-<!--              <tr>
-                <th class="enc" scope="row">2</th>
-                  <td >Cambio de aceite </td>
-                  <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor accusantium expedita corrupti quam fugiat nostrum harum quisquam. Laboriosam esse dignissimos nisi ea magnam maiores ratione.</td>
-                  <td>https://blog.reparacion-vehiculos.es/hubfs/Im%C3%A1genes_Post/Julio%202018/errores%20cambio-aceite.jpg</td>
-                  <td>30</td>
-                   Acciones: editar y cancelar. 
-                  <td>
-                    <div class="icons-acciones">
-                        <div>
-                            <a href="../index.html"> <i class="fas fa-edit"></i></a>
-                           
-                        </div>
-                        <div>
-                            <a href="../index.html"> <i class="fas fa-trash-alt"></i></a>
-                        </div>      
-                    </div>
-                  </td>
-              </tr>-->
-
-           
-           
           </tbody>
     
+          <%}%>
         </table>
       
           <!-- Cierre div tabla -->
@@ -211,16 +197,7 @@
 
 
                                 </div>
-
-<!--                                <div  class="col-md-6">
-
-                                    <div class="mb-3">
-                                        <label for="exampleInputPrecio" class="form-label">Precio</label>
-                                        <input type="number"  class="form-control" id="exampleInputPrecio" required>
-                                      </div>
-
-                                </div>-->
-
+                                 
                                 <div class="col-md-6">
 
                                     <div class="mb-3">
@@ -302,14 +279,7 @@
 
                                 </div>
 
-<!--                                <div  class="col-md-6">
 
-                                    <div class="mb-3">
-                                        <label for="exampleInputPrecio" class="form-label">Precio</label>
-                                        <input type="number"  class="form-control" id="exampleInputPrecio" required>
-                                      </div>
-
-                                </div>-->
 
                                 <div class="col-md-6">
 

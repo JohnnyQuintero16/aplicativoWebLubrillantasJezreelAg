@@ -45,14 +45,28 @@
         <servlet-class>ControladorVistas.MisServiciosUsu</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Prueba</servlet-name>
-        <servlet-class>ControladorVistas.Prueba</servlet-class>
         <servlet-name>MisVehiculos</servlet-name>
         <servlet-class>ControladorVistas.MisVehiculos</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EliminarVehiculoUser</servlet-name>
         <servlet-class>ControladorVistas.EliminarVehiculoUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarServiciosIndex</servlet-name>
+        <servlet-class>ControladorVistas.MostrarServiciosIndex</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarServiciosAdmin</servlet-name>
+        <servlet-class>ControladorVistas.MostrarServiciosAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ActualizarServicio</servlet-name>
+        <servlet-class>ControladorVistas.ActualizarServicio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarServicio</servlet-name>
+        <servlet-class>ControladorVistas.EliminarServicio</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
@@ -83,13 +97,28 @@
         <url-pattern>/MisServiciosUsu.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        
         <servlet-name>MisVehiculos</servlet-name>
         <url-pattern>/MisVehiculos.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EliminarVehiculoUser</servlet-name>
         <url-pattern>/EliminarVehiculoUser.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarServiciosIndex</servlet-name>
+        <url-pattern>/MostrarServiciosIndex.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarServiciosAdmin</servlet-name>
+        <url-pattern>/MostrarServiciosAdmin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActualizarServicio</servlet-name>
+        <url-pattern>/ActualizarServicio.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarServicio</servlet-name>
+        <url-pattern>/EliminarServicio.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
