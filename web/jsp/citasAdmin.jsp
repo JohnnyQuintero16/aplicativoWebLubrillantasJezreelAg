@@ -4,6 +4,7 @@
     Author     : Jarlin
 --%>
 
+<%@page import="DAO.CitaDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,66 +102,10 @@
             </ul>
         </div>
 
-        <section class="home-section">
-            <div class="title">            
-                <div class="titulo">
-                    <h1>Lista de Agendamientos</h1>
-                </div>
-
-
-            </div>
-
-            <div class="table-responsive table-style">
-                <table id="example" class="table table-bordered table-striped table-hover">
-                    <thead class="table-secondary">
-                        <tr>
-                            <th class="enc" scope="col">No</th>
-                            <th class="enc" scope="col">Cédula</th>
-                            <th class="enc" scope="col">Nombre</th>
-                            <th class="enc" scope="col">Celular</th>
-                            <th class="enc" scope="col">Correo Electrónico</th>
-                            <th class="enc" scope="col">Fecha/Hora</th>
-                            <th class="enc" scope="col">Servicio</th>
-                            <th class="enc" scope="col">Asistencia</th>
-                            <th class="enc" scope="col">Confirmación</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-
-
-
-
-                    </tbody>
-
-                </table>
-
-                <!-- <div class="boton">
-                    <button type="button" class="btn btn-primary btn-lg">Añadir producto</button>
-                </div> -->
-                <!-- Cierre div tabla -->
-            </div>
-
-        </section>
+          <%=request.getSession().getAttribute("citas").toString()%>
 
         <!-- ventana modal -->
         <!-- Modal para el botón ver servicio-->
-        <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog ">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Detalles Servicio</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Servicio XXXXXXXXX para vehículo XXXXXXXXXXX ESTADO DEL SERVICIO: XXXXX.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="boton3 " data-bs-dismiss="modal">Aceptar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog ">

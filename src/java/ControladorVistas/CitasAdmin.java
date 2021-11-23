@@ -6,8 +6,10 @@
 package ControladorVistas;
 
 import DAO.CitaDAO;
+import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,16 +33,12 @@ public class CitasAdmin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            
-            CitaDAO c = new CitaDAO();
-            //aqui me traigo las citas
-            String cedula = request.getSession().getAttribute("usuario").toString();
-            
-
-                
-        }
+        
+        Jezreel j = new Jezreel();
+        
+        request.getSession().setAttribute("citas", j.getCitas());
+//        request.getSession().setAttribute("cita", new CitaDAO());
+        request.getRequestDispatcher("jsp/citasAdmin.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
