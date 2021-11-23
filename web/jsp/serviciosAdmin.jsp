@@ -152,6 +152,84 @@
                     </div>
                   </td>
               </tr>
+              
+                          <tr>
+                <th class="enc" scope="row">1</th>
+                  <td >Cambio de aceite</td>
+                  <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor accusantium expedita corrupti quam fugiat nostrum harum quisquam. Laboriosam esse dignissimos nisi ea magnam maiores ratione.</td>
+                  <td>https://blog.reparacion-vehiculos.es/hubfs/Im%C3%A1genes_Post/Julio%202018/errores%20cambio-aceite.jpg</td>
+                  <td>30</td>
+                  <!-- Acciones: editar y cancelar. -->
+                  <td>
+                    <div class="icons-acciones">
+                        <div>
+                           <i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#modal2"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-trash-alt" data-bs-toggle="modal" data-bs-target="#modal3"></i>
+                          
+                        </div>      
+                    </div>
+                  </td>
+              </tr>
+              
+                          <tr>
+                <th class="enc" scope="row">1</th>
+                  <td >Cambio de aceite</td>
+                  <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor accusantium expedita corrupti quam fugiat nostrum harum quisquam. Laboriosam esse dignissimos nisi ea magnam maiores ratione.</td>
+                  <td>https://blog.reparacion-vehiculos.es/hubfs/Im%C3%A1genes_Post/Julio%202018/errores%20cambio-aceite.jpg</td>
+                  <td>30</td>
+                  <!-- Acciones: editar y cancelar. -->
+                  <td>
+                    <div class="icons-acciones">
+                        <div>
+                           <i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#modal2"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-trash-alt" data-bs-toggle="modal" data-bs-target="#modal3"></i>
+                          
+                        </div>      
+                    </div>
+                  </td>
+              </tr>
+                          <tr>
+                <th class="enc" scope="row">1</th>
+                  <td >Cambio de aceite</td>
+                  <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor accusantium expedita corrupti quam fugiat nostrum harum quisquam. Laboriosam esse dignissimos nisi ea magnam maiores ratione.</td>
+                  <td>https://blog.reparacion-vehiculos.es/hubfs/Im%C3%A1genes_Post/Julio%202018/errores%20cambio-aceite.jpg</td>
+                  <td>30</td>
+                  <!-- Acciones: editar y cancelar. -->
+                  <td>
+                    <div class="icons-acciones">
+                        <div>
+                           <i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#modal2"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-trash-alt" data-bs-toggle="modal" data-bs-target="#modal3"></i>
+                          
+                        </div>      
+                    </div>
+                  </td>
+              </tr>
+                          <tr>
+                <th class="enc" scope="row">1</th>
+                  <td >Cambio de aceite</td>
+                  <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor accusantium expedita corrupti quam fugiat nostrum harum quisquam. Laboriosam esse dignissimos nisi ea magnam maiores ratione.</td>
+                  <td>https://blog.reparacion-vehiculos.es/hubfs/Im%C3%A1genes_Post/Julio%202018/errores%20cambio-aceite.jpg</td>
+                  <td>30</td>
+                  <!-- Acciones: editar y cancelar. -->
+                  <td>
+                    <div class="icons-acciones">
+                        <div>
+                           <i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#modal2"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-trash-alt" data-bs-toggle="modal" data-bs-target="#modal3"></i>
+                          
+                        </div>      
+                    </div>
+                  </td>
+              </tr>
 
 <!--              <tr>
                 <th class="enc" scope="row">2</th>
