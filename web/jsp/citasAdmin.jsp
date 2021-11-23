@@ -126,36 +126,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th class="enc" scope="row">1</th>
-                            <td>1000718165</td>
-                            <td>Jarlin Fonseca</td>                    
-                            <td>3174535149</td>
-                            <td>jarlin@ufps.edu.co</td>
-                            <td>22/11/2021  04:00 pm</td>
-                            <td> 
-
-                                <img data-bs-toggle="modal" data-bs-target="#modal1"  src="<%=basePath%>img/lupa.png" style="display: block; width: 30px; height: 30px; margin:auto;"/>
-
-                            </td>
-                            <td>
-                                <div class="icons-acciones">             
-
-                                    <div>   
-                                        <img data-bs-toggle="modal" data-bs-target="#modal2" src="<%=basePath%>img/aprobado.png" style="display: block; width: 30px; height: 30px; margin-left:auto; "/>
-                                    </div>
-                                </div>
-                            </td>
-
-
-                            <td> 
-
-                                <a href="<%=basePath%>index.jsp"> <img src="<%=basePath%>img/confirmarServ.png" style="display: block; width: 30px; height: 30px;            margin:auto;"/>
-                                </a>
-                            </td>
-
-
-                        </tr>
+                        
 
 
 

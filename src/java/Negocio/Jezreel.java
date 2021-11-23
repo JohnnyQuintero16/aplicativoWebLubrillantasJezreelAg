@@ -6,6 +6,7 @@
 package Negocio;
 
 import DAO.AtencionServicioDAO;
+import DAO.CitaDAO;
 import DAO.DetallesProductoDAO;
 import DAO.DetallesServicioDAO;
 import DAO.FichaTecnicaDAO;
@@ -23,6 +24,7 @@ import DAO.PersonaDAO;
 import DAO.ProductoDAO;
 import DAO.ServicioDAO;
 import DAO.TipoDAO;
+import DTO.Cita;
 import DTO.Marca;
 import DTO.Persona;
 import DTO.Producto;
@@ -309,7 +311,7 @@ public class Jezreel {
         }else{
         
             for (Vehiculo vehiculo : ve) {
-                rta = "<form action=\"MisServiciosUsu.do\"><table class=\"tabla-vehiculo\">\n" +
+                rta += "<form action=\"MisServiciosUsu.do\"><table class=\"tabla-vehiculo\">\n" +
                         "                <tr>\n" +
                         "                  <th>Placa</th>\n" +
                         "                  <th>Marca</th>\n" +
@@ -339,5 +341,22 @@ public class Jezreel {
         
         }
     return rta;
+    }
+    
+    public String getCitas(){
+    
+        CitaDAO c = new CitaDAO();
+        String rta ="";
+        List<Cita> citas = c.read();
+        
+        if(citas.isEmpty()){
+            for (Cita ci : citas) {
+
+    //            if(ci.){
+    //            
+    //            }
+            }
+        }
+        return rta;
     }
 }

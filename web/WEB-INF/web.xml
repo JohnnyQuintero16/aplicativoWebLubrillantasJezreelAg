@@ -41,18 +41,16 @@
         </init-param>
     </servlet>
     <servlet>
-        <servlet-name>MisServiciosUsu</servlet-name>
-        <servlet-class>ControladorVistas.MisServiciosUsu</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Prueba</servlet-name>
-        <servlet-class>ControladorVistas.Prueba</servlet-class>
         <servlet-name>MisVehiculos</servlet-name>
         <servlet-class>ControladorVistas.MisVehiculos</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EliminarVehiculoUser</servlet-name>
         <servlet-class>ControladorVistas.EliminarVehiculoUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CitasAdmin</servlet-name>
+        <servlet-class>ControladorVistas.CitasAdmin</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
@@ -79,11 +77,6 @@
         <url-pattern>/dontCookie.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>MisServiciosUsu</servlet-name>
-        <url-pattern>/MisServiciosUsu.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        
         <servlet-name>MisVehiculos</servlet-name>
         <url-pattern>/MisVehiculos.do</url-pattern>
     </servlet-mapping>
@@ -91,9 +84,11 @@
         <servlet-name>EliminarVehiculoUser</servlet-name>
         <url-pattern>/EliminarVehiculoUser.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CitasAdmin</servlet-name>
+        <url-pattern>/CitasAdmin.do</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            5
-        </session-timeout>
+        <session-timeout>5</session-timeout>
     </session-config>
 </web-app>
