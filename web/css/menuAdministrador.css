@@ -280,7 +280,7 @@ td{
 }
 
 .btn{
-  background: #001971 !important;
+  background: #001971 ;
   font-size: 17px !important;
 }
 
@@ -288,5 +288,12 @@ td{
   color: red;
 }
 
+/* FICHA TÉCNICA */
+#cancelar{
+  background-color: #dc3545;
+}
 
+.margin-right{
+  margin-right: 50px !important;
+}
 
