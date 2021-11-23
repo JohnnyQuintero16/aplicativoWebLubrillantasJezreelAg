@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -27,10 +28,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "Detalles_Producto")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "DetallesProducto.findAll", query = "SELECT d FROM DetallesProducto d"),
-    @NamedQuery(name = "DetallesProducto.findById", query = "SELECT d FROM DetallesProducto d WHERE d.id = :id"),
-    @NamedQuery(name = "DetallesProducto.findByCosto", query = "SELECT d FROM DetallesProducto d WHERE d.costo = :costo"),
-    @NamedQuery(name = "DetallesProducto.findByCantidad", query = "SELECT d FROM DetallesProducto d WHERE d.cantidad = :cantidad")})
+    @NamedQuery(name = "DetallesProducto.findAll", query = "SELECT d FROM DetallesProducto d")
+    , @NamedQuery(name = "DetallesProducto.findById", query = "SELECT d FROM DetallesProducto d WHERE d.id = :id")
+    , @NamedQuery(name = "DetallesProducto.findByCosto", query = "SELECT d FROM DetallesProducto d WHERE d.costo = :costo")
+    , @NamedQuery(name = "DetallesProducto.findByCantidad", query = "SELECT d FROM DetallesProducto d WHERE d.cantidad = :cantidad")})
 public class DetallesProducto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,9 +41,11 @@ public class DetallesProducto implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "costo")
     private double costo;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "cantidad")
     private short cantidad;
     @JoinColumn(name = "idAtencionServicio", referencedColumnName = "id")

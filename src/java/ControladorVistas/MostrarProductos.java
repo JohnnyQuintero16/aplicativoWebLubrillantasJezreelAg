@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author USUARIO
  */
-@WebServlet(name = "MostrarProductos", urlPatterns = {"/MostrarProductos.do"})
 public class MostrarProductos extends HttpServlet {
 
     /**
@@ -34,11 +33,11 @@ public class MostrarProductos extends HttpServlet {
             throws ServletException, IOException {
          Jezreel je = new Jezreel();
         String [] productos = je.mostrarProductos();
-   
-       
-        
+
+
+
         request.getSession().setAttribute("productos",productos );
-        request.getRequestDispatcher("./html/productos.jsp").forward(request, response);
+        request.getRequestDispatcher("./jsp/productos.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -128,7 +128,7 @@ public class ProductoJpaController implements Serializable {
         }
     }
 
-    public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(String id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -191,21 +191,6 @@ public class ProductoJpaController implements Serializable {
         } finally {
             em.close();
         }
-    }
-    
-    public List<Producto> findProductoTipo(String tipo) {
-        List<Producto> allproduct = findProductoEntities();
-        List<Producto> busqueda =new ArrayList<Producto>();
-        
-      
-        for(Producto pro: allproduct){
-            
-            if(pro.getTipo().equals(tipo)){
-            busqueda.add(pro);
-                    }
-        }
-        
-        return busqueda;
     }
 
     public int getProductoCount() {

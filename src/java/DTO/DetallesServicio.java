@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -27,9 +28,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "Detalles_Servicio")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "DetallesServicio.findAll", query = "SELECT d FROM DetallesServicio d"),
-    @NamedQuery(name = "DetallesServicio.findById", query = "SELECT d FROM DetallesServicio d WHERE d.id = :id"),
-    @NamedQuery(name = "DetallesServicio.findByCosto", query = "SELECT d FROM DetallesServicio d WHERE d.costo = :costo")})
+    @NamedQuery(name = "DetallesServicio.findAll", query = "SELECT d FROM DetallesServicio d")
+    , @NamedQuery(name = "DetallesServicio.findById", query = "SELECT d FROM DetallesServicio d WHERE d.id = :id")
+    , @NamedQuery(name = "DetallesServicio.findByCosto", query = "SELECT d FROM DetallesServicio d WHERE d.costo = :costo")})
 public class DetallesServicio implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,11 +40,12 @@ public class DetallesServicio implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "costo")
     private int costo;
     @JoinColumn(name = "idAntencionServicio", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private AtencionServicio idAntencionServicio;
+    private AtencionServicio idAtencionServicio;
     @JoinColumn(name = "idServicio", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Servicio idServicio;
@@ -76,12 +78,12 @@ public class DetallesServicio implements Serializable {
         this.costo = costo;
     }
 
-    public AtencionServicio getIdAntencionServicio() {
-        return idAntencionServicio;
+    public AtencionServicio getIdAtencionServicio() {
+        return idAtencionServicio;
     }
 
-    public void setIdAntencionServicio(AtencionServicio idAntencionServicio) {
-        this.idAntencionServicio = idAntencionServicio;
+    public void setIdAtencionServicio(AtencionServicio idAtencionServicio) {
+        this.idAtencionServicio = idAtencionServicio;
     }
 
     public Servicio getIdServicio() {
@@ -116,5 +118,7 @@ public class DetallesServicio implements Serializable {
     public String toString() {
         return "DTO.DetallesServicio[ id=" + id + " ]";
     }
+    
+    
     
 }

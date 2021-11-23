@@ -1,17 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-
+    <filter>
+        <filter-name>validarSesion.do</filter-name>
+        <filter-class>ControladorVistas.validarSesion</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>validarSesion.do</filter-name>
+        <url-pattern>/MisVehiculos.do</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>IniciarSesion</servlet-name>
         <servlet-class>ControladorVistas.IniciarSesion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Registro</servlet-name>
+        <servlet-class>ControladorVistas.Registro</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cerrarSesion</servlet-name>
+        <servlet-class>ControladorVistas.cerrarSesion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarProductos</servlet-name>
+        <servlet-class>ControladorVistas.MostrarProductos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarServicios</servlet-name>
+        <servlet-class>ControladorVistas.MostrarServicios</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MisServiciosUsu</servlet-name>
+        <servlet-class>ControladorVistas.MisServiciosUsu</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MisVehiculos</servlet-name>
+        <servlet-class>ControladorVistas.MisVehiculos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarVehiculoUser</servlet-name>
+        <servlet-class>ControladorVistas.EliminarVehiculoUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminAddCliente</servlet-name>
+        <servlet-class>ControladorVistas.adminAddCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminUpdateCliente</servlet-name>
+        <servlet-class>ControladorVistas.adminUpdateCliente</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Registro</servlet-name>
+        <url-pattern>/Registro.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cerrarSesion</servlet-name>
+        <url-pattern>/cerrarSesion.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarProductos</servlet-name>
+        <url-pattern>/MostrarProductos.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarServicios</servlet-name>
+        <url-pattern>/MostrarServicios.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MisServiciosUsu</servlet-name>
+        <url-pattern>/MisServiciosUsu.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MisVehiculos</servlet-name>
+        <url-pattern>/MisVehiculos.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarVehiculoUser</servlet-name>
+        <url-pattern>/EliminarVehiculoUser.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminAddCliente</servlet-name>
+        <url-pattern>/adminAddCliente.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminUpdateCliente</servlet-name>
+        <url-pattern>/adminUpdateCliente.do</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>5</session-timeout>
     </session-config>
 </web-app>

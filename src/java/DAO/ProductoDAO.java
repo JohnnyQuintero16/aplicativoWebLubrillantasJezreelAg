@@ -9,6 +9,7 @@ import DTO.Producto;
 import Persistencia.ProductoJpaController;
 import Persistencia.exceptions.IllegalOrphanException;
 import Persistencia.exceptions.NonexistentEntityException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,7 +50,7 @@ public class ProductoDAO {
         }
     }
     
-    public void delete(int codigo) throws IllegalOrphanException, NonexistentEntityException{
+    public void delete(String codigo) throws IllegalOrphanException, NonexistentEntityException{
         
         try {
             prod.destroy(codigo);
@@ -58,8 +59,21 @@ public class ProductoDAO {
         }
         
     }
-    
     public List<Producto> findProductoTipo(String tipo){
-        return prod.findProductoTipo(tipo);
+         List<Producto> allproduct = prod.findProductoEntities();
+        List<Producto> busqueda =new ArrayList<Producto>();
+        
+      
+        for(Producto pro: allproduct){
+            
+            if(pro.getTipo().equals(tipo)){
+            busqueda.add(pro);
+                    }
+        }
+        
+        return busqueda;
+ 
     }
 }
+
+ 

@@ -6,6 +6,7 @@
 package DTO;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -24,6 +25,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -40,7 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "AtencionServicio.findByKilometraje", query = "SELECT a FROM AtencionServicio a WHERE a.kilometraje = :kilometraje"),
     @NamedQuery(name = "AtencionServicio.findByFecha", query = "SELECT a FROM AtencionServicio a WHERE a.fecha = :fecha"),
     @NamedQuery(name = "AtencionServicio.findByHora", query = "SELECT a FROM AtencionServicio a WHERE a.hora = :hora")})
-public class AtencionServicio implements Serializable {
+public class AtencionServicio implements Serializable, Comparable<AtencionServicio> {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,38 +52,42 @@ public class AtencionServicio implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "kilometraje")
     private int kilometraje;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "hora")
     @Temporal(TemporalType.TIME)
     private Date hora;
     @Basic(optional = false)
+    @NotNull
     @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
-    @JoinColumn(name = "idFichaTecnica", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private FichaTecnica idFichaTecnica;
-    @JoinColumn(name = "idCalificacion", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Calificacion idCalificacion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "atencionServicio")
+    private List<Calificacion> calificacionList;
     @JoinColumn(name = "idCita", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Cita idCita;
     @JoinColumn(name = "idFactura", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Factura idFactura;
+    @JoinColumn(name = "idFichaTecnica", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private FichaTecnica idFichaTecnica;
     @JoinColumn(name = "idPersona", referencedColumnName = "cedula")
     @ManyToOne(optional = false)
     private Persona idPersona;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAtencionServicio")
     private List<DetallesProducto> detallesProductoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAntencionServicio")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAtencionServicio")
     private List<DetallesServicio> detallesServicioList;
 
     public AtencionServicio() {
@@ -138,20 +145,13 @@ public class AtencionServicio implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public FichaTecnica getIdFichaTecnica() {
-        return idFichaTecnica;
+    @XmlTransient
+    public List<Calificacion> getCalificacionList() {
+        return calificacionList;
     }
 
-    public void setIdFichaTecnica(FichaTecnica idFichaTecnica) {
-        this.idFichaTecnica = idFichaTecnica;
-    }
-
-    public Calificacion getIdCalificacion() {
-        return idCalificacion;
-    }
-
-    public void setIdCalificacion(Calificacion idCalificacion) {
-        this.idCalificacion = idCalificacion;
+    public void setCalificacionList(List<Calificacion> calificacionList) {
+        this.calificacionList = calificacionList;
     }
 
     public Cita getIdCita() {
@@ -168,6 +168,14 @@ public class AtencionServicio implements Serializable {
 
     public void setIdFactura(Factura idFactura) {
         this.idFactura = idFactura;
+    }
+
+    public FichaTecnica getIdFichaTecnica() {
+        return idFichaTecnica;
+    }
+
+    public void setIdFichaTecnica(FichaTecnica idFichaTecnica) {
+        this.idFichaTecnica = idFichaTecnica;
     }
 
     public Persona getIdPersona() {
@@ -220,5 +228,25 @@ public class AtencionServicio implements Serializable {
     public String toString() {
         return "DTO.AtencionServicio[ id=" + id + " ]";
     }
-    
+
+    @Override
+    public int compareTo(AtencionServicio a) {
+        return (parseIntFecha(a.getFecha())).compareTo((parseIntFecha(fecha)));
+    }
+
+    public String formatoFecha(Date fecha) {
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
+        String[] split = formatter.format(fecha).split(" ");
+        String[] split2 = split[0].split("/");
+        return split2[0] + "/" + split2[1] + "/" + split2[2];
+    }
+
+    public Integer parseIntFecha(Date fecha) {
+
+        String[] split = formatoFecha(fecha).split("/");
+
+        return Integer.parseInt(split[2] + split[1] + split[0]);
+    }
+
 }

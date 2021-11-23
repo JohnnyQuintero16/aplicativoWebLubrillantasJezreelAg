@@ -26,7 +26,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author Cristian
+ * @author USUARIO
  */
 public class PersonaJpaController implements Serializable {
 
@@ -69,7 +69,7 @@ public class PersonaJpaController implements Serializable {
             persona.setVehiculoList(attachedVehiculoList);
             List<Calificacion> attachedCalificacionList = new ArrayList<Calificacion>();
             for (Calificacion calificacionListCalificacionToAttach : persona.getCalificacionList()) {
-                calificacionListCalificacionToAttach = em.getReference(calificacionListCalificacionToAttach.getClass(), calificacionListCalificacionToAttach.getId());
+                calificacionListCalificacionToAttach = em.getReference(calificacionListCalificacionToAttach.getClass(), calificacionListCalificacionToAttach.getCalificacionPK());
                 attachedCalificacionList.add(calificacionListCalificacionToAttach);
             }
             persona.setCalificacionList(attachedCalificacionList);
@@ -100,12 +100,12 @@ public class PersonaJpaController implements Serializable {
                 }
             }
             for (Calificacion calificacionListCalificacion : persona.getCalificacionList()) {
-                Persona oldIdPersonaOfCalificacionListCalificacion = calificacionListCalificacion.getIdPersona();
-                calificacionListCalificacion.setIdPersona(persona);
+                Persona oldPersonaOfCalificacionListCalificacion = calificacionListCalificacion.getPersona();
+                calificacionListCalificacion.setPersona(persona);
                 calificacionListCalificacion = em.merge(calificacionListCalificacion);
-                if (oldIdPersonaOfCalificacionListCalificacion != null) {
-                    oldIdPersonaOfCalificacionListCalificacion.getCalificacionList().remove(calificacionListCalificacion);
-                    oldIdPersonaOfCalificacionListCalificacion = em.merge(oldIdPersonaOfCalificacionListCalificacion);
+                if (oldPersonaOfCalificacionListCalificacion != null) {
+                    oldPersonaOfCalificacionListCalificacion.getCalificacionList().remove(calificacionListCalificacion);
+                    oldPersonaOfCalificacionListCalificacion = em.merge(oldPersonaOfCalificacionListCalificacion);
                 }
             }
             for (Cita citaListCita : persona.getCitaList()) {
@@ -169,7 +169,7 @@ public class PersonaJpaController implements Serializable {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain Calificacion " + calificacionListOldCalificacion + " since its idPersona field is not nullable.");
+                    illegalOrphanMessages.add("You must retain Calificacion " + calificacionListOldCalificacion + " since its persona field is not nullable.");
                 }
             }
             for (Cita citaListOldCita : citaListOld) {
@@ -204,7 +204,7 @@ public class PersonaJpaController implements Serializable {
             persona.setVehiculoList(vehiculoListNew);
             List<Calificacion> attachedCalificacionListNew = new ArrayList<Calificacion>();
             for (Calificacion calificacionListNewCalificacionToAttach : calificacionListNew) {
-                calificacionListNewCalificacionToAttach = em.getReference(calificacionListNewCalificacionToAttach.getClass(), calificacionListNewCalificacionToAttach.getId());
+                calificacionListNewCalificacionToAttach = em.getReference(calificacionListNewCalificacionToAttach.getClass(), calificacionListNewCalificacionToAttach.getCalificacionPK());
                 attachedCalificacionListNew.add(calificacionListNewCalificacionToAttach);
             }
             calificacionListNew = attachedCalificacionListNew;
@@ -245,12 +245,12 @@ public class PersonaJpaController implements Serializable {
             }
             for (Calificacion calificacionListNewCalificacion : calificacionListNew) {
                 if (!calificacionListOld.contains(calificacionListNewCalificacion)) {
-                    Persona oldIdPersonaOfCalificacionListNewCalificacion = calificacionListNewCalificacion.getIdPersona();
-                    calificacionListNewCalificacion.setIdPersona(persona);
+                    Persona oldPersonaOfCalificacionListNewCalificacion = calificacionListNewCalificacion.getPersona();
+                    calificacionListNewCalificacion.setPersona(persona);
                     calificacionListNewCalificacion = em.merge(calificacionListNewCalificacion);
-                    if (oldIdPersonaOfCalificacionListNewCalificacion != null && !oldIdPersonaOfCalificacionListNewCalificacion.equals(persona)) {
-                        oldIdPersonaOfCalificacionListNewCalificacion.getCalificacionList().remove(calificacionListNewCalificacion);
-                        oldIdPersonaOfCalificacionListNewCalificacion = em.merge(oldIdPersonaOfCalificacionListNewCalificacion);
+                    if (oldPersonaOfCalificacionListNewCalificacion != null && !oldPersonaOfCalificacionListNewCalificacion.equals(persona)) {
+                        oldPersonaOfCalificacionListNewCalificacion.getCalificacionList().remove(calificacionListNewCalificacion);
+                        oldPersonaOfCalificacionListNewCalificacion = em.merge(oldPersonaOfCalificacionListNewCalificacion);
                     }
                 }
             }
@@ -318,7 +318,7 @@ public class PersonaJpaController implements Serializable {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This Persona (" + persona + ") cannot be destroyed since the Calificacion " + calificacionListOrphanCheckCalificacion + " in its calificacionList field has a non-nullable idPersona field.");
+                illegalOrphanMessages.add("This Persona (" + persona + ") cannot be destroyed since the Calificacion " + calificacionListOrphanCheckCalificacion + " in its calificacionList field has a non-nullable persona field.");
             }
             List<Cita> citaListOrphanCheck = persona.getCitaList();
             for (Cita citaListOrphanCheckCita : citaListOrphanCheck) {
