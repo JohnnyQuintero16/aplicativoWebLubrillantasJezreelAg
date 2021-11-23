@@ -18,6 +18,8 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
   <!--Importar CSS y script del menú -->
   <link rel="stylesheet" href="../css/menu.css" />
   <link rel="stylesheet" href="../css/index.css" />
@@ -216,7 +218,44 @@
                         <hr width="30%">
                     </div>
                     <div class="modal-footer" id="foterM">
-                      <a href="#" class="btn" id="boton" type="button">Calificar servicio</a>
+                      <a href="#" class="btn" id="boton" type="button" data-bs-toggle="modal" data-bs-target="#modal2">Calificar servicio</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ventana modal de estrellas-->
+              <div class="modal fade" tabindex="-1" role="dialog" id="modal2" aria-labelledby="modal1" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h2 class="modal-title">Calificar  Servicio</h2>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="col-12" style="text-align: center;">
+                        <br>
+                        <h5>¿Cuál fue tu nivel de satisfacción?</h5>
+                        
+                        <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="1star"></span>
+
+                        <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="2star"></span>
+
+                        <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="3star"></span>
+
+                        <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="4star"></span>
+
+                        <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="5star"></span>
+                      </div>
+
+                      <br>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Danos tu opinión sobre el servicio ..."></textarea>
+                    </div>
+                    <div class="modal-footer" id="foterM">
+                      <a href="#" class="btn" id="boton" type="button">
+                        Guardar</a>
+                      <a href="#" class="btn btn-danger" type="button">  Cancelar</a>
                     </div>
                   </div>
                 </div>
@@ -311,11 +350,49 @@
                         <hr width="30%">
                     </div>
                     <div class="modal-footer" id="foterM">
-                      <a href="#" class="btn" id="boton" type="button">Calificar servicio</a>
+                      <a href="#" class="btn" id="boton" type="button" data-bs-toggle="modal" data-bs-target="#modal2">Calificar servicio</a>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <!-- ventana modal de estrellas-->
+              <div class="modal fade" tabindex="-1" role="dialog" id="modal2" aria-labelledby="modal1" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h2 class="modal-title">Calificar  Servicio</h2>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="col-12" style="text-align: center;">
+                        <br>
+                        <h5>¿Cuál fue tu nivel de satisfacción?</h5>
+                        
+                        <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="1star"></span>
+
+                        <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="2star"></span>
+
+                        <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="3star"></span>
+
+                        <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="4star"></span>
+
+                        <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="5star"></span>
+                      </div>
+
+                      <br>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Danos tu opinión sobre el servicio ..."></textarea>
+                    </div>
+                    <div class="modal-footer" id="foterM">
+                      <a href="#" class="btn" id="boton" type="button">
+                        Guardar</a>
+                      <a href="#" class="btn btn-danger" type="button">  Cancelar</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
             </div>
           </div>
           <br>
@@ -365,5 +442,21 @@
   <!--FIN FOOTER-->
  
 </body>
+<!-- calificar estrellas -->
+<script>
+  var contador;
 
+  function calificar(item){
+    contador = item.id[0];
+    let nombre = item.id.substring(1);
+
+    for(let i=0; i<5; i++){
+      if(i<contador){
+        document.getElementById((i+1)+nombre).style.color = "blue";
+      }else{
+        document.getElementById((i+1)+nombre).style.color = "black";
+      }
+    }
+  }
+</script>
 </html>
