@@ -19,7 +19,8 @@ public class main {
 //        
 
 Jezreel j = new Jezreel();
-        System.out.println(j.getCitas());
+CitaDAO c = new CitaDAO();
+        System.out.println(c.read());
 
 //        PersonaDAO p = new PersonaDAO();
 //        RolDAO r = new RolDAO();

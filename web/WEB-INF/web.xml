@@ -41,10 +41,12 @@
         <servlet-class>ControladorVistas.EliminarVehiculoUser</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CitasAdmin</servlet-name>
-        <servlet-class>ControladorVistas.CitasAdmin</servlet-class>
         <servlet-name>MostrarServiciosIndex</servlet-name>
         <servlet-class>ControladorVistas.MostrarServiciosIndex</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CitasAdmin</servlet-name>
+        <servlet-class>ControladorVistas.CitasAdmin</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MostrarServiciosAdmin</servlet-name>
@@ -103,10 +105,12 @@
         <url-pattern>/EliminarVehiculoUser.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CitasAdmin</servlet-name>
-        <url-pattern>/CitasAdmin.do</url-pattern>
         <servlet-name>MostrarServiciosIndex</servlet-name>
         <url-pattern>/MostrarServiciosIndex.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CitasAdmin</servlet-name>
+        <url-pattern>/CitasAdmin.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MostrarServiciosAdmin</servlet-name>
