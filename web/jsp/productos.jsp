@@ -61,13 +61,13 @@
                     </ul>
 
 
-                    <template id="NoSesion">
+                     <template id="NoSesion">
                         <ul class="navbar-nav ml-auto m-4">
                             <li class="nav-item">
                                 <a class="nav-link" href="<%=basePath%>jsp/iniciarsesion.jsp">INICIAR SESIÓN</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<%=basePath%>jsp/registrarse.jsp">REGISTRARSE</a>
+                                <a class="nav-link" href="./jsp/registrarse.jsp">REGISTRARSE</a>
                             </li>
                         </ul>
                     </template>
@@ -80,9 +80,10 @@
                                 </a>
                                 <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
                                     <li><a class="dropdown-item" href="#" >Mi Cuenta</a></li>
+                                    <li><a class="dropdown-item" href="<%=basePath%>MisVehiculos.do" >Mis Vehiculos</a></li>
                                     <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="./cerrarSesion.do">Salir</a></li>
+                                    <li><a class="dropdown-item" href="<%=basePath%>cerrarSesion.do">Salir</a></li>
                                 </ul>
                             </li>
 
@@ -293,12 +294,6 @@
             </div>
         </footer>
         <!--FIN FOOTER-->
-
-
-<<<<<<< HEAD
-
-=======
-<script src="<%=basePath%>js/sesion.js"></script>
->>>>>>> Test
+        <script src="<%=basePath%>js/sesion.js"></script>
     </body>
 </html> 

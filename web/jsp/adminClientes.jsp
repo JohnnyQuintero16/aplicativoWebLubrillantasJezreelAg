@@ -1,4 +1,7 @@
 
+<%@page import="java.util.List"%>
+<%@page import="DTO.Persona"%>
+<%@page import="DAO.PersonaDAO"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +70,7 @@
                     <span class="tooltip">Clientes</span>
                 </li>
                 <li>
-                    <a href="<%=basePath%>jsp/serviciosAdmin.jsp">
+                    <a href="<%=basePath%>MostrarServiciosAdmin.do">
                         <i class="fas fa-user-cog"></i>
                         <span class="links_name">Servicios</span>
                     </a>
@@ -107,6 +110,14 @@
                 </div>
             </div>
 
+            <%
+                PersonaDAO p = new PersonaDAO();
+                List<Persona> lista = p.read();
+                if (lista.isEmpty()) {%>
+            <div class = "container-fluid" style="display: flex; align-content: center; align-items: center;justify-content: center">
+                <h1 style="color:#ff0000" align="center">En estos momentos no se encuentran registrados clientes!</h1>
+            </div>
+            <%} else {%>
             <div class="table-responsive table-style">
                 <table id="example" class="table table-bordered table-striped table-hover">
                     <thead class="table-secondary">
@@ -121,193 +132,70 @@
                             <th class="enc" scope="col">Acciones</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        <tr>
-                            <th class="enc" scope="row">1</th>
-                            <td>Sebastian Casadiegos</td>
-                            <td>1000718165</td>
-                            <td>3174535149</td>
-                            <td>casadiegosgomezjs@ufps.edu.co</td>
-                            <td>Calle 7 #05-50 La Pastora</td>
-                            <td> <a href="<%=basePath%>jsp/fichaTecnica.jsp"> <img src="<%=basePath%>img/lupa.png" style="display: block; width: 30px; height: 30px;            margin:auto;"/>
-                                </a></td>
-                            <!-- Acciones: editar y cancelar. -->
-                            <td>
-                                <div class="icons-acciones">
-                                    <div>
-                                        <i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#modal2"></i>
-                                    </div>
+                        <%
+                            int i = 1;
+                            for (Persona persona : lista) {
+                                String nombre = persona.getNombres().split(" ")[0] + " " + persona.getApellidos().split(" ")[0];
 
-                                </div>
-                            </td>
-                        </tr>
-
+                        %>
                         <tr>
-                            <th class="enc" scope="row">2</th>
-                            <td>Samantha Zamora</td>
-                            <td>1000718165</td>
-                            <td>3174535149</td>
-                            <td>samanthaelianaza@ufps.edu.co</td>
-                            <td>Calle 9 #05-50 La Merced</td>
+                            <th class="enc" scope="row"><%=i%></th>
+                            <td><%=nombre%></td>
+                            <td><%=persona.getCedula()%></td>
+                            <td><%=persona.getCelular()%></td>
+                            <td><%=persona.getEmail()%></td>
+                            <td><%=persona.getDirecccion()%></td>
                             <td> <a href="<%=basePath%>jsp/serviciosUsuAdmin.jsp"> <img src="<%=basePath%>img/lupa.png" style="display: block; width: 30px; height: 30px;            margin:auto;"/>
                                 </a></td>
                             <!-- Acciones: editar y cancelar. -->
                             <td>
                                 <div class="icons-acciones">
                                     <div>
-                                        <i class="fas fa-edit"></i>
+                                        <button type="button" class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#modal2" data-bs-whatever=
+                                                '{
+                                                "nombre":"<%=nombre%>",
+                                                "cedula":"<%=persona.getCedula()%>",
+                                                "email":"<%=persona.getEmail()%>",
+                                                "celular":"<%=persona.getCelular()%>",
+                                                "direccion":"<%=persona.getDirecccion()%>",
+                                                "clave":"<%=persona.getContraseña()%>"
+                                                }'></button>
                                     </div>
 
                                 </div>
                             </td>
                         </tr>
-
-                        <tr>
-                            <th class="enc" scope="row">3</th>
-                            <td>Yoel Castilla</td>
-                            <td>1000718165</td>
-                            <td>3174535149</td>
-                            <td>junioryoelco@ufps.edu.co</td>
-                            <td>Calle 700 #05-50 El Poblado</td>
-                            <td> <a href="<%=basePath%>jsp/serviciosUsuAdmin.jsp"> <img src="<%=basePath%>img/lupa.png" style="display: block; width: 30px; height: 30px;            margin:auto;"/>
-                                </a></td>
-                            <!-- Acciones: editar y cancelar. -->
-                            <td>
-                                <div class="icons-acciones">
-                                    <div>
-                                        <i class="fas fa-edit"></i>
-                                    </div>
-
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th class="enc" scope="row">4</th>
-                            <td>Susana Rojas</td>
-                            <td>1000718165</td>
-                            <td>3174535149</td>
-                            <td>susanart@ufps.edu.co</td>
-                            <td>Calle 0 #05-50  Los Alpes</td>
-                            <td> <a href="<%=basePath%>jsp/serviciosUsuAdmin.jsp"><img src="<%=basePath%>img/lupa.png" style="display: block; width: 30px; height: 30px;            margin:auto;"/>
-                                </a></td>
-                            <!-- Acciones: editar y cancelar. -->
-                            <td>
-                                <div class="icons-acciones">
-                                    <div>
-                                        <i class="fas fa-edit"></i>
-                                    </div>
-
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th class="enc" scope="row">5</th>
-                            <td>Jeferson  Rodriguez Ramirez</td>
-                            <td>1000718165</td>
-                            <td>3174535149</td>
-                            <td>jefersonr@ufps.edu.co</td>
-                            <td>Calle 9 #05-50 La Divina</td>
-                            <td> <a href="<%=basePath%>jsp/serviciosUsuAdmin.jsp"> <img src="<%=basePath%>img/lupa.png" style="display: block; width: 30px; height: 30px;            margin:auto;"/>
-                                </a></td>
-                            <!-- Acciones: editar y cancelar. -->
-                            <td>
-                                <div class="icons-acciones">
-                                    <div>
-                                        <i class="fas fa-edit"></i>
-                                    </div>
-
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th class="enc" scope="row">6</th>
-                            <td>Jarlin Fonseca</td>
-                            <td>1000718165</td>
-                            <td>3174535149</td>
-                            <td>jarlinf@ufps.edu.co</td>
-                            <td>Calle 5 #05-50 La Merced</td>
-                            <td> <a href="<%=basePath%>jsp/serviciosUsuAdmin.jsp"> <img src="<%=basePath%>img/lupa.png" style="display: block; width: 30px; height: 30px;            margin:auto;"/>
-                                </a></td>
-                            <!-- Acciones: editar y cancelar. -->
-                            <td>
-                                <div class="icons-acciones">
-                                    <div>
-                                        <i class="fas fa-edit"></i>
-                                    </div>
-
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th class="enc" scope="row">7</th>
-                            <td>Cristian Medina</td>
-                            <td>1000718165</td>
-                            <td>3174535149</td>
-                            <td>cristianmanuelmp@ufps.edu.co</td>
-                            <td>Calle 7 #05-50 La Junta</td>
-                            <td> <a href="<%=basePath%>jsp/serviciosUsuAdmin.jsp"> <img src="<%=basePath%>img/lupa.png" style="display: block; width: 30px; height: 30px;            margin:auto;"/>
-                                </a></td>
-                            <!-- Acciones: editar y cancelar. -->
-                            <td>
-                                <div class="icons-acciones">
-                                    <div>
-                                        <i class="fas fa-edit"></i>
-                                    </div>
-
-                                </div>
-                            </td>
-                        </tr>
-
-
-
+                        <%i++;
+                            }%>
                     </tbody>
-
                 </table>
-
-                <!-- <div class="boton">
-                    <button type="button" class="btn btn-primary btn-lg">Añadir producto</button>
-                </div> -->
-                <!-- Cierre div tabla -->
             </div>
+            <%}%>
 
         </section>
 
-        <!-- ventana modal -->
+        <!-- ventana modal Añadir cliente-->
         <div class="modal fade" tabindex="-1" role="dialog" id="modal1" aria-labelledby="modal1" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header justify-content-center align-items-center">
-
                         <h2 class="modal-title">Añadir Cliente</h2>
                     </div>
                     <div class="modal-body ">
-
-
-                        <form >
+                        <form action = "<%=basePath%>/adminAddCliente.do" method="POST" >
                             <div class="row text-center m-3">
-
                                 <div class="col-md-6">
-
                                     <div class="mb-3 ">
-                                        <label for="exampleInputNombre" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control " id="exampleInputNombre" required>
-
+                                        <label for="exampleInputNombre" class="form-label">Nombre Completo</label>
+                                        <input type="text" class="form-control " id="exampleInputNombre" required name="nombre">
                                     </div>
-
-
                                 </div>
-
-
-
                                 <div class="col-md-6">
-
                                     <div class="mb-3">
                                         <label for="exampleInputCed" class="form-label">Cédula</label>
-                                        <input type="number" class="form-control" id="exampleInputCed" required>
+                                        <input type="number" class="form-control" id="exampleInputCed" required name="cedula">
                                     </div>
 
                                 </div>
@@ -316,57 +204,39 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="exampleInputEmail" class="form-label">Correo electrónico</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail" required>
+                                        <input type="text" class="form-control" id="exampleInputEmail" required name="email">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="exampleInputCel" class="form-label">Celular</label>
-                                        <input type="number" class="form-control" id="exampleInputCel" required>
+                                        <input type="number" class="form-control" id="exampleInputCel" required name="celular">
                                     </div>
                                 </div>
-
-
-
-
                                 <div class="col-md-6">
 
                                     <div class="mb-3">
                                         <label for="exampleInputDirec" class="form-label">Dirección</label>
-                                         <input type="text" class="form-control" id="exampleInputDirec" required>
+                                        <input type="text" class="form-control" id="exampleInputDirec" required name="direccion">
                                     </div>
 
                                 </div>
-                                
-                                 <div class="col-md-6">
+
+                                <div class="col-md-6">
 
                                     <div class="mb-3">
                                         <label for="exampleInputPass" class="form-label">Contraseña</label>
-                                         <input type="password" class="form-control" id="exampleInputPass" required>
+                                        <input type="password" class="form-control" id="exampleInputPass" required name="clave">
                                     </div>
 
                                 </div>
-
-
-
-
-
-
                             </div>
-
-
-
-
                             <div class="modal-footer mt-2 " id="foterM">
                                 <button type="button" class="boton2" data-bs-dismiss="modal">Cancelar</button>
                                 <button type="submit" class="boton3">Guardar</button>
                             </div>
-
-
                         </form>
-
-
                     </div>
                     <!--  <div class="modal-footer" id="foterM">
                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -380,7 +250,7 @@
 
 
         <!-- ventana modal de editar -->
-        <div class="modal fade" tabindex="-1" role="dialog" id="modal2" aria-labelledby="modal2" aria-hidden="true">
+        <div class="modal fade" tabindex="-1" role="dialog" id="modal2" aria-labelledby="modal2example" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header justify-content-center align-items-center">
@@ -390,16 +260,13 @@
                               </button> -->
                     </div>
                     <div class="modal-body ">
-
-
-                        <form >
+                        <form action="<%=basePath%>/adminUpdateCliente.do" method="GET">
                             <div class="row text-center m-3">
-
                                 <div class="col-md-6">
 
                                     <div class="mb-3 ">
                                         <label for="exampleInputNombre" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control " id="exampleInputNombre" value="Ricardo Fernandez" required>
+                                        <input type="text" class="form-control " id="recipient-name" name="nombre" required>
 
                                     </div>
 
@@ -412,7 +279,7 @@
 
                                     <div class="mb-3">
                                         <label for="exampleInputCed" class="form-label">Cédula</label>
-                                        <input type="number" class="form-control" id="exampleInputCed" value="1005879654" required>
+                                        <input type="number" class="form-control" id="exampleInputCed" name="cedula" required>
                                     </div>
 
                                 </div>
@@ -421,14 +288,14 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="exampleInputEmail" class="form-label">Correo electrónico</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail" value="ricar@gmail.com" required>
+                                        <input type="text" class="form-control" id="exampleInputEmail" name="email" required>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="exampleInputCel" class="form-label">Celular</label>
-                                        <input type="number" class="form-control" id="exampleInputCel" value="3152546875" required>
+                                        <input type="number" class="form-control" id="exampleInputCel" name="celular" required>
                                     </div>
                                 </div>
 
@@ -439,36 +306,24 @@
 
                                     <div class="mb-3">
                                         <label for="exampleInputDirec" class="form-label">Dirección</label>
-                                        <input type="text" class="form-control" id="exampleInputDirec" value="Calle 8 9-9194545656" required>
+                                        <input type="text" class="form-control" id="exampleInputDirec" name="direccion" required>
                                     </div>
 
                                 </div>
-                                
-                                 <div class="col-md-6">
+
+                                <div class="col-md-6">
 
                                     <div class="mb-3">
                                         <label for="exampleInputPass" class="form-label">Contraseña</label>
-                                         <input type="password" class="form-control" id="exampleInputPass" value="juanito757" required>
+                                        <input type="password" class="form-control" id="exampleInputPass" name="clave" required>
                                     </div>
 
                                 </div>
-
-
-
-
-
-
                             </div>
-
-
-
-
-
                             <div class="modal-footer mt-2 " id="foterM">
                                 <button type="button" class="boton2" data-bs-dismiss="modal">Cancelar</button>
                                 <button type="submit" class="boton3">Guardar</button>
                             </div>
-
 
                         </form>
 
@@ -491,28 +346,42 @@
 
 
         <script>
-        $(document).ready(function () {
+            $(document).ready(function () {
             $('#example').DataTable({
 
-                "language": {
-                    "lengthMenu": "Mostrar_MENU_registros",
-                    "zeroRecords": "No se encontraron resultados",
-                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "infoFiltered": "(Filtrado de un total de _MAX_ registros)",
-                    "sSearch": "Buscar:",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "sProcessing": "Procesando...",
-                }
+            "language": {
+            "lengthMenu": "Mostrar_MENU_registros",
+            "zeroRecords": "No se encontraron resultados",
+            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "infoFiltered": "(Filtrado de un total de _MAX_ registros)",
+            "sSearch": "Buscar:",
+            "oPaginate": {
+            "sFirst": "Primero",
+            "sLast": "Último",
+            "sNext": "Siguiente",
+            "sPrevious": "Anterior"
+            },
+            "sProcessing": "Procesando...",
+            }
 
             }
             );
-        });
+            });
+            
+            var modalEditarCliente = document.getElementById('modal2');
+            modalEditarCliente.addEventListener('show.bs.modal', (e) =>{
+                var btn = e.relatedTarget;
+                recipient = btn.getAttribute('data-bs-whatever');
+                 modalBodyInput = modalEditarCliente.querySelector('.modal-body').querySelectorAll('input');
+                 var txt = JSON.parse(recipient);                 
+                 modalBodyInput[0].value = txt.nombre;
+                 modalBodyInput[1].value = txt.cedula;
+                 modalBodyInput[2].value = txt.email;
+                 modalBodyInput[3].value = txt.celular;
+                 modalBodyInput[4].value = txt.direccion;
+                 modalBodyInput[5].value = txt.clave;
+            })
         </script>
 
     </body>
