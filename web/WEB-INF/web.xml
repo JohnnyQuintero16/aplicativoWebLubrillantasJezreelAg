@@ -55,12 +55,18 @@
     <servlet>
         <servlet-name>EliminarServicio</servlet-name>
         <servlet-class>ControladorVistas.EliminarServicio</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>adminAddCliente</servlet-name>
         <servlet-class>ControladorVistas.adminAddCliente</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>adminUpdateCliente</servlet-name>
         <servlet-class>ControladorVistas.adminUpdateCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddServicio</servlet-name>
+        <servlet-class>ControladorVistas.AdminAddServicio</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
@@ -107,14 +113,20 @@
         <url-pattern>/ActualizarServicio.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EliminarServicio</servlet-name>
-        <url-pattern>/EliminarServicio.do</url-pattern>
         <servlet-name>adminAddCliente</servlet-name>
         <url-pattern>/adminAddCliente.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>EliminarServicio</servlet-name>
+        <url-pattern>/EliminarServicio.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>adminUpdateCliente</servlet-name>
         <url-pattern>/adminUpdateCliente.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddServicio</servlet-name>
+        <url-pattern>/AdminAddServicio.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>5</session-timeout>

@@ -34,7 +34,7 @@ public class MostrarServiciosAdmin extends HttpServlet {
             throws ServletException, IOException {
        
         ServicioDAO serdao = new ServicioDAO();   
-        request.getSession().setAttribute("servicios",serdao.read());
+        request.getSession().setAttribute("servicios",serdao.readServiciosActivos());
         request.getRequestDispatcher("./jsp/serviciosAdmin.jsp").forward(request, response);
     }
 

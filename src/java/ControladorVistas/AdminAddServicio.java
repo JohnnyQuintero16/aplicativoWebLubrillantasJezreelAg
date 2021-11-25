@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author USUARIO
  */
-public class ActualizarServicio extends HttpServlet {
+public class AdminAddServicio extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,22 +31,11 @@ public class ActualizarServicio extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        response.setContentType("text/html;charset=UTF-8");
-       
-        try{
-            ServicioDAO serdao = new ServicioDAO();
-            Servicio ser = serdao.readServicio(Integer.parseInt(request.getParameter("id").toString()));
-            ser.setDescripcion(request.getParameter("descripcion").toString());
-            ser.setDuracion((Short.parseShort(request.getParameter("duracion").toString())));
-            ser.setNombre( request.getParameter("nombre").toString());
-            ser.setImgUrl(request.getParameter("img").toString());
-            serdao.update(ser);
-            request.getRequestDispatcher("./MostrarServiciosAdmin.do").forward(request, response);
-        }catch(Exception e){
-        
-        
-        }
+     
+        ServicioDAO serdao = new ServicioDAO();
+        serdao.create(new Servicio(null, request.getParameter("nombre"),request.getParameter("descripcion"),
+                request.getParameter("img"),Short.parseShort(request.getParameter("duracion")),"ACTIVO"));
+        request.getRequestDispatcher("./MostrarServiciosAdmin.do").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
