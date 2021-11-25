@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Cristian
+ * @author USUARIO
  */
 @Entity
 @Table(name = "Servicio")
@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Servicio.findById", query = "SELECT s FROM Servicio s WHERE s.id = :id")
     , @NamedQuery(name = "Servicio.findByNombre", query = "SELECT s FROM Servicio s WHERE s.nombre = :nombre")
     , @NamedQuery(name = "Servicio.findByDescripcion", query = "SELECT s FROM Servicio s WHERE s.descripcion = :descripcion")
-    , @NamedQuery(name = "Servicio.findByDuracion", query = "SELECT s FROM Servicio s WHERE s.duracion = :duracion")})
+    , @NamedQuery(name = "Servicio.findByDuracion", query = "SELECT s FROM Servicio s WHERE s.duracion = :duracion")
+    , @NamedQuery(name = "Servicio.findByEstado", query = "SELECT s FROM Servicio s WHERE s.estado = :estado")})
 public class Servicio implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,7 +53,7 @@ public class Servicio implements Serializable {
     private String nombre;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 200)
+    @Size(min = 1, max = 1500)
     @Column(name = "descripcion")
     private String descripcion;
     @Basic(optional = false)
@@ -65,6 +66,11 @@ public class Servicio implements Serializable {
     @NotNull
     @Column(name = "duracion")
     private short duracion;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
+    @Column(name = "estado")
+    private String estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idServicio")
     private List<DetallesServicio> detallesServicioList;
 
@@ -75,12 +81,13 @@ public class Servicio implements Serializable {
         this.id = id;
     }
 
-    public Servicio(Integer id, String nombre, String descripcion, String imgUrl, short duracion) {
+    public Servicio(Integer id, String nombre, String descripcion, String imgUrl, short duracion, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imgUrl = imgUrl;
         this.duracion = duracion;
+        this.estado = estado;
     }
 
     public Integer getId() {
@@ -123,6 +130,14 @@ public class Servicio implements Serializable {
         this.duracion = duracion;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     @XmlTransient
     public List<DetallesServicio> getDetallesServicioList() {
         return detallesServicioList;
@@ -156,5 +171,5 @@ public class Servicio implements Serializable {
     public String toString() {
         return "DTO.Servicio[ id=" + id + " ]";
     }
-    
+
 }
