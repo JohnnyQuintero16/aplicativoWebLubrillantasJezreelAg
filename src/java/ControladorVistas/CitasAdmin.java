@@ -5,10 +5,15 @@
  */
 package ControladorVistas;
 
+import DAO.AtencionServicioDAO;
 import DAO.CitaDAO;
+import DTO.AtencionServicio;
+import DTO.Cita;
 import Negocio.Jezreel;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,8 +40,34 @@ public class CitasAdmin extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         Jezreel j = new Jezreel();
+        CitaDAO c = new CitaDAO();
         
+        AtencionServicioDAO a = new AtencionServicioDAO();
+        
+        List<AtencionServicio> lis = a.read();//obtengo las atenciones
+        List<Cita> ci = c.read();
+        String citasNoAtendidas ="";
+        String citasAtendidas="";
+        for (Cita aten: ci) {
+            if(aten.getEstado().equals("NO ATENDIDO")){
+                citasNoAtendidas+=aten.getId()+",";
+                citasNoAtendidas+=aten.getDescripcion()+";";
+            }else{
+                citasAtendidas+=aten.getId()+",";
+                AtencionServicio s = a.getServicio(aten.getId());
+                citasAtendidas+=s.getDescripcion()+",";
+                citasAtendidas+=s.getIdFichaTecnica().getIdVehiculo().getPlaca()+",";
+                citasAtendidas+=aten.getEstado()+";";
+            }
+            
+        }
+        
+        
+        
+        request.getSession().setAttribute("atendida", citasAtendidas);
+        request.getSession().setAttribute("noatendida", citasNoAtendidas);
         request.getSession().setAttribute("citas", j.getCitas());
+        
 //        request.getSession().setAttribute("cita", new CitaDAO());
         request.getRequestDispatcher("jsp/citasAdmin.jsp").forward(request, response);
     }

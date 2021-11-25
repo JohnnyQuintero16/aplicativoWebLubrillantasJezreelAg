@@ -4,6 +4,9 @@
     Author     : Jarlin
 --%>
 
+<%@page import="com.google.gson.Gson"%>
+<%@page import="DTO.AtencionServicio"%>
+<%@page import="java.util.List"%>
 <%@page import="DAO.CitaDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -103,10 +106,60 @@
         </div>
 
           <%=request.getSession().getAttribute("citas").toString()%>
-
         <!-- ventana modal -->
         <!-- Modal para el botón ver servicio-->
-
+        
+        
+        <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog">
+                                 <div class="modal-content">
+                                     <div class="modal-header">
+                                           <h5 class="modal-title" id="exampleModalLabel">Detalles Servicio</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                       </div>
+                                     <div class="modal-body" id="textServ">ESTADO DEL SERVICIO:
+                                       </div>
+                                       <div class="modal-footer">
+                                 <button type="button" class="boton3" data-bs-dismiss="modal">Aceptar</button>
+                              </div>
+                   </div>\
+               </div>
+           </div>
+             
+        <script>
+         
+         let m = document.getElementsByClassName('mod');
+         let atendidas = '<%=request.getSession().getAttribute("atendida").toString()%>'.split(';');
+         let noatendidas = '<%=request.getSession().getAttribute("noatendida").toString()%>'.split(";");
+         console.log(atendidas);
+         console.log(noatendidas);
+         for (var i = 0; i < m.length; i++) {
+              m[i].addEventListener('click', function(e){
+                  let modal1 = document.getElementById('textServ');
+                  let id = e.target.id;
+                  
+                  for (var i = 0; i < atendida.length; i++) {
+                        let fila = atendida[i].split(","); 
+                        if(fila[0]===id){
+                            modal1.innerHTML = 'ESTADO DEL SERVICIO: '+fila[3]+' \nDESCRIPCION: '+fila[1]+'PARA EL VEHICULO DE PLACA'+fila[2];
+                            
+                            }
+                    }
+                    for (var i = 0; i < noatendidas.length; i++) {
+                        let fila = noatendidas[i].split(","); 
+                        if(fila[0]===id){
+                            modal1.innerHTML = 'ESTADO DEL SERVICIO: NO ATENDIDO \nDESCRIPCION: '+fila[1];
+                            }
+                    }
+                  
+                  
+                  
+              })
+            }         
+            
+        </script>
+        
+        
         <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog ">
                 <div class="modal-content">

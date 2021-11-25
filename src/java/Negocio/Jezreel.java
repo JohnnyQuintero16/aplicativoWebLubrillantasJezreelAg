@@ -375,16 +375,16 @@ public class Jezreel {
             for (Cita ci : citas) {
                 Persona p = ci.getIdPersona();
                 rta+="<tr>\n" +
-"                            <th class=\"enc\" scope=\"row\">1</th>\n" +
+"                            <th class=\"enc\" scope=\"row\">"+ci.getId()+"</th>\n" +
 "                            <td>"+p.getCedula()+"</td>\n" +
 "                            <td>"+p.getNombres()+"</td>                    \n" +
 "                            <td>"+p.getCelular()+"</td>\n" +
 "                            <td>"+p.getEmail()+"</td>\n" +
 "                            <td>"+ci.getFecha().toString()+"</td>\n" +
-"                            <td> \n" +
+"                            <td><input id=\"estado\" hidden value=\""+ci.getEstado()+"\"/> \n" +
 "\n" +
-"                                <img data-bs-toggle=\"modal\" data-bs-target=\"#modal1"+ci.getId()+"\"  src=\"img/lupa.png\" style=\"display: block; width: 30px; height: 30px; margin:auto;\"/>\n" +
-"\n" +
+"                                <img data-bs-toggle=\"modal\" id=\""+ci.getId()+"\" class=\"mod\" data-bs-target=\"#modal1\"  src=\"img/lupa.png\" style=\"display: block; width: 30px; height: 30px; margin:auto;\"/>\n" +
+"\n" +                           
 "                            </td>\n" +
 "                            <td>\n" +
 "                                <div class=\"icons-acciones\">             \n" +
@@ -417,34 +417,7 @@ public class Jezreel {
 "\n" +
 "        </section>";
         
-        for (Cita ci : citas) {
-            rta+= 
-                        "<div class=\"modal fade\" id=\"modal1"+ci.getId()+"\" tabindex=\"-1\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n" +
-                "            <div class=\"modal-dialog \">\n" +
-                "                <div class=\"modal-content\">\n" +
-                "                    <div class=\"modal-header\">\n" +
-                "                        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Detalles Servicio</h5>\n" +
-                "                        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>\n" +
-                "                    </div>\n" +
-                "                    <div class=\"modal-body\">\n" +
-                "                        Servicio "+ci.getDescripcion()+" para el vehículo con placa ";
-                if(ci.getEstado().equals("ATENDIDO")){
-                    AtencionServicioDAO a = new AtencionServicioDAO();
-                    AtencionServicio aten = a.getServicio(ci.getId());
-                    FichaTecnica f = aten.getIdFichaTecnica();
-                    Vehiculo v = f.getIdVehiculo();
-                    
-                    rta+=v.getPlaca();
-                }        
-                        rta+=" ESTADO DEL SERVICIO: "+ci.getEstado()+".\n" +
-                "                    </div>\n" +
-                "                    <div class=\"modal-footer\">\n" +
-                "                        <button type=\"button\" class=\"boton3 \" data-bs-dismiss=\"modal\">Aceptar</button>\n" +
-                "                    </div>\n" +
-                "                </div>\n" +
-                "            </div>\n" +
-                "        </div>";
-        }
+       
         
         
         return rta;
