@@ -109,13 +109,10 @@
         <!-- ventana modal -->
         <!-- Modal para el botón ver servicio-->
          <script>
-         
          let m = document.getElementsByClassName('mod');
+         let edit = document.getElementsByClassName('editt');
          let atendidas = '<%=request.getSession().getAttribute("atendida").toString()%>'.split(';');
          let noatendidas = '<%=request.getSession().getAttribute("noatendida").toString()%>'.split(";");
-         console.log(atendidas);
-         console.log(noatendidas);
-         console.log(m.length);
          for (var i = 0; i < m.length; i++) {
               m[i].addEventListener('click', function(e){
                   let modal1 = document.getElementById('textServ');
@@ -137,7 +134,17 @@
                             }
                     }
               })
-            }         
+            }  
+            for (var i = 0; i < edit.length; i++) {
+                    edit[i].addEventListener('click', function(e){
+                        
+                        let modalSi = document.getElementById('option1');
+                        modalSi.setAttribute("value", e.target.id); 
+                        let modalNo = document.getElementById('option2');
+                        modalNo.setAttribute("value", e.target.id);
+                    }
+                    
+                }
             
         </script>
         
@@ -173,12 +180,14 @@
                     </div>
                     <div class="modal-footer">
                      
-                        <form action="action">
-
-                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" data-bs-dismiss="modal" >
+                        <form action="./ConfirmaCitaAdmin.do">
+                            <input hidden name="respuesta" value="si"/>
+                            <input type="submit" class="btn-check" name="idCi"  id="option1" autocomplete="off" data-bs-dismiss="modal" >
                             <label class="botonSI" for="option1">SI</label>
-
-                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" data-bs-dismiss="modal">
+                        </form>
+                        <form action="./ConfirmaCitaAdmin.do">
+                            <input hidden name="respuesta" value="no"/>
+                            <input type="submit" class="btn-check" name="idCi"  id="option2" autocomplete="off" data-bs-dismiss="modal">
                             <label class="botonNO" for="option2">NO</label>
 
                         </form>

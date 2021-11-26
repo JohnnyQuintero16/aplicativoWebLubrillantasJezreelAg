@@ -72,6 +72,10 @@
         <servlet-name>AdminAddServicio</servlet-name>
         <servlet-class>ControladorVistas.AdminAddServicio</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ConfirmaCitaAdmin</servlet-name>
+        <servlet-class>ControladorVistas.ConfirmaCitaAdmin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion.do</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>AdminAddServicio</servlet-name>
         <url-pattern>/AdminAddServicio.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmaCitaAdmin</servlet-name>
+        <url-pattern>/ConfirmaCitaAdmin.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>5</session-timeout>
