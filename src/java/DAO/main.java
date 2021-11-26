@@ -20,7 +20,9 @@ public class main {
 
 Jezreel j = new Jezreel();
 CitaDAO c = new CitaDAO();
-        System.out.println(c.read());
+AtencionServicioDAO a = new AtencionServicioDAO();
+        
+        System.out.println(a.read());
 
 //        PersonaDAO p = new PersonaDAO();
 //        RolDAO r = new RolDAO();

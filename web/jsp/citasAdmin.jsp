@@ -136,9 +136,6 @@
                             modal1.innerHTML = 'ESTADO DEL SERVICIO: NO ATENDIDO \nDESCRIPCION: '+fila[1];
                             }
                     }
-                  
-                  
-                  
               })
             }         
             
