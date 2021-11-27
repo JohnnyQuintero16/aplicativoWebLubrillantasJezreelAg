@@ -137,8 +137,8 @@
                         <%
                             int i = 1;
                             for (Persona persona : lista) {
-                                String nombre = persona.getNombres().split(" ")[0] + " " + persona.getApellidos().split(" ")[0];
-                               
+                            if(persona.getIdRol().getId() == 2){
+                                String nombre = persona.getNombres().split(" ")[0] + " " + persona.getApellidos().split(" ")[0];   
                         %>
                         <tr>
                             <th class="enc" scope="row"><%=i%></th>
@@ -159,26 +159,14 @@
                             <td>
                                 <div class="icons-acciones">
                                     <div>
-<<<<<<< HEAD
                                         <button type="button" class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#modal2" data-bs-whatever = "<%=persona.getContraseña()%>"></button>
-=======
-                                        <button style=" border: none ;background-color: transparent" stype="button" class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#modal2" data-bs-whatever=
-                                                '{
-                                                "nombre":"<%=nombre%>",
-                                                "cedula":"<%=persona.getCedula()%>",
-                                                "email":"<%=persona.getEmail()%>",
-                                                "celular":"<%=persona.getCelular()%>",
-                                                "direccion":"<%=persona.getDirecccion()%>",
-                                                "clave":"<%=persona.getContraseña()%>"
-                                                }'></button>
->>>>>>> Test
                                     </div>
 
                                 </div>
                             </td>
                         </tr>
                         <%i++;
-                            }%>
+                            }}%>
                     </tbody>
                 </table>
             </div>
@@ -377,7 +365,6 @@
 
             }
             );
-<<<<<<< HEAD
             });
            
             var modalEditarCliente = document.getElementById('modal2');
@@ -397,23 +384,7 @@
                 modalBodyInput[5].value = e.relatedTarget.getAttribute('data-bs-whatever');//clave
 
             });
-=======
-        });
-
-        var modalEditarCliente = document.getElementById('modal2');
-        modalEditarCliente.addEventListener('show.bs.modal', (e) => {
-            var btn = e.relatedTarget;
-            recipient = btn.getAttribute('data-bs-whatever');
-            modalBodyInput = modalEditarCliente.querySelector('.modal-body').querySelectorAll('input');
-            var txt = JSON.parse(recipient);
-            modalBodyInput[0].value = txt.nombre;
-            modalBodyInput[1].value = txt.cedula;
-            modalBodyInput[2].value = txt.email;
-            modalBodyInput[3].value = txt.celular;
-            modalBodyInput[4].value = txt.direccion;
-            modalBodyInput[5].value = txt.clave;
-        })
->>>>>>> Test
+        
         </script>
 
     </body>

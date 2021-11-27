@@ -121,7 +121,7 @@
                 </div>
             </div>
             <%
-                List<Producto> productos = new ArrayList<Producto>();
+                List<Producto> productos = new ArrayList<>();
                 if ((request.getSession().getAttribute("productos")) == null) {%>
             <div class = "container-fluid" style="display: flex; align-content: center; align-items: center;justify-content: center">
                 <h1 style="color:#ff0000" align="center">En estos momentos no se encuentran Productos Registrados!</h1>

@@ -36,8 +36,7 @@ public class MisVehiculos extends HttpServlet {
         String cedula = request.getSession().getAttribute("usuario").toString();
         String vehiculos = j.mostrarVehiculosUser(cedula);
         request.getSession().setAttribute("vehiculos", vehiculos);
-//        
-        request.getRequestDispatcher("./jsp/vehiculos.jsp").forward(request, response);
+        response.sendRedirect("./jsp/vehiculos.jsp");
         
     }
 
