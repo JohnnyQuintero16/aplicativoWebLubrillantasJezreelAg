@@ -147,13 +147,19 @@
                             <td><%=persona.getCelular()%></td>
                             <td><%=persona.getEmail()%></td>
                             <td><%=persona.getDirecccion()%></td>
-                            <td> <a href="<%=basePath%>jsp/serviciosUsuAdmin.jsp"> <img src="<%=basePath%>img/lupa.png" style="display: block; width: 30px; height: 30px;            margin:auto;"/>
-                                </a></td>
+                            <td style="text-align: center"> 
+                                <form action = "<%=basePath%>/MostrarFichaTecnica.do" method="POST" >
+                                    
+                                    <input  style="display: none"type="text" class="form-control " value="<%=persona.getCedula()%>" id="exampleInputNombre" name="cedula" required>
+                                    <button style=" border: none ;background-color: transparent" type="submit" > <img src="<%=basePath%>img/lupa.png" style="display: block; width: 30px; height: 30px;            margin:auto;"/>
+                                    </button>
+                                </form>
+                            </td>
                             <!-- Acciones: editar y cancelar. -->
                             <td>
                                 <div class="icons-acciones">
                                     <div>
-                                        <button type="button" class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#modal2" data-bs-whatever=
+                                        <button style=" border: none ;background-color: transparent" stype="button" class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#modal2" data-bs-whatever=
                                                 '{
                                                 "nombre":"<%=nombre%>",
                                                 "cedula":"<%=persona.getCedula()%>",
@@ -346,42 +352,42 @@
 
 
         <script>
-            $(document).ready(function () {
+        $(document).ready(function () {
             $('#example').DataTable({
 
-            "language": {
-            "lengthMenu": "Mostrar_MENU_registros",
-            "zeroRecords": "No se encontraron resultados",
-            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "infoFiltered": "(Filtrado de un total de _MAX_ registros)",
-            "sSearch": "Buscar:",
-            "oPaginate": {
-            "sFirst": "Primero",
-            "sLast": "Último",
-            "sNext": "Siguiente",
-            "sPrevious": "Anterior"
-            },
-            "sProcessing": "Procesando...",
-            }
+                "language": {
+                    "lengthMenu": "Mostrar_MENU_registros",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "infoFiltered": "(Filtrado de un total de _MAX_ registros)",
+                    "sSearch": "Buscar:",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "sProcessing": "Procesando...",
+                }
 
             }
             );
-            });
-            
-            var modalEditarCliente = document.getElementById('modal2');
-            modalEditarCliente.addEventListener('show.bs.modal', (e) =>{
-                var btn = e.relatedTarget;
-                recipient = btn.getAttribute('data-bs-whatever');
-                 modalBodyInput = modalEditarCliente.querySelector('.modal-body').querySelectorAll('input');
-                 var txt = JSON.parse(recipient);                 
-                 modalBodyInput[0].value = txt.nombre;
-                 modalBodyInput[1].value = txt.cedula;
-                 modalBodyInput[2].value = txt.email;
-                 modalBodyInput[3].value = txt.celular;
-                 modalBodyInput[4].value = txt.direccion;
-                 modalBodyInput[5].value = txt.clave;
-            })
+        });
+
+        var modalEditarCliente = document.getElementById('modal2');
+        modalEditarCliente.addEventListener('show.bs.modal', (e) => {
+            var btn = e.relatedTarget;
+            recipient = btn.getAttribute('data-bs-whatever');
+            modalBodyInput = modalEditarCliente.querySelector('.modal-body').querySelectorAll('input');
+            var txt = JSON.parse(recipient);
+            modalBodyInput[0].value = txt.nombre;
+            modalBodyInput[1].value = txt.cedula;
+            modalBodyInput[2].value = txt.email;
+            modalBodyInput[3].value = txt.celular;
+            modalBodyInput[4].value = txt.direccion;
+            modalBodyInput[5].value = txt.clave;
+        })
         </script>
 
     </body>
