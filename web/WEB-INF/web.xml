@@ -11,7 +11,7 @@
         <url-pattern>/jsp/adminregis.jsp</url-pattern>
         <url-pattern>/jsp/citasAdmin.jsp</url-pattern>
         <url-pattern>/jsp/citasUsu.jsp</url-pattern>
-        <url-pattern>/jsp/editarCitaUsu.jsp</url-pattern>        
+        <url-pattern>/jsp/editarCitaUsu.jsp</url-pattern>
         <url-pattern>/jsp/fichaTecnica.jsp</url-pattern>
         <url-pattern>/jsp/productosAdmin.jsp</url-pattern>
         <url-pattern>/jsp/serviciosAdmin.jsp</url-pattern>
@@ -24,7 +24,7 @@
         <url-pattern>/EliminarProducto.do</url-pattern>
         <url-pattern>/EliminarServicio.do</url-pattern>
         <url-pattern>/EliminarVehiculoUser.do</url-pattern>
-        <url-pattern>/MisServiciosUsu.do</url-pattern>        
+        <url-pattern>/MisServiciosUsu.do</url-pattern>
         <url-pattern>/MisVehiculos.do</url-pattern>
         <url-pattern>/MostrarProductosAdmin.do</url-pattern>
         <url-pattern>/MostrarServiciosAdmin.do</url-pattern>
@@ -107,6 +107,10 @@
         <servlet-name>EliminarProducto</servlet-name>
         <servlet-class>ControladorVistas.EliminarProducto</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MostrarClientesAdmin</servlet-name>
+        <servlet-class>ControladorVistas.MostrarClientesAdmin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion.do</url-pattern>
@@ -182,6 +186,10 @@
     <servlet-mapping>
         <servlet-name>EliminarProducto</servlet-name>
         <url-pattern>/EliminarProducto.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarClientesAdmin</servlet-name>
+        <url-pattern>/MostrarClientesAdmin.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>5</session-timeout>

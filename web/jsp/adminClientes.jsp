@@ -138,7 +138,7 @@
                             int i = 1;
                             for (Persona persona : lista) {
                                 String nombre = persona.getNombres().split(" ")[0] + " " + persona.getApellidos().split(" ")[0];
-
+                               
                         %>
                         <tr>
                             <th class="enc" scope="row"><%=i%></th>
@@ -378,10 +378,6 @@
                 modalBodyInput[5].value = e.relatedTarget.getAttribute('data-bs-whatever');//clave
 
             });
-            function validarSesion(txt){
-                console.log(txt);
-                if(txt == "sesionInvalida") alert("SIUUUUUUUUU");
-            }
         </script>
 
     </body>

@@ -5,8 +5,6 @@
  */
 package ControladorVistas;
 
-import DAO.PersonaDAO;
-import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -16,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Cristian
+ * @author johnny
  */
-public class MisVehiculos extends HttpServlet {
+public class MostrarClientesAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,14 +29,19 @@ public class MisVehiculos extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        Jezreel j = new Jezreel();
-        String cedula = request.getSession().getAttribute("usuario").toString();
-        String vehiculos = j.mostrarVehiculosUser(cedula);
-        request.getSession().setAttribute("vehiculos", vehiculos);
-//        
-        request.getRequestDispatcher("./jsp/vehiculos.jsp").forward(request, response);
-        
+        response.setContentType("text/html;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet MostrarClientesAdmin</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet MostrarClientesAdmin at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
