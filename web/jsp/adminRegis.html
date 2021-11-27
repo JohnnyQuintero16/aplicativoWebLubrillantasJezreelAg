@@ -86,7 +86,7 @@
             
         <div class=" title">            
             <div class="titulo">
-                <h1>Cliente: </h1>   
+                <h1>Cliente: USUARIO Cliente </h1>   
                 
             </div>
 
@@ -96,44 +96,75 @@
            
         </div>
 
-        <div class="row" style="margin-bottom: 4rem;" >
-            <div class="col-12 col-sm-6 col-md-6 col-lg-3" style="padding-left: 5rem">
-                <h2 style="color: #001971;">Escoja el Servicio:</h2>
-                <img src="../img/LogoLJAG.png" alt="LogoA"  width="140px" height="120px" >
+       
+
+        <div class="row" style=" background-color: white; padding-top: 1rem; width: 100%; ">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
+              <h2 style="color: #001971;">Escoja los servicio:</h2>
+              <p>Lista de servicios: </p>
+              <table class="table" >
+                  <tr>
+                  <th>id</th>
+                  <th>Nombre del servicio</th>
+                  <th>Accion</th>
+                  </tr>
+  
+                  <tr>
+                  <td>1</td>
+                  <td>Montallantas</td>
+                  <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: green !important;">+</button></td>                        
+                  </tr>
+
+                  <tr>
+                      <td>2</td>
+                      <td>Cambio de Aceite</td>
+                      <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: green !important;">+</button></td>                        
+                      </tr>
+
+                      <tr>
+                        <td>3</td>
+                        <td>Cambio de tanque</td>
+                        <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: green !important;">+</button></td>                        
+                        </tr>
+                 
+              </table>
+             
+          </div>
+
+      
+          <div class="search-container col-12 col-sm-6 col-md-6 col-lg-6" style="padding: 1rem;"> <br>
+              <p>Servicios seleccionados: </p>
+            <table class="table" >
+              <tr>
+              <th>id</th>
+              <th>Nombre del servicio</th>
+              <th>Accion</th>
+              </tr>
+
+              <tr>
+              <td>1</td>
+              <td>Montallantas</td>
+              <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: red !important;">-</button></td>                        
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td>Cambio de Aceite</td>
+                  <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: red !important;">-</button></td>                        
+                  </tr>
+             
+          </table>
+
+           
             </div>
 
-            <div class="col-12 col-sm-6 col-md-6 col-lg-3" style="padding-top: 0.5rem; ">
-                <select style="background-color: rgb(214, 205, 205);" >
-                    <option value="0">-</option> 
-                    <option value="1" style="background-color: rgb(241, 233, 233);">Cambio de Aceite</option> 
-                    <option value="2">Cambio de Filtro de aire</option> 
-                    <option value="3" style="background-color: rgb(241, 233, 233);">Servicio de Montallantas</option> 
-                    <option value="4">Servicio de frenos</option> 
-                    
-                 </select>
-            </div>  
-            
-            <div class="col-12 col-sm-6 col-md-6 col-lg-3" style="padding-left: 5rem">
-                <h2 style="color: #001971;">Escoja el Mecánico:</h2>
-                <img src="../img/vehicle.png" alt="LogoA"  width="140px" height="120px" >
-            </div>
 
-            <div class="col-12 col-sm-6 col-md-6 col-lg-3" style="padding-top: 0.5rem; ">
-                <select style=" background-color: rgb(214, 205, 205);" >
-                    <option value="0">-</option> 
-                    <option value="1" style="background-color: rgb(241, 233, 233);">Sebastian Casadiegos</option> 
-                    <option value="2">Cristian Mendoza</option> 
-                    <option value="3" style="background-color: rgb(241, 233, 233);">Jeferson Muriel</option> 
-                    <option value="4">Jhoel Castilla</option> 
-                    
-                 </select>
-            </div>    
-            
-        </div>
+          
+      </div>
+      
 
        
 
-        <div class="row" style=" background-color: white; padding-top: 1rem; ">
+        <div class="row" style=" background-color: white; padding-top: 1rem; width: 100%;">
             <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
                 <h2 style="color: #001971;">Escoja el Producto:</h2>
                 <p>Lista de productos con los que se llevo a cabo el servicio.</p>
@@ -169,16 +200,42 @@
 
                 <p>Por favor digite el kilometraje del vehiculo:</p>
                 <input type="number" id="kilometraje" name="kilometraje" placeholder="kilometraje"  required> <br> <br>
-                <div>
-                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: rgb(235, 71, 71) !important;">Cancelar</button>
-                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: #001971  !important;">Agregar</button>
-                </div>
+               
                 
               </div>
 
 
             
-        </div>
+        </div> <br><br>
+
+        <div class="row" style="margin-bottom: 4rem; width: 100%;" >
+           
+
+            
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
+              <h2 style="color: #001971;">Escoja el Mecánico:</h2>
+              <img src="../img/vehicle.png" alt="LogoA"  width="140px" height="120px" >
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-6 col-lg-3" style="padding-top: 0.5rem; ">
+              <select style=" background-color: rgb(214, 205, 205);" >
+                  <option value="0">-</option> 
+                  <option value="1" style="background-color: rgb(241, 233, 233);">Sebastian Casadiegos</option> 
+                  <option value="2">Cristian Mendoza</option> 
+                  <option value="3" style="background-color: rgb(241, 233, 233);">Jeferson Muriel</option> 
+                  <option value="4">Jhoel Castilla</option> 
+                  
+               </select> 
+
+               <div style="margin-top: 4rem;">
+                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: rgb(235, 71, 71) !important;">Cancelar</button>
+                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: #001971  !important;">Agregar</button>
+              </div>
+          </div>   
+          
+          
+          
+      </div>
         
         
       
