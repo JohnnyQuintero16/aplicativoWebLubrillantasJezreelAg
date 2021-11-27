@@ -269,7 +269,7 @@ public class Jezreel {
                 + "                        <hr width=\"30%\">\n"
                 + "                        <h6>IVA: $ " + costo.get(1) + "</h6>\n"
                 + "                        <hr width=\"30%\">\n"
-                + "                         <h6>DESCUENTO: $ " + (costo.get(0) + costo.get(1)) * (f.getDescuento() / 100.0) + "</h6>\n"
+                + "                         <h6>DESCUENTO: $ " + (Math.round(((costo.get(0) + costo.get(1)) * (f.getDescuento() / 100.0))*100.0)/100.0) + "</h6>\n"
                 + "                        <hr width=\"30%\">\n"
                 + "                        <h6>TOTAL : $ " + ((costo.get(0) + costo.get(1)) - (costo.get(0) + costo.get(1)) * (f.getDescuento() / 100.0)) + "</h6>\n"
                 + "                        <hr width=\"30%\">\n"
@@ -339,4 +339,31 @@ public class Jezreel {
         }
         return rta;
     }
+
+    public String mostrarServiciosIndex() {
+
+        ServicioDAO da = new ServicioDAO();
+        List<Servicio> servicios = da.read();
+
+        int cantidad = 4;
+        if (servicios.size() < 4) {
+            cantidad = servicios.size();
+        }
+        String cardServicios = " ";
+        for (int j = 0; j< cantidad ; j++) {
+
+            cardServicios += "<div class=\"col-md-6  mb-5 colum\">\n"
+                    + "\n"
+                    + "                    <a href=" + '"' + servicios.get(j).getImgUrl() + '"' + " data-lightbox=\"galeriaS\" data-title=\"Nombre servicio\"> <img src=" + '"' + servicios.get(j).getImgUrl() + '"' + " alt=\"\"></a>\n"
+                    + "                    <div class=\"titulo\">" + servicios.get(j).getNombre() + " </div>\n"
+                    + "\n"
+                    + "                </div>";
+
+        }
+
+        return cardServicios;
+    }
+    
+   
+   
 }

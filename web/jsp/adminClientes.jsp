@@ -70,7 +70,7 @@
                     <span class="tooltip">Clientes</span>
                 </li>
                 <li>
-                    <a href="<%=basePath%>jsp/serviciosAdmin.jsp">
+                    <a href="<%=basePath%>MostrarServiciosAdmin.do">
                         <i class="fas fa-user-cog"></i>
                         <span class="links_name">Servicios</span>
                     </a>

@@ -61,6 +61,16 @@
                         </li>
                     </ul>
 
+                    <template id="NoSesion">
+                        <ul class="navbar-nav ml-auto m-4">
+                            <li class="nav-item">
+                                <a class="nav-link" href="<%=basePath%>jsp/iniciarsesion.jsp">INICIAR SESIÓN</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<%=basePath%>jsp/registrarse.jsp">REGISTRARSE</a>
+                            </li>
+                        </ul>
+                    </template>
 
                     <template id="SiSesion">
                         <ul class="navbar-nav ml-auto m-4">
@@ -115,7 +125,7 @@
                                     <strong color="gray"> Mis datos personales </strong></a>
                             </li>
                             <li>
-                                <a href="./vehiculos.jsp" class="nav-link link-dark">
+                                <a href="<%=basePath%>/MisVehiculos.do" class="nav-link link-dark">
                                     <svg class="bi me-2" width="16" height="16">
                                     <use xlink:href="#speedometer2" />
                                     </svg>
