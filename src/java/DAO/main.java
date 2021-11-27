@@ -8,6 +8,10 @@ package DAO;
 import DTO.Persona;
 import DTO.Rol;
 import Negocio.Jezreel;
+import Notificacion.GmailNotificacion;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import javax.mail.MessagingException;
 
 /**
  *
@@ -15,15 +19,21 @@ import Negocio.Jezreel;
  */
 public class main {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, GeneralSecurityException, MessagingException {
+//       
+//        CitaDAO c = new CitaDAO();
+//        c.actualizarCita(4, "si");
+                
+        GmailNotificacion n = new GmailNotificacion();
+            
+        n.enviarCorreo("mcris1493@gmail.com","TU SERVICIO ESTA EN PROCESO","📣 Hola desde lubrillantas Jezreel! 😁 \nHola cris queremos notificarte que tu servicio esta en proceso! pronto recibiras una notificacion cuando tu auto es listo.🔩 🔧🚗\n");
+            
+//Jezreel j = new Jezreel();
+//CitaDAO c = new CitaDAO();
+//AtencionServicioDAO a = new AtencionServicioDAO();
 //        
-
-Jezreel j = new Jezreel();
-CitaDAO c = new CitaDAO();
-AtencionServicioDAO a = new AtencionServicioDAO();
+//        System.out.println(a.read());
         
-        System.out.println(a.read());
-
 //        PersonaDAO p = new PersonaDAO();
 //        RolDAO r = new RolDAO();
 //        System.out.println("hola");

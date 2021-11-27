@@ -6,6 +6,8 @@
 package DAO;
 
 import DTO.Cita;
+import Notificacion.GmailNotificacion;
+//import Notificacion.GmailNotificacion;
 import Persistencia.CitaJpaController;
 import Persistencia.exceptions.IllegalOrphanException;
 import Persistencia.exceptions.NonexistentEntityException;
@@ -57,6 +59,25 @@ public class CitaDAO {
             Logger.getLogger(CitaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    public void actualizarCita(int id, String estado){
+    
+        Cita c = this.readCita(id);
+        if(estado.equals("no")){
+            c.setEstado("CANCELADA");
+        }else{
+            c.setEstado("EN PROCESO");
+//            try{
+//            GmailNotificacion n = new GmailNotificacion();
+//            
+//            n.enviarCorreo(c.getIdPersona().getEmail(),"TU SERVICIO ESTA EN PROCESO","📣 Hola desde lubrillantas Jezreel! 😁 \n"
+//                +
+//            "Hola "+c.getIdPersona().getNombres()+" queremos notificarte que tu servicio esta en proceso! pronto recibiras una notificacion cuando tu auto es listo.🔩 🔧🚗\n");
+//            }catch(Exception e){
+//                System.out.println("no se pudo notificar");
+//            }
+        }
+        this.update(c);
     }
     
 }

@@ -373,14 +373,14 @@ public class Jezreel {
         List<Cita> citas = c.read();
             for (Cita ci : citas) {
                 Persona p = ci.getIdPersona();
-                rta+="<tr>\n" +
+                rta+="<tr class=\""+ci.getId()+"\">\n" +
 "                            <th class=\"enc\" scope=\"row\">"+ci.getId()+"</th>\n" +
 "                            <td>"+p.getCedula()+"</td>\n" +
 "                            <td>"+p.getNombres()+"</td>                    \n" +
 "                            <td>"+p.getCelular()+"</td>\n" +
 "                            <td>"+p.getEmail()+"</td>\n" +
 "                            <td>"+ci.getFecha().toString()+"</td>\n" +
-"                            <td><input id=\"estado\" hidden value=\""+ci.getEstado()+"\"/>\n" +
+"                            <td><input   id=\"estado\" hidden value=\""+ci.getEstado()+"\"/>\n" +
 "\n" +
 "                                <img data-bs-toggle=\"modal\" id=\""+ci.getId()+"\" class=\"mod\" data-bs-target=\"#modal1\"  src=\"img/lupa.png\" style=\"display: block; width: 30px; height: 30px; margin:auto;\"/>\n" +
 "\n" +                           
@@ -388,10 +388,10 @@ public class Jezreel {
 "                            <td>\n" +
 "                                <div class=\"icons-acciones\">" +ci.getEstado()+"";
                 if(ci.getEstado().equals("NO ATENDIDO")){
-                   rta+="<a class=\"editt\" id=\""+ci.getId()+"\" data-bs-toggle=\"modal\" data-bs-target=\"#modal2\"><svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-pencil-square\" viewBox=\"0 0 16 16\">\n" +
+                   rta+="<div class=\"editt\" id=\""+ci.getId()+"\" data-bs-toggle=\"modal\" data-bs-target=\"#modal2\"><svg   xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-pencil-square\" viewBox=\"0 0 16 16\">\n" +
 "  <path d=\"M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z\"/>\n" +
 "  <path fill-rule=\"evenodd\" d=\"M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z\"/>\n" +
-"</svg></a>";
+"</svg></div>";
                 }rta+=
 "                                    </div>\n" +
 "                                </div>\n" +
@@ -410,7 +410,7 @@ public class Jezreel {
                 }else{
                        rta+="<td> \n" +
 "\n" +
-"                   <a href=\"<%=basePath%>index.jsp\"> <img src=\"img/confirmarServ.png\" style=\"display: block; width: 30px; height: 30px;            margin:auto;\"/>\n" +
+"                    <a><img  src=\"img/confirmarServ.png\" style=\"display: block; width: 30px; height: 30px;            margin:auto;\"/>\n" +
 "                                </a>\n" +
 "                            </td>\n";}
                 

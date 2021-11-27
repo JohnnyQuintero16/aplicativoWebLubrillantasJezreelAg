@@ -23,7 +23,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Lubrillantas Jezreel AG - Administración</title>
-
+        <!--smtp correo se debe cargar al inicio-->
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
         <!-- Fuente de google: Open Sans - Regular 400 -->
         <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
 
@@ -108,6 +109,7 @@
           <%=request.getSession().getAttribute("citas").toString()%>
         <!-- ventana modal -->
         <!-- Modal para el botón ver servicio-->
+        <%String correoSend = request.getSession().getAttribute("correoSend").toString()!=null?request.getSession().getAttribute("correoSend").toString():"";%>
          <script>
          let m = document.getElementsByClassName('mod');
          let edit = document.getElementsByClassName('editt');
@@ -133,18 +135,19 @@
                             modal1.innerHTML = 'ESTADO DEL SERVICIO: NO ATENDIDO \nDESCRIPCION: '+fila[1];
                             }
                     }
-              })
+              });
             }  
             for (var i = 0; i < edit.length; i++) {
+    
                     edit[i].addEventListener('click', function(e){
-                        
-                        let modalSi = document.getElementById('option1');
-                        modalSi.setAttribute("value", e.target.id); 
-                        let modalNo = document.getElementById('option2');
-                        modalNo.setAttribute("value", e.target.id);
-                    }
-                    
-                }
+                        let modalSi = document.getElementById('optiona');
+                        modalSi.value = e.currentTarget.id;
+                        let modalNo = document.getElementById('optionb');
+                        modalNo.value = e.currentTarget.id;
+                        let correo = document.getElementById('option1');
+                        correo.setAttribute("id", e.currentTarget.id);
+                    });
+                };
             
         </script>
         
@@ -180,18 +183,20 @@
                     </div>
                     <div class="modal-footer">
                      
-                        <form action="./ConfirmaCitaAdmin.do">
+                        <form name="confirmar1" action="./ConfirmaCitaAdmin.do">
                             <input hidden name="respuesta" value="si"/>
-                            <input type="submit" class="btn-check" name="idCi"  id="option1" autocomplete="off" data-bs-dismiss="modal" >
-                            <label class="botonSI" for="option1">SI</label>
+                            <input name="idCi" hidden id="optiona" value="">
+                            
+                            <input class="btn-check" id="option1" autocomplete="off" data-bs-dismiss="modal" type ="button" onclick="javascript:enviarMail();" />
+                            <label class="botonSI" >SI</label>
                         </form>
-                        <form action="./ConfirmaCitaAdmin.do">
+                        <form name="confirmar2" action="./ConfirmaCitaAdmin.do">
                             <input hidden name="respuesta" value="no"/>
-                            <input type="submit" class="btn-check" name="idCi"  id="option2" autocomplete="off" data-bs-dismiss="modal">
+                            <input hidden name="idCi" value="" id="optionb"/>
+                            <input type="submit" class="btn-check" id="option2" autocomplete="off" data-bs-dismiss="modal">
                             <label class="botonNO" for="option2">NO</label>
-
                         </form>
-
+                        
 
                     </div>
                 </div>
@@ -205,7 +210,26 @@
         <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
+        <script>
+        function enviar(){
+            alert('hola');
+            let fila = document.getElementsByClassName(e.currentTarget.id)[0];
+            let correo = fila.children[4].innerText;
+            Email.send({
+                Host: "smtp.gmail.com",
+                Username: 'lubrillantasjezreel@gmail.com',
+                Password: "rvuxyiyppggwcrvx",
+                To: correo,
+                From: 'lubrillantasjezreel@gmail.com',
+                Subject: 'Lubrillantas te envio un mensaje',
+                Body: "Hola desde Lubrillantas Jezreel",
 
+            });
+            
+            document.confirmar1.submit();
+        }
+            
+        </script>
         <script>
         $(document).ready(function () {
             $('#example').DataTable({

@@ -42,12 +42,11 @@ public class CitasAdmin extends HttpServlet {
         
         AtencionServicioDAO a = new AtencionServicioDAO();
         
-        List<AtencionServicio> lis = a.read();//obtengo las atenciones
         List<Cita> ci = c.read();
         String citasNoAtendidas ="";
         String citasAtendidas="";
         for (Cita aten: ci) {
-            if(aten.getEstado().equals("NO ATENDIDO")){
+            if(aten.getEstado().equals("NO ATENDIDO") || aten.getEstado().equals("EN PROCESO")){
                 citasNoAtendidas+=aten.getId()+",";
                 citasNoAtendidas+=aten.getDescripcion()+";";
             }else{
