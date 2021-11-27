@@ -92,6 +92,7 @@
         <servlet-class>ControladorVistas.AdminAddServicio</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>MostrarProductosAdmin</servlet-name>
         <servlet-class>ControladorVistas.MostrarProductosAdmin</servlet-class>
     </servlet>
@@ -110,6 +111,14 @@
     <servlet>
         <servlet-name>MostrarClientesAdmin</servlet-name>
         <servlet-class>ControladorVistas.MostrarClientesAdmin</servlet-class>
+=======
+        <servlet-name>MostrarFichaTecnica</servlet-name>
+        <servlet-class>ControladorVistas.MostrarFichaTecnica</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateVehiculo</servlet-name>
+        <servlet-class>ControladorVistas.UpdateVehiculo</servlet-class>
+>>>>>>> Test
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
@@ -172,6 +181,7 @@
         <url-pattern>/AdminAddServicio.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>MostrarProductosAdmin</servlet-name>
         <url-pattern>/MostrarProductosAdmin.do</url-pattern>
     </servlet-mapping>
@@ -190,6 +200,14 @@
     <servlet-mapping>
         <servlet-name>MostrarClientesAdmin</servlet-name>
         <url-pattern>/MostrarClientesAdmin.do</url-pattern>
+=======
+        <servlet-name>MostrarFichaTecnica</servlet-name>
+        <url-pattern>/MostrarFichaTecnica.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateVehiculo</servlet-name>
+        <url-pattern>/UpdateVehiculo.do</url-pattern>
+>>>>>>> Test
     </servlet-mapping>
     <session-config>
         <session-timeout>5</session-timeout>

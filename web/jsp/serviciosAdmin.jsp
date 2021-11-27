@@ -278,7 +278,7 @@
                     <div class="modal-body ">
 
 
-                        <form action="<%=basePath%>/ActualizarServicio.do" method="GET">
+                        <form action="<%=basePath%>ActualizarServicio.do" method="POST">
                             <div class="row text-center m-3">
 
                                 <div class="col-md-6">
@@ -363,7 +363,7 @@
                         ¿Estás seguro de eliminar el Servicio?
                     </div>
                     <div class="modal-footer">
-                        <form action="<%=basePath%>/EliminarServicio.do" method="GET">
+                        <form action="<%=basePath%>/EliminarServicio.do" method="POST">
 
                             <div class="mb-3" >
                               

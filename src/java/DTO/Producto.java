@@ -240,4 +240,8 @@ public class Producto implements Serializable {
         return "DTO.Producto[ codigo=" + codigo + " ]";
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Test
