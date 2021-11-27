@@ -56,14 +56,14 @@
                         </div>
                         <div class="container-name">
                             <p>
-                                <span class="links_name"><%=request.getSession().getAttribute("nameUser") %></span>
+                                <span class="links_name"><%=request.getSession().getAttribute("nameUser")%></span>
                             </p>
                         </div>
                     </div>
                 </li>
 
                 <li>
-                    <a href="<%=basePath%>jsp/citasAdmin.jsp"">
+                    <a href="<%=basePath%>jsp/citasAdmin.jsp">
                         <i class="far fa-calendar-alt"></i>
                         <span class="links_name">Agendamientos</span>
                     </a>
@@ -100,7 +100,7 @@
 
 
                 <li class="profile">
-                    <a href="#">
+                    <a href="<%=basePath%>cerrarSesion.do">
                         <i class='bx bx-log-out'></i>
                         <span class="links_name">Salir</span>
                     </a>
@@ -123,22 +123,19 @@
             </div>
 
             <%
+                List<Servicio> servicios = new ArrayList<>();
+                if ((request.getSession().getAttribute("servicios")) != null) {
 
-                List<Servicio> servicios = new ArrayList<Servicio>();
-                       if((request.getSession().getAttribute("servicios"))!=null){
-                       
-                       servicios = (List<Servicio>) (request.getSession().getAttribute("servicios"));}
-                       
-          int i=1;
+                    servicios = (List<Servicio>) (request.getSession().getAttribute("servicios"));
+                }
+
+                int i = 1;
 
             %>
-
             <div class="table-responsive table-style">
                 <table id="example" class="table table-bordered table-striped table-hover">
-
                     <thead class="table-secondary">
                         <tr>
-                            
                             <th class="enc" style="width: 6%" scope="col">No</th>
                             <th style="display: none"class="enc" style="width: 6%" scope="col">Id</th>
                             <th class="enc" style="width: 19%" scope="col">Nombre</th>
@@ -149,7 +146,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                       
+
                         <% for (Servicio s : servicios) {%>
                         <tr>
                             <th class="enc" scope="row"><%=i%></th>
@@ -367,11 +364,11 @@
                         <form action="<%=basePath%>/EliminarServicio.do" method="POST">
 
                             <div class="mb-3" >
-                              
+
                                 <input type="text" class="form-control " id="exampleInputNombre" name="id"  style="display: none ">
 
                             </div>
-                            
+
                             <button type="button" class="boton2" data-bs-dismiss="modal">Cancelar</button>
                             <button type="submit" class="boton3">Eliminar</button>
 
@@ -391,56 +388,55 @@
 
         <script>
             $(document).ready(function () {
-                $('#example').DataTable({
+            $('#example').DataTable({
 
-                    "language": {
-                        "lengthMenu": "Mostrar_MENU_registros",
-                        "zeroRecords": "No se encontraron resultados",
-                        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                        "infoFiltered": "(Filtrado de un total de _MAX_ registros)",
-                        "sSearch": "Buscar:",
-                        "oPaginate": {
-                            "sFirst": "Primero",
-                            "sLast": "Último",
-                            "sNext": "Siguiente",
-                            "sPrevious": "Anterior"
-                        },
-                        "sProcessing": "Procesando...",
-                    }
+            "language": {
+            "lengthMenu": "Mostrar_MENU_registros",
+            "zeroRecords": "No se encontraron resultados",
+            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "infoFiltered": "(Filtrado de un total de _MAX_ registros)",
+            "sSearch": "Buscar:",
+            "oPaginate": {
+            "sFirst": "Primero",
+            "sLast": "Último",
+            "sNext": "Siguiente",
+            "sPrevious": "Anterior"
+            },
+            "sProcessing": "Procesando...",
+            }
 
-                }
-                );
+            }
+            );
             });
 
             var modalEditarCliente = document.getElementById('modal2');
             modalEditarCliente.addEventListener('show.bs.modal', (e) => {
-                var btn = e.relatedTarget.valueOf().parentNode;
-                li = btn.parentNode;
-                li = li.parentNode;
-                li = li.parentNode;
-                datos = li.querySelectorAll("td");
-                modalBodyInput = modalEditarCliente.querySelector('.modal-body').querySelectorAll('input');
-                textA = modalEditarCliente.querySelector('.modal-body').querySelectorAll('textarea');
-                modalBodyInput[0].value = datos[0].innerHTML;
-                modalBodyInput[1].value = datos[1].innerHTML;
-                modalBodyInput[2].value = datos[4].innerHTML;
-                modalBodyInput[3].value = datos[3].innerHTML;
-                textA[0].value = datos[2].innerHTML;
+            var btn = e.relatedTarget.valueOf().parentNode;
+            li = btn.parentNode;
+            li = li.parentNode;
+            li = li.parentNode;
+            datos = li.querySelectorAll("td");
+            modalBodyInput = modalEditarCliente.querySelector('.modal-body').querySelectorAll('input');
+            textA = modalEditarCliente.querySelector('.modal-body').querySelectorAll('textarea');
+            modalBodyInput[0].value = datos[0].innerHTML;
+            modalBodyInput[1].value = datos[1].innerHTML;
+            modalBodyInput[2].value = datos[4].innerHTML;
+            modalBodyInput[3].value = datos[3].innerHTML;
+            textA[0].value = datos[2].innerHTML;
 
             });
 
             var modalEliminarCliente = document.getElementById('modal3');
             modalEliminarCliente.addEventListener('show.bs.modal', (e) => {
-                var btn = e.relatedTarget.valueOf().parentNode;
-                li = btn.parentNode;
-                li = li.parentNode;
-                li = li.parentNode;
-                datos = li.querySelectorAll("td");
-                modalBodyInput = modalEliminarCliente.querySelector('.modal-footer').querySelectorAll('input');
-               console.log(modalBodyInput);
-                modalBodyInput[0].value = datos[0].innerHTML;
-
+            var btn = e.relatedTarget.valueOf().parentNode;
+            li = btn.parentNode;
+            li = li.parentNode;
+            li = li.parentNode;
+            datos = li.querySelectorAll("td");
+            modalBodyInput = modalEliminarCliente.querySelector('.modal-footer').querySelectorAll('input');
+            console.log(modalBodyInput);
+            modalBodyInput[0].value = datos[0].innerHTML;
 
             });
         </script>

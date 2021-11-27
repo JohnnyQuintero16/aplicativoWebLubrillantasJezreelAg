@@ -80,14 +80,12 @@ public class IniciarSesion extends HttpServlet {
         PersonaDAO p = new PersonaDAO();
 
         try {
-            HttpSession sesion = request.getSession();
-            sesion.invalidate();
+            HttpSession sesion = request.getSession(true);
             String page = "jsp/iniciarsesion.jsp";
             String msg = "check";
             String nameUser = " ";
             if (p.existePersona(cedula) && !cedula.equals("") && !clave.equals("")) {
                 if (p.usuarioValido(cedula, clave)) {
-                    sesion = request.getSession();
                     sesion.setAttribute("usuario", cedula);
                     Persona perso = p.readPersona(cedula);
                     nameUser = perso.getNombres().split(" ")[0] + " " + perso.getApellidos().split(" ")[0];
@@ -96,17 +94,17 @@ public class IniciarSesion extends HttpServlet {
                     }else{
                         page = "index.jsp";
                     }
-                    request.getSession().setAttribute("nameUser", nameUser);
+                    sesion.setAttribute("nameUser", nameUser);
                     response.sendRedirect(page);
                 } else {
                     msg = "err"; //El usuario digito mal la clave
-                    request.getSession().setAttribute("mensaje", msg);
+                    sesion.setAttribute("mensaje", msg);
                     RequestDispatcher dispatcher = request.getRequestDispatcher(page);
                     dispatcher.forward(request, response);
                 }
             }else{
                 msg = "err"; //El usuario digito mal la clave
-                    request.getSession().setAttribute("mensaje", msg);
+                    sesion.setAttribute("mensaje", msg);
                     RequestDispatcher dispatcher = request.getRequestDispatcher(page);
                     dispatcher.forward(request, response);
             }
