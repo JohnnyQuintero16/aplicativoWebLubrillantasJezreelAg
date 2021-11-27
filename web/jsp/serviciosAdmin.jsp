@@ -100,7 +100,7 @@
 
 
                 <li class="profile">
-                    <a href="#">
+                    <a href="<%=basePath%>cerrarSesion.do">
                         <i class='bx bx-log-out'></i>
                         <span class="links_name">Salir</span>
                     </a>
@@ -123,7 +123,6 @@
             </div>
 
             <%
-
                 List<Servicio> servicios = new ArrayList<Servicio>();
                        if((request.getSession().getAttribute("servicios"))!=null){
                        
@@ -440,7 +439,6 @@
                 modalBodyInput = modalEliminarCliente.querySelector('.modal-footer').querySelectorAll('input');
                console.log(modalBodyInput);
                 modalBodyInput[0].value = datos[0].innerHTML;
-
 
             });
         </script>

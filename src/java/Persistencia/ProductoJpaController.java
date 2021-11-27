@@ -5,24 +5,21 @@
  */
 package Persistencia;
 
+import DTO.Producto;
+import Persistencia.exceptions.NonexistentEntityException;
+import Persistencia.exceptions.PreexistingEntityException;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import DTO.DetallesProducto;
-import DTO.Producto;
-import Persistencia.exceptions.IllegalOrphanException;
-import Persistencia.exceptions.NonexistentEntityException;
-import Persistencia.exceptions.PreexistingEntityException;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author Cristian
+ * @author johnny
  */
 public class ProductoJpaController implements Serializable {
 
@@ -36,29 +33,11 @@ public class ProductoJpaController implements Serializable {
     }
 
     public void create(Producto producto) throws PreexistingEntityException, Exception {
-        if (producto.getDetallesProductoList() == null) {
-            producto.setDetallesProductoList(new ArrayList<DetallesProducto>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            List<DetallesProducto> attachedDetallesProductoList = new ArrayList<DetallesProducto>();
-            for (DetallesProducto detallesProductoListDetallesProductoToAttach : producto.getDetallesProductoList()) {
-                detallesProductoListDetallesProductoToAttach = em.getReference(detallesProductoListDetallesProductoToAttach.getClass(), detallesProductoListDetallesProductoToAttach.getId());
-                attachedDetallesProductoList.add(detallesProductoListDetallesProductoToAttach);
-            }
-            producto.setDetallesProductoList(attachedDetallesProductoList);
             em.persist(producto);
-            for (DetallesProducto detallesProductoListDetallesProducto : producto.getDetallesProductoList()) {
-                Producto oldIdProductoOfDetallesProductoListDetallesProducto = detallesProductoListDetallesProducto.getIdProducto();
-                detallesProductoListDetallesProducto.setIdProducto(producto);
-                detallesProductoListDetallesProducto = em.merge(detallesProductoListDetallesProducto);
-                if (oldIdProductoOfDetallesProductoListDetallesProducto != null) {
-                    oldIdProductoOfDetallesProductoListDetallesProducto.getDetallesProductoList().remove(detallesProductoListDetallesProducto);
-                    oldIdProductoOfDetallesProductoListDetallesProducto = em.merge(oldIdProductoOfDetallesProductoListDetallesProducto);
-                }
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             if (findProducto(producto.getCodigo()) != null) {
@@ -72,45 +51,12 @@ public class ProductoJpaController implements Serializable {
         }
     }
 
-    public void edit(Producto producto) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public void edit(Producto producto) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Producto persistentProducto = em.find(Producto.class, producto.getCodigo());
-            List<DetallesProducto> detallesProductoListOld = persistentProducto.getDetallesProductoList();
-            List<DetallesProducto> detallesProductoListNew = producto.getDetallesProductoList();
-            List<String> illegalOrphanMessages = null;
-            for (DetallesProducto detallesProductoListOldDetallesProducto : detallesProductoListOld) {
-                if (!detallesProductoListNew.contains(detallesProductoListOldDetallesProducto)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain DetallesProducto " + detallesProductoListOldDetallesProducto + " since its idProducto field is not nullable.");
-                }
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            List<DetallesProducto> attachedDetallesProductoListNew = new ArrayList<DetallesProducto>();
-            for (DetallesProducto detallesProductoListNewDetallesProductoToAttach : detallesProductoListNew) {
-                detallesProductoListNewDetallesProductoToAttach = em.getReference(detallesProductoListNewDetallesProductoToAttach.getClass(), detallesProductoListNewDetallesProductoToAttach.getId());
-                attachedDetallesProductoListNew.add(detallesProductoListNewDetallesProductoToAttach);
-            }
-            detallesProductoListNew = attachedDetallesProductoListNew;
-            producto.setDetallesProductoList(detallesProductoListNew);
             producto = em.merge(producto);
-            for (DetallesProducto detallesProductoListNewDetallesProducto : detallesProductoListNew) {
-                if (!detallesProductoListOld.contains(detallesProductoListNewDetallesProducto)) {
-                    Producto oldIdProductoOfDetallesProductoListNewDetallesProducto = detallesProductoListNewDetallesProducto.getIdProducto();
-                    detallesProductoListNewDetallesProducto.setIdProducto(producto);
-                    detallesProductoListNewDetallesProducto = em.merge(detallesProductoListNewDetallesProducto);
-                    if (oldIdProductoOfDetallesProductoListNewDetallesProducto != null && !oldIdProductoOfDetallesProductoListNewDetallesProducto.equals(producto)) {
-                        oldIdProductoOfDetallesProductoListNewDetallesProducto.getDetallesProductoList().remove(detallesProductoListNewDetallesProducto);
-                        oldIdProductoOfDetallesProductoListNewDetallesProducto = em.merge(oldIdProductoOfDetallesProductoListNewDetallesProducto);
-                    }
-                }
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -128,7 +74,7 @@ public class ProductoJpaController implements Serializable {
         }
     }
 
-    public void destroy(String id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(String id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -139,17 +85,6 @@ public class ProductoJpaController implements Serializable {
                 producto.getCodigo();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The producto with id " + id + " no longer exists.", enfe);
-            }
-            List<String> illegalOrphanMessages = null;
-            List<DetallesProducto> detallesProductoListOrphanCheck = producto.getDetallesProductoList();
-            for (DetallesProducto detallesProductoListOrphanCheckDetallesProducto : detallesProductoListOrphanCheck) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Producto (" + producto + ") cannot be destroyed since the DetallesProducto " + detallesProductoListOrphanCheckDetallesProducto + " in its detallesProductoList field has a non-nullable idProducto field.");
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
             }
             em.remove(producto);
             em.getTransaction().commit();

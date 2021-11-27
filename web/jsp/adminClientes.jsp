@@ -33,7 +33,7 @@
         <link rel="stylesheet" href="<%=basePath%>css/admClientes.css" />
         <link rel="stylesheet" href="<%=basePath%>css/menuAdministrador.css" />
     </head>
-    <body onload="sesion('<%=request.getSession().getAttribute("usuario")%>')">
+    <body onload="validarSesion('<%=request.getSession().getAttribute("msg")%>')">
 
         <div class="sidebar">
             <div class="logo-details">
@@ -56,7 +56,7 @@
                 </li>
 
                 <li>
-                    <a href="<%=basePath%>jsp/citasAdmin.jsp"">
+                    <a href="<%=basePath%>jsp/citasAdmin.jsp">
                         <i class="far fa-calendar-alt"></i>
                         <span class="links_name">Agendamientos</span>
                     </a>
@@ -77,7 +77,7 @@
                     <span class="tooltip">Servicios</span>
                 </li>
                 <li>
-                    <a href="<%=basePath%>jsp/productosAdmin.jsp">
+                    <a href="<%=basePath%>MostrarProductosAdmin.do">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="links_name">Productos</span>
                     </a>
@@ -153,15 +153,7 @@
                             <td>
                                 <div class="icons-acciones">
                                     <div>
-                                        <button type="button" class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#modal2" data-bs-whatever=
-                                                '{
-                                                "nombre":"<%=nombre%>",
-                                                "cedula":"<%=persona.getCedula()%>",
-                                                "email":"<%=persona.getEmail()%>",
-                                                "celular":"<%=persona.getCelular()%>",
-                                                "direccion":"<%=persona.getDirecccion()%>",
-                                                "clave":"<%=persona.getContraseña()%>"
-                                                }'></button>
+                                        <button type="button" class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#modal2" data-bs-whatever = "<%=persona.getContraseña()%>"></button>
                                     </div>
 
                                 </div>
@@ -260,7 +252,7 @@
                               </button> -->
                     </div>
                     <div class="modal-body ">
-                        <form action="<%=basePath%>/adminUpdateCliente.do" method="GET">
+                        <form action="<%=basePath%>adminUpdateCliente.do" method="GET">
                             <div class="row text-center m-3">
                                 <div class="col-md-6">
 
@@ -279,7 +271,7 @@
 
                                     <div class="mb-3">
                                         <label for="exampleInputCed" class="form-label">Cédula</label>
-                                        <input type="number" class="form-control" id="exampleInputCed" name="cedula" required>
+                                        <input type="number" class="form-control" id="exampleInputCed" name="cedula" readonly>
                                     </div>
 
                                 </div>
@@ -368,20 +360,28 @@
             }
             );
             });
-            
+           
             var modalEditarCliente = document.getElementById('modal2');
-            modalEditarCliente.addEventListener('show.bs.modal', (e) =>{
-                var btn = e.relatedTarget;
-                recipient = btn.getAttribute('data-bs-whatever');
-                 modalBodyInput = modalEditarCliente.querySelector('.modal-body').querySelectorAll('input');
-                 var txt = JSON.parse(recipient);                 
-                 modalBodyInput[0].value = txt.nombre;
-                 modalBodyInput[1].value = txt.cedula;
-                 modalBodyInput[2].value = txt.email;
-                 modalBodyInput[3].value = txt.celular;
-                 modalBodyInput[4].value = txt.direccion;
-                 modalBodyInput[5].value = txt.clave;
-            })
+            modalEditarCliente.addEventListener('show.bs.modal', (e) => {
+                var btn = e.relatedTarget.valueOf().parentNode;
+                li = btn.parentNode;
+                li = li.parentNode;
+                li = li.parentNode;
+                datos = li.querySelectorAll("td");
+                console.log(datos);
+                modalBodyInput = modalEditarCliente.querySelector('.modal-body').querySelectorAll('input');
+                modalBodyInput[0].value = datos[0].innerHTML;//nombre
+                modalBodyInput[1].value = datos[1].innerHTML;//cc
+                modalBodyInput[2].value = datos[3].innerHTML;//email
+                modalBodyInput[3].value = datos[2].innerHTML;//celular
+                modalBodyInput[4].value = datos[4].innerHTML;//direccion
+                modalBodyInput[5].value = e.relatedTarget.getAttribute('data-bs-whatever');//clave
+
+            });
+            function validarSesion(txt){
+                console.log(txt);
+                if(txt == "sesionInvalida") alert("SIUUUUUUUUU");
+            }
         </script>
 
     </body>

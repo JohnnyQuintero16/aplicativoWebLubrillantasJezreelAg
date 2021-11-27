@@ -295,4 +295,11 @@ table {
   word-wrap: break-word;
   text-align: justify;
 }
+/* FICHA TÉCNICA */
+#cancelar{
+  background-color: #dc3545;
+}
 
+.margin-right{
+  margin-right: 50px !important;
+}

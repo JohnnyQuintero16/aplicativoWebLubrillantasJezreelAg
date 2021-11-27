@@ -286,7 +286,6 @@
 
         <script src="./js/ligthboxjs/lightbox-plus-jquery.min.js"></script>
         <script src="./js/sesion.js"></script>
-
         <!--  <script>
            lightbox.option({
              'maxWidth' : 800,
@@ -294,6 +293,7 @@
              'maxHeight' : 300,
            })
        </script> -->
+        
 
     </body>
 </html>
