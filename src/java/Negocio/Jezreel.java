@@ -321,7 +321,7 @@ public class Jezreel {
         } else {
 
             for (Vehiculo vehiculo : ve) {
-                rta = "<form action=\"MisServiciosUsu.do\"><table class=\"tabla-vehiculo\">\n"
+                rta += "<form action=\"MisServiciosUsu.do\"><table class=\"tabla-vehiculo\">\n"
                         + "                <tr>\n"
                         + "                  <th>Placa</th>\n"
                         + "                  <th>Marca</th>\n"
