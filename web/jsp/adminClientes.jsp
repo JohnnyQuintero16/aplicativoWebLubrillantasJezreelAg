@@ -56,7 +56,7 @@
                 </li>
 
                 <li>
-                    <a href="<%=basePath%>jsp/citasAdmin.jsp">
+                    <a href="<%=basePath%>CitasAdmin.do">
                         <i class="far fa-calendar-alt"></i>
                         <span class="links_name">Agendamientos</span>
                     </a>

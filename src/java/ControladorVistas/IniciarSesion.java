@@ -90,7 +90,7 @@ public class IniciarSesion extends HttpServlet {
                     Persona perso = p.readPersona(cedula);
                     nameUser = perso.getNombres().split(" ")[0] + " " + perso.getApellidos().split(" ")[0];
                     if(perso.getIdRol().getId() == 1){
-                        page = "jsp/adminClientes.jsp";
+                        page = "jsp/adminregis.jsp";
                     }else{
                         page = "index.jsp";
                     }
