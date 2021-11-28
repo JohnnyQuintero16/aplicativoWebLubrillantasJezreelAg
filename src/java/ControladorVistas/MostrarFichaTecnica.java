@@ -48,7 +48,7 @@ public class MostrarFichaTecnica extends HttpServlet {
         Persona p = pdao.readPersona(cedula);
         Jezreel je = new Jezreel();
         request.getSession().setAttribute("tCliente",je.tablaDatosClienteFicha(cedula));
-         request.getSession().setAttribute("nombreCliente",(p.getNombres() + " " + p.getApellidos()));
+        request.getSession().setAttribute("nombreCliente",(p.getNombres() + " " + p.getApellidos()));
         request.getSession().setAttribute("tVehiculo",je.tableDatosVehiculosFicha(cedula));
         request.getSession().setAttribute("tAtencion",je.atencionServiciosFicha(cedula));
         request.getSession().setAttribute("selectMarca",je.selectMarca());

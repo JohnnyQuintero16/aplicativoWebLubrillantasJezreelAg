@@ -122,7 +122,7 @@ public class Jezreel {
 
             }
             Collections.sort(servi);
-            System.out.println("SERVICIOS " + servi.toString());
+          
             rta = vistaMisServicios(servi);
 
         } else {
@@ -139,7 +139,7 @@ public class Jezreel {
         FichaTecnica ficha = fida.findFichaVehiculo(placa);
         atendao.findServiciosFicha(ficha.getId(), servi);
         Collections.sort(servi);
-        System.out.println("SERVICIOS " + servi.toString());
+    
         rta = vistaMisServicios(servi);
         return rta;
     }
@@ -157,7 +157,7 @@ public class Jezreel {
         for (AtencionServicio a : servi) {
 
             List<DetallesServicio> dser = sdao.findDetalleServicioAtencion(a.getId());
-            System.out.println("SOY LLOS SER SERVICIOS :" + dser.toString());
+           
             List<DetallesProducto> dpro = pdao.findDetalleProductoAtencion(a.getId());
             Persona mecanico = a.getIdPersona();
             Factura factura = a.getIdFactura();
