@@ -30,6 +30,8 @@
         <url-pattern>/MostrarServiciosAdmin.do</url-pattern>
         <url-pattern>/adminAddCliente.do</url-pattern>
         <url-pattern>/adminUpdateCliente.do</url-pattern>
+        <url-pattern>/ConfirmaServicioAdmin.do</url-pattern>
+        <url-pattern>/ConfirmaAsistenciaAdmin.do</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>IniciarSesion</servlet-name>
@@ -96,7 +98,7 @@
         <servlet-class>ControladorVistas.AdminAddServicio</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ConfirmaCitaAdmin</servlet-name>
+        <servlet-name>ConfirmaAsistenciaAdmin</servlet-name>
         <servlet-class>ControladorVistas.ConfirmaAsistenciaAdmin</servlet-class>
     </servlet>
     <servlet>
@@ -196,8 +198,8 @@
         <url-pattern>/AdminAddServicio.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ConfirmaCitaAdmin</servlet-name>
-        <url-pattern>/ConfirmaCitaAdmin.do</url-pattern>
+        <servlet-name>ConfirmaAsistenciaAdmin</servlet-name>
+        <url-pattern>/ConfirmaAsistenciaAdmin.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ConfirmaServicioAdmin</servlet-name>
@@ -232,6 +234,6 @@
         <url-pattern>/CalificarServicio.do</url-pattern>
     </servlet-mapping>
     <session-config>
-        <session-timeout>5</session-timeout>
+        <session-timeout>15</session-timeout>
     </session-config>
 </web-app>

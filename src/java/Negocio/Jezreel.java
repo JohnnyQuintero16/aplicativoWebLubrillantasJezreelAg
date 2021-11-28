@@ -400,7 +400,7 @@ public class Jezreel {
                                 +            
                                             "</td>\n";
                                     }
-                                    if(ci.getEstado().equals("NO ATENDIDO")){
+                                    if(ci.getEstado().equals("NO ATENDIDO") || ci.getEstado().equals("EN PROCESO")){
                                         rta+="<td> \n"+
                                               "<form name=\"confirma\" action=\"ConfirmaServicioAdmin.do\">"
                                             +"<input name=\"idCitaComfirm\" hidden value=\""+ci.getId()+"\"/>"+
