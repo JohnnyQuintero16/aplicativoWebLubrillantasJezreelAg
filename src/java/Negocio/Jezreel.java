@@ -326,33 +326,6 @@ public class Jezreel {
         } else {
 
             for (Vehiculo vehiculo : ve) {
-<<<<<<< HEAD
-                rta += "<form action=\"MisServiciosUsu.do\"><table class=\"tabla-vehiculo\">\n" +
-                        "                <tr>\n" +
-                        "                  <th>Placa</th>\n" +
-                        "                  <th>Marca</th>\n" +
-                        "                  <th>Kilometraje</th>\n" +
-                        "                </tr>\n" +
-                        "                <tr>\n" +
-                        "                  <input name=\"placa\" hidden value=\""+vehiculo.getPlaca()+"\" ><td>"+vehiculo.getPlaca()+"</td>\n" +
-                        "                  <td>"+vehiculo.getIdMarca().getNombre()+"</td>\n" +
-                        "                  <td>"+vehiculo.getKilometraje()+"</td>\n" +
-                        "                </tr>\n" +
-                        "               \n" +
-                        "                <tr>\n" +
-                        "                    <th>Modelo</th>\n" +
-                        "                    <th>Cilindraje</th>\n" +
-                        "                    <th>Opciones</th>\n" +
-                        "                  </tr>\n" +
-                        "\n" +
-                        "                  <tr>\n" +
-                        "                    <td>"+vehiculo.getModelo()+"</td>\n" +
-                        "                    <td>"+vehiculo.getCilindraje()+"</td>\n" +
-                        "                    <td><button class=\"btn btn-primary\" type=\"submit\">Ver historial</button></td>\n" +
-                        "                  </tr>\n" +
-                        "                  \n" +
-                        "              </table></form> <br><br>";
-=======
                 rta += "<form action=\"MisServiciosUsu.do\"><table class=\"tabla-vehiculo\">\n"
                         + "                <tr>\n"
                         + "                  <th>Placa</th>\n"
@@ -378,7 +351,6 @@ public class Jezreel {
                         + "                  </tr>\n"
                         + "                  \n"
                         + "              </table></form> <br><br>";
->>>>>>> Test
             }
 
         }
