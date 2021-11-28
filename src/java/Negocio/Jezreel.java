@@ -391,7 +391,7 @@ public class Jezreel {
                                     if(ci.getEstado().equals("ATENDIDO")){
                 
                                         rta+="<td class=\"text-center\"> \n"
-                                +            "<form>"//AQUI PONER LA PAGINA DE FICHA TECNICA
+                                +            "<form action=\"MostrarFichaTecnica.do\">"//AQUI PONER LA PAGINA DE FICHA TECNICA
                                             +"<input name=\"idCita\" hidden value=\""+ci.getId()+"\"/>"
                                     +        "<button class=\"btn btn-primary\" type=\"submit\" > Ver</button>"
                                 +           "</form>\n" +

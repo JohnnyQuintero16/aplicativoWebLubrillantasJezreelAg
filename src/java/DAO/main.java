@@ -8,13 +8,11 @@ package DAO;
 import DTO.Persona;
 import DTO.Rol;
 import Negocio.Jezreel;
-import Notificacion.GmailNotificacion;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import javax.mail.MessagingException;
 
 /**
  *
@@ -22,7 +20,7 @@ import javax.mail.MessagingException;
  */
 public class main {
     
-    public static void main(String[] args) throws IOException, GeneralSecurityException, MessagingException {
+    public static void main(String[] args) {
 //       
         CitaDAO c = new CitaDAO();
         Date d = c.readCita(3).getFecha();

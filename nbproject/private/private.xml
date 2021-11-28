@@ -2,7 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
         <group>
             <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/ConfirmaCitaAdmin.java</file>
             <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/jsp/citasAdmin.jsp</file>
@@ -11,29 +10,24 @@
             <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
             <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/DAO/CitaDAO.java</file>
             <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/conf/persistence.xml</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/fichaTecnica.jsp</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MisVehiculos.java</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/MarcaDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/js/menu.js</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/TipoDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/img/header_2.jpeg</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/RolDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/css/serviciosUsu.css</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/MarcaDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/js/menu.js</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/TipoDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/CitaDAO.java</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarServiciosAdmin.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/ProductoJpaController.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/VehiculoJpaController.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/exceptions/PreexistingEntityException.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/ServicioDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Modelo/Persona.java</file>
-
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MisVehiculos.java</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/PersonaJpaController.java</file>
@@ -42,7 +36,6 @@
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/adminAddCliente.java</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/DTO/AtencionServicio.java</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/adminUpdateCliente.java</file>
-
             <file>file:/D:/Lubrillantas%20v1/aplicativoWebLubrillantasJezreelAg/web/jsp/productosAdmin.jsp</file>
             <file>file:/D:/Lubrillantas%20v1/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/Registro.java</file>
             <file>file:/D:/Lubrillantas%20v1/aplicativoWebLubrillantasJezreelAg/web/js/formulario.js</file>
@@ -59,17 +52,13 @@
             <file>file:/C:/Users/Jarlin/Desktop/aplicativoWebLubrillantasJezreelAg/web/jsp/serviciosUsu.jsp</file>
             <file>file:/C:/Users/Jarlin/Desktop/aplicativoWebLubrillantasJezreelAg/web/css/productosAdmin.css</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MisServiciosUsu.java</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/adminUpdateCliente.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MisServiciosUsu.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarFichaTecnica.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarServiciosAdmin.java</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/editarCitaUsu.jsp</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/ProductoJpaController.java</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/serviciosUsu.jsp</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/Registro.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/js/formulario.js</file>
@@ -84,31 +73,24 @@
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/adminAddCliente.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/serviciosAdmin.jsp</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/adminClientes.jsp</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DTO/Producto.java</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/servicios.jsp</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/DetallesProductoDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DTO/CalificacionPK.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/VehiculoDAO.java</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/DetallesServicioJpaController.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/RolJpaController.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/exceptions/IllegalOrphanException.java</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/img/facebook.png</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/img/close.png</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/DetallesServicioDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/ServicioJpaController.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/html/iniciarsesion.jsp</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/DetallesServicioDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/ServicioJpaController.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/css/index.css</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/WEB-INF/web.xml</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/html/servicios.jsp</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/html/registrarse.jsp</file>
@@ -117,20 +99,16 @@
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DTO/Tipo.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/img/home.jpeg</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/FacturaDAO.java</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/img/LogoLJAG.png</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/html/nosotros.jsp</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DTO/DetallesProducto.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/ProductoDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/CitaJpaController.java</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/exceptions/NonexistentEntityException.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/IniciarSesion.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DTO/AtencionServicio.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/html/productos.jsp</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DTO/Producto.java</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/cerrarSesion.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/productos.jsp</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/main.java</file>
@@ -146,16 +124,13 @@
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarServicios.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DTO/AtencionServicio.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/IniciarSesion.java</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/conf/persistence.xml</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/CalificacionDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/AtencionServicioJpaController.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DTO/Servicio.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarProductos.java</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/PersonaDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/AtencionServicioDAO.java</file>
-
             <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/css/servicios.css</file>
             <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/RolJpaController.java</file>
             <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/FacturaJpaController.java</file>
@@ -169,12 +144,10 @@
             <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/DTO/AtencionServicio.java</file>
             <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/Registro.java</file>
             <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/DAO/main.java</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/FichaTecnicaDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/AtencionServicioDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DTO/DetallesServicio.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/web/jsp/registrarse.jsp</file>
-
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/EliminarServicio.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DAO/CalificacionDAO.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/DTO/Servicio.java</file>
@@ -183,7 +156,14 @@
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/UpdateVehiculo.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/EliminarVehiculoUser.java</file>
             <file>file:/E:/2021-2/API/PROYECTO/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/AdminAddServicio.java</file>
-
+        </group>
+        <group>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/jsp/citasAdmin.jsp</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/DTO/Cita.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/DAO/CitaDAO.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/conf/persistence.xml</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/DAO/main.java</file>
         </group>
     </open-files>
 </project-private>
