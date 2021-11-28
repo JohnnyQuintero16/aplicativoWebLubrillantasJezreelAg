@@ -4,7 +4,6 @@
     Author     : Jarlin
 --%>
 
-<%@page import="com.google.gson.Gson"%>
 <%@page import="DTO.AtencionServicio"%>
 <%@page import="java.util.List"%>
 <%@page import="DAO.CitaDAO"%>
@@ -213,7 +212,7 @@
                             <input name="idCi" hidden id="optiona" value="">
                             
                             <input class="btn-check" id="option1" autocomplete="off" data-bs-dismiss="modal" type ="button" onclick="javascript:enviarMail('modal');" />
-                            <label class="botonSI" for="option1">SIi</label>
+                            <label class="botonSI" for="option1">Si</label>
                         </form>
                         <form name="confirmar2" action="./ConfirmaAsistenciaAdmin.do">
                             <input hidden name="respuesta" value="no"/>
