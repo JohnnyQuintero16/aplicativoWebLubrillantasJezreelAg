@@ -6,7 +6,6 @@
 package ControladorVistas;
 
 import DAO.CitaDAO;
-import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Cristian
  */
-public class ConfirmaCitaAdmin extends HttpServlet {
+public class ConfirmaServicioAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,31 +31,12 @@ public class ConfirmaCitaAdmin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet NewServlet</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>la respuesta fue " + request.getParameter("respuesta") + "</h1>");
-//            out.println("<h2>la respuesta fue " + request.getParameter("idCi") + "</h2>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
-            /* TODO output your page here. You may use following sample code. */
-            String rta = request.getParameter("respuesta");
-            int id = Integer.parseInt(request.getParameter("idCi"));
-            
-            CitaDAO c = new CitaDAO();
-            c.actualizarCita(id, rta);
-            String correo = c.readCita(id).getIdPersona().getEmail();
-            if(rta.equals("si")){
-                request.getSession().setAttribute("correoSend", correo);
-            }
-            response.sendRedirect("/citasAdmin.do");
-            
+        
+        String id = request.getParameter("idCitaComfirm");
+        
+        request.getSession().setAttribute("idCitaServicio", id);//GUARDO EL ID DE LA CITA PARA QUE LE AGREGUEN EL SERVICIO
+        //
+        //AQUI REDIRECCIONO A LA PAGINA DE AGREGAR LA ATENCION AL SERVICIO
         
     }
 

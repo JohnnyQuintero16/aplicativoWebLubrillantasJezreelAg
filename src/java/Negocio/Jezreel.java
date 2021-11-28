@@ -31,10 +31,13 @@ import DTO.Producto;
 import DTO.Servicio;
 import DTO.Tipo;
 import DTO.Vehiculo;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  *
@@ -345,95 +348,71 @@ public class Jezreel {
     public String getCitas(){
     
         CitaDAO c = new CitaDAO();
-        String rta ="<section class=\"home-section\">\n" +
-"            <div class=\"title\">            \n" +
-"                <div class=\"titulo\">\n" +
-"                    <h1>Lista de Agendamientos</h1>\n" +
-"                </div>\n" +
-"\n" +
-"\n" +
-"            </div>\n" +
-"\n" +
-"            <div class=\"table-responsive table-style\">\n" +
-"                <table id=\"example\" class=\"table table-bordered table-striped table-hover\">\n" +
-"                    <thead class=\"table-secondary\">\n" +
-"                        <tr>\n" +
-"                            <th class=\"enc\" scope=\"col\">No</th>\n" +
-"                            <th class=\"enc\" scope=\"col\">Cédula</th>\n" +
-"                            <th class=\"enc\" scope=\"col\">Nombre</th>\n" +
-"                            <th class=\"enc\" scope=\"col\">Celular</th>\n" +
-"                            <th class=\"enc\" scope=\"col\">Correo Electrónico</th>\n" +
-"                            <th class=\"enc\" scope=\"col\">Fecha/Hora</th>\n" +
-"                            <th class=\"enc\" scope=\"col\">Servicio</th>\n" +
-"                            <th class=\"enc\" scope=\"col\">Asistencia</th>\n" +
-"                            <th class=\"enc\" scope=\"col\">Confirmación</th>\n" +
-"                        </tr>\n" +
-"                    </thead>\n" +
-"                    <tbody>";
+        String rta ="";
+        
         List<Cita> citas = c.read();
             for (Cita ci : citas) {
                 Persona p = ci.getIdPersona();
+                
                 rta+="<tr class=\""+ci.getId()+"\">\n" +
 "                            <th class=\"enc\" scope=\"row\">"+ci.getId()+"</th>\n" +
 "                            <td>"+p.getCedula()+"</td>\n" +
 "                            <td>"+p.getNombres()+"</td>                    \n" +
 "                            <td>"+p.getCelular()+"</td>\n" +
 "                            <td>"+p.getEmail()+"</td>\n" +
-"                            <td>"+ci.getFecha().toString()+"</td>\n" +
+"                            <td>"+this.getFecha(ci.getFecha(),ci.getHora())+"</td>\n" +
 "                            <td><input   id=\"estado\" hidden value=\""+ci.getEstado()+"\"/>\n" +
-"\n" +
-"                                <img data-bs-toggle=\"modal\" id=\""+ci.getId()+"\" class=\"mod\" data-bs-target=\"#modal1\"  src=\"img/lupa.png\" style=\"display: block; width: 30px; height: 30px; margin:auto;\"/>\n" +
-"\n" +                           
-"                            </td>\n" +
+                                  "\n<img data-bs-toggle=\"modal\" id=\""+ci.getId()+"\" class=\"mod\" data-bs-target=\"#modal1\"  src=\"img/lupa.png\" style=\"display: block; width: 30px; height: 30px; margin:auto;\"/>\n" +
+"\n" +                       "</td>\n" +
 "                            <td>\n" +
-"                                <div class=\"icons-acciones\">" +ci.getEstado()+"";
-                if(ci.getEstado().equals("NO ATENDIDO")){
-                   rta+="<div class=\"editt\" id=\""+ci.getId()+"\" data-bs-toggle=\"modal\" data-bs-target=\"#modal2\"><svg   xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-pencil-square\" viewBox=\"0 0 16 16\">\n" +
-"  <path d=\"M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z\"/>\n" +
-"  <path fill-rule=\"evenodd\" d=\"M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z\"/>\n" +
-"</svg></div>";
-                }rta+=
-"                                    </div>\n" +
+"                               <div class=\"icons-acciones\">"+ci.getEstado()+"";
+                                    if(ci.getEstado().equals("NO ATENDIDO")){
+                                        rta+="<div class=\"editt\" id=\""+ci.getId()+"\" data-bs-toggle=\"modal\" data-bs-target=\"#modal2\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-pencil-square\" viewBox=\"0 0 16 16\">\n" +
+"                                               <path d=\"M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z\"/>\n" +
+"                                                <path fill-rule=\"evenodd\" d=\"M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z\"/>\n" +
+"                                                   </svg>"
+                                           +"</div>";
+                                        }
+                                    rta+=
 "                                </div>\n" +
-"                            </td>\n" +
-"\n" +
-"\n";
-                if(ci.getEstado().equals("ATENDIDO")){
-                
-                    rta+="<td class=\"text-center\"> \n" +
-"\n" +
-"     <form>"
-                            + "<input name=\"idCita\" hidden value=\""+ci.getId()+"\"/>"
-                            + "<button class=\"btn btn-primary\" type=\"submit\" > Ver\n" +
-"                                </button></form>\n" +
 "                            </td>\n";
-                }else{
-                       rta+="<td> \n" +
-"\n" +
-"                    <a><img  src=\"img/confirmarServ.png\" style=\"display: block; width: 30px; height: 30px;            margin:auto;\"/>\n" +
-"                                </a>\n" +
-"                            </td>\n";}
+                                    if(ci.getEstado().equals("ATENDIDO")){
                 
-rta+="\n" +
-"\n" +
-"                        </tr>";
-            }
-        rta+="</tbody>\n" +
-"\n" +
-"                </table>\n" +
-"\n" +
-"                <!-- <div class=\"boton\">\n" +
-"                    <button type=\"button\" class=\"btn btn-primary btn-lg\">Añadir producto</button>\n" +
-"                </div> -->\n" +
-"                <!-- Cierre div tabla -->\n" +
-"            </div>\n" +
-"\n" +
-"        </section>";
-        
-       
-        
-        
+                                        rta+="<td class=\"text-center\"> \n"
+                                +            "<form>"//AQUI PONER LA PAGINA DE FICHA TECNICA
+                                            +"<input name=\"idCita\" hidden value=\""+ci.getId()+"\"/>"
+                                    +        "<button class=\"btn btn-primary\" type=\"submit\" > Ver</button>"
+                                +           "</form>\n" +
+                                            "</td>\n";
+                                    }
+                                    if(ci.getEstado().equals("CANCELADA")){
+                                        rta+="<td class=\"text-center\">CITA CANCELADA\n"
+                                +            
+                                            "</td>\n";
+                                    }
+                                    if(ci.getEstado().equals("NO ATENDIDO")){
+                                        rta+="<td> \n"+
+                                              "<form name=\"confirma\" action=\"ConfirmaServicioAdmin.do\">"
+                                            +"<input name=\"idCitaComfirm\" hidden value=\""+ci.getId()+"\"/>"+
+                     "                           <img onclick=\"javascript:enviarMail('"+ci.getIdPersona().getEmail()+"');\" src=\"img/confirmarServ.png\" style=\"display: block; width: 30px; height: 30px; margin:auto;\"/>\n" +
+                     "                           \n" +
+                                             "</form>\n" +
+                 "                           </td>\n";
+                                    }
+                
+                              rta+="</tr>";
+            }    
         return rta;
+    }
+    
+    public String getFecha(Date fecha, Date hora){
+            SimpleDateFormat formateador = new SimpleDateFormat(
+                 "dd '/' MM '/' yyyy", new Locale("es_ES"));
+            SimpleDateFormat formateador2 = new SimpleDateFormat(
+                 "hh:mm", new Locale("es_ES"));
+            String fechad = formateador.format(fecha);
+            String horas = formateador2.format(hora);
+        return "Dia: "+fechad.replace(" ", "")+"\nHora: "+horas;
     }
 
     public String mostrarServiciosIndex() {

@@ -11,6 +11,9 @@ import Negocio.Jezreel;
 import Notificacion.GmailNotificacion;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import javax.mail.MessagingException;
 
 /**
@@ -21,12 +24,22 @@ public class main {
     
     public static void main(String[] args) throws IOException, GeneralSecurityException, MessagingException {
 //       
-//        CitaDAO c = new CitaDAO();
+        CitaDAO c = new CitaDAO();
+        Date d = c.readCita(3).getFecha();
+        Date t = c.readCita(3).getHora();
+        SimpleDateFormat formateador = new SimpleDateFormat(
+                 "dd '/' MM '/' yyyy", new Locale("es_ES"));
+        SimpleDateFormat formateador2 = new SimpleDateFormat(
+                 "hh:mm", new Locale("es_ES"));
+            String fechad = formateador.format(d);
+            String hora = formateador2.format(t);
+        
+        System.out.println(fechad+" Hora: "+hora);
 //        c.actualizarCita(4, "si");
                 
-        GmailNotificacion n = new GmailNotificacion();
-            
-        n.enviarCorreo("mcris1493@gmail.com","TU SERVICIO ESTA EN PROCESO","📣 Hola desde lubrillantas Jezreel! 😁 \nHola cris queremos notificarte que tu servicio esta en proceso! pronto recibiras una notificacion cuando tu auto es listo.🔩 🔧🚗\n");
+//        GmailNotificacion n = new GmailNotificacion();
+//            
+//        n.enviarCorreo("mcris1493@gmail.com","TU SERVICIO ESTA EN PROCESO","📣 Hola desde lubrillantas Jezreel! 😁 \nHola cris queremos notificarte que tu servicio esta en proceso! pronto recibiras una notificacion cuando tu auto es listo.🔩 🔧🚗\n");
             
 //Jezreel j = new Jezreel();
 //CitaDAO c = new CitaDAO();

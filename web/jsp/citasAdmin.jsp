@@ -105,16 +105,45 @@
                 </li>
             </ul>
         </div>
-
-          <%=request.getSession().getAttribute("citas").toString()%>
+        <section class="home-section">
+            <div class="title">       
+                <div class="titulo">
+                    <h1>Lista de Agendamientos</h1>
+                </div>
+            </div>
+           <div class="table-responsive table-style">
+                <table id="example" class="table table-bordered table-striped table-hover">
+                    
+                        <thead class="table-secondary">
+                            <tr>
+                                <th class="enc" scope="col">No</th>
+                                <th class="enc" scope="col">Cédula</th>
+                                <th class="enc" scope="col">Nombre</th>
+                                <th class="enc" scope="col">Celular</th>
+                                <th class="enc" scope="col">Correo Electrónico</th>
+                                <th class="enc" scope="col">Fecha/Hora</th>
+                                <th class="enc" scope="col">Servicio</th>
+                                <th class="enc" scope="col">Asistencia</th>
+                                <th class="enc" scope="col">Confirmación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <%=request.getSession().getAttribute("citas").toString()%>
+                        </tbody>
+                </table>
+           </div>
+              <!-- Cierre div tabla -->
+         </section>
+        
+          
         <!-- ventana modal -->
         <!-- Modal para el botón ver servicio-->
-        <%String correoSend = request.getSession().getAttribute("correoSend").toString()!=null?request.getSession().getAttribute("correoSend").toString():"";%>
          <script>
          let m = document.getElementsByClassName('mod');
          let edit = document.getElementsByClassName('editt');
          let atendidas = '<%=request.getSession().getAttribute("atendida").toString()%>'.split(';');
          let noatendidas = '<%=request.getSession().getAttribute("noatendida").toString()%>'.split(";");
+         
          for (var i = 0; i < m.length; i++) {
               m[i].addEventListener('click', function(e){
                   let modal1 = document.getElementById('textServ');
@@ -145,10 +174,9 @@
                         let modalNo = document.getElementById('optionb');
                         modalNo.value = e.currentTarget.id;
                         let correo = document.getElementById('option1');
-                        correo.setAttribute("id", e.currentTarget.id);
+                        correo.setAttribute("value", e.currentTarget.id);
                     });
                 };
-            
         </script>
         
         <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -163,12 +191,9 @@
                                        <div class="modal-footer">
                                  <button type="button" class="boton3" data-bs-dismiss="modal">Aceptar</button>
                               </div>
-                   </div>\
+                   </div>
                </div>
-           </div>
-             
-       
-        
+        </div>
         
         <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog ">
@@ -183,14 +208,14 @@
                     </div>
                     <div class="modal-footer">
                      
-                        <form name="confirmar1" action="./ConfirmaCitaAdmin.do">
+                        <form name="confirmar1" action="./ConfirmaAsistenciaAdmin.do">
                             <input hidden name="respuesta" value="si"/>
                             <input name="idCi" hidden id="optiona" value="">
                             
-                            <input class="btn-check" id="option1" autocomplete="off" data-bs-dismiss="modal" type ="button" onclick="javascript:enviarMail();" />
-                            <label class="botonSI" >SI</label>
+                            <input class="btn-check" id="option1" autocomplete="off" data-bs-dismiss="modal" type ="button" onclick="javascript:enviarMail('modal');" />
+                            <label class="botonSI" for="option1">SIi</label>
                         </form>
-                        <form name="confirmar2" action="./ConfirmaCitaAdmin.do">
+                        <form name="confirmar2" action="./ConfirmaAsistenciaAdmin.do">
                             <input hidden name="respuesta" value="no"/>
                             <input hidden name="idCi" value="" id="optionb"/>
                             <input type="submit" class="btn-check" id="option2" autocomplete="off" data-bs-dismiss="modal">
@@ -210,30 +235,40 @@
         <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
+        
         <script>
-        function enviar(){
-            alert('hola');
-            let fila = document.getElementsByClassName(e.currentTarget.id)[0];
-            let correo = fila.children[4].innerText;
+        function enviarMail(llamado){
+            let correo="";
+            if(llamado==='modal'){
+                let fila = document.getElementsByClassName(document.getElementById('option1').value)[0];
+                correo = fila.children[4].innerText;
+            }
+            else{
+                correo = llamado;
+            }
             Email.send({
                 Host: "smtp.gmail.com",
                 Username: 'lubrillantasjezreel@gmail.com',
                 Password: "rvuxyiyppggwcrvx",
                 To: correo,
                 From: 'lubrillantasjezreel@gmail.com',
-                Subject: 'Lubrillantas te envio un mensaje',
-                Body: "Hola desde Lubrillantas Jezreel",
-
+                Subject: 'SERVICIO EN PROCESO',
+                Body: "Hola desde Lubrillantas Jezreel queremos avisarte que tu servicio esta en proceso\n\n\
+                       pronto recibiras un correo cuando tu servicio este listo!",
+                       
             });
-            
-            document.confirmar1.submit();
+            if(llamado==='modal')
+                document.confirmar1.submit();
+            else
+                document.confirma.submit();
         }
             
         </script>
         <script>
         $(document).ready(function () {
+            
             $('#example').DataTable({
-
+                "order": [[5, "asc"]],
                 "language": {
                     "lengthMenu": "Mostrar_MENU_registros",
                     "zeroRecords": "No se encontraron resultados",
@@ -248,11 +283,10 @@
                         "sPrevious": "Anterior"
                     },
                     "sProcessing": "Procesando...",
+                    
                 }
-
-            }
-            );
+            })
         });
         </script>
-
+        
     </body>
