@@ -6,7 +6,6 @@
 package DAO;
 
 import DTO.Cita;
-import Notificacion.GmailNotificacion;
 //import Notificacion.GmailNotificacion;
 import Persistencia.CitaJpaController;
 import Persistencia.exceptions.IllegalOrphanException;
