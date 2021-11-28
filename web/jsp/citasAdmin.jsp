@@ -243,7 +243,8 @@
                 correo = fila.children[4].innerText;
             }
             else{
-                correo = llamado;
+                arr = llamado.split(",");
+                correo = arr[0];
             }
             Email.send({
                 Host: "smtp.gmail.com",
@@ -256,10 +257,12 @@
                        pronto recibiras un correo cuando tu servicio este listo!",
                        
             });
-            if(llamado==='modal')
+            if(llamado==='modal'){
                 document.confirmar1.submit();
-            else
-                document.confirma.submit();
+            }
+            else{
+                document.getElementById('confirma'+arr[1]).submit();
+            }
         }
             
         </script>

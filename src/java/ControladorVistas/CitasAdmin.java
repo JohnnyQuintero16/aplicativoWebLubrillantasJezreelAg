@@ -60,10 +60,12 @@ public class CitasAdmin extends HttpServlet {
         }
         
         
+        request.getSession().removeAttribute("citas");
+        request.getSession().removeAttribute("atendida");
+        request.getSession().removeAttribute("noatendida");
         
         request.getSession().setAttribute("atendida", citasAtendidas);
         request.getSession().setAttribute("noatendida", citasNoAtendidas);
-        request.getSession().removeAttribute("citas");
         request.getSession().setAttribute("citas", j.getCitas());
         
         
