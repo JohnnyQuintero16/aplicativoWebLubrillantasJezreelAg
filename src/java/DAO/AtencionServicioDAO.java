@@ -61,6 +61,17 @@ public class AtencionServicioDAO {
         
     }
     
+    public AtencionServicio getServicio(int idCita){
+    
+        List<AtencionServicio> a = this.read();
+        for (AtencionServicio at: a) {
+            if(at.getIdCita().getId() == idCita){
+                return at;
+            }
+        }
+        return null;
+    }
+    
     public List<AtencionServicio> findServiciosFicha(int id, List<AtencionServicio> rta){
          
         List<AtencionServicio> servicios = atencion.findAtencionServicioEntities();

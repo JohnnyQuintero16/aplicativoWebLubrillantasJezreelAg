@@ -38,6 +38,7 @@ public class adminUpdateCliente extends HttpServlet {
         String telef = request.getParameter("celular");
         String direccion = request.getParameter("direccion");
         String contrasenia = request.getParameter("clave");
+
         try {
             PersonaDAO p = new PersonaDAO();
             Persona perEditar = p.readPersona(cedula);
@@ -45,7 +46,6 @@ public class adminUpdateCliente extends HttpServlet {
             String[] nombreSplit;
             nombreSplit = nombre.split(" ");            
             if (nombreSplit.length == 2) {
-                System.out.println("Entra");
                 nombres = nombreSplit[0];
                 apellidos = nombreSplit[1];
             } else if (nombreSplit.length == 3) {
@@ -58,9 +58,7 @@ public class adminUpdateCliente extends HttpServlet {
             perEditar.setNombres(nombres);
             perEditar.setApellidos(apellidos);
             perEditar.setCedula(cedula);
-            System.out.println(perEditar.getEmail());
             perEditar.setEmail(correo);
-            
             perEditar.setCelular(telef);
             perEditar.setContraseña(contrasenia);
             perEditar.setDirecccion(direccion);

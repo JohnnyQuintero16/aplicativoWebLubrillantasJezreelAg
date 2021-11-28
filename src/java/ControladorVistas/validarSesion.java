@@ -111,14 +111,15 @@ public class validarSesion implements Filter {
         try {
             HttpServletRequest req = (HttpServletRequest) request;
             HttpServletResponse res = (HttpServletResponse) response;
-            HttpSession sesion = req.getSession(false);
-            System.out.println(sesion);
-            if(sesion == null){
-                res.sendRedirect("./index.jsp");
+            HttpSession sesion = req.getSession();
+            String user = (String) sesion.getAttribute("usuario");
+            
+            if(user == null){
+                req.setAttribute("msg","null");
+                res.sendRedirect("../jsp/NotificacionSesion.jsp");
                 return;
-            }else{
-                chain.doFilter(request, response);
             }
+                chain.doFilter(request, response);
             
         } catch (Throwable t) {
             // If an exception is thrown somewhere down the filter chain,

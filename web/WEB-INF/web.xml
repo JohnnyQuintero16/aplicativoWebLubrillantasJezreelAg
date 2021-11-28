@@ -6,7 +6,30 @@
     </filter>
     <filter-mapping>
         <filter-name>validarSesion.do</filter-name>
+        <url-pattern>/jsp/FichaTecnicaAdd.jsp</url-pattern>
+        <url-pattern>/jsp/adminClientes.jsp</url-pattern>
+        <url-pattern>/jsp/adminregis.jsp</url-pattern>
+        <url-pattern>/jsp/citasAdmin.jsp</url-pattern>
+        <url-pattern>/jsp/citasUsu.jsp</url-pattern>
+        <url-pattern>/jsp/editarCitaUsu.jsp</url-pattern>
+        <url-pattern>/jsp/fichaTecnica.jsp</url-pattern>
+        <url-pattern>/jsp/productosAdmin.jsp</url-pattern>
+        <url-pattern>/jsp/serviciosAdmin.jsp</url-pattern>
+        <url-pattern>/jsp/serviciosUsu.jsp</url-pattern>
+        <url-pattern>/jsp/vehiculos.jsp</url-pattern>
+        <url-pattern>/ActualizarProducto.do</url-pattern>
+        <url-pattern>/ActualizarServicio.do</url-pattern>
+        <url-pattern>/AdminAddProducto.do</url-pattern>
+        <url-pattern>/AdminAddServicio.do</url-pattern>
+        <url-pattern>/EliminarProducto.do</url-pattern>
+        <url-pattern>/EliminarServicio.do</url-pattern>
+        <url-pattern>/EliminarVehiculoUser.do</url-pattern>
+        <url-pattern>/MisServiciosUsu.do</url-pattern>
         <url-pattern>/MisVehiculos.do</url-pattern>
+        <url-pattern>/MostrarProductosAdmin.do</url-pattern>
+        <url-pattern>/MostrarServiciosAdmin.do</url-pattern>
+        <url-pattern>/adminAddCliente.do</url-pattern>
+        <url-pattern>/adminUpdateCliente.do</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>IniciarSesion</servlet-name>
@@ -45,6 +68,10 @@
         <servlet-class>ControladorVistas.MostrarServiciosIndex</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CitasAdmin</servlet-name>
+        <servlet-class>ControladorVistas.CitasAdmin</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>MostrarServiciosAdmin</servlet-name>
         <servlet-class>ControladorVistas.MostrarServiciosAdmin</servlet-class>
     </servlet>
@@ -67,6 +94,29 @@
     <servlet>
         <servlet-name>AdminAddServicio</servlet-name>
         <servlet-class>ControladorVistas.AdminAddServicio</servlet-class>
+    </servlet>
+    <servlet>
+
+        <servlet-name>ConfirmaCitaAdmin</servlet-name>
+        <servlet-class>ControladorVistas.ConfirmaAsistenciaAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmaServicioAdmin</servlet-name>
+        <servlet-class>ControladorVistas.ConfirmaServicioAdmin</servlet-class>
+        <servlet-name>MostrarProductosAdmin</servlet-name>
+        <servlet-class>ControladorVistas.MostrarProductosAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddProducto</servlet-name>
+        <servlet-class>ControladorVistas.AdminAddProducto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ActualizarProducto</servlet-name>
+        <servlet-class>ControladorVistas.ActualizarProducto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarProducto</servlet-name>
+        <servlet-class>ControladorVistas.EliminarProducto</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MostrarFichaTecnica</servlet-name>
@@ -113,6 +163,10 @@
         <url-pattern>/MostrarServiciosIndex.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>CitasAdmin</servlet-name>
+        <url-pattern>/CitasAdmin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>MostrarServiciosAdmin</servlet-name>
         <url-pattern>/MostrarServiciosAdmin.do</url-pattern>
     </servlet-mapping>
@@ -135,6 +189,28 @@
     <servlet-mapping>
         <servlet-name>AdminAddServicio</servlet-name>
         <url-pattern>/AdminAddServicio.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmaCitaAdmin</servlet-name>
+        <url-pattern>/ConfirmaCitaAdmin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmaServicioAdmin</servlet-name>
+        <url-pattern>/ConfirmaServicioAdmin.do</url-pattern>
+        <servlet-name>MostrarProductosAdmin</servlet-name>
+        <url-pattern>/MostrarProductosAdmin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddProducto</servlet-name>
+        <url-pattern>/AdminAddProducto.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActualizarProducto</servlet-name>
+        <url-pattern>/ActualizarProducto.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarProducto</servlet-name>
+        <url-pattern>/EliminarProducto.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MostrarFichaTecnica</servlet-name>
