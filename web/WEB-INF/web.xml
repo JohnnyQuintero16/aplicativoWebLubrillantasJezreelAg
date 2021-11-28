@@ -96,13 +96,14 @@
         <servlet-class>ControladorVistas.AdminAddServicio</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>ConfirmaCitaAdmin</servlet-name>
         <servlet-class>ControladorVistas.ConfirmaAsistenciaAdmin</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ConfirmaServicioAdmin</servlet-name>
         <servlet-class>ControladorVistas.ConfirmaServicioAdmin</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>MostrarProductosAdmin</servlet-name>
         <servlet-class>ControladorVistas.MostrarProductosAdmin</servlet-class>
     </servlet>
@@ -125,6 +126,10 @@
     <servlet>
         <servlet-name>UpdateVehiculo</servlet-name>
         <servlet-class>ControladorVistas.UpdateVehiculo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CalificarServicio</servlet-name>
+        <servlet-class>ControladorVistas.CalificarServicio</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
@@ -197,6 +202,8 @@
     <servlet-mapping>
         <servlet-name>ConfirmaServicioAdmin</servlet-name>
         <url-pattern>/ConfirmaServicioAdmin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>MostrarProductosAdmin</servlet-name>
         <url-pattern>/MostrarProductosAdmin.do</url-pattern>
     </servlet-mapping>
@@ -219,6 +226,10 @@
     <servlet-mapping>
         <servlet-name>UpdateVehiculo</servlet-name>
         <url-pattern>/UpdateVehiculo.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CalificarServicio</servlet-name>
+        <url-pattern>/CalificarServicio.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>5</session-timeout>

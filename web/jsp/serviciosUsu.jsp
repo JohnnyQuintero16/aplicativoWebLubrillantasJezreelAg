@@ -22,10 +22,11 @@
         <!--Normallize css: proyecto que corrige estilos predeterminados de los diferentes navegadores, para evitar usar el selector universal
     en la hoja de estilos CSS. -->
         <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <!--Importar CSS -->
         <link href="<%=basePath%>css/menu.css" rel="stylesheet" type="text/css"/>
         <link href="<%=basePath%>css/serviciosUsu.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="<%=basePath%>/css/index.css" />
         <link href="<%=basePath%>css/footer.css" rel="stylesheet" type="text/css"/>
     </head>
     <body onload="sesion('<%=request.getSession().getAttribute("usuario")%>')">
@@ -163,47 +164,126 @@
 
 
                 </div>
-                <!-- end servicios -->
             </div>
         </div>
 
-        <!--FOOTER-->
-        <footer>
-            <div class="container-fluid">
-                <div class="row ">
-                    <div class="col-12 redes" style="background-color: #00114e;">
-                        <img src="<%=basePath%>/img/whatsapp.png" >
-                        <img src="<%=basePath%>/img/facebook.png" >
-                        <img src="<%=basePath%>/img/instagram.png" >
-                    </div>
-                </div>
-                <div class="row" style="background-color: #001971;">
 
-                    <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-                        <img src="<%=basePath%>/img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
-                    </div>
+            <!-- ventana modal de estrellas-->
+            <div class="modal fade" tabindex="-1" role="dialog" id="modal2" aria-labelledby="modal1" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Calificar  Servicio</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            </button>
+                        </div>
+                        <form action="<%=basePath%>CalificarServicio.do" method="POST">
 
-                    <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
-                        <h4 >HORARIOS DE ATENCIÓN</h4>
-                        <p>Lunes a Viernes</p>
-                        <p>7:30 AM a 6:00 PM</p>
-                        <p>Sábado</p>
-                        <p>7:30 AM a 5:00 PM</p>
-                    </div>
+                            <div class="modal-body" >
+                                <div class="col-12" style="text-align: center;">
+                                    <br>
+                                    <h5>¿Cuál fue tu nivel de satisfacción?</h5>
+                                    <input  style="display: none" type="text" class="form-control" id="atencion" name="atencion" required>
+                                    <input  style="display: none" type="text" class="form-control" id="valor" name="valor" required>
+                                    <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="1star"></span>
 
-                    <div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
-                        <h4 > CONTACTO </h4>
-                        <P>Av 5 # 0N-54 Barrio La Merced</P>
-                        <p>San José de Cúcuta - Colombia</p>
-                        <p>albeirofonseca74@gmail.com</p>
-                        <p>+57 3112810082</p>
-                    </div>
+                                    <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="2star"></span>
 
+                                    <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="3star"></span>
+
+                                    <span class="fa fa-star" onclick="calificar(this);" style="cursor: pointer;" id="4star"></span>
+
+                                    <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="5star"></span>
+                                </div>
+
+                                <br>
+                                <textarea required="" class="form-control" name="comentario" id="exampleFormControlTextarea1" rows="3" placeholder="Danos tu opinión sobre el servicio ..."></textarea>
+                            </div>
+                            <div class="modal-footer" id="foterM">
+                                <button class="btn" id="boton" type="submit">
+                                    Guardar</button>
+                                <a href="#" class="btn btn-danger" type="button">  Cancelar</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </footer>
-        <!--FIN FOOTER-->
-        <script src="<%=basePath%>js/sesion.js"></script>
-    </body>
+
+
+
+
+
+
+            <!--FOOTER-->
+            <footer>
+                <div class="container-fluid">
+                    <div class="row ">
+                        <div class="col-12 redes" style="background-color: #00114e;">
+                            <img src="<%=basePath%>/img/whatsapp.png" >
+                            <img src="<%=basePath%>/img/facebook.png" >
+                            <img src="<%=basePath%>/img/instagram.png" >
+                        </div>
+                    </div>
+                    <div class="row" style="background-color: #001971;">
+
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+                            <img src="<%=basePath%>/img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
+                        </div>
+
+                        <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
+                            <h4 >HORARIOS DE ATENCIÓN</h4>
+                            <p>Lunes a Viernes</p>
+                            <p>7:30 AM a 6:00 PM</p>
+                            <p>Sábado</p>
+                            <p>7:30 AM a 5:00 PM</p>
+                        </div>
+
+                        <div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
+                            <h4 > CONTACTO </h4>
+                            <P>Av 5 # 0N-54 Barrio La Merced</P>
+                            <p>San José de Cúcuta - Colombia</p>
+                            <p>albeirofonseca74@gmail.com</p>
+                            <p>+57 3112810082</p>
+                        </div>
+
+                    </div>
+                </div>
+            </footer>
+            <!--FIN FOOTER-->
+
+</body>
+            <script src="<%=basePath%>js/sesion.js"></script>
+            <script>
+        var contador;
+
+        inputEstrella = document.getElementById("modal2").querySelector("#valor");
+        function calificar(item) {
+            contador = item.id[0];
+            let nombre = item.id.substring(1);
+            let j = 0;
+             
+            for (let i = 0; i < 5; i++) {
+                if (i < contador) {
+                    document.getElementById((i + 1) + nombre).style.color = "blue";
+                    j++;
+                } else {
+                    document.getElementById((i + 1) + nombre).style.color = "black";
+                }
+            }
+            inputEstrella.setAttribute("value", (j));
+
+           
+        }
+        
+        var modalEditarCliente = document.getElementById('modal2');
+            modalEditarCliente.addEventListener('show.bs.modal', (e) => {
+            var btn = e.relatedTarget.valueOf().parentNode;
+            datos = btn.querySelector("input");
+            modalBodyInput = modalEditarCliente.querySelector('.modal-body').querySelectorAll('input');
+            modalBodyInput[0].setAttribute("value",""+datos.value+"");
+      
+
+            });
+    </script>
 
 </html>
