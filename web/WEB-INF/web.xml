@@ -68,6 +68,10 @@
         <servlet-class>ControladorVistas.MostrarServiciosIndex</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CitasAdmin</servlet-name>
+        <servlet-class>ControladorVistas.CitasAdmin</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>MostrarServiciosAdmin</servlet-name>
         <servlet-class>ControladorVistas.MostrarServiciosAdmin</servlet-class>
     </servlet>
@@ -92,6 +96,13 @@
         <servlet-class>ControladorVistas.AdminAddServicio</servlet-class>
     </servlet>
     <servlet>
+
+        <servlet-name>ConfirmaCitaAdmin</servlet-name>
+        <servlet-class>ControladorVistas.ConfirmaAsistenciaAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmaServicioAdmin</servlet-name>
+        <servlet-class>ControladorVistas.ConfirmaServicioAdmin</servlet-class>
         <servlet-name>MostrarProductosAdmin</servlet-name>
         <servlet-class>ControladorVistas.MostrarProductosAdmin</servlet-class>
     </servlet>
@@ -152,6 +163,10 @@
         <url-pattern>/MostrarServiciosIndex.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>CitasAdmin</servlet-name>
+        <url-pattern>/CitasAdmin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>MostrarServiciosAdmin</servlet-name>
         <url-pattern>/MostrarServiciosAdmin.do</url-pattern>
     </servlet-mapping>
@@ -176,6 +191,12 @@
         <url-pattern>/AdminAddServicio.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ConfirmaCitaAdmin</servlet-name>
+        <url-pattern>/ConfirmaCitaAdmin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmaServicioAdmin</servlet-name>
+        <url-pattern>/ConfirmaServicioAdmin.do</url-pattern>
         <servlet-name>MostrarProductosAdmin</servlet-name>
         <url-pattern>/MostrarProductosAdmin.do</url-pattern>
     </servlet-mapping>
