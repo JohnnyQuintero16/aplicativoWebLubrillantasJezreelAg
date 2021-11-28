@@ -37,6 +37,7 @@ public class ConfirmaServicioAdmin extends HttpServlet {
         request.getSession().setAttribute("idCitaServicio", id);//GUARDO EL ID DE LA CITA PARA QUE LE AGREGUEN EL SERVICIO
         //
         //AQUI REDIRECCIONO A LA PAGINA DE AGREGAR LA ATENCION AL SERVICIO
+        response.sendRedirect("./jsp/adminRegis.jsp");
         
     }
 
