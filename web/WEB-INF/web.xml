@@ -96,14 +96,13 @@
         <servlet-class>ControladorVistas.AdminAddServicio</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
+
         <servlet-name>ConfirmaCitaAdmin</servlet-name>
         <servlet-class>ControladorVistas.ConfirmaAsistenciaAdmin</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ConfirmaServicioAdmin</servlet-name>
         <servlet-class>ControladorVistas.ConfirmaServicioAdmin</servlet-class>
-=======
         <servlet-name>MostrarProductosAdmin</servlet-name>
         <servlet-class>ControladorVistas.MostrarProductosAdmin</servlet-class>
     </servlet>
@@ -126,7 +125,6 @@
     <servlet>
         <servlet-name>UpdateVehiculo</servlet-name>
         <servlet-class>ControladorVistas.UpdateVehiculo</servlet-class>
->>>>>>> Test
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
@@ -193,14 +191,12 @@
         <url-pattern>/AdminAddServicio.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>ConfirmaCitaAdmin</servlet-name>
         <url-pattern>/ConfirmaCitaAdmin.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ConfirmaServicioAdmin</servlet-name>
         <url-pattern>/ConfirmaServicioAdmin.do</url-pattern>
-=======
         <servlet-name>MostrarProductosAdmin</servlet-name>
         <url-pattern>/MostrarProductosAdmin.do</url-pattern>
     </servlet-mapping>
@@ -223,7 +219,6 @@
     <servlet-mapping>
         <servlet-name>UpdateVehiculo</servlet-name>
         <url-pattern>/UpdateVehiculo.do</url-pattern>
->>>>>>> Test
     </servlet-mapping>
     <session-config>
         <session-timeout>5</session-timeout>
