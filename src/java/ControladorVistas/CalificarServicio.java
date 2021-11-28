@@ -5,11 +5,17 @@
  */
 package ControladorVistas;
 
+import DAO.AtencionServicioDAO;
+import DAO.CalificacionDAO;
 import DAO.PersonaDAO;
-import DTO.Persona;
-import Negocio.Jezreel;
+import DTO.AtencionServicio;
+import DTO.Calificacion;
+import DTO.CalificacionPK;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author USUARIO
+ * @author Jefersonrr
  */
-public class MostrarFichaTecnica extends HttpServlet {
+public class CalificarServicio extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,28 +38,20 @@ public class MostrarFichaTecnica extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+    
         
-        
-        String cedula;
-        if(request.getSession().getAttribute("cedula")==null){
-            cedula= request.getParameter("cedula");
-        
-        }else{
-        
-            cedula = request.getSession().getAttribute("cedula").toString();
-            request.getSession().setAttribute("cedula", null);
-        }
-        PersonaDAO pdao = new PersonaDAO();
-        Persona p = pdao.readPersona(cedula);
-        Jezreel je = new Jezreel();
-        request.getSession().setAttribute("tCliente",je.tablaDatosClienteFicha(cedula));
-        request.getSession().setAttribute("nombreCliente",(p.getNombres() + " " + p.getApellidos()));
-        request.getSession().setAttribute("tVehiculo",je.tableDatosVehiculosFicha(cedula));
-        request.getSession().setAttribute("tAtencion",je.atencionServiciosFicha(cedula));
-        request.getSession().setAttribute("selectMarca",je.selectMarca());
-        request.getSession().setAttribute("selectTipo",je.selectTipo());
-        request.getRequestDispatcher("./jsp/fichaTecnica.jsp").forward(request, response);
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC-5"));
+        Date fechaActual = calendar.getTime();
+        CalificacionDAO cadao = new CalificacionDAO();
+        PersonaDAO per = new PersonaDAO();
+        CalificacionPK cpk = new CalificacionPK(request.getSession().getAttribute("usuario").toString(), Integer.parseInt(request.getParameter("atencion")));
+        AtencionServicioDAO adao = new AtencionServicioDAO();
+        Calificacion ca = new Calificacion(cpk, fechaActual, Short.parseShort(request.getParameter("valor")), request.getParameter("comentario"));
+        ca.setAtencionServicio(adao.readAtencionServicio(Integer.parseInt(request.getParameter("atencion"))));
+        ca.setPersona(per.readPersona(request.getSession().getAttribute("usuario").toString()));
+        cadao.create(ca);
+        request.getRequestDispatcher("./MisServiciosUsu.do").forward(request, response);
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
