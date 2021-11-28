@@ -129,6 +129,10 @@
         <servlet-name>UpdateVehiculo</servlet-name>
         <servlet-class>ControladorVistas.UpdateVehiculo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CalificarServicio</servlet-name>
+        <servlet-class>ControladorVistas.CalificarServicio</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion.do</url-pattern>
@@ -224,6 +228,10 @@
     <servlet-mapping>
         <servlet-name>UpdateVehiculo</servlet-name>
         <url-pattern>/UpdateVehiculo.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CalificarServicio</servlet-name>
+        <url-pattern>/CalificarServicio.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>15</session-timeout>
