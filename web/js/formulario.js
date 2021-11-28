@@ -27,6 +27,7 @@ const campos = {
 	direccion: false
 }
 
+
 /* Step 6) Función validar formulario:
 
 	- Cuando se ejecutan los EventListener, se debe identificar cuál es el input que se quiere comprobar, ya que cada uno son diferentes
@@ -145,6 +146,10 @@ inputs.forEach((input) => {
         input.addEventListener('keyup', activarBoton);
         input.addEventListener('change', activarBoton);
 });
+
+
+
+
 
 /* Step 4)
     Cuando el usuario presione el botón (type=submit), ejecute una función (tipo flecha).

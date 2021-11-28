@@ -5,20 +5,20 @@
  */
 package ControladorVistas;
 
+import DAO.ProductoDAO;
+import DTO.Producto;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author johnny
  */
-public class cerrarSesion extends HttpServlet {
+public class ActualizarProducto extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,12 +32,44 @@ public class cerrarSesion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession(true);
-        session.invalidate();
-        response.sendRedirect("./index.jsp");
-        //RequestDispatcher dispatcher = request.getRequestDispatcher("./index.jsp");
-        //dispatcher.forward(request, response);
-        
+        try {
+            Producto nuevo = new Producto();
+            ProductoDAO pro = new ProductoDAO();
+            String tipo = request.getParameter("select");
+                switch (tipo) {
+                    case "1":
+                        tipo = "ACEITES";
+                        break;
+                    case "2":
+                        tipo = "FILTROS";
+                        break;
+                    case "3":
+                        tipo = "VALVULINAS";
+                        break;
+                    case "4":
+                        tipo = "ADITIVOS";
+                        break;
+                    default:
+                        tipo = "OTROS";
+                        break;
+                }
+            nuevo.setCodigo(request.getParameter("codigo"));
+            nuevo.setNombre(request.getParameter("nombre"));
+            nuevo.setReferencia(request.getParameter("referencia"));
+            nuevo.setMarca(request.getParameter("marca"));
+            nuevo.setPrecioUnitario(Double.parseDouble(request.getParameter("precioUnitario")));
+            nuevo.setPrecioVenta(Double.parseDouble(request.getParameter("precioVenta")));
+            nuevo.setCantidad(Integer.parseInt(request.getParameter("cantidad")));
+            nuevo.setTipo(tipo);
+            nuevo.setImgUrl(request.getParameter("url"));
+            nuevo.setDescripcion(request.getParameter("descripcion"));
+            nuevo.setEstado("ACTIVO");
+            pro.update(nuevo);
+            response.sendRedirect("MostrarProductosAdmin.do");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -67,7 +99,6 @@ public class cerrarSesion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
     }
 
     /**

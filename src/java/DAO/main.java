@@ -67,7 +67,8 @@ public class main {
         
 //        p.create(new Persona("f423423","Johnny", "Quintero", "johnnyaquintero@gmail.com","3105639373", "av4 N 1-1"));
         
-        
+        AtencionServicioDAO a = new AtencionServicioDAO();
+        System.out.println(a.read());
 
 
 
