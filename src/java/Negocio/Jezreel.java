@@ -354,7 +354,7 @@ public class Jezreel {
         }
         return rta;
     }
-    
+
     public String getCitas(){
     
         CitaDAO c = new CitaDAO();
@@ -414,15 +414,15 @@ public class Jezreel {
             }    
         return rta;
     }
-    
-    public String getFecha(Date fecha, Date hora){
-            SimpleDateFormat formateador = new SimpleDateFormat(
-                 "dd '/' MM '/' yyyy", new Locale("es_ES"));
-            SimpleDateFormat formateador2 = new SimpleDateFormat(
-                 "hh:mm", new Locale("es_ES"));
-            String fechad = formateador.format(fecha);
-            String horas = formateador2.format(hora);
-        return "Dia: "+fechad.replace(" ", "")+"\nHora: "+horas;
+
+    public String getFecha(Date fecha, Date hora) {
+        SimpleDateFormat formateador = new SimpleDateFormat(
+                "dd '/' MM '/' yyyy", new Locale("es_ES"));
+        SimpleDateFormat formateador2 = new SimpleDateFormat(
+                "hh:mm", new Locale("es_ES"));
+        String fechad = formateador.format(fecha);
+        String horas = formateador2.format(hora);
+        return "Dia: " + fechad.replace(" ", "") + "\nHora: " + horas;
     }
 
     public String mostrarServiciosIndex() {
