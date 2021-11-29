@@ -1,5 +1,7 @@
 
 
+<%@page import="DTO.Vehiculo"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,33 +123,38 @@
 
                     <div class="col-md-6">
                         <select id="inputState" class="form-select">
-                            <option selected>No existe Vehículo</option>
-                            <option>LSI- 7489 Aveo</option>
-                            <option>DML-987 Corolla</option>
-                            <option>LOP-795 Suzuki</option>
-                            <option>Another</option>
+                            <option selected>Seleccione un vehiculo</option>
+                            <%
+                                List<Vehiculo> vehiculos = (List<Vehiculo>) request.getSession().getAttribute("vehiculos");
+                                if(request.getSession().getAttribute("vehiculos") == null){
+                            %>
+                            <option style = "color:red">No Dispone de vehiculos registrados</option>
+                            <%}else{
+                                for(Vehiculo v: vehiculos){
+                            %>
+                            <option><%=v.getPlaca() + " - " + v.getIdMarca()%></option>
+                            <%}}%>
+                            
                         </select>
                     </div>
-
-
                     <div class="col-md-4">
                         <div class="divs">
-                            <h5>No. Placa: DML- 978</h5>
+                            <h5>No. Placa:<template id = "placaV"></template></h5>
                         </div>
                         <div class="divs">
-                            <h5>Modelo: Sedan</h5>
+                            <h5>Modelo: <template id = "modeloV"></template></h5>
                         </div>
                         <div class="divs">
-                            <h5>Kilometraje: 40.500</h5>
+                            <h5>Kilometraje: <template id = "kmV"></template></h5>
                         </div>
                     </div>
 
                     <div class="col-md-2">
                         <div class="divs">
-                            <h5>Marca: Aveo</h5>
+                            <h5>Marca: <template id = "marcaV"></template></h5>
                         </div>
                         <div class="divs" > 
-                            <h5> Año: 2015</h5>
+                            <h5> Año: <template id = "anioV"></template></h5>
                         </div>
                         <div class="divs">
                             <button class="btn btn-primary btn-lg" href="" type="submit">Continuar</button>

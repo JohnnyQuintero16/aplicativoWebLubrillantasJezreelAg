@@ -6,6 +6,7 @@
 package ControladorVistas;
 
 import DAO.CitaDAO;
+import DAO.VehiculoDAO;
 import DTO.Cita;
 import DTO.Persona;
 import java.io.IOException;
@@ -34,15 +35,16 @@ public class MostrarDatosAgendaConfirAdmin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         CitaDAO cita = new CitaDAO();
+        VehiculoDAO vehiculo = new VehiculoDAO();
             int idCita = Integer.parseInt((String)request.getSession().getAttribute("idCitaServicio"));
             Cita user = cita.readCita(idCita);
             Persona per = user.getIdPersona();
+            
             String nameUser = per.getNombres().split(" ")[0] + " " + per.getApellidos().split(" ")[0];
-            String correo = per.getEmail();
-            cita.CitaAProceso(idCita, correo);
+            cita.readCita(idCita).setEstado("ATENDIDA");
             request.getSession().setAttribute("usuarioCliente", nameUser);
-            request.getSession().setAttribute("email", correo);
             request.getSession().setAttribute("idCita", idCita);
+            request.getSession().setAttribute("vehiculos", vehiculo.findVehiculosUser(per.getCedula()));
             request.getRequestDispatcher("./jsp/datosAgendamiento.jsp").forward(request,response);
     }
 
