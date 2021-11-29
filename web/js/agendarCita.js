@@ -171,7 +171,6 @@ function validateDate(){
       Por esto se aplica un replace para cambiar los guiones por "/". Por ej: 2021/11/25 */
     let fecha = new Date(fechaString.replace(/-/g,'\/')); //Obtiene la fecha completa
     let diaDeLaSemana = fecha.getDay(); //Obtiene el día de la semana
-
     /*Si es domingo, se coloca el valor del input fecha en null aproposito para 
      que no pase la validación.*/
     if (diaDeLaSemana == 0) 
