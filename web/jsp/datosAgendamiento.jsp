@@ -189,21 +189,6 @@
             }
             );
             });
-            function enviarMail(){
-            let correo='<%=request.getSession().getAttribute("email").toString()%>';
-            console.log(correo);
-            Email.send({
-            Host: "smtp.gmail.com",
-            Username: 'lubrillantasjezreel@gmail.com',
-            Password: "rvuxyiyppggwcrvx",
-            To: correo,
-            From: 'lubrillantasjezreel@gmail.com',
-            Subject: 'SERVICIO FINALIZADO',
-            Body: "Hola desde Lubrillantas Jezreel queremos avisarte que tu servicio esta finalizado\n\n\
-            ya puedes pasar para hacer la recepción de tu vehiculo!",
-
-            });
-
             }
         </script>
 

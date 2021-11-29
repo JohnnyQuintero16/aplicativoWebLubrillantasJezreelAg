@@ -355,11 +355,11 @@ public class Jezreel {
         return rta;
     }
 
-    public String getCitas() {
-
+    public String getCitas(){
+    
         CitaDAO c = new CitaDAO();
-        String rta = "";
-
+        String rta ="";
+        
         List<Cita> citas = c.read();
             for (Cita ci : citas) {
                 Persona p = ci.getIdPersona();
@@ -402,9 +402,9 @@ public class Jezreel {
                                     }
                                     if(ci.getEstado().equals("NO ATENDIDO") || ci.getEstado().equals("EN PROCESO")){
                                         rta+="<td> \n"+
-                                              "<form id=\"ci.getId()\" action=\"ConfirmaServicioAdmin.do\" method=\"GET\">"
+                                              "<form id=\"confirma"+ci.getId()+"\" action=\"ConfirmaServicioAdmin.do\">"
                                             +"<input name=\"idCitaComfirm\" hidden value=\""+ci.getId()+"\"/>"+
-                     "                           <button type = \"submit\"  ><img  src=\"img/confirmarServ.png\" style=\"display: block; width: 30px; height: 30px; margin:auto;\"/>\n"+"</button> "+
+                     "                           <img onclick=\"javascript:enviarMail('"+ci.getIdPersona().getEmail()+","+ci.getId()+"');\" src=\"img/confirmarServ.png\" style=\"display: block; width: 30px; height: 30px; margin:auto;\"/>\n" +
                      "                           \n" +
                                              "</form>\n" +
                  "                           </td>\n";

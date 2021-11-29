@@ -236,10 +236,8 @@
 
         
         <script>
-
         function enviarMail(llamado){
             let correo="";
-            
             if(llamado==='modal'){
                 let fila = document.getElementsByClassName(document.getElementById('option1').value)[0];
                 correo = fila.children[4].innerText;
@@ -259,14 +257,11 @@
                        pronto recibiras un correo cuando tu servicio este listo!",
                        
             });
-            
             if(llamado==='modal'){
                 document.confirmar1.submit();
-            console.log("eNTRA 1" + llamado);    
             }
             else{
                 document.getElementById('confirma'+arr[1]).submit();
-                console.log("eNTRA 12" + llamado);    
             }
         }
             
