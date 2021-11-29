@@ -363,7 +363,7 @@ public class Jezreel {
         }
         return rta;
     }
-    
+
     public String getCitas(){
     
         CitaDAO c = new CitaDAO();
