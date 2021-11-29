@@ -174,10 +174,9 @@
                             <div class="formulario__grupo" id="grupo__fecha">
                                 <label for="fecha" class="formulario__label">Seleccione la fecha</label>
                                 <div class="formulario__grupo-input">
-                                    <input type="date" class="formulario__input" name="fecha" id="fecha" placeholder="Fecha" required>
+                                    <input type="date" class="formulario__input" onchange="sele();" name="fecha" id="fecha" placeholder="Fecha" required>
                                 </div>
                             </div>
-
                             <!-- Grupo: Hora -->
                             <div class="formulario__grupo" id="grupo__hora">
                                 <label for="hora" class="formulario__label">Seleccione la hora</label>
@@ -290,7 +289,18 @@
             </form>
         </section>
     </main>
-        
+        <script>
+            function sele(){
+                
+                let dias = ['LUNES','MARTES','MIÉRCOLES','JUEVES','VIERNES','SÁBADO','DOMINGO'];
+                let fecha = document.getElementById('fecha');
+                let diaNum = new Date(fecha.value);
+                let horas = '<%=request.getSession().getAttribute("horarios").toString()%>'.split(';');
+                
+
+            });
+                                
+                            </script>
          <!--FOOTER-->
  <footer>
 	<div class="container-fluid">

@@ -45,6 +45,7 @@ public class CitasAdmin extends HttpServlet {
         List<Cita> ci = c.read();
         String citasNoAtendidas ="";
         String citasAtendidas="";
+        
         for (Cita aten: ci) {
             if(!aten.getEstado().equals("ATENDIDO")){
                 citasNoAtendidas+=aten.getId()+",";

@@ -25,6 +25,7 @@ import DAO.PersonaDAO;
 import DAO.ProductoDAO;
 import DAO.ServicioDAO;
 import DAO.TipoDAO;
+import DAO.main;
 import DTO.Cita;
 import DTO.Marca;
 import DTO.Persona;
@@ -32,13 +33,21 @@ import DTO.Producto;
 import DTO.Servicio;
 import DTO.Tipo;
 import DTO.Vehiculo;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -414,15 +423,170 @@ public class Jezreel {
             }    
         return rta;
     }
-
-    public String getFecha(Date fecha, Date hora) {
-        SimpleDateFormat formateador = new SimpleDateFormat(
-                "dd '/' MM '/' yyyy", new Locale("es_ES"));
+    
+    
+    
+    public String getFecha(Date fecha, Date hora){
+            SimpleDateFormat formateador = new SimpleDateFormat(
+                 "dd '/' MM '/' yyyy", new Locale("es_ES"));
+            SimpleDateFormat formateador2 = new SimpleDateFormat(
+                 "hh:mm", new Locale("es_ES"));
+            String fechad = formateador.format(fecha);
+            String horas = formateador2.format(hora);
+        return "Dia: "+fechad.replace(" ", "")+"\nHora: "+horas;
+    }
+    
+    public ArrayList<Dia> cargarHorario(){
+        //OBTENGO CITAS NO ATENDIDAS
+        List<Cita> citas = this.getCitasNoAtendidas();
+        //OBTENGO EL DIA DE HOY
+        String diaEntroAReservar = getDia(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault())
+                            .toInstant())); //ejm lunes, martes...
+        Date fechaRealDeInicio = validarDiaDeBusqueda(diaEntroAReservar);
+        ArrayList<Dia> semana = getSemana(fechaRealDeInicio); //OBTENGO LA SEMANA A PARTIR DEL DIA QUE ME PARE
+        //ENTRO A REVISAR A PARTIR DE LA FECHA
+        for (Cita ci: citas) {
+            
+            //desde las 8 a las 16
+            String diaCita = getDia(ci.getFecha());
+            String horaCita = getHora(ci.getHora());
+            
+            //CUANDO OBTENGA EL DIA DE LA LISTA AUMENTO EL CUPO Y SI SE LLENA ELIMINO LA HORA DE LA SEMANA
+            Dia diaSemana = getDiaSemana(semana,diaCita); //dia de la semana de esa cita
+            ArrayList<Hora> h = diaSemana.getHoras(); //horas de ese dia
+            Hora horaDia = getHoraDia(h,horaCita);   //obtengo la hora de la cita dentro de las horas del dia
+            horaDia.aumentarCupo();
+            
+            if(horaDia.getCupo()==4){
+               diaSemana.getHoras().remove(horaDia);
+            }
+        }
+        return semana;
+    }
+    //PARSEO LA SEMANA CON LAS HORAS A STRING PARA MANIPULARLO EN EL JS
+    public String cargarHorarios(){
+        
+        String rta="";
+        ArrayList<Dia> semana = this.cargarHorario();
+        
+        for(Dia d : semana){
+            
+            rta+=d.getNombre();
+            ArrayList<Hora> horas = d.getHoras();
+            
+            for (Hora h : horas) {
+               rta+=","+h.getHora();
+            } 
+            rta+=";";
+        }
+        return rta;
+    }
+    
+    public Hora getHoraDia(ArrayList<Hora> h, String horaCita){
+    
+        for (Hora ho : h) {
+            if(ho.getHora().equals(horaCita)){
+                return ho;
+            }
+        }
+        return null;
+    }
+    
+    public String getHora(Date hora){
+    
         SimpleDateFormat formateador2 = new SimpleDateFormat(
-                "hh:mm", new Locale("es_ES"));
-        String fechad = formateador.format(fecha);
-        String horas = formateador2.format(hora);
-        return "Dia: " + fechad.replace(" ", "") + "\nHora: " + horas;
+                 "HH", new Locale("es_ES"));
+            String horas = formateador2.format(hora);
+            return horas;
+    }
+    
+    public Dia getDiaSemana(ArrayList<Dia> sem, String dia){
+        
+        for (Dia d : sem) {
+            if(d.getNombre().equals(dia)){
+                return d;
+            }
+        }
+        System.err.println("No se encontro el dia");
+        return null;
+    }
+    
+    public ArrayList<Dia> getSemana(Date diaInicio){
+        
+        Date dia = diaInicio;
+        Calendar calendar = Calendar.getInstance();
+        ArrayList<Dia> semana = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+           
+            Dia d = new Dia(getDia(dia)); //CREO UN DIA
+            semana.add(d); //lo agrego a la semana
+            calendar.setTime(dia); //CONFIGUURO EL DIA
+            
+            calendar.add(Calendar.DAY_OF_WEEK, 1);//LE SUMO UNO
+            dia = calendar.getTime();
+        }
+        return semana;
+    }
+    
+    public Date validarDiaDeBusqueda(String dia){
+        
+        Date fechaAmandar = new Date();// LA FECHA QUE VOY A USAR
+        Calendar calendar = Calendar.getInstance();
+        //MODELO DE FECHA QUE QUIERO
+        SimpleDateFormat formatearFecha = new SimpleDateFormat("yyyy-MM-dd", new Locale("es_ES"));
+        if(dia.equals("DOMINGO")){//O ESTA FUERA DEL HORARIO LABORAL
+             //COMIENZO A BUSCAR A PARTIR DEL LUNES en adelante
+             calendar.add(Calendar.DAY_OF_WEEK, 1); //AQUI OBTENGO EL DIA(domingo) Y LE SUMO 1
+             Date fechaManana = calendar.getTime();
+             //LA PARTE STRING DE LA FECHA
+             String parteFecha = formatearFecha.format(fechaManana);
+             //LA PARTE DE HORAS DE LA FECHA(INICIO HORARIO LABORAL)
+             String parteHora = "7:30:00";
+             //MODELO DE FORMATO DE FECHA Y HORA A LA QUE VOY A CONVERTIR PARA HACER RESTAS
+             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            
+            try {
+                fechaAmandar = sdf.parse(parteFecha+" "+parteHora);
+            } catch (ParseException ex) {
+                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         }else{
+            
+             Date fechaManana = calendar.getTime();
+             //LA PARTE STRING DE LA FECHA
+             String parteFecha = formatearFecha.format(fechaManana);
+             //LA PARTE DE HORAS DE LA FECHA(INICIO HORARIO LABORAL)
+             String parteHora = "7:30:00";
+             //MODELO DE FORMATO DE FECHA Y HORA A LA QUE VOY A CONVERTIR PARA COMPARAR MAS ADELANTE
+             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+             try {
+                fechaAmandar = sdf.parse(parteFecha+" "+parteHora);
+            } catch (ParseException ex) {
+                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return fechaAmandar;
+    }
+    
+    
+    
+    public String getDia(Date fecha){
+    
+        SimpleDateFormat ObtenerDia = new SimpleDateFormat("EEEE");
+        String dia = ObtenerDia.format(fecha).toUpperCase();
+        return dia;
+    }
+    
+    private List<Cita> getCitasNoAtendidas(){
+        CitaDAO c = new CitaDAO();
+        List<Cita> citas = c.read();
+        List<Cita> citasNoAtendidas = new ArrayList<Cita>();
+        for (Cita ci : citas) {
+            if(ci.getEstado().equals("NO ATENDIDO")){
+                citasNoAtendidas.add(ci);
+            }
+        }
+        return citasNoAtendidas;
     }
 
     public String mostrarServiciosIndex() {
