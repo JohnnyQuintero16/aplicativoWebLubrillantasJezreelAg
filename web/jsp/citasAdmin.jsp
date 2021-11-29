@@ -238,13 +238,21 @@
         <script>
         function enviarMail(llamado){
             let correo="";
+            let asunto="";
+            let cuerpo="";
             if(llamado==='modal'){
                 let fila = document.getElementsByClassName(document.getElementById('option1').value)[0];
                 correo = fila.children[4].innerText;
+                asunto = "SERVICIO EN PROCESO";
+                cuerpo = "📣 Hola desde Lubrillantas Jezreel queremos avisarte que tu servicio esta en proceso 🔩 🔧\n\n\
+                       pronto recibiras un correo cuando tu servicio este listo!";
             }
             else{
                 arr = llamado.split(",");
                 correo = arr[0];
+                asunto = "SERVICIO FINALIZADO";
+                cuerpo = "📣 Hola desde Lubrillantas Jezreel queremos avisarte que tu servicio ha finalizado\n\n\
+                       ya puedes acercarte por tu vehiculo 🔩 🔧🚗!";
             }
             Email.send({
                 Host: "smtp.gmail.com",
@@ -252,9 +260,8 @@
                 Password: "rvuxyiyppggwcrvx",
                 To: correo,
                 From: 'lubrillantasjezreel@gmail.com',
-                Subject: 'SERVICIO EN PROCESO',
-                Body: "Hola desde Lubrillantas Jezreel queremos avisarte que tu servicio esta en proceso\n\n\
-                       pronto recibiras un correo cuando tu servicio este listo!",
+                Subject: asunto,
+                Body: cuerpo,
                        
             });
             if(llamado==='modal'){
