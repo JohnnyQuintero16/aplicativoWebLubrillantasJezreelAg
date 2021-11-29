@@ -454,7 +454,7 @@ public class Jezreel {
             //CUANDO OBTENGA EL DIA DE LA LISTA AUMENTO EL CUPO Y SI SE LLENA ELIMINO LA HORA DE LA SEMANA
             Dia diaSemana = getDiaSemana(semana,diaCita); //dia de la semana de esa cita
             ArrayList<Hora> h = diaSemana.getHoras(); //horas de ese dia
-            Hora horaDia = getHoraDia(h,horaCita);   //obtengo la hora dentro de las horas del dia
+            Hora horaDia = getHoraDia(h,horaCita);   //obtengo la hora de la cita dentro de las horas del dia
             horaDia.aumentarCupo();
             
             if(horaDia.getCupo()==4){
@@ -462,6 +462,24 @@ public class Jezreel {
             }
         }
         return semana;
+    }
+    //PARSEO LA SEMANA CON LAS HORAS A STRING PARA MANIPULARLO EN EL JS
+    public String cargarHorarios(){
+        
+        String rta="";
+        ArrayList<Dia> semana = this.cargarHorario();
+        
+        for(Dia d : semana){
+            
+            rta+=d.getNombre();
+            ArrayList<Hora> horas = d.getHoras();
+            
+            for (Hora h : horas) {
+               rta+=","+h.getHora();
+            } 
+            rta+=";";
+        }
+        return rta;
     }
     
     public Hora getHoraDia(ArrayList<Hora> h, String horaCita){
@@ -499,9 +517,9 @@ public class Jezreel {
         Calendar calendar = Calendar.getInstance();
         ArrayList<Dia> semana = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
-            
+           
             Dia d = new Dia(getDia(dia)); //CREO UN DIA
-            semana.add(d);
+            semana.add(d); //lo agrego a la semana
             calendar.setTime(dia); //CONFIGUURO EL DIA
             
             calendar.add(Calendar.DAY_OF_WEEK, 1);//LE SUMO UNO

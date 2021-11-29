@@ -29,7 +29,7 @@ public class Dia {
             horas.add(new Hora("14",0));
             horas.add(new Hora("15",0));
             horas.add(new Hora("16",0));
-            if(!nombre.equals("SABADO")){
+            if(!nombre.equals("SÁBADO")){
                  horas.add(new Hora("17",0));
             }
        }else{

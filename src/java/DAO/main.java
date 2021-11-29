@@ -35,17 +35,20 @@ public class main {
         Jezreel j = new Jezreel();
         
         
-        ArrayList<Dia> sem = j.cargarHorario();
+        String sem = j.cargarHorarios();
         
-        for (Dia d : sem) {
-            
-            System.out.println("dia "+d.getNombre());
-            System.out.println("Horas disponibles");
-            ArrayList<Hora> h = d.getHoras();
-            for (Hora ho : h) {
-                System.out.println("Hora "+ho.getHora()+" Cupo"+ho.getCupo());
-            }
-        }
+        
+        
+        System.out.println(sem);
+        
+        
+//        Dia sab = new Dia("SÁBADO");
+//        System.out.println("dia "+sab.getNombre());
+//        ArrayList<Hora> h = sab.getHoras();
+//        for (Hora ho : h) {
+//            System.out.println("hora "+ho.getHora());
+//        }
+//       
 //       
 //        CitaDAO c = new CitaDAO();
 //        Jezreel j = new Jezreel();
