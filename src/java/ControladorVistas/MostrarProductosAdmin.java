@@ -5,8 +5,7 @@
  */
 package ControladorVistas;
 
-import DAO.PersonaDAO;
-import DAO.RolDAO;
+import DAO.ProductoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author johnny
  */
-public class Registro extends HttpServlet {
+public class MostrarProductosAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,30 +30,11 @@ public class Registro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String contrasenia = request.getParameter("password");
-        String cedula = request.getParameter("cedula");
-        String correo = request.getParameter("correo");
-        String telef = request.getParameter("telefono");
-        String direccion = request.getParameter("direccion");
-        PersonaDAO p = new PersonaDAO();
-
-        boolean existePersona = p.existePersona(cedula);
-        boolean existeCorreo = p.existeCorreo(correo);
-        String esta = "existe";
-        if (existePersona || existeCorreo) {
-            if(existePersona) esta += " Usuario";
-            if(existeCorreo) esta += " Correo";
-            request.getSession().setAttribute("existe", esta);
-            request.getRequestDispatcher("jsp/registrarse.jsp").forward(request, response);
-        } else {
-            RolDAO r = new RolDAO();
-            p.crearPersona(nombre, apellido, contrasenia, cedula, correo, telef, direccion, r.readRol((short) 2));
-            request.getRequestDispatcher("jsp/iniciarsesion.jsp").forward(request, response);
-        }
-
+        response.setContentType("text/html;charset=UTF-8");
+        
+        ProductoDAO producto = new ProductoDAO();
+        request.getSession().setAttribute("productos", producto.readProductosActivos());
+        request.getRequestDispatcher("./jsp/productosAdmin.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -84,8 +64,6 @@ public class Registro extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        
     }
 
     /**
@@ -97,5 +75,4 @@ public class Registro extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

@@ -6,7 +6,8 @@
 package ControladorVistas;
 
 import DAO.PersonaDAO;
-import DAO.RolDAO;
+import DTO.Persona;
+import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -16,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author johnny
+ * @author USUARIO
  */
-public class Registro extends HttpServlet {
+public class MostrarFichaTecnica extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,29 +33,27 @@ public class Registro extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String contrasenia = request.getParameter("password");
-        String cedula = request.getParameter("cedula");
-        String correo = request.getParameter("correo");
-        String telef = request.getParameter("telefono");
-        String direccion = request.getParameter("direccion");
-        PersonaDAO p = new PersonaDAO();
-
-        boolean existePersona = p.existePersona(cedula);
-        boolean existeCorreo = p.existeCorreo(correo);
-        String esta = "existe";
-        if (existePersona || existeCorreo) {
-            if(existePersona) esta += " Usuario";
-            if(existeCorreo) esta += " Correo";
-            request.getSession().setAttribute("existe", esta);
-            request.getRequestDispatcher("jsp/registrarse.jsp").forward(request, response);
-        } else {
-            RolDAO r = new RolDAO();
-            p.crearPersona(nombre, apellido, contrasenia, cedula, correo, telef, direccion, r.readRol((short) 2));
-            request.getRequestDispatcher("jsp/iniciarsesion.jsp").forward(request, response);
+        
+        
+        String cedula;
+        if(request.getSession().getAttribute("cedula")==null){
+            cedula= request.getParameter("cedula");
+        
+        }else{
+        
+            cedula = request.getSession().getAttribute("cedula").toString();
+            request.getSession().setAttribute("cedula", null);
         }
-
+        PersonaDAO pdao = new PersonaDAO();
+        Persona p = pdao.readPersona(cedula);
+        Jezreel je = new Jezreel();
+        request.getSession().setAttribute("tCliente",je.tablaDatosClienteFicha(cedula));
+        request.getSession().setAttribute("nombreCliente",(p.getNombres() + " " + p.getApellidos()));
+        request.getSession().setAttribute("tVehiculo",je.tableDatosVehiculosFicha(cedula));
+        request.getSession().setAttribute("tAtencion",je.atencionServiciosFicha(cedula));
+        request.getSession().setAttribute("selectMarca",je.selectMarca());
+        request.getSession().setAttribute("selectTipo",je.selectTipo());
+        request.getRequestDispatcher("./jsp/fichaTecnica.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -84,8 +83,6 @@ public class Registro extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        
     }
 
     /**

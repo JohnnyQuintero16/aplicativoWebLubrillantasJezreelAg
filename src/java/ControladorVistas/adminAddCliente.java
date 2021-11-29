@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author johnny
  */
-public class Registro extends HttpServlet {
+public class adminAddCliente extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,16 +31,27 @@ public class Registro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        response.setContentType("text/html;charset=UTF-8");
         String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String contrasenia = request.getParameter("password");
         String cedula = request.getParameter("cedula");
-        String correo = request.getParameter("correo");
-        String telef = request.getParameter("telefono");
+        String correo = request.getParameter("email");
+        String telef = request.getParameter("celular");
         String direccion = request.getParameter("direccion");
+        String contrasenia = request.getParameter("clave");
         PersonaDAO p = new PersonaDAO();
-
+        String nombres = "", apellidos = "";
+        String [] nombreSplit;
+        nombreSplit = nombre.split(" ");
+        if(nombreSplit.length == 2){
+            nombres = nombreSplit[0];
+            apellidos = nombreSplit[1];
+        }else if(nombreSplit.length == 3){
+            nombres = nombreSplit[0] + " " + nombreSplit[1];
+            apellidos = nombreSplit[2];
+        }else{
+            nombres = nombreSplit[0] + " " + nombreSplit[1];
+            apellidos = nombreSplit[2] + " " + nombreSplit[3];
+        }
         boolean existePersona = p.existePersona(cedula);
         boolean existeCorreo = p.existeCorreo(correo);
         String esta = "existe";
@@ -48,13 +59,13 @@ public class Registro extends HttpServlet {
             if(existePersona) esta += " Usuario";
             if(existeCorreo) esta += " Correo";
             request.getSession().setAttribute("existe", esta);
-            request.getRequestDispatcher("jsp/registrarse.jsp").forward(request, response);
         } else {
             RolDAO r = new RolDAO();
-            p.crearPersona(nombre, apellido, contrasenia, cedula, correo, telef, direccion, r.readRol((short) 2));
-            request.getRequestDispatcher("jsp/iniciarsesion.jsp").forward(request, response);
+            p.crearPersona(nombres, apellidos, contrasenia, cedula, correo, telef, direccion, r.readRol((short) 2));
+            esta = "exito";
         }
-
+        //request.getRequestDispatcher("jsp/adminClientes.jsp").forward(request, response);
+        response.sendRedirect("jsp/adminClientes.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -84,8 +95,6 @@ public class Registro extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        
     }
 
     /**

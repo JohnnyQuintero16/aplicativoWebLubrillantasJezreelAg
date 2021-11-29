@@ -5,8 +5,10 @@
  */
 package ControladorVistas;
 
-import DAO.PersonaDAO;
-import DAO.RolDAO;
+import DAO.MarcaDAO;
+import DAO.TipoDAO;
+import DAO.VehiculoDAO;
+import DTO.Vehiculo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -16,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author johnny
+ * @author USUARIO
  */
-public class Registro extends HttpServlet {
+public class UpdateVehiculo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,30 +33,30 @@ public class Registro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       
+            VehiculoDAO vedao = new VehiculoDAO();
+            Vehiculo ve = vedao.readVehiculo(request.getParameter("placa"));
+            System.out.println("VEHICULO @!!!!!!!: " + ve+ ve.getIdPersona().getNombres()+ ve.getIdPersona().getCedula());
+            MarcaDAO m = new MarcaDAO();
+            TipoDAO t = new TipoDAO();
+            
+             ve.setIdMarca(m.readMarca(Integer.parseInt(request.getParameter("marca"))));
+             System.out.println("MARCA : " + ve.getIdMarca());
+             ve.setIdTipo(t.readTipo(Integer.parseInt(request.getParameter("tipo"))));
+             System.out.println("MARCA : " + ve.getIdTipo());
+             ve.setCarroceria(request.getParameter("carroseria"));
+             ve.setCilindraje(Integer.parseInt(request.getParameter("cilindraje")));
+             ve.setColor(request.getParameter("color"));
+             ve.setModelo(request.getParameter("modelo"));
+             ve.setKilometraje(Integer.parseInt(request.getParameter("kilometraje")));
+             System.out.println("VOY A REDIRECCIONAR");
+             vedao.update(ve);
+             System.out.println("VOY YA ACTUALICE");
 
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String contrasenia = request.getParameter("password");
-        String cedula = request.getParameter("cedula");
-        String correo = request.getParameter("correo");
-        String telef = request.getParameter("telefono");
-        String direccion = request.getParameter("direccion");
-        PersonaDAO p = new PersonaDAO();
-
-        boolean existePersona = p.existePersona(cedula);
-        boolean existeCorreo = p.existeCorreo(correo);
-        String esta = "existe";
-        if (existePersona || existeCorreo) {
-            if(existePersona) esta += " Usuario";
-            if(existeCorreo) esta += " Correo";
-            request.getSession().setAttribute("existe", esta);
-            request.getRequestDispatcher("jsp/registrarse.jsp").forward(request, response);
-        } else {
-            RolDAO r = new RolDAO();
-            p.crearPersona(nombre, apellido, contrasenia, cedula, correo, telef, direccion, r.readRol((short) 2));
-            request.getRequestDispatcher("jsp/iniciarsesion.jsp").forward(request, response);
-        }
-
+            request.getSession().setAttribute("cedula",ve.getIdPersona().getCedula());
+          
+            request.getRequestDispatcher("./MostrarFichaTecnica.do").forward(request, response);
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -84,8 +86,6 @@ public class Registro extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        
     }
 
     /**

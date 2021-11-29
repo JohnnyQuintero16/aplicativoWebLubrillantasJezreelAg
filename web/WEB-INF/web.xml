@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <filter>
-        <filter-name>dontCacheFilter.do</filter-name>
-        <filter-class>ControladorVistas.dontCacheFilter</filter-class>
-        <init-param>
-            <param-name>jsp</param-name>
-            <param-value>*.jsp</param-value>
-        </init-param>
+        <filter-name>validarSesion.do</filter-name>
+        <filter-class>ControladorVistas.validarSesion</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>dontCacheFilter.do</filter-name>
-        <url-pattern>/*</url-pattern>
+        <filter-name>validarSesion.do</filter-name>
+        <url-pattern>/jsp/FichaTecnicaAdd.jsp</url-pattern>
+        <url-pattern>/jsp/adminClientes.jsp</url-pattern>
+        <url-pattern>/jsp/adminregis.jsp</url-pattern>
+        <url-pattern>/jsp/citasAdmin.jsp</url-pattern>
+        <url-pattern>/jsp/citasUsu.jsp</url-pattern>
+        <url-pattern>/jsp/editarCitaUsu.jsp</url-pattern>
+        <url-pattern>/jsp/fichaTecnica.jsp</url-pattern>
+        <url-pattern>/jsp/productosAdmin.jsp</url-pattern>
+        <url-pattern>/jsp/serviciosAdmin.jsp</url-pattern>
+        <url-pattern>/jsp/serviciosUsu.jsp</url-pattern>
+        <url-pattern>/jsp/vehiculos.jsp</url-pattern>
+        <url-pattern>/ActualizarProducto.do</url-pattern>
+        <url-pattern>/ActualizarServicio.do</url-pattern>
+        <url-pattern>/AdminAddProducto.do</url-pattern>
+        <url-pattern>/AdminAddServicio.do</url-pattern>
+        <url-pattern>/EliminarProducto.do</url-pattern>
+        <url-pattern>/EliminarServicio.do</url-pattern>
+        <url-pattern>/EliminarVehiculoUser.do</url-pattern>
+        <url-pattern>/MisServiciosUsu.do</url-pattern>
+        <url-pattern>/MisVehiculos.do</url-pattern>
+        <url-pattern>/MostrarProductosAdmin.do</url-pattern>
+        <url-pattern>/MostrarServiciosAdmin.do</url-pattern>
+        <url-pattern>/adminAddCliente.do</url-pattern>
+        <url-pattern>/adminUpdateCliente.do</url-pattern>
+        <url-pattern>/ConfirmaServicioAdmin.do</url-pattern>
+        <url-pattern>/ConfirmaAsistenciaAdmin.do</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>IniciarSesion</servlet-name>
@@ -33,26 +54,84 @@
         <servlet-class>ControladorVistas.MostrarServicios</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>dontCookie</servlet-name>
-        <servlet-class>ControladorVistas.dontCookie</servlet-class>
-        <init-param>
-            <param-name>cookie</param-name>
-            <param-value>*</param-value>
-        </init-param>
-    </servlet>
-    <servlet>
         <servlet-name>MisServiciosUsu</servlet-name>
         <servlet-class>ControladorVistas.MisServiciosUsu</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Prueba</servlet-name>
-        <servlet-class>ControladorVistas.Prueba</servlet-class>
         <servlet-name>MisVehiculos</servlet-name>
         <servlet-class>ControladorVistas.MisVehiculos</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EliminarVehiculoUser</servlet-name>
         <servlet-class>ControladorVistas.EliminarVehiculoUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarServiciosIndex</servlet-name>
+        <servlet-class>ControladorVistas.MostrarServiciosIndex</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CitasAdmin</servlet-name>
+        <servlet-class>ControladorVistas.CitasAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarServiciosAdmin</servlet-name>
+        <servlet-class>ControladorVistas.MostrarServiciosAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ActualizarServicio</servlet-name>
+        <servlet-class>ControladorVistas.ActualizarServicio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarServicio</servlet-name>
+        <servlet-class>ControladorVistas.EliminarServicio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminAddCliente</servlet-name>
+        <servlet-class>ControladorVistas.adminAddCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminUpdateCliente</servlet-name>
+        <servlet-class>ControladorVistas.adminUpdateCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddServicio</servlet-name>
+        <servlet-class>ControladorVistas.AdminAddServicio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmaAsistenciaAdmin</servlet-name>
+        <servlet-class>ControladorVistas.ConfirmaAsistenciaAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmaServicioAdmin</servlet-name>
+        <servlet-class>ControladorVistas.ConfirmaServicioAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarProductosAdmin</servlet-name>
+        <servlet-class>ControladorVistas.MostrarProductosAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddProducto</servlet-name>
+        <servlet-class>ControladorVistas.AdminAddProducto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ActualizarProducto</servlet-name>
+        <servlet-class>ControladorVistas.ActualizarProducto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarProducto</servlet-name>
+        <servlet-class>ControladorVistas.EliminarProducto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarFichaTecnica</servlet-name>
+        <servlet-class>ControladorVistas.MostrarFichaTecnica</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateVehiculo</servlet-name>
+        <servlet-class>ControladorVistas.UpdateVehiculo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CalificarServicio</servlet-name>
+        <servlet-class>ControladorVistas.CalificarServicio</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
@@ -75,15 +154,10 @@
         <url-pattern>/MostrarServicios.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>dontCookie</servlet-name>
-        <url-pattern>/dontCookie.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>MisServiciosUsu</servlet-name>
         <url-pattern>/MisServiciosUsu.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        
         <servlet-name>MisVehiculos</servlet-name>
         <url-pattern>/MisVehiculos.do</url-pattern>
     </servlet-mapping>
@@ -91,9 +165,75 @@
         <servlet-name>EliminarVehiculoUser</servlet-name>
         <url-pattern>/EliminarVehiculoUser.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarServiciosIndex</servlet-name>
+        <url-pattern>/MostrarServiciosIndex.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CitasAdmin</servlet-name>
+        <url-pattern>/CitasAdmin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarServiciosAdmin</servlet-name>
+        <url-pattern>/MostrarServiciosAdmin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActualizarServicio</servlet-name>
+        <url-pattern>/ActualizarServicio.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminAddCliente</servlet-name>
+        <url-pattern>/adminAddCliente.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarServicio</servlet-name>
+        <url-pattern>/EliminarServicio.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminUpdateCliente</servlet-name>
+        <url-pattern>/adminUpdateCliente.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddServicio</servlet-name>
+        <url-pattern>/AdminAddServicio.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmaAsistenciaAdmin</servlet-name>
+        <url-pattern>/ConfirmaAsistenciaAdmin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmaServicioAdmin</servlet-name>
+        <url-pattern>/ConfirmaServicioAdmin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarProductosAdmin</servlet-name>
+        <url-pattern>/MostrarProductosAdmin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddProducto</servlet-name>
+        <url-pattern>/AdminAddProducto.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActualizarProducto</servlet-name>
+        <url-pattern>/ActualizarProducto.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarProducto</servlet-name>
+        <url-pattern>/EliminarProducto.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarFichaTecnica</servlet-name>
+        <url-pattern>/MostrarFichaTecnica.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateVehiculo</servlet-name>
+        <url-pattern>/UpdateVehiculo.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CalificarServicio</servlet-name>
+        <url-pattern>/CalificarServicio.do</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            5
-        </session-timeout>
+        <session-timeout>15</session-timeout>
     </session-config>
 </web-app>
