@@ -8,7 +8,6 @@
         <filter-name>validarSesion.do</filter-name>
         <url-pattern>/jsp/FichaTecnicaAdd.jsp</url-pattern>
         <url-pattern>/jsp/adminClientes.jsp</url-pattern>
-        <url-pattern>/jsp/adminregis.jsp</url-pattern>
         <url-pattern>/jsp/citasAdmin.jsp</url-pattern>
         <url-pattern>/jsp/citasUsu.jsp</url-pattern>
         <url-pattern>/jsp/editarCitaUsu.jsp</url-pattern>
@@ -133,6 +132,10 @@
         <servlet-name>CalificarServicio</servlet-name>
         <servlet-class>ControladorVistas.CalificarServicio</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MostrarServiProduAdmin</servlet-name>
+        <servlet-class>ControladorVistas.MostrarServiProduAdmin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion.do</url-pattern>
@@ -232,6 +235,10 @@
     <servlet-mapping>
         <servlet-name>CalificarServicio</servlet-name>
         <url-pattern>/CalificarServicio.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarServiProduAdmin</servlet-name>
+        <url-pattern>/MostrarServiProduAdmin.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>15</session-timeout>

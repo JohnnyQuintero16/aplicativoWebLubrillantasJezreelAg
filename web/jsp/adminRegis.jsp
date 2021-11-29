@@ -1,3 +1,6 @@
+<%@page import="DTO.Servicio"%>
+<%@page import="DTO.Producto"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +28,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
 
+        <!-- Selector -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <!--Importar CSS y script del menú -->
         <link rel="stylesheet" href="<%=basePath%>css/menuAdministrador.css" />
         <link rel="stylesheet" href="<%=basePath%>css/admClientes.css" />
@@ -53,7 +58,7 @@
                 </li>
 
                 <li>
-                    <a href="<%=basePath%>jsp/citasAdmin.jsp">
+                    <a href="<%=basePath%>CitasAdmin.do">
                         <i class="far fa-calendar-alt"></i>
                         <span class="links_name">Agendamientos</span>
                     </a>
@@ -94,7 +99,7 @@
 
             <div class=" title">            
                 <div class="titulo">
-                    <h1>Cliente: USUARIO Cliente </h1>   
+                    <h1>Cliente: <%=request.getSession().getAttribute("usuarioCliente").toString()%></h1>   
                 </div>
 
                 <div class="boton">
@@ -102,7 +107,6 @@
                 </div>
 
             </div>
-
 
 
             <div class="row" style=" background-color: white; padding-top: 1rem; width: 100%; ">
@@ -116,24 +120,16 @@
                             <th>Accion</th>
                         </tr>
 
+                        <%
+                            List<Servicio> servicios = (List<Servicio>) request.getSession().getAttribute("servicios");
+                            for (Servicio ser : servicios) {
+                        %>
                         <tr>
-                            <td>1</td>
-                            <td>Montallantas</td>
+                            <td><%=ser.getId()%></td>
+                            <td><%=ser.getNombre()%></td>
                             <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: green !important;">+</button></td>                        
                         </tr>
-
-                        <tr>
-                            <td>2</td>
-                            <td>Cambio de Aceite</td>
-                            <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: green !important;">+</button></td>                        
-                        </tr>
-
-                        <tr>
-                            <td>3</td>
-                            <td>Cambio de tanque</td>
-                            <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: green !important;">+</button></td>                        
-                        </tr>
-
+                        <%}%>
                     </table>
 
                 </div>
@@ -147,18 +143,13 @@
                             <th>Nombre del servicio</th>
                             <th>Accion</th>
                         </tr>
-
+                        <template id="TablaServicioCliente">
                         <tr>
                             <td>1</td>
                             <td>Montallantas</td>
                             <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: red !important;">-</button></td>                        
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Cambio de Aceite</td>
-                            <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: red !important;">-</button></td>                        
-                        </tr>
-
+                        </template>
                     </table>
 
 
@@ -175,36 +166,36 @@
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
                     <h2 style="color: #001971;">Escoja el Producto:</h2>
                     <p>Lista de productos con los que se llevo a cabo el servicio.</p>
+
                     <table class="table" >
                         <tr>
                             <th>id</th>
                             <th>Nombre Producto</th>
                             <th>Accion</th>
                         </tr>
-
-                        <tr>
-                            <td>1</td>
-                            <td>Aceite Max</td>
-                            <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: red !important;">X</button></td>                        
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Aceite Min</td>
-                            <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: red !important;">X</button></td>                        
-                        </tr>
-
+                        <template id="TablaProductosCliente">
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: red !important;">X</button></td>                        
+                            </tr>
+                        </template>
                     </table>
 
                 </div>
 
 
                 <div class="search-container col-12 col-sm-6 col-md-6 col-lg-6" style="padding: 1rem;"> <br>
-
-                    <form action="">
-                        <input type="text" placeholder="Buscar Producto.." name="search">
-                        <button  type="submit"><i class="fa fa-search " style="width: 2rem;"></i></button>
-                    </form> <br><br>
-
+                    <select class = "selectPro" name = "pro">
+                        <option value="0">Elegir Producto</option>
+                        <%
+                            List<Producto> productos = (List<Producto>) request.getSession().getAttribute("productos");
+                            for (Producto pro : productos) {
+                        %>
+                        <option value="<%=pro.getCodigo()%>"><%=pro.getNombre()%></option>
+                        <%}%>
+                    </select>
+                    <br><br>
                     <p>Por favor digite el kilometraje del vehiculo:</p>
                     <input type="number" id="kilometraje" name="kilometraje" placeholder="kilometraje"  required> <br> <br>
 
@@ -253,9 +244,13 @@
         <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
         <script>
+            $(document).ready(function() {
+            $('.selectPro').select2();
+            });
             $(document).ready(function() {
             $('#example').DataTable({
 
