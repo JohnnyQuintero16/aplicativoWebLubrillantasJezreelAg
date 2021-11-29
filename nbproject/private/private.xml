@@ -3,17 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
-            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/citasAdmin.jsp</file>
-            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/adminRegis.jsp</file>
-        </group>
-        <group>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarServiProduAdmin.java</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/ConfirmaServicioAdmin.java</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/IniciarSesion.java</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/citasAdmin.jsp</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/validarSesion.java</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/adminRegis.jsp</file>
+        </group>
+        <group>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarServiciosAdmin.java</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/ConfirmaServicioAdmin.java</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/adminRegis.jsp</file>
         </group>
     </open-files>

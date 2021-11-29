@@ -6,6 +6,8 @@
 package ControladorVistas;
 
 import DAO.CitaDAO;
+import DTO.Cita;
+import DTO.Persona;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Cristian
+ * @author johnny
  */
-public class ConfirmaServicioAdmin extends HttpServlet {
+public class MostrarDatosAgendaConfirAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,14 +33,17 @@ public class ConfirmaServicioAdmin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        String id = request.getParameter("idCitaComfirm");
-        
-        request.getSession().setAttribute("idCitaServicio", id);//GUARDO EL ID DE LA CITA PARA QUE LE AGREGUEN EL SERVICIO
-        //
-        //AQUI REDIRECCIONO A LA PAGINA DE AGREGAR LA ATENCION AL SERVICIO
-        response.sendRedirect("MostrarDatosAgendaConfirAdmin.do");
-        
+        CitaDAO cita = new CitaDAO();
+            int idCita = Integer.parseInt((String)request.getSession().getAttribute("idCitaServicio"));
+            Cita user = cita.readCita(idCita);
+            Persona per = user.getIdPersona();
+            String nameUser = per.getNombres().split(" ")[0] + " " + per.getApellidos().split(" ")[0];
+            String correo = per.getEmail();
+            cita.CitaAProceso(idCita, correo);
+            request.getSession().setAttribute("usuarioCliente", nameUser);
+            request.getSession().setAttribute("email", correo);
+            request.getSession().setAttribute("idCita", idCita);
+            request.getRequestDispatcher("./jsp/datosAgendamiento.jsp").forward(request,response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

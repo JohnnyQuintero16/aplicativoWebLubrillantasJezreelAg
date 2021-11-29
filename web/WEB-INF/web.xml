@@ -6,7 +6,6 @@
     </filter>
     <filter-mapping>
         <filter-name>validarSesion.do</filter-name>
-        <url-pattern>/jsp/FichaTecnicaAdd.jsp</url-pattern>
         <url-pattern>/jsp/adminClientes.jsp</url-pattern>
         <url-pattern>/jsp/citasAdmin.jsp</url-pattern>
         <url-pattern>/jsp/citasUsu.jsp</url-pattern>
@@ -136,6 +135,10 @@
         <servlet-name>MostrarServiProduAdmin</servlet-name>
         <servlet-class>ControladorVistas.MostrarServiProduAdmin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MostrarDatosAgendaConfirAdmin</servlet-name>
+        <servlet-class>ControladorVistas.MostrarDatosAgendaConfirAdmin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion.do</url-pattern>
@@ -239,6 +242,10 @@
     <servlet-mapping>
         <servlet-name>MostrarServiProduAdmin</servlet-name>
         <url-pattern>/MostrarServiProduAdmin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarDatosAgendaConfirAdmin</servlet-name>
+        <url-pattern>/MostrarDatosAgendaConfirAdmin.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>15</session-timeout>

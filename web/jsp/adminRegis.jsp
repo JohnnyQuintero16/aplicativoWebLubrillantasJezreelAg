@@ -52,7 +52,7 @@
                             <img src="<%=basePath%>img/user.png" alt="Administrador">
                         </div>
                         <div class="container-name">
-                            <p><span class="links_name"><%=request.getSession().getAttribute("nameUser")%></span></p>
+                            <!--<p><span class="links_name"></span></p>-->
                         </div>
                     </div>
                 </li>
@@ -99,7 +99,7 @@
 
             <div class=" title">            
                 <div class="titulo">
-                    <h1>Cliente: <%=request.getSession().getAttribute("usuarioCliente").toString()%></h1>   
+                    <h1 style="color:blue">Cliente: <%=request.getSession().getAttribute("usuarioCliente").toString()%></h1> 
                 </div>
 
                 <div class="boton">
@@ -127,7 +127,7 @@
                         <tr>
                             <td><%=ser.getId()%></td>
                             <td><%=ser.getNombre()%></td>
-                            <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: green !important;">+</button></td>                        
+                            <td> <button type="button" value = "<%=ser.getId()%>" id="btnMasServicio" class="btn btn-primary btn-lg" style="background-color: green !important;">+</button></td>                        
                         </tr>
                         <%}%>
                     </table>
@@ -145,7 +145,7 @@
                         </tr>
                         <template id="TablaServicioCliente">
                         <tr>
-                            <td>1</td>
+                            <td></td>
                             <td>Montallantas</td>
                             <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: red !important;">-</button></td>                        
                         </tr>
@@ -273,6 +273,13 @@
             }
             );
             } );
+            const btn = document.getElementById('btnMasServicio');
+            btn.addEventListener('click',(event)=>{
+                cargarItems(event.target.parentNode.parentNode);
+            });
+            function cargarItems(producto){
+                console.log(producto);
+            }
         </script>
 
         <!-- Validación de formulario -->
