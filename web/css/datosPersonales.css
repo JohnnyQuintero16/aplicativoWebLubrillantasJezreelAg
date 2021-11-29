@@ -1,0 +1,26 @@
+
+#form-datos{
+  padding: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 25px;
+ border-bottom: 1px solid #efefef;
+}
+
+#boton{
+	padding-top: 8px;
+	padding-left: 70px;
+}
+#save{
+	width: 80%;
+	align-content: center;
+}
+#saveB{
+padding-top: 8px;
+	
+}
+#datos{
+	color: #273746;
+	font-family: 'Inter', sans-serif;
+
+}
