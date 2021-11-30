@@ -177,7 +177,7 @@ public class Cita implements Serializable, Comparable<Cita>{
     
     @Override
     public int compareTo(Cita c) {
-        return new Long(parseIntFecha(fecha,hora)).compareTo((parseIntFecha(c.getFecha(), c.getHora())));
+        return new Long(parseLongFecha(fecha,hora)).compareTo((parseLongFecha(c.getFecha(), c.getHora())));
        
     }
 
@@ -186,8 +186,6 @@ public class Cita implements Serializable, Comparable<Cita>{
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
         String[] split = formatter.format(fecha).split(" ");
         String[] split2 = split[0].split("/");
-        String[] split3 = split[2].split(":");
-        //System.out.println("SOY LA HORA: " + split3[0]+split3[1]+split3[2]);
         return split2[0] + "/" + split2[1] + "/" + split2[2];
     }
     
@@ -196,12 +194,10 @@ public class Cita implements Serializable, Comparable<Cita>{
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
         String[] split = formatter.format(fecha).split(" ");
         String[] split2 = split[2].split(":");
-        //String[] split3 = split[2].split(":");
-        //System.out.println("SOY LA HORA: " + split3[0]+split3[1]+split3[2]);
         return split2[0] + ":" + split2[1] ;
     }
 
-    public long    parseIntFecha(Date fecha,Date hora) {
+    public long    parseLongFecha(Date fecha,Date hora) {
 
         String[] split = formatoFecha(fecha).split("/");
         String[] split2 = formatoHora(hora).split(":");

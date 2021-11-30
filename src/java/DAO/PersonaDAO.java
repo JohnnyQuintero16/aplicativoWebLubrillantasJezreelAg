@@ -102,4 +102,17 @@ public class PersonaDAO {
         }
         return clientes;
     }
+    
+    public boolean  existeCorreoActualizar(String correo, String cedula){
+       
+        List<Persona> personas = read();
+        for(Persona p : personas ){
+        if(!p.getCedula().equals(cedula) && p.getEmail().equals(correo)){
+        return true;
+        }
+        
+        }
+        
+        return false;
+    }
 }
