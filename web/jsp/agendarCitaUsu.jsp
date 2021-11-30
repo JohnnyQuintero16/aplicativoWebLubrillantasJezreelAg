@@ -81,7 +81,7 @@
     <main>
         <!-- Inicio formulario-->
         <section class="registro">
-            <form action="" class="formulario" id="formulario">
+            <form action="InsertarCita.do" class="formulario" id="formulario">
                 <div class="form-register__header">
                     <h1 class="form-register__title">Agenda tu servicio</h1>
                     <ul class="progressbar">
@@ -183,8 +183,6 @@
                                 <div class="formulario__grupo-input">
                                     <select class="formulario__select" name="hora" id="hora">
                                         <option value="default" selected disabled>Horarios disponibles</option>
-                                        <option value="value1">Value 2</option>
-                                        <option value="value2">Value 3</option>
                                     </select>
                                 </div>
                             </div>
@@ -194,9 +192,9 @@
                                 <label for="servicio" class="formulario__label">Seleccione el servicio</label>
                                 <div class="formulario__grupo-input">
                                     <select class="formulario__select" name="servicio" id="servicio">
+                                        
                                         <option value="default" selected disabled>Servicios disponibles</option>
-                                        <option value="value1">Cambio de llantas</option>
-                                        <option value="value2">Cambio de aceite</option>
+                                        <%=request.getSession().getAttribute("servAct").toString()%>
                                     </select>
                                 </div>
                             </div>
@@ -291,14 +289,41 @@
     </main>
         <script>
             function sele(){
-                
                 let dias = ['LUNES','MARTES','MIÉRCOLES','JUEVES','VIERNES','SÁBADO','DOMINGO'];
                 let fecha = document.getElementById('fecha');
                 let diaNum = new Date(fecha.value);
-                let horas = '<%=request.getSession().getAttribute("horarios").toString()%>'.split(';');
+                let num = diaNum.getDay();
+                let diaSeleccionado = dias[num];
+              
+                let horarios = '<%=request.getSession().getAttribute("horarios").toString()%>'.split(';');
+                var select = document.getElementById('hora');
+                select.innerHTML ="<option value=\"default\" selected disabled>Horarios disponibles</option>";
                 
+                if(diaSeleccionado!=='DOMINGO'){
+                    
+                    for(let i =0; i<horarios.length; i++){         //TOMO SEMANA POR SEMANA
+                    let horarioDia = horarios[i].split(',');
+                    
+                    if(horarioDia[0]===diaSeleccionado){  
+                        
+                        for(let k =1; k<horarioDia.length; k++){
+                            
+                             var option = document.createElement("option");
+                              
+                             let hora = horarioDia[k];//value sera dia y hora
+                             let formatHora = hora>12?(hora-12)+':00 p.m':hora+':00 a.m';
+                             option.value = horarioDia[0]+" , "+formatHora; 
+                             option.innerHTML = formatHora;
+                             select.options.add(option);
+                             
+                        }
+                       break;
+                        
+                    }
+                }
+                }
 
-            });
+            }
                                 
                             </script>
          <!--FOOTER-->

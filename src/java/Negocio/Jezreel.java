@@ -568,6 +568,16 @@ public class Jezreel {
         return fechaAmandar;
     }
     
+    public String optionsServicios(){
+            ServicioDAO se = new ServicioDAO();
+            List<Servicio> s = se.readServiciosActivos();
+            String rta ="";
+                for(Servicio ser : s){
+                    rta+=" <option value=\""+ser.getId()+"\">"+ser.getNombre()+"</option>\n";
+                }
+            return rta;
+    }
+    
     
     
     public String getDia(Date fecha){

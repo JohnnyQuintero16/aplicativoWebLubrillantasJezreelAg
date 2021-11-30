@@ -139,6 +139,14 @@
         <servlet-name>MostrarDatosAgendaConfirAdmin</servlet-name>
         <servlet-class>ControladorVistas.MostrarDatosAgendaConfirAdmin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ObtenerHorarios</servlet-name>
+        <servlet-class>ControladorVistas.ObtenerHorarios</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertarCita</servlet-name>
+        <servlet-class>ControladorVistas.InsertarCita</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion.do</url-pattern>
@@ -246,6 +254,14 @@
     <servlet-mapping>
         <servlet-name>MostrarDatosAgendaConfirAdmin</servlet-name>
         <url-pattern>/MostrarDatosAgendaConfirAdmin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ObtenerHorarios</servlet-name>
+        <url-pattern>/ObtenerHorarios.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertarCita</servlet-name>
+        <url-pattern>/InsertarCita.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>15</session-timeout>

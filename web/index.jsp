@@ -124,7 +124,7 @@
                         <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel">
                             <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel ">
                                 <h1 class="tittle-carrusel" >Lubrillantas <p style="color: blue; display: inline;">Jezreel</p> AG</h1>
-                                <input class="boton" id="botonAgendar" type="button" value="Agendar Servicio" >         
+                                <input class="boton" id="botonAgendar" type="button" value="Agendar Servicio" onclick="location.href='ObtenerHorarios.do'">         
                             </div>
                         </div>
 
@@ -135,7 +135,7 @@
                         <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel">
                             <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel ">
                                 <h1 class="tittle-carrusel" >Lubrillantas <p style="color: blue; display: inline;">Jezreel</p> AG</h1>
-                                <input class="boton" id="botonAgendar" type="button" value="Agendar Servicio" onclick="location.href='html/iniciarsesion.jsp'"> 
+                                <input class="boton" id="botonAgendar" type="button" value="Agendar Servicio" onclick="location.href='ObtenerHorarios.do'"> 
                             </div> 
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                         <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel">
                             <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel ">
                                 <h1 class="tittle-carrusel" >Lubrillantas <p style="color: blue; display: inline;">Jezreel</p> AG</h1>
-                                <input class="boton" id="botonAgendar" type="button" value="Agendar Servicio" onclick="location.href='html/iniciarsesion.jsp'"> 
+                                <input class="boton" id="botonAgendar" type="button" value="Agendar Servicio" onclick="location.href='ObtenerHorarios.do'"> 
                             </div> 
                         </div>
                     </div>
