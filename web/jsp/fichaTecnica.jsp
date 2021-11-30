@@ -72,7 +72,7 @@
                     <span class="tooltip">Clientes</span>
                 </li>
                 <li>
-                    <a href="<%=basePath%>jsp/serviciosAdmin.jsp">
+                    <a href="<%=basePath%>MostrarServiciosAdmin.do">
                         <i class="fas fa-user-cog"></i>
                         <span class="links_name">Servicios</span>
                     </a>
@@ -158,6 +158,7 @@
                     <thead class="table-secondary">
                         <tr>
                             <th class="enc" scope="col">No</th>
+                            <th class="enc" scope="col">Vehiculo</th>
                             <th class="enc" scope="col">Servicio</th>
                             <th class="enc" scope="col">Productos</th>
                             <th class="enc" scope="col">Descripcion</th>
@@ -263,8 +264,10 @@
 
 
         <script>
+
+                        var table;
                         $(document).ready(function () {
-                            $('#example').DataTable({
+                            table = $('#example').DataTable({
 
                                 "language": {
                                     "lengthMenu": "Mostrar_MENU_registros",
@@ -286,6 +289,10 @@
                             );
                         });
 
+
+                    
+
+
                         var modalEditarCliente = document.getElementById('modal2');
                         modalEditarCliente.addEventListener('show.bs.modal', (e) => {
                             var btn = e.relatedTarget.valueOf().parentNode;
@@ -296,7 +303,7 @@
                             modalBodyInput = modalEditarCliente.querySelector('.modal-body').querySelectorAll('input');
                             modalBodyOptionMarca = modalEditarCliente.querySelector('#select1').querySelectorAll('option');
                             modalBodyOptionTipo = modalEditarCliente.querySelector('#select2').querySelectorAll('option');
-                   
+
                             modalBodyInput[0].value = datos[0].innerHTML;
                             modalBodyInput[1].value = datos[3].innerHTML;
                             modalBodyInput[2].value = datos[4].innerHTML;
@@ -320,21 +327,21 @@
                             }
 
                             for (i = 0; i < modalBodyOptionTipo.length; i++) {
- 
+
                                 if (modalBodyOptionTipo[i].innerHTML === datos[2].innerHTML) {
 
                                     modalBodyOptionTipo[i].setAttribute("selected", "");
                                     console.log(modalBodyOptionTipo[i]);
-                               
+
                                 } else {
                                     modalBodyOptionTipo[i].removeAttribute("selected");
-                                     console.log(modalBodyOptionTipo[i]);
- 
+                                    console.log(modalBodyOptionTipo[i]);
+
                                 }
 
                             }
-                            
-                            
+
+
 
 
 

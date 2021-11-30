@@ -67,12 +67,13 @@
                             <a  class="nav-link dropdown-toggle link-dark  " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
                                 <%=request.getSession().getAttribute("nameUser")%>
                             </a>
-                            <ul class="dropdown-menu text-small "    aria-labelledby="dropdownUser2"  >
+                            <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
                                 <li><a class="dropdown-item" href="#" >Mi Cuenta</a></li>
-                                <li><a class="dropdown-item" href="<%=basePath%>/MisVehiculos.do" >Mis Vehiculos</a></li>
+                                <li><a class="dropdown-item" href="<%=basePath%>MisVehiculos.do" >Mis Vehiculos</a></li>
                                 <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
+                                <li><a class="dropdown-item" href="<%=basePath%>MostrarCitasUsu.do" >Mis Citas</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Salir</a></li>
+                                <li><a class="dropdown-item" href="<%=basePath%>/cerrarSesion.do">Salir</a></li>
                             </ul>
                         </li>
                     </ul>

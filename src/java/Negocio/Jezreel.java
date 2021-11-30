@@ -87,7 +87,7 @@ public class Jezreel {
 
     public String[] mostrarProductos() {
 
-        String[] tipo = {"ACEITES", "FILROS", "VALVULINAS", "ADICTIVOS", "OTROS"};
+        String[] tipo = {"ACEITES", "FILTROS", "VALVULINAS", "ADICTIVOS", "OTROS"};
         ProductoDAO da = new ProductoDAO();
         String[] rta = new String[tipo.length];
         for (int i = 0; i < tipo.length; i++) {
@@ -97,17 +97,17 @@ public class Jezreel {
             if (!pt.isEmpty()) {
                 rta[i] = "";
                 for (Producto pro : pt) {
-                    if (pro.getEstado().equals("ACTIVO")) {
-                        rta[i] += "					<div class=\"card\">\n"
-                                + "						<img src=" + '"' + pro.getImgUrl() + '"' + " alt=\"\">\n"
-                                + "						<h4 class=\"titulo-card\">" + pro.getNombre() + " </h4>\n"
-                                + "						<p  id=\"desc\">" + pro.getDescripcion() + "</p>\n"
-                                + "						<p><strong id=\"ref-prec\">Referencia:</strong>" + pro.getReferencia() + "</p>				\n"
-                                + "						<p><strong id=\"ref-prec\">Precio: $ </strong>" + pro.getPrecioVenta() + "</p>\n"
-                                + "\n"
-                                + "						\n"
-                                + "					</div> \n";
-                    }
+
+                    rta[i] += "					<div class=\"card\">\n"
+                            + "						<img src=" + '"' + pro.getImgUrl() + '"' + " alt=\"\">\n"
+                            + "						<h4 class=\"titulo-card\">" + pro.getNombre() + " </h4>\n"
+                            + "						<p  id=\"desc\">" + pro.getDescripcion() + "</p>\n"
+                            + "						<p><strong id=\"ref-prec\">Referencia:</strong>" + pro.getReferencia() + "</p>				\n"
+                            + "						<p><strong id=\"ref-prec\">Precio: $ </strong>" + pro.getPrecioVenta() + "</p>\n"
+                            + "\n"
+                            + "						\n"
+                            + "					</div> \n";
+
                 }
             } else {
 
@@ -136,7 +136,7 @@ public class Jezreel {
 
             }
             Collections.sort(servi);
-          
+
             rta = vistaMisServicios(servi);
 
         } else {
@@ -153,7 +153,7 @@ public class Jezreel {
         FichaTecnica ficha = fida.findFichaVehiculo(placa);
         atendao.findServiciosFicha(ficha.getId(), servi);
         Collections.sort(servi);
-    
+
         rta = vistaMisServicios(servi);
         return rta;
     }
@@ -171,7 +171,7 @@ public class Jezreel {
         for (AtencionServicio a : servi) {
 
             List<DetallesServicio> dser = sdao.findDetalleServicioAtencion(a.getId());
-           
+
             List<DetallesProducto> dpro = pdao.findDetalleProductoAtencion(a.getId());
             Persona mecanico = a.getIdPersona();
             Factura factura = a.getIdFactura();
@@ -229,7 +229,7 @@ public class Jezreel {
                         + "                            <tr>\n"
                         + "                              <th scope=\"col\">Producto</th>\n"
                         + "                              <th scope=\"col\">Und</th>\n"
-                        + "                              <th scope=\"col\">Precio</th>\n"
+                        + "                              <th scope=\"col\">Precio Unidad</th>\n"
                         + "                              <th scope=\"col\">IVA</th>\n"
                         + "                              <th scope=\"col\">Total</th>\n"
                         + "                            </tr>\n"
@@ -274,11 +274,11 @@ public class Jezreel {
                     + "                              <td>" + d.getCantidad() + "</td>\n"
                     + "                              <td> $ " + d.getIdProducto().getPrecioVenta() + "</td>\n"
                     + "                              <td> $ " + d.getIdProducto().getPrecioVenta() * 0.19 + "</td>\n"
-                    + "                              <td>$" + (d.getIdProducto().getPrecioVenta() + d.getIdProducto().getPrecioVenta() * 0.19) + "</td>\n"
+                    + "                              <td>$" + (d.getIdProducto().getPrecioVenta() + d.getIdProducto().getPrecioVenta() * 0.19) * d.getCantidad() + "</td>\n"
                     + "                            </tr>\n";
 
-            costo.set(0, costo.get(0) + d.getIdProducto().getPrecioVenta());
-            costo.set(1, costo.get(1) + d.getIdProducto().getPrecioVenta() * 0.19);
+            costo.set(0, costo.get(0) + d.getIdProducto().getPrecioVenta() * d.getCantidad());
+            costo.set(1, costo.get(1) + d.getIdProducto().getPrecioVenta() * 0.19 * d.getCantidad());
         }
 
         return rta;
@@ -299,7 +299,7 @@ public class Jezreel {
                 + "                    </div>\n"
                 + "                    <div class=\"modal-footer\" id=\"foterM\">\n"
                 + "                    <input style=\"display:none\" value=" + a.getId() + ">\n"
-                + "                    "+((cadao.calificado(a)==false)?"<button  class=\"btn\" id=\"boton\" data-bs-toggle=\"modal\" data-bs-target=\"#modal2\" type=\"button\">Calificar servicio</button>\n":"<button style=\"background-color: #119200\" class=\"btn\" id=\"boton\" type=\"button\">Calificado</button>\n")
+                + "                    " + ((cadao.calificado(a) == false) ? "<button  class=\"btn\" id=\"boton\" data-bs-toggle=\"modal\" data-bs-target=\"#modal2\" type=\"button\">Calificar servicio</button>\n" : "<button style=\"background-color: #119200\" class=\"btn\" id=\"boton\" type=\"button\">Calificado</button>\n")
                 + "                    </div>\n"
                 + "                  </div>\n"
                 + "                </div>\n"
@@ -367,8 +367,8 @@ public class Jezreel {
     public String getCitas(){
     
         CitaDAO c = new CitaDAO();
-        String rta ="";
-        
+        String rta = "";
+
         List<Cita> citas = c.read();
             for (Cita ci : citas) {
                 Persona p = ci.getIdPersona();
@@ -727,7 +727,6 @@ public class Jezreel {
 
             }
             Collections.sort(aServicios);
-            //System.out.println("SERVICIOS " + servi.toString());
             rta = tableServiciosFicha(aServicios);
 
         }
@@ -740,6 +739,7 @@ public class Jezreel {
         for (AtencionServicio s : servi) {
             tbody += "<tr>\n"
                     + "                            <th class=\"enc\" scope=\"row\">" + i + "</th>\n"
+                    + "                            <td>" + s.getIdFichaTecnica().getIdVehiculo().getPlaca() + "</td>\n"
                     + "                            <td>" + stringServicios(s) + "</td>\n"
                     + "                            <td>" + stringProductos(s) + "</td>\n"
                     + "                            <td>" + s.getDescripcion() + "</td>\n"
@@ -804,6 +804,68 @@ public class Jezreel {
         for (Tipo t : tipo) {
 
             rta += "       <option value=" + '"' + t.getId() + '"' + ">" + t.getNombre() + "</option>\n";
+        }
+
+        return rta;
+    }
+
+    public String mostrarCitasActivasUsuario(String cedula) {
+
+        String rta = "";
+        CitaDAO cidao = new CitaDAO();
+        List<Cita> citasActivas = cidao.citasUsuario(cedula);
+
+        if (!citasActivas.isEmpty()) {
+
+            for (Cita c : citasActivas) {
+                String[] dcita = c.getDescripcion().split(",");
+
+                rta += "                    <div class=\"row\" id=\"form\">\n"
+                        + "                        <div class=\"col col-md-12\">\n"
+                        + "                            <div id=\"fecha\" class=\"media align-items-center\">							\n"
+                        + "                                <label  for=\"fecha\" class=\"form-label\">FECHA: " + c.formatoFecha(c.getFecha()) + "</label>\n"
+                        + "                            </div>\n"
+                        + "                            <div class=\"media-body\">\n"
+                        + "                                <div class=\"row align-items-center\">\n"
+                        + "                                    <div class=\"col-md-9 col-sm-9\">\n"
+                        + "                                        <div style=\"padding: 15px\">\n"
+                        + "                                            <h6>HORA: " + c.formatoHora(c.getHora()) + "</h6>\n"
+                        + "                                            <h6>VEHÍCULO: " + dcita[0] + "</h6>\n"
+                        + "                                            <h6>SERVICIO SOLICITADO : " + dcita[5] + "</h6>\n"
+                        + "                                        </div>																		\n"
+                        + "                                    </div>\n"
+                        + "                                    <!-- botón eliminar-->\n"
+                        + "                                    <div class=\" col-3\" align=\"center\" >"
+                        + "                                    <input  style=\"display: none\" value="+'"'+ c.getId()+'"'+"type=\"text\" class=\"form-control\" id=\"cita\" name=\"cita\" required>								\n"
+                        + "                                        <a  href=\"#\" class=\"btn btn-outline-danger float-right\"data-bs-toggle=\"modal\" data-bs-target=\"#modal1\">\n"
+                        + "                                            <svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" fill=\"currentColor\" class=\"bi bi-trash\" viewBox=\"0 0 16 16\">\n"
+                        + "                                            <path d=\"M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z\"/>\n"
+                        + "                                            <path fill-rule=\"evenodd\" d=\"M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z\"/>\n"
+                        + "                                            </svg>\n"
+                        + "                                            <span class=\"visually-hidden\"></span>\n"
+                        + "                                        </a>\n"
+                        + "\n"
+                        + "                                        <!--Fin de Botón Eliminar-->\n"
+                        + "\n"
+                        + "                                        <!--Botón de editar la cita-->\n"
+                        + "                                        <a href=\"<%=basePath%>./jsp/editarCitaUsu.jsp\" class=\"btn float-right btn-outline-info float-right\">\n"
+                        + "                                            <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-pencil-square\" viewBox=\"0 0 16 16\">\n"
+                        + "                                            <path d=\"M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z\"/>\n"
+                        + "                                            <path fill-rule=\"evenodd\" d=\"M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z\"/>\n"
+                        + "                                            </svg>\n"
+                        + "                                            <span class=\"visually-hidden\"></span>\n"
+                        + "                                        </a>					\n"
+                        + "                                    </div>\n"
+                        + "                                    <!--Fin de botón Editar-->\n"
+                        + "                                </div>\n"
+                        + "                            </div>					\n"
+                        + "                        </div>\n"
+                        + "                    </div>";
+
+            }
+        } else {
+            rta = "<h4>No tienes citas</h4>";
+
         }
 
         return rta;
