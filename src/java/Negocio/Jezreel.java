@@ -455,6 +455,7 @@ public class Jezreel {
             Dia diaSemana = getDiaSemana(semana,diaCita); //dia de la semana de esa cita
             ArrayList<Hora> h = diaSemana.getHoras(); //horas de ese dia
             Hora horaDia = getHoraDia(h,horaCita);   //obtengo la hora de la cita dentro de las horas del dia
+            
             horaDia.aumentarCupo();
             
             if(horaDia.getCupo()==4){
@@ -484,6 +485,9 @@ public class Jezreel {
     
     public Hora getHoraDia(ArrayList<Hora> h, String horaCita){
     
+        if(horaCita.charAt(0)=='0'){
+            horaCita = horaCita.charAt(1)+"";
+        }
         for (Hora ho : h) {
             if(ho.getHora().equals(horaCita)){
                 return ho;
@@ -609,7 +613,7 @@ public class Jezreel {
     
     }
     
-    private List<Cita> getCitasNoAtendidas(){
+    public List<Cita> getCitasNoAtendidas(){
         CitaDAO c = new CitaDAO();
         List<Cita> citas = c.read();
         List<Cita> citasNoAtendidas = new ArrayList<Cita>();

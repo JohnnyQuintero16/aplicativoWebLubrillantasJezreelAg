@@ -53,7 +53,7 @@ public class CitaDAO {
 
     public void update(Cita d) {
         try {
-            cit.edit(c);
+            cit.edit(d);
         } catch (Exception ex) {
             Logger.getLogger(CitaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

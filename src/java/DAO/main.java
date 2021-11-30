@@ -37,7 +37,7 @@ public class main {
     public static void main(String[] args) {
         Jezreel j = new Jezreel();
         CitaDAO c = new CitaDAO();
-        
+        System.out.println(j.cargarHorarios());
 //        Date d = new Date(2021-1900, 12-1, 03, 11, 0, 0);
 //        Date horac = new Date(2021-1900, 12-1, 03, 11, 0, 0);
 //        PersonaDAO p = new PersonaDAO();
@@ -50,22 +50,22 @@ public class main {
 //        System.out.println(Integer.parseInt(fecha[0])+" "+Integer.parseInt(fecha[1])+" "+Integer.parseInt(fecha[2]));
         
         
-Cita cit = c.readCita(32);
+//Cita cit = c.readCita(32);
         
-        Date fechaCita = cit.getFecha();   //comparo usandoo hora
-        fechaCita.setHours(cit.getHora().getHours()); //le pongo la hora a la fecha
-        
-        
-        Date fechaActual = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
-        
-        System.out.println("fecha cita "+fechaCita);
-        System.out.println("fecha hoy "+fechaActual);
-        
-        if (fechaCita.compareTo(fechaActual) > 0) {
-            System.out.println("fecha cita no ha llegado");
-        } else if(fechaCita.compareTo(fechaActual) < 0) {
-            System.out.println("la cita ya paso");
-        }
+//        Date fechaCita = cit.getFecha();   //comparo usandoo hora
+//        fechaCita.setHours(cit.getHora().getHours()); //le pongo la hora a la fecha
+//        
+//        
+//        Date fechaActual = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
+//        
+//        System.out.println("fecha cita "+fechaCita);
+//        System.out.println("fecha hoy "+fechaActual);
+//        
+//        if (fechaCita.compareTo(fechaActual) > 0) {
+//            System.out.println("fecha cita no ha llegado");
+//        } else if(fechaCita.compareTo(fechaActual) < 0) {
+//            System.out.println("la cita ya paso");
+//        }
         
 //        String hora = "MIÉRCOLES , 9:00 p.m";
 //        String horaDia[] = hora.split(",");   //VIERNES , 9:00 a.m
@@ -204,40 +204,95 @@ Cita cit = c.readCita(32);
 
 
 
-
-
-
-
-    }
-
-     public static ArrayList<Dia> getSemana(Date diaInicio){
-        
-        Date dia = diaInicio;
-        Calendar calendar = Calendar.getInstance();
-        ArrayList<Dia> semana = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {
-            
-            Dia d = new Dia(getDia(dia)); //CREO UN DIA
-            semana.add(d);
-            calendar.setTime(dia); //CONFIGUURO EL DIA
-            
-            calendar.add(Calendar.DAY_OF_WEEK, 1);//LE SUMO UNO
-//            System.out.println(calendar.getTime().toString());
-            dia = calendar.getTime();
-        }
-        return semana;
-    }
-     
-      public static Dia getDiaSemana(ArrayList<Dia> sem, String dia){
-        
-        for (Dia d : sem) {
-            if(d.getNombre().equals(dia)){
-                return d;
-            }
-        }
-        System.err.println("No se encontro el dia");
-        return null;
-    }
+//
+//
+//
+//
+//    }
+//    public static String cargarHorarios(){
+//        
+//        String rta="";
+//        ArrayList<Dia> semana = cargarHorario();
+//        
+//        for(Dia d : semana){
+//            
+//            rta+=d.getNombre();
+//            ArrayList<Hora> horas = d.getHoras();
+//            
+//            for (Hora h : horas) {
+//               rta+=","+h.getHora();
+//            } 
+//            rta+=";";
+//        }
+//        return rta;
+//    }
+//
+//    public static ArrayList<Dia> cargarHorario(){
+//        //OBTENGO CITAS NO ATENDIDAS
+//        Jezreel j = new Jezreel();
+//        List<Cita> citas = j.getCitasNoAtendidas();
+//        //OBTENGO EL DIA DE HOY
+//        String diaEntroAReservar = getDia(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault())
+//                            .toInstant())); //ejm lunes, martes...
+//        Date fechaRealDeInicio = j.validarDiaDeBusqueda(diaEntroAReservar);
+//        ArrayList<Dia> semana = getSemana(fechaRealDeInicio); //OBTENGO LA SEMANA A PARTIR DEL DIA QUE ME PARE
+//        for (Dia d: semana) {
+//            System.out.println(d.getNombre()+ ",");
+//        }
+//        //ENTRO A REVISAR A PARTIR DE LA FECHA
+//        for (Cita ci: citas) {
+//            
+//            //desde las 8 a las 16
+//            String diaCita = getDia(ci.getFecha());
+//            String horaCita = j.getHora(ci.getHora());
+//            System.out.println("dia de la cita "+diaCita);
+//            System.out.println("hora de la cita "+horaCita);
+//            
+//            //CUANDO OBTENGA EL DIA DE LA LISTA AUMENTO EL CUPO Y SI SE LLENA ELIMINO LA HORA DE LA SEMANA
+//            
+//            Dia diaSemana = getDiaSemana(semana,diaCita); //dia de la semana de esa cita
+//            ArrayList<Hora> h = diaSemana.getHoras(); //horas de ese dia
+//            Hora horaDia = j.getHoraDia(h,horaCita);   //obtengo la hora de la cita dentro de las horas del dia
+//           
+//            horaDia.aumentarCupo();
+//            System.out.println(diaSemana.getNombre());
+//            System.out.println(horaDia.getHora());
+//            System.out.println("EL cupo para el "+diaSemana.getNombre()+" es "+horaDia.getCupo());
+//            if(horaDia.getCupo()==4){
+//               diaSemana.getHoras().remove(horaDia);
+//            }
+//        }
+//        return semana;
+//    }
+//    
+//     public static ArrayList<Dia> getSemana(Date diaInicio){
+//        
+//        Date dia = diaInicio;
+//        Calendar calendar = Calendar.getInstance();
+//        ArrayList<Dia> semana = new ArrayList<>();
+//        for (int i = 0; i < 7; i++) {
+//            
+//            Dia d = new Dia(getDia(dia)); //CREO UN DIA
+//            semana.add(d);
+//            calendar.setTime(dia); //CONFIGUURO EL DIA
+//            
+//            calendar.add(Calendar.DAY_OF_WEEK, 1);//LE SUMO UNO
+////            System.out.println(calendar.getTime().toString());
+//            dia = calendar.getTime();
+//        }
+//        return semana;
+//    }
+//     
+//      public static Dia getDiaSemana(ArrayList<Dia> sem, String dia){
+//        
+//        for (Dia d : sem) {
+//            if(d.getNombre().equals(dia)){
+//                return d;
+//            }
+//        }
+//        System.err.println("No se encontro el dia");
+//        return null;
+//    }
      
 //     public static ArrayList<Dia> cargarHorario(){
 //        //OBTENGO CITAS NO ATENDIDAS
@@ -268,11 +323,11 @@ Cita cit = c.readCita(32);
 //        return semana;
 //    }
      
-     public static String getDia(Date fecha){
-    
-        SimpleDateFormat ObtenerDia = new SimpleDateFormat("EEEE");
-        String dia = ObtenerDia.format(fecha).toUpperCase();
-        return dia;
+//     public static String getDia(Date fecha){
+//    
+//        SimpleDateFormat ObtenerDia = new SimpleDateFormat("EEEE");
+//        String dia = ObtenerDia.format(fecha).toUpperCase();
+//        return dia;
     }
 
-}
+} 
