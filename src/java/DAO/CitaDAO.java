@@ -10,6 +10,7 @@ import DTO.Cita;
 import Persistencia.CitaJpaController;
 import Persistencia.exceptions.IllegalOrphanException;
 import Persistencia.exceptions.NonexistentEntityException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,12 +43,22 @@ public class CitaDAO {
         return cit.findCita(id);
     }
     
-    public void update(Cita d){
+    public void update(Cita c){
         try {
-            cit.edit(d);
+            cit.edit(c);
         } catch (Exception ex) {
             Logger.getLogger(CitaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void insertarCita(String anio, String mes, String dia, int hora,String cedula, String descripcion){
+        
+        PersonaDAO p = new PersonaDAO();
+        Date fecha = new Date(Integer.parseInt(anio)-1900, Integer.parseInt(mes)-1, Integer.parseInt(dia), hora, 0, 0);
+        Cita ci  = new Cita(0,fecha,fecha, descripcion,"NO ATENDIDO");
+        ci.setIdPersona(p.readPersona(cedula));
+        create(ci);
+        
     }
     
     public void delete(int id) throws IllegalOrphanException, NonexistentEntityException{
@@ -66,15 +77,6 @@ public class CitaDAO {
             c.setEstado("CANCELADA");
         }else{
             c.setEstado("EN PROCESO");
-//            try{
-//            GmailNotificacion n = new GmailNotificacion();
-//            
-//            n.enviarCorreo(c.getIdPersona().getEmail(),"TU SERVICIO ESTA EN PROCESO","📣 Hola desde lubrillantas Jezreel! 😁 \n"
-//                +
-//            "Hola "+c.getIdPersona().getNombres()+" queremos notificarte que tu servicio esta en proceso! pronto recibiras una notificacion cuando tu auto es listo.🔩 🔧🚗\n");
-//            }catch(Exception e){
-//                System.out.println("no se pudo notificar");
-//            }
         }
         this.update(c);
     }

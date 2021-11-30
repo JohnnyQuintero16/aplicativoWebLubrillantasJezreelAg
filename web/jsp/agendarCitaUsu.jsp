@@ -294,7 +294,7 @@
                 let diaNum = new Date(fecha.value);
                 let num = diaNum.getDay();
                 let diaSeleccionado = dias[num];
-              
+                let horaActual = new Date();
                 let horarios = '<%=request.getSession().getAttribute("horarios").toString()%>'.split(';');
                 var select = document.getElementById('hora');
                 select.innerHTML ="<option value=\"default\" selected disabled>Horarios disponibles</option>";
@@ -304,23 +304,34 @@
                     for(let i =0; i<horarios.length; i++){         //TOMO SEMANA POR SEMANA
                     let horarioDia = horarios[i].split(',');
                     
-                    if(horarioDia[0]===diaSeleccionado){  
+                    
+                    if(horarioDia[0]===diaSeleccionado){  //horario = lunes,7,8,9..
                         
                         for(let k =1; k<horarioDia.length; k++){
-                            
+                             
                              var option = document.createElement("option");
-                              
-                             let hora = horarioDia[k];//value sera dia y hora
-                             let formatHora = hora>12?(hora-12)+':00 p.m':hora+':00 a.m';
-                             option.value = horarioDia[0]+" , "+formatHora; 
-                             option.innerHTML = formatHora;
-                             select.options.add(option);
+                           
+                             let hora = horarioDia[k]; 
+                             if(diaSeleccionado===dias[horaActual.getDay()-1]){
+                                 
+                                if(hora>horaActual.getHours()){ 
+
+                                       let formatHora = hora>12?(hora-12)+':00 p.m':hora+':00 a.m';
+                                       option.value = horarioDia[0]+" , "+formatHora; //value sera dia y hora
+                                       option.innerHTML = formatHora;
+                                       select.options.add(option);
+                               }
+                            }else{
+                                       let formatHora = hora>12?(hora-12)+':00 p.m':hora+':00 a.m';
+                                       option.value = horarioDia[0]+" , "+formatHora; //value sera dia y hora
+                                       option.innerHTML = formatHora;
+                                       select.options.add(option);
+                            }
                              
                         }
                        break;
-                        
                     }
-                }
+                  }
                 }
 
             }

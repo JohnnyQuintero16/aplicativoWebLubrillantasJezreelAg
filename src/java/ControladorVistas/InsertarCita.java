@@ -5,6 +5,7 @@
  */
 package ControladorVistas;
 
+import DAO.CitaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -36,10 +37,21 @@ public class InsertarCita extends HttpServlet {
         String modelo = request.getParameter("modelo");
         String anio = request.getParameter("año");
         String Kilometraje = request.getParameter("marca");
-        String fecha = request.getParameter("fecha");
+        String fecha[] = request.getParameter("fecha").split("-");
         String hora = request.getParameter("hora");
         String servicio = request.getParameter("servicio");
         
+        String horaDia[] = hora.split(",");   //VIERNES,9:00 a.m.
+        String horaFormat[] = horaDia[1].split(" "); //9:00,p.m
+        int num = Integer.parseInt(horaFormat[1].split(":")[0]);   //9
+        String ampm = horaFormat[2]; // a,m
+        
+        int horaMil = ampm.charAt(0)=='p'?num+12:num;
+        String descripcion = placa+","+modelo+","+marca+","+anio+","+Kilometraje+","+servicio;
+      
+        CitaDAO c = new CitaDAO();
+        c.insertarCita(fecha[0],fecha[1],fecha[2], horaMil, request.getSession().getAttribute("usuario").toString(), descripcion);
+        request.getRequestDispatcher("MostrarCitasUsu.do").forward(request, response);
         
     }
 
