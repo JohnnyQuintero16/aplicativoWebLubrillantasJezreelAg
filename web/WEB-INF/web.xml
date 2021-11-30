@@ -131,6 +131,14 @@
         <servlet-name>CalificarServicio</servlet-name>
         <servlet-class>ControladorVistas.CalificarServicio</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MostrarCitasUsu</servlet-name>
+        <servlet-class>ControladorVistas.MostrarCitasUsu</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarCita</servlet-name>
+        <servlet-class>ControladorVistas.EliminarCita</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion.do</url-pattern>
@@ -230,6 +238,14 @@
     <servlet-mapping>
         <servlet-name>CalificarServicio</servlet-name>
         <url-pattern>/CalificarServicio.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarCitasUsu</servlet-name>
+        <url-pattern>/MostrarCitasUsu.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarCita</servlet-name>
+        <url-pattern>/EliminarCita.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>5</session-timeout>

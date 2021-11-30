@@ -6,6 +6,8 @@
 package DTO;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -42,7 +44,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Cita.findByHora", query = "SELECT c FROM Cita c WHERE c.hora = :hora")
     , @NamedQuery(name = "Cita.findByDescripcion", query = "SELECT c FROM Cita c WHERE c.descripcion = :descripcion")
     , @NamedQuery(name = "Cita.findByEstado", query = "SELECT c FROM Cita c WHERE c.estado = :estado")})
-public class Cita implements Serializable {
+public class Cita implements Serializable, Comparable<Cita>{
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -171,6 +173,41 @@ public class Cita implements Serializable {
     @Override
     public String toString() {
         return "DTO.Cita[ id=" + id + " ]";
+    }
+    
+    @Override
+    public int compareTo(Cita c) {
+        return new Long(parseIntFecha(fecha,hora)).compareTo((parseIntFecha(c.getFecha(), c.getHora())));
+       
+    }
+
+    public String formatoFecha(Date fecha) {
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
+        String[] split = formatter.format(fecha).split(" ");
+        String[] split2 = split[0].split("/");
+        String[] split3 = split[2].split(":");
+        //System.out.println("SOY LA HORA: " + split3[0]+split3[1]+split3[2]);
+        return split2[0] + "/" + split2[1] + "/" + split2[2];
+    }
+    
+        public String formatoHora(Date fecha) {
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
+        String[] split = formatter.format(fecha).split(" ");
+        String[] split2 = split[2].split(":");
+        //String[] split3 = split[2].split(":");
+        //System.out.println("SOY LA HORA: " + split3[0]+split3[1]+split3[2]);
+        return split2[0] + ":" + split2[1] ;
+    }
+
+    public long    parseIntFecha(Date fecha,Date hora) {
+
+        String[] split = formatoFecha(fecha).split("/");
+        String[] split2 = formatoHora(hora).split(":");
+       
+
+        return Long.parseLong(split[2] + split[1] + split[0]+split2[0]+split2[1]);
     }
     
 }
