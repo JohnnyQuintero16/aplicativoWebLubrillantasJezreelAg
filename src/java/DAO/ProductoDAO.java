@@ -62,12 +62,12 @@ public class ProductoDAO {
     }
 
     public List<Producto> findProductoTipo(String tipo) {
-        List<Producto> allproduct = prod.findProductoEntities();
+        List<Producto> allproduct =read();
         List<Producto> busqueda = new ArrayList<Producto>();
 
         for (Producto pro : allproduct) {
 
-            if (pro.getTipo().equals(tipo)) {
+            if (pro.getTipo().equals(tipo) && pro.getEstado().equals("ACTIVO")) {
                 busqueda.add(pro);
             }
         }

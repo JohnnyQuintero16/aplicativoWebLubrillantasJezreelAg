@@ -132,8 +132,16 @@
         <servlet-class>ControladorVistas.CalificarServicio</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>MostrarCitasUsu</servlet-name>
+        <servlet-class>ControladorVistas.MostrarCitasUsu</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>MostrarServiProduAdmin</servlet-name>
         <servlet-class>ControladorVistas.MostrarServiProduAdmin</servlet-class>
+    </servlet>
+     <servlet>
+        <servlet-name>EliminarCita</servlet-name>
+        <servlet-class>ControladorVistas.EliminarCita</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MostrarDatosAgendaConfirAdmin</servlet-name>
@@ -240,8 +248,16 @@
         <url-pattern>/CalificarServicio.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>MostrarCitasUsu</servlet-name>
+        <url-pattern>/MostrarCitasUsu.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>MostrarServiProduAdmin</servlet-name>
         <url-pattern>/MostrarServiProduAdmin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarCita</servlet-name>
+        <url-pattern>/EliminarCita.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MostrarDatosAgendaConfirAdmin</servlet-name>
