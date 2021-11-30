@@ -116,7 +116,7 @@ public class CitaDAO {
         for (Cita c : citas) {
            // System.out.println("SOY FECHA ACTUAL : " + ci.parseIntFecha(fechaActual));
             //System.out.println("SOY FECHA ENTRANTE : " + ci.parseIntFecha(c.getFecha()));
-            if (c.getIdPersona().getCedula().equals(cedula) && c.parseIntFecha(fechaActual,fechaActual) <= c.parseIntFecha(c.getFecha(),c.getHora())) {
+            if (c.getIdPersona().getCedula().equals(cedula) && c.parseLongFecha(fechaActual,fechaActual) <= c.parseLongFecha(c.getFecha(),c.getHora())) {
                 
                 //System.out.println("SOY FECHA ELEGIDA : " + c.parseIntFecha(c.getFecha()));
                 activas.add(c);

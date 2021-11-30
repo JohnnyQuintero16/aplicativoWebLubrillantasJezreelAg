@@ -5,7 +5,8 @@
  */
 package ControladorVistas;
 
-import Negocio.Jezreel;
+import DAO.PersonaDAO;
+import DTO.Persona;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author USUARIO
+ * @author Jefersonrr
  */
-public class MostrarServiciosIndex extends HttpServlet {
+public class UpdatePersona extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,13 +31,28 @@ public class MostrarServiciosIndex extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Jezreel je = new Jezreel();
-        String ser = je.mostrarServiciosIndex();
-        if(ser.equals(" ")){
-        ser="No hay servicios para mostrar";}
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
 
-        request.getSession().setAttribute("listaServiciosIndex",ser );
-        request.getRequestDispatcher("./index.jsp").forward(request, response);
+            String correo = request.getParameter("correo");
+            PersonaDAO perdao = new PersonaDAO();
+            Persona per = perdao.readPersona(request.getSession().getAttribute("usuario").toString());
+            if (perdao.existeCorreoActualizar(correo, per.getCedula())) {
+
+                request.getSession().setAttribute("correoigual", "si");
+                request.getRequestDispatcher("./jsp/editarDatosPersonales.jsp").forward(request, response);
+            } else {
+
+                per.setCelular(request.getParameter("celular"));
+                per.setDirecccion(request.getParameter("direccion"));
+                per.setEmail(correo);
+                per.setUrlFoto(request.getParameter("url"));
+                perdao.update(per);
+                request.getSession().setAttribute("urlFoto", per.getUrlFoto());
+                request.getSession().setAttribute("actualizados", "si");
+                request.getRequestDispatcher("./jsp/datosCliente.jsp").forward(request, response);
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

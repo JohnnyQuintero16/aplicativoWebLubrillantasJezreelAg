@@ -77,7 +77,7 @@
                                 <%=request.getSession().getAttribute("nameUser")%>
                             </a>
                             <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
-                                <li><a class="dropdown-item" href="#" >Mi Cuenta</a></li>
+                                <li><a class="dropdown-item" href="<%=basePath%>./jsp/datosCliente.jsp" >Mi Cuenta</a></li>
                                 <li><a class="dropdown-item" href="<%=basePath%>MisVehiculos.do" >Mis Vehiculos</a></li>
                                 <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
                                 <li><a class="dropdown-item" href="<%=basePath%>MostrarCitasUsu.do" >Mis Citas</a></li>
@@ -89,7 +89,7 @@
                 </div>
 
                 <div class="perfil-nav">
-                    <img src="<%=basePath%>img/user.png" width="70" height="70" class="rounded-circle me-2">
+                    <img src="<%= request.getSession().getAttribute("urlFoto").toString() %>" width="70" height="70" class="rounded-circle me-2">
                 </div>
             </div>
         </nav>
@@ -107,7 +107,9 @@
                         <aside>
                             <div class="side-inner">
                                 <div class="profile">
-                                    <img class="bd-placeholder-img rounded-circle" id="Perfil" src="<%=basePath%>/img/usuario.png">
+                                    <div class="perfil-nav">
+                                       <img  src="<%= request.getSession().getAttribute("urlFoto").toString() %>" alt="Image" class="img-fluid rounded-circle ">
+                                    </div>
                                     <br>
                                     <h4>
                                         <%=request.getSession().getAttribute("nameUser")%>
@@ -116,9 +118,9 @@
                                 </div>
                                 <div class="nav-menu">
                                     <ul > 
-                                        <li><a href="<%=basePath%>MostrarServiciosAdmin.do"><span class=""></span>Mis Datos Personales</a></li>
+                                        <li><a href="<%=basePath%>./jsp/datosCliente.jsp"<%=basePath%>MostrarServiciosAdmin.do"><span class=""></span>Mis Datos Personales</a></li>
                                         <li><a href="<%=basePath%>MisVehiculos.do"><span class=""></span>Mis Vehículos</a></li>
-                                        <li><a href="<%=basePath%>MostrarServiciosAdmin.do"><span class=""></span>Mis Servicios</a></li>
+                                        <li><a href="<%=basePath%>MisServiciosUsu.do"><span class=""></span>Mis Servicios</a></li>
                                         <li id="misCitas"><a href="<%=basePath%>MostrarCitasUsu.do"><span class=""></span>Mis Citas</a></li>
                                     </ul>
                                 </div>
@@ -172,7 +174,7 @@
                         <form action="<%=basePath%>EliminarCita.do" method="POST">
                             <input style="display: none" name="idCita" id="oculto"   required >
                             <button class="btn btn-primary" id="boton" type="submit">
-                                   Confirmar</button>
+                                Confirmar</button>
 
                             <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" data-bs-dismiss="modal">
                             <label class="btn btn-danger" for="option2">Cancelar</label>
@@ -220,17 +222,18 @@
         </footer>
         <!--FIN FOOTER-->
         <script>
-            
-             var modalEditarCliente = document.getElementById('modal1');
-                        modalEditarCliente.addEventListener('show.bs.modal', (e) => {
-                            console.log("Hola");
-                        
-                            var btn = e.relatedTarget.valueOf().parentNode;
-                            datos = btn.querySelector("input");
-                            console.log(datos);
-                            modalBodyInput = modalEditarCliente.querySelector('.modal-footer').querySelectorAll('input');
-                             console.log(modalBodyInput[0]);
-                            modalBodyInput[0].setAttribute("value",datos.value) ;});
+
+            var modalEditarCliente = document.getElementById('modal1');
+            modalEditarCliente.addEventListener('show.bs.modal', (e) => {
+                console.log("Hola");
+
+                var btn = e.relatedTarget.valueOf().parentNode;
+                datos = btn.querySelector("input");
+                console.log(datos);
+                modalBodyInput = modalEditarCliente.querySelector('.modal-footer').querySelectorAll('input');
+                console.log(modalBodyInput[0]);
+                modalBodyInput[0].setAttribute("value", datos.value);
+            });
 
         </script>
     </body>

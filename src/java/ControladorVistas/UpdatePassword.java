@@ -5,7 +5,8 @@
  */
 package ControladorVistas;
 
-import Negocio.Jezreel;
+import DAO.PersonaDAO;
+import DTO.Persona;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author USUARIO
+ * @author Jefersonrr
  */
-public class MostrarServiciosIndex extends HttpServlet {
+public class UpdatePassword extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,13 +31,32 @@ public class MostrarServiciosIndex extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Jezreel je = new Jezreel();
-        String ser = je.mostrarServiciosIndex();
-        if(ser.equals(" ")){
-        ser="No hay servicios para mostrar";}
-
-        request.getSession().setAttribute("listaServiciosIndex",ser );
-        request.getRequestDispatcher("./index.jsp").forward(request, response);
+    
+        PersonaDAO pdao = new PersonaDAO();
+        Persona p = pdao.readPersona(request.getSession().getAttribute("usuario").toString());
+        
+        String pactual = request.getParameter("actual");
+        String newPassword = request.getParameter("newpassword");
+        String newPassword2 = request.getParameter("newpassword2");
+        if(!newPassword.equals(newPassword2)){
+        request.getSession().setAttribute("iguales","no");
+        request.getRequestDispatcher("./jsp/editarContraseña.jsp").forward(request, response);
+        
+        }else if(!p.getContraseña().equals(request.getParameter("actual"))){
+        
+            request.getSession().setAttribute("passwordcorrecta","no");
+            request.getRequestDispatcher("./jsp/editarContraseña.jsp").forward(request, response);
+        }else{
+        
+        p.setContraseña(request.getParameter("newpassword"));
+        pdao.update(p);
+        request.getSession().setAttribute("passwordcambiada","si");
+        request.getRequestDispatcher("./jsp/datosCliente.jsp").forward(request, response);
+            
+        }
+        
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

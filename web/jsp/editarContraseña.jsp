@@ -31,10 +31,24 @@
         <link rel="stylesheet" href="<%=basePath%>css/citasUsu.css">  
         <link rel="stylesheet" href="<%=basePath%>css/footer.css">
 
+        <%
 
+            String correcta = "si";
+            String iguales = "si";
+            if (request.getSession().getAttribute("passwordcorrecta") != null) {
+                correcta = request.getSession().getAttribute("passwordcorrecta").toString();
+
+            }
+            if (request.getSession().getAttribute("iguales") != null) {
+                iguales = request.getSession().getAttribute("iguales").toString();
+
+            }
+
+
+        %>
 
     </head>
-    <body>
+    <body onload="sesion('<%=request.getSession().getAttribute("usuario")%>')">  
         <!--Menú -->
         <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
             <div class="container-fluid">
@@ -72,21 +86,22 @@
                         <li class="nav-item dropdown" style="list-style-type: none;">
                             <a class="nav-link dropdown-toggle link-dark  " href="#" id="navbarDropdown" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
-                                NOMBRE USUARIO
+                                <%= request.getSession().getAttribute("nameUser")%>
                             </a>
-                            <ul class="dropdown-menu text-small " aria-labelledby="dropdownUser2">
-                                <li><a class="dropdown-item" href="#">Mi Cuenta</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="./cerrarSesion.do">Salir</a></li>
-                            </ul>
+                             <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
+                                        <li><a class="dropdown-item" href="<%=basePath%>./jsp/datosCliete.jsp" >Mi Cuenta</a></li>
+                                        <li><a class="dropdown-item" href="<%=basePath%>MisVehiculos.do" >Mis Vehiculos</a></li>
+                                        <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
+                                        <li><a class="dropdown-item" href="<%=basePath%>MostrarCitasUsu.do" >Mis Citas</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="<%=basePath%>/cerrarSesion.do">Salir</a></li>
+                                    </ul>
                         </li>
                     </ul>
                 </div>
 
-                <div class="perfil-nav">
-                    <img src="<%=basePath%>img/user.png" width="70" height="70" class="rounded-circle me-2">
+               <div class="perfil-nav">
+                    <img src="<%= request.getSession().getAttribute("urlFoto").toString() %>" width="70" height="70" class="rounded-circle me-2">
                 </div>
             </div>
         </nav>
@@ -100,16 +115,16 @@
                     <div class="d-flex flex-column flex-shrink-0 p-3 bg-light colum-datos">					
                         <aside>
                             <div class="side-inner">
-                                <div class="profile">
-                                    <img  src="<%=basePath%>img/usuario.png" alt="Image" class="img-fluid">
-                                    <h3 class="name">Hola, Nombre de Usuario</h3>
+                               <div class="profile">
+                                    <img  src="<%= request.getSession().getAttribute("urlFoto").toString() %>" alt="Image" class="img-fluid rounded-circle ">
+                                    <h3 class="name"><%= request.getSession().getAttribute("nameUser")%></h3>
                                 </div>
                                 <div class="nav-menu">
-                                    <ul > 
-                                        <li id="misCitas" ><a href="<%=basePath%>jsp/datosCliente.jsp"><span class=""></span>Mis Datos Personales</a></li>
-                                        <li><a href="#"><span class=""></span>Mis Vehículos</a></li>
-                                        <li><a href="<%=basePath%>jsp/serviciosUsu.jsp"><span class=""></span>Mis Servicios</a></li>
-                                        <li ><a href="<%=basePath%>jsp/citasUsu.jsp"><span class=""></span>Mis Citas</a></li>
+                                     <ul > 
+                                        <li><a href="<%=basePath%>./jsp/datosCliente.jsp"<%=basePath%>MostrarServiciosAdmin.do"><span class=""></span>Mis Datos Personales</a></li>
+                                        <li><a href="<%=basePath%>MisVehiculos.do"><span class=""></span>Mis Vehículos</a></li>
+                                        <li><a href="<%=basePath%>MisServiciosUsu.do"><span class=""></span>Mis Servicios</a></li>
+                                        <li id="misCitas"><a href="<%=basePath%>MostrarCitasUsu.do"><span class=""></span>Mis Citas</a></li>
                                     </ul>
                                 </div>
                             </div>  
@@ -124,66 +139,89 @@
                         <h1 id="citas"> EDITAR CONTRASEÑA</h1>
                     </div>	
                     <div>
-                        <form class="row" id="form-datos" action="">
+                        <form class="row" id="form-datos" action="<%=basePath%>UpdatePassword.do" method="POST">
                             <div class="col-md-6">
                                 <label for="actual" class="form-label">Contraseña Actual</label>
-                                <input type="text" class="form-control" id="actual" name="actual" required>
+                                <input type="password" class="form-control" id="actual" name="actual" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="newContraseña" class="form-label">Nueva Contraseña</label>
-                                <input type="text" class="form-control" id="newContraseña" name="newContraseña" required>
+                                <input type="password" class="form-control" id="newContraseña" name="newpassword" required>
                             </div>
                             <div class="col-md-6">
                                 <br>
                                 <label for="newContraseña2" class="form-label">Repetir Nueva Contraseña</label>
-                                <input type="text" class="form-control" id="newContraseña2" name="newContraseña2" required>
+                                <input type="password" class="form-control" id="newContraseña2" name="newpassword2" required>
                             </div>
+
+
                             <div  id="boton" class="col-6 align-content-center ">
                                 <br>
                                 <br>
                                 <button id="save" type="submit" class="btn btn-primary"> Guardar Contraseña</button>
                             </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </div>					
-    </div>
-
-    <!--FOOTER-->
-    <footer>
-        <div class="container-fluid">
-            <div class="row ">
-                <div class="col-12 redes" style="background-color: #00114e;">
-                    <img src="<%=basePath%>img/whatsapp.png" >
-                    <img src="<%=basePath%>img/facebook.png" >
-                    <img src="<%=basePath%>img/instagram.png" >
-                </div>
-            </div>
-            <div class="row" style="background-color: #001971;">
-
-                <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-                    <img src="<%=basePath%>img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
-                </div>
-
-                <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
-                    <h4 >HORARIOS DE ATENCIÓN</h4>
-                    <p>Lunes a Viernes</p>
-                    <p>7:30 AM a 6:00 PM</p>
-                    <p>Sábado</p>
-                    <p>7:30 AM a 5:00 PM</p>
-                </div>
-
-                <div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
-                    <h4 > CONTACTO </h4>
-                    <P>Av 5 # 0N-54 Barrio La Merced</P>
-                    <p>San José de Cúcuta - Colombia</p>
-                    <p>albeirofonseca74@gmail.com</p>
-                    <p>+57 3112810082</p>
-                </div>
-
-            </div>
+            </div>					
         </div>
-    </footer>
-    <!--FIN FOOTER-->
-</body>
+
+        <!--FOOTER-->
+        <footer>
+            <div class="container-fluid">
+                <div class="row ">
+                    <div class="col-12 redes" style="background-color: #00114e;">
+                        <img src="<%=basePath%>img/whatsapp.png" >
+                        <img src="<%=basePath%>img/facebook.png" >
+                        <img src="<%=basePath%>img/instagram.png" >
+                    </div>
+                </div>
+                <div class="row" style="background-color: #001971;">
+
+                    <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+                        <img src="<%=basePath%>img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
+                    </div>
+
+                    <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
+                        <h4 >HORARIOS DE ATENCIÓN</h4>
+                        <p>Lunes a Viernes</p>
+                        <p>7:30 AM a 6:00 PM</p>
+                        <p>Sábado</p>
+                        <p>7:30 AM a 5:00 PM</p>
+                    </div>
+
+                    <div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
+                        <h4 > CONTACTO </h4>
+                        <P>Av 5 # 0N-54 Barrio La Merced</P>
+                        <p>San José de Cúcuta - Colombia</p>
+                        <p>albeirofonseca74@gmail.com</p>
+                        <p>+57 3112810082</p>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+        <!--FIN FOOTER-->
+        <script src="<%=basePath%>js/sesion.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+
+            document.body.onload = function exist() {
+                let co = '<%=correcta%>';
+
+                if (<%=correcta.equals("no")%>) {
+                      swal("Oops!", "Contraseña Invalida!", "error");
+            <% request.getSession().setAttribute("passwordcorrecta", "si");%>
+                }
+                if (<%=iguales.equals("no")%>) {
+                     swal("Oops!", "Las contraseñas no coinciden!", "error");
+                    //alert('Las contraseñas no coinciden');
+            <% request.getSession().setAttribute("iguales", "si");%>
+                }
+
+                console.log("iguales = " + <%=iguales%>);
+            }
+        </script>
+    </body>
+
 </html>
