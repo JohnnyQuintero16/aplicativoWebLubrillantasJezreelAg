@@ -75,7 +75,7 @@
                                 <a class="nav-link" href="<%=basePath%>jsp/iniciarsesion.jsp">INICIAR SESIÓN</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./jsp/registrarse.jsp">REGISTRARSE</a>
+                                <a class="nav-link" href="<%=basePath%>jsp/registrarse.jsp">REGISTRARSE</a>
                             </li>
                         </ul>
                     </template>
