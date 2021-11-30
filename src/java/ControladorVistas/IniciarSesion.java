@@ -95,6 +95,7 @@ public class IniciarSesion extends HttpServlet {
                         page = "index.jsp";
                     }
                     sesion.setAttribute("nameUser", nameUser);
+                    sesion.setAttribute("urlFoto", perso.getUrlFoto());
                     response.sendRedirect(page);
                 } else {
                     msg = "err"; //El usuario digito mal la clave

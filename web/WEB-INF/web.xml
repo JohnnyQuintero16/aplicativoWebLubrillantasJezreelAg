@@ -139,7 +139,7 @@
         <servlet-name>MostrarServiProduAdmin</servlet-name>
         <servlet-class>ControladorVistas.MostrarServiProduAdmin</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>EliminarCita</servlet-name>
         <servlet-class>ControladorVistas.EliminarCita</servlet-class>
     </servlet>
@@ -154,6 +154,14 @@
     <servlet>
         <servlet-name>InsertarCita</servlet-name>
         <servlet-class>ControladorVistas.InsertarCita</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdatePersona</servlet-name>
+        <servlet-class>ControladorVistas.UpdatePersona</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdatePassword</servlet-name>
+        <servlet-class>ControladorVistas.UpdatePassword</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
@@ -278,6 +286,14 @@
     <servlet-mapping>
         <servlet-name>InsertarCita</servlet-name>
         <url-pattern>/InsertarCita.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePersona</servlet-name>
+        <url-pattern>/UpdatePersona.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePassword</servlet-name>
+        <url-pattern>/UpdatePassword.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>15</session-timeout>
