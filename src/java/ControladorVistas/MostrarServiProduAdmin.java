@@ -10,6 +10,7 @@ import DAO.ProductoDAO;
 import DAO.ServicioDAO;
 import DTO.Cita;
 import DTO.Persona;
+import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -38,8 +39,12 @@ public class MostrarServiProduAdmin extends HttpServlet {
         try {
             ProductoDAO pro = new ProductoDAO();
             ServicioDAO ser = new ServicioDAO();
+            Jezreel j = new Jezreel();
             CitaDAO cita = new CitaDAO();
             int idCita = Integer.parseInt((String)request.getSession().getAttribute("idCitaServicio"));
+            String placa = request.getParameter("placa");
+            String km = request.getParameter("km");
+            System.out.println("PLACA "+placa + " - " + "km " + km);
             Cita user = cita.readCita(idCita);
             Persona per = user.getIdPersona();
             String nameUser = per.getNombres().split(" ")[0] + " " + per.getApellidos().split(" ")[0];
@@ -47,6 +52,9 @@ public class MostrarServiProduAdmin extends HttpServlet {
             request.getSession().setAttribute("idCita", idCita);
             request.getSession().setAttribute("productos", pro.readProductosActivos());
             request.getSession().setAttribute("servicios", ser.readServiciosActivos());
+            request.getSession().setAttribute("mecanicos", j.getMecanico());
+            request.getSession().setAttribute("placa", placa);
+            request.getSession().setAttribute("km", km);
             response.sendRedirect("./jsp/adminRegis.jsp");
         } catch (Exception e) {
             System.out.println(e.getMessage());

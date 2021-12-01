@@ -81,9 +81,9 @@ public class CitaDAO {
     public void actualizarCita(int id){
         
         Cita c = this.readCita(id);
-
         //AQUI FALTA RECIBIR UNA ATENCION
-        //c.setEstado("ATENDIDA");
+        c.setEstado("ATENDIDO");
+        this.update(c);
 //            try{
 //            GmailNotificacion n = new GmailNotificacion();
 //            

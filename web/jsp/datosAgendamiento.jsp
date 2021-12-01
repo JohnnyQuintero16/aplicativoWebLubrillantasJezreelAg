@@ -34,7 +34,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
     </head>
-    <body onload="enviarMail()">
+    <body>
 
         <div class="sidebar">
             <div class="logo-details">
@@ -99,18 +99,20 @@
 
         <section class="home-section">
             <div class="title">
-
                 <div class="titulo">
                     <h1 style="color:blue">Cliente: <%=request.getSession().getAttribute("usuarioCliente").toString()%></h1> 
                 </div>
-
-                <div class="boton">
-                    <button class="btn btn-primary btn-lg" type="button" value="Regresar" style="color: white;" href="<%=basePath%>jsp/FichaTecnicaAdd.jsp"> Añadir Vehiculo </button>
+                    <form action="<%=basePath%>CargarAddVehiculo.do" method="GET">
+                    <div class="boton">
+                        <input style = "display: none" name = "cedula" value="<%=request.getSession().getAttribute("IdCliente")%>"> 
+                    <button class="btn btn-primary btn-lg" type="submit" value="Regresar" style="color: white;"> Añadir Vehiculo </button>
                 </div>
+                </form>
+                
 
             </div>
             <div class="main" >
-                <form class="row " action="<%=basePath%>MostrarServiProduAdmin.do" method="post" > 
+                <form class="row " name="formdatos" action="<%=basePath%>MostrarServiProduAdmin.do" method="GET" > 
                     <div id="vehiculo"  class="col-md-6">
                         <label  for="vehiculo" name="vehiculo" class="form-label">Escoja el Vehículo</label>  
                         <br><br>
@@ -124,40 +126,32 @@
                     <div class="col-md-6">
                         <select id="inputState" class="form-select">
                             <option selected>Seleccione un vehiculo</option>
-                            <%
-                                List<Vehiculo> vehiculos = (List<Vehiculo>) request.getSession().getAttribute("vehiculos");
-                                if(request.getSession().getAttribute("vehiculos") == null){
-                            %>
-                            <option style = "color:red">No Dispone de vehiculos registrados</option>
-                            <%}else{
-                                for(Vehiculo v: vehiculos){
-                            %>
-                            <option><%=v.getPlaca() + " - " + v.getIdMarca()%></option>
-                            <%}}%>
-                            
+                            <%=request.getSession().getAttribute("getVehiculo").toString()%>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <div class="divs">
-                            <h5>No. Placa:<template id = "placaV"></template></h5>
+                            <input hidden name="placa" value="" id="inputPlaca"/>
+                            <h5>No. Placa:<template id = "placaV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
                         </div>
                         <div class="divs">
-                            <h5>Modelo: <template id = "modeloV"></template></h5>
+                            <h5>Modelo: <template id = "modeloV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
                         </div>
                         <div class="divs">
-                            <h5>Kilometraje: <template id = "kmV"></template></h5>
+                            <input hidden name="km" value="" id="inputkm"/>
+                            <h5>Kilometraje: <template id = "kmV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
                         </div>
                     </div>
 
                     <div class="col-md-2">
                         <div class="divs">
-                            <h5>Marca: <template id = "marcaV"></template></h5>
+                            <h5>Marca: <template id = "marcaV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
                         </div>
                         <div class="divs" > 
-                            <h5> Año: <template id = "anioV"></template></h5>
+                            <h5> Tipo de Vehiculo: <template id = "anioV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
                         </div>
-                        <div class="divs">
-                            <button class="btn btn-primary btn-lg" href="" type="submit">Continuar</button>
+                        <div class="divsb">
+                            <input class="btn btn-primary btn-lg"  type="submit" value="Continuar">
                         </div>
                     </div>
 
@@ -174,6 +168,37 @@
 
 
         <script>
+            var select = document.getElementById('inputState');
+            var cnt = 0;
+            select.addEventListener('change',()=>{
+            cnt++;
+            var optionSelec = select.options[select.selectedIndex].value;
+            cargarContenido(optionSelec);
+            });
+            var vehiculos = '<%=request.getSession().getAttribute("vehiculos").toString()%>'.split(";");
+            function cargarContenido(option){
+            var data;
+            for(var i = 0; i < vehiculos.length; i++){
+            var arrVehiculo = vehiculos[i].split(",");
+            if(arrVehiculo[0] == option){
+            break;
+            }
+            }
+            var campos = document.getElementsByClassName('tmp');
+            var div = document.getElementsByClassName('divs');
+            document.getElementById('inputPlaca').value = option;
+            document.getElementById('inputkm').value = arrVehiculo[2];
+            if(cnt > 1){
+                var elem = document.getElementsByClassName('msg');
+                while(elem.length > 0){
+                    elem[0].remove();
+                }
+            }
+            for(var i = 0; i < div.length; i++){
+                 div[i].appendChild(campos[i].content.cloneNode(true));
+                 document.getElementsByClassName('msg')[i].innerHTML = arrVehiculo[i];
+            }
+            }
             $(document).ready(function () {
             $('#example').DataTable({
 
@@ -196,7 +221,6 @@
             }
             );
             });
-            }
         </script>
 
     </body>

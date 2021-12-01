@@ -5,15 +5,9 @@
  */
 package ControladorVistas;
 
-import DAO.CitaDAO;
-import DAO.VehiculoDAO;
-import DTO.Cita;
-import DTO.Persona;
-import DTO.Vehiculo;
 import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author johnny
  */
-public class MostrarDatosAgendaConfirAdmin extends HttpServlet {
+public class CargarAddVehiculo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,29 +31,12 @@ public class MostrarDatosAgendaConfirAdmin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        CitaDAO cita = new CitaDAO();
-        VehiculoDAO vehiculo = new VehiculoDAO();
+        String cedulaCliente = request.getParameter("cedula");
         Jezreel j = new Jezreel();
-        int idCita = Integer.parseInt((String) request.getSession().getAttribute("idCitaServicio"));
-        Cita user = cita.readCita(idCita);
-        Persona per = user.getIdPersona();
-        String nameUser = per.getNombres().split(" ")[0] + " " + per.getApellidos().split(" ")[0];
-        List<Vehiculo> vehiculos = vehiculo.findVehiculosUser(per.getCedula());
-        String vehiculoss = "";
-        for(Vehiculo ve : vehiculos){
-            vehiculoss += ve.getPlaca()+",";
-            vehiculoss += ve.getModelo()+",";
-            vehiculoss += ve.getKilometraje()+",";
-            vehiculoss += ve.getIdMarca().getNombre()+",";
-            vehiculoss += ve.getIdTipo().getNombre()+";";
-        }
-        System.out.println("ID DE MI CITA " + idCita);
-        request.getSession().setAttribute("usuarioCliente", nameUser);
-        request.getSession().setAttribute("IdCliente", per.getCedula());
-        request.getSession().setAttribute("idCita", idCita);
-        request.getSession().setAttribute("vehiculos", vehiculoss);
-        request.getSession().setAttribute("getVehiculo", j.getVehiculoClienteAtencion(per.getCedula()));
-        request.getRequestDispatcher("./jsp/datosAgendamiento.jsp").forward(request, response);
+        request.getSession().setAttribute("tipo", j.selectTipo());
+        request.getSession().setAttribute("marca", j.selectMarca());
+        request.getSession().setAttribute("cedula", cedulaCliente);
+        response.sendRedirect("./jsp/FichaTecnicaAdd.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -54,6 +54,7 @@ public class CitasAdmin extends HttpServlet {
                 citasAtendidas+=aten.getId()+",";
                 AtencionServicio s = a.getServicio(aten.getId());
                 citasAtendidas+=s.getDescripcion()+",";
+                
                 citasAtendidas+=s.getIdFichaTecnica().getIdVehiculo().getPlaca()+",";
                 citasAtendidas+=aten.getEstado()+";";
             }

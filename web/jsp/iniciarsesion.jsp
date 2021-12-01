@@ -95,7 +95,7 @@
 
                         <div class="error error-txt">La contraseña no puede estar en blanco</div>
                     </div>
-                    <div class="pass-txt"><a href="#">Olvidaste tu contraseña?</a></div>
+                    
                     <input type="submit" value="Ingresar" >
 
                 </form>

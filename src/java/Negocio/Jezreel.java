@@ -773,5 +773,30 @@ public class Jezreel {
 
         return rta;
     }
-
+    
+    public String getVehiculoClienteAtencion(String cedula){
+        String rta = "";
+        VehiculoDAO vehiculo = new VehiculoDAO();
+        List<Vehiculo> vehiculos = vehiculo.findVehiculosUser(cedula);
+        for(Vehiculo ve: vehiculos){
+            rta += "       <option value=" + '"' + ve.getPlaca() + '"' + ">" + ve.getPlaca() + " - " + ve.getIdMarca().getNombre() + "</option>\n";
+        }
+        return rta;
+    }
+    public String getMecanico(){
+        String rta = "";
+        PersonaDAO per = new PersonaDAO();
+        List<Persona> personas = per.read();
+        rta = " <option value=\"0\" selected>" + "Seleccione un Mecánico" + "</option>\n";
+        for(Persona p:personas ){
+            if(p.getIdRol().getId() == 3){
+                String nombre = p.getNombres().split(" ")[0] + " " + p.getApellidos().split(" ")[0];
+                rta += " <option value=" + '"' + p.getCedula() + '"' + ">" +nombre + "</option>\n";
+                
+            }
+                
+        }
+        return rta;
+    }
 }
+
