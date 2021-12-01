@@ -54,7 +54,7 @@
                 </li>
 
                 <li>
-                    <a href="<%=basePath%>jsp/citasAdmin.jsp">
+                    <a href="<%=basePath%>CitasAdmin.do">
                         <i class="far fa-calendar-alt"></i>
                         <span class="links_name">Agendamientos</span>
                     </a>
@@ -75,7 +75,7 @@
                     <span class="tooltip">Servicios</span>
                 </li>
                 <li>
-                    <a href="<%=basePath%>jsp/productosAdmin.jsp">
+                    <a href="<%=basePath%>MostrarProductosAdmin.do">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="links_name" >Productos</span>
                     </a>

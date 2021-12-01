@@ -96,6 +96,7 @@
                         <div class="error error-txt">La contraseña no puede estar en blanco</div>
                     </div>
                     
+                   
                     <input type="submit" value="Ingresar" >
 
                 </form>

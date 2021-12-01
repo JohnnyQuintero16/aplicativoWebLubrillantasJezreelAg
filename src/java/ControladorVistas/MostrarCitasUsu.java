@@ -8,6 +8,9 @@ package ControladorVistas;
 import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author USUARIO
+ * @author Jefersonrr
  */
-public class MostrarServiciosIndex extends HttpServlet {
+public class MostrarCitasUsu extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,13 +33,11 @@ public class MostrarServiciosIndex extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Jezreel je = new Jezreel();
-        String ser = je.mostrarServiciosIndex();
-        if(ser.equals(" ")){
-        ser="No hay servicios para mostrar";}
 
-        request.getSession().setAttribute("listaServiciosIndex",ser );
-        request.getRequestDispatcher("./index.jsp").forward(request, response);
+         Jezreel j = new Jezreel();
+         request.getSession().setAttribute("citasUsu", j.mostrarCitasActivasUsuario(request.getSession().getAttribute("usuario").toString()));
+         request.getRequestDispatcher("./jsp/citasUsu.jsp").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

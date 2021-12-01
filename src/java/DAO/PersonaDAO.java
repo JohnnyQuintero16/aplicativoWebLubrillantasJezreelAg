@@ -88,6 +88,7 @@ public class PersonaDAO {
         Persona p = new Persona(cedula, nombre, apellido, correo, telef, direccion);
         p.setContraseña(contrasenia);
         p.setIdRol(rol);
+        p.setUrlFoto("https://i.postimg.cc/9Qys23M0/585e4bf3cb11b227491c339a.png");
         this.create(p);
     }
 
@@ -101,5 +102,18 @@ public class PersonaDAO {
             }
         }
         return clientes;
+    }
+    
+    public boolean  existeCorreoActualizar(String correo, String cedula){
+       
+        List<Persona> personas = read();
+        for(Persona p : personas ){
+        if(!p.getCedula().equals(cedula) && p.getEmail().equals(correo)){
+        return true;
+        }
+        
+        }
+        
+        return false;
     }
 }

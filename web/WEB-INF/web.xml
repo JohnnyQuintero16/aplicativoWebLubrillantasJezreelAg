@@ -132,8 +132,16 @@
         <servlet-class>ControladorVistas.CalificarServicio</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>MostrarCitasUsu</servlet-name>
+        <servlet-class>ControladorVistas.MostrarCitasUsu</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>MostrarServiProduAdmin</servlet-name>
         <servlet-class>ControladorVistas.MostrarServiProduAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarCita</servlet-name>
+        <servlet-class>ControladorVistas.EliminarCita</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MostrarDatosAgendaConfirAdmin</servlet-name>
@@ -150,6 +158,22 @@
     <servlet>
         <servlet-name>AddVehiculo</servlet-name>
         <servlet-class>ControladorVistas.AddVehiculo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ObtenerHorarios</servlet-name>
+        <servlet-class>ControladorVistas.ObtenerHorarios</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertarCita</servlet-name>
+        <servlet-class>ControladorVistas.InsertarCita</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdatePersona</servlet-name>
+        <servlet-class>ControladorVistas.UpdatePersona</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdatePassword</servlet-name>
+        <servlet-class>ControladorVistas.UpdatePassword</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
@@ -252,8 +276,16 @@
         <url-pattern>/CalificarServicio.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>MostrarCitasUsu</servlet-name>
+        <url-pattern>/MostrarCitasUsu.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>MostrarServiProduAdmin</servlet-name>
         <url-pattern>/MostrarServiProduAdmin.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarCita</servlet-name>
+        <url-pattern>/EliminarCita.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MostrarDatosAgendaConfirAdmin</servlet-name>
@@ -271,7 +303,23 @@
         <servlet-name>AddVehiculo</servlet-name>
         <url-pattern>/AddVehiculo.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ObtenerHorarios</servlet-name>
+        <url-pattern>/ObtenerHorarios.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertarCita</servlet-name>
+        <url-pattern>/InsertarCita.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePersona</servlet-name>
+        <url-pattern>/UpdatePersona.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePassword</servlet-name>
+        <url-pattern>/UpdatePassword.do</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>15</session-timeout>
+        <session-timeout>35</session-timeout>
     </session-config>
 </web-app>

@@ -5,9 +5,13 @@
  */
 package ControladorVistas;
 
-import Negocio.Jezreel;
+import DAO.CitaDAO;
+import Persistencia.exceptions.IllegalOrphanException;
+import Persistencia.exceptions.NonexistentEntityException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author USUARIO
+ * @author Jefersonrr
  */
-public class MostrarServiciosIndex extends HttpServlet {
+public class EliminarCita extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,14 +33,15 @@ public class MostrarServiciosIndex extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        Jezreel je = new Jezreel();
-        String ser = je.mostrarServiciosIndex();
-        if(ser.equals(" ")){
-        ser="No hay servicios para mostrar";}
+            throws ServletException, IOException, IllegalOrphanException, NonexistentEntityException {
 
-        request.getSession().setAttribute("listaServiciosIndex",ser );
-        request.getRequestDispatcher("./index.jsp").forward(request, response);
+        
+        CitaDAO cdao = new CitaDAO();
+        System.out.println("SOY ID CITA :" + request.getParameter("idCita"));
+        cdao.delete(Integer.parseInt(request.getParameter("idCita")));
+        request.getRequestDispatcher("./MostrarCitasUsu.do").forward(request, response);
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,7 +56,13 @@ public class MostrarServiciosIndex extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (IllegalOrphanException ex) {
+            Logger.getLogger(EliminarCita.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(EliminarCita.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -65,7 +76,13 @@ public class MostrarServiciosIndex extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (IllegalOrphanException ex) {
+            Logger.getLogger(EliminarCita.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(EliminarCita.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

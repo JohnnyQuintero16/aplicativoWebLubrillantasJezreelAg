@@ -65,14 +65,14 @@
                     <span class="tooltip">Agendamientos</span>
                 </li>
                 <li>
-                    <a href="<%=basePath%>jsp/adminClientes.jsp">
+                    <a href="<%=basePath%>./jsp/adminClientes.jsp">
                         <i class="icon fas fa-user"></i>
                         <span class="links_name">Clientes</span>
                     </a>
                     <span class="tooltip">Clientes</span>
                 </li>
                 <li>
-                    <a href="<%=basePath%>jsp/serviciosAdmin.jsp">
+                    <a href="<%=basePath%>MostrarServiciosAdmin.do">
                         <i class="fas fa-user-cog"></i>
                         <span class="links_name">Servicios</span>
                     </a>

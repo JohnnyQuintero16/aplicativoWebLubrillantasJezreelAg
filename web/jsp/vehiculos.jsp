@@ -67,12 +67,13 @@
                             <a  class="nav-link dropdown-toggle link-dark  " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
                                 <%=request.getSession().getAttribute("nameUser")%>
                             </a>
-                            <ul class="dropdown-menu text-small "    aria-labelledby="dropdownUser2"  >
-                                <li><a class="dropdown-item" href="#" >Mi Cuenta</a></li>
-                                <li><a class="dropdown-item" href="<%=basePath%>/MisVehiculos.do" >Mis Vehiculos</a></li>
+                            <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
+                                <li><a class="dropdown-item" href="<%=basePath%>./jsp/datosCliente.jsp" >Mi Cuenta</a></li>
+                                <li><a class="dropdown-item" href="<%=basePath%>MisVehiculos.do" >Mis Vehiculos</a></li>
                                 <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
+                                <li><a class="dropdown-item" href="<%=basePath%>MostrarCitasUsu.do" >Mis Citas</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Salir</a></li>
+                                <li><a class="dropdown-item" href="<%=basePath%>/cerrarSesion.do">Salir</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -81,7 +82,7 @@
 
 
                 <div class="user">
-                    <img src="<%=basePath%>img/user.png" alt="" width="70" height="70" class="rounded-circle me-2">
+                    <img src="<%= request.getSession().getAttribute("urlFoto").toString()%>" width="70" height="70" class="rounded-circle me-2">
                 </div>
             </div>
         </nav>
@@ -94,21 +95,21 @@
 
                     <div class="d-flex flex-column flex-shrink-0 p-3 bg-light colum-datos"  >
                         <div >
-                            <img class="bd-placeholder-img rounded-circle" id ="Perfil"  src="<%=basePath%>img/usuario.png">
+                            <img class="bd-placeholder-img rounded-circle" id="Perfil" src="<%=request.getSession().getAttribute("urlFoto") %>">
                         </div>
                         <br>
-                        <h4>Nombre de Usuario</h4>
+                        <h4><%=request.getSession().getAttribute("nameUser")%></h4>
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
                             <li class="nav-item">
-                                <a href="#" class="nav-link link-dark" aria-current="page">
+                                <a href="<%=basePath%>./jsp/datosCliente.jsp" class="nav-link link-dark" aria-current="page">
                                     <svg class="bi me-2" width="16" height="16">
                                     <use xlink:href="#home" />
                                     </svg>
                                     <strong color="gray"> Mis datos personales </strong></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link link-dark">
+                                <a href="<%=basePath%>MisVehiculos.do" class="nav-link link-dark">
                                     <svg class="bi me-2 servicios" width="16" height="16">
                                     <use xlink:href="#speedometer2" />
                                     </svg>

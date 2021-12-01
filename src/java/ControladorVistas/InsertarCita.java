@@ -5,7 +5,7 @@
  */
 package ControladorVistas;
 
-import Negocio.Jezreel;
+import DAO.CitaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author USUARIO
+ * @author Cristian
  */
-public class MostrarServiciosIndex extends HttpServlet {
+public class InsertarCita extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,13 +30,29 @@ public class MostrarServiciosIndex extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Jezreel je = new Jezreel();
-        String ser = je.mostrarServiciosIndex();
-        if(ser.equals(" ")){
-        ser="No hay servicios para mostrar";}
-
-        request.getSession().setAttribute("listaServiciosIndex",ser );
-        request.getRequestDispatcher("./index.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        
+        String placa = request.getParameter("placa");
+        String marca = request.getParameter("marca");
+        String modelo = request.getParameter("modelo");
+        String anio = request.getParameter("año");
+        String Kilometraje = request.getParameter("marca");
+        String fecha[] = request.getParameter("fecha").split("-");
+        String hora = request.getParameter("hora");
+        String servicio = request.getParameter("servicio");
+        
+        String horaDia[] = hora.split(",");   //VIERNES,9:00 a.m.
+        String horaFormat[] = horaDia[1].split(" "); //9:00,p.m
+        int num = Integer.parseInt(horaFormat[1].split(":")[0]);   //9
+        String ampm = horaFormat[2]; // a,m
+        
+        int horaMil = ampm.charAt(0)=='p'?num+12:num;
+        String descripcion = placa+","+modelo+","+marca+","+anio+","+Kilometraje+","+servicio;
+      
+        CitaDAO c = new CitaDAO();
+        c.insertarCita(fecha[0],fecha[1],fecha[2], horaMil, request.getSession().getAttribute("usuario").toString(), descripcion);
+        request.getRequestDispatcher("MostrarCitasUsu.do").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

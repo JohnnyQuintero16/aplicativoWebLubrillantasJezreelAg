@@ -1,5 +1,7 @@
 
 
+<%@page import="DTO.Persona"%>
+<%@page import="DAO.PersonaDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +36,22 @@
 
 
     </head>
-    <body>
+    <body onload="sesion('<%=request.getSession().getAttribute("usuario")%>')">
+
+        <%
+            PersonaDAO pdao = new PersonaDAO();
+            Persona p = pdao.readPersona(request.getSession().getAttribute("usuario").toString());
+            String passwordCambiada = "no";
+            String datosActualizados = "no";
+            if (request.getSession().getAttribute("passwordcorrecta") != null) {
+                passwordCambiada = request.getSession().getAttribute("passwordcambiada").toString();
+
+            }
+            if (request.getSession().getAttribute("actualizados") != null) {
+                datosActualizados = request.getSession().getAttribute("actualizados").toString();
+
+            }
+        %>
         <!--Menú -->
         <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
             <div class="container-fluid">
@@ -72,21 +89,22 @@
                         <li class="nav-item dropdown" style="list-style-type: none;">
                             <a class="nav-link dropdown-toggle link-dark  " href="#" id="navbarDropdown" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
-                                NOMBRE USUARIO
+                                <%= request.getSession().getAttribute("nameUser")%>
                             </a>
-                            <ul class="dropdown-menu text-small " aria-labelledby="dropdownUser2">
-                                <li><a class="dropdown-item" href="#">Mi Cuenta</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="./cerrarSesion.do">Salir</a></li>
-                            </ul>
+                          <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
+                                        <li><a class="dropdown-item" href="<%=basePath%>./jsp/datosCliete.jsp" >Mi Cuenta</a></li>
+                                        <li><a class="dropdown-item" href="<%=basePath%>MisVehiculos.do" >Mis Vehiculos</a></li>
+                                        <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
+                                        <li><a class="dropdown-item" href="<%=basePath%>MostrarCitasUsu.do" >Mis Citas</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="<%=basePath%>/cerrarSesion.do">Salir</a></li>
+                                    </ul>
                         </li>
                     </ul>
                 </div>
 
                 <div class="perfil-nav">
-                    <img src="<%=basePath%>img/user.png" width="70" height="70" class="rounded-circle me-2">
+                    <img src="<%= request.getSession().getAttribute("urlFoto").toString() %>" width="70" height="70" class="rounded-circle me-2">
                 </div>
             </div>
         </nav>
@@ -101,15 +119,14 @@
                         <aside>
                             <div class="side-inner">
                                 <div class="profile">
-                                    <img  src="<%=basePath%>img/usuario.png" alt="Image" class="img-fluid">
-                                    <h3 class="name">Hola, Nombre de Usuario</h3>
-                                </div>
+                                    <img  src="<%= request.getSession().getAttribute("urlFoto").toString() %>" alt="Image" class="img-fluid rounded-circle ">
+                                    <h3 class="name"><%= request.getSession().getAttribute("nameUser")%></h3>
                                 <div class="nav-menu">
-                                    <ul > 
-                                        <li id="misCitas" ><a href="<%=basePath%>jsp/datosCliente.jsp"><span class=""></span>Mis Datos Personales</a></li>
-                                        <li><a href="#"><span class=""></span>Mis Vehículos</a></li>
-                                        <li><a href="<%=basePath%>jsp/serviciosUsu.jsp"><span class=""></span>Mis Servicios</a></li>
-                                        <li ><a href="<%=basePath%>jsp/citasUsu.jsp"><span class=""></span>Mis Citas</a></li>
+                                     <ul > 
+                                        <li id="misCitas"><a href="<%=basePath%>./jsp/datosCliente.jsp"><span class=""></span>Mis Datos Personales</a></li>
+                                        <li><a href="<%=basePath%>MisVehiculos.do"><span class=""></span>Mis Vehículos</a></li>
+                                        <li><a href="<%=basePath%>MisServiciosUsu.do"><span class=""></span>Mis Servicios</a></li>
+                                        <li><a href="<%=basePath%>MostrarCitasUsu.do"><span class=""></span>Mis Citas</a></li>
                                     </ul>
                                 </div>
                             </div>  
@@ -129,29 +146,35 @@
                         <form class="row g-3" id="form-datos" action="">
                             <div class="col-md-6">
                                 <label for="nombre" class="form-label">Nombres</label>
-                                <h5 id="datos">Jarlin Andrés</h5>
+                                <h5 id="datos"><%=p.getNombres()%></h5>
 
                             </div>
                             <div class="col-md-6">
                                 <label for="apellidos" class="form-label">Apellidos</label>
-                                <h5 id="datos">Fonseca Bermón</h5>
+                                <h5 id="datos"><%=p.getApellidos()%> </h5>
 
                             </div>
                             <div class="col-md-6">
                                 <label for="inputCity" class="form-label">Cédula</label>
-                                <h5 id="datos">1092942XXX</h5>
+                                <h5 id="datos"><%=p.getCedula()%></h5>
 
                             </div>
                             <div class="col-md-6">
                                 <label for="celular" class="form-label">Celular</label>
-                                <h5 id="datos">312482XXXX</h5>
+                                <h5 id="datos"><%=p.getCelular()%></h5>
 
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label">E-mail</label>
-                                <h5 id="datos">JarlinAndrésfb@.......com</h5>
+                                <h5 id="datos"><%=p.getEmail()%></h5>
 
                             </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Dirección</label>
+                                <h5 id="datos"><%=p.getDirecccion()%></h5>
+
+                            </div>
+
                             <div   class="col-6 align-content-left ">
                                 <a href="<%=basePath%>jsp/editarDatosPersonales.jsp" class="btn btn-primary"> Editar Datos Personales</a>
                             </div>
@@ -159,14 +182,10 @@
 
                     </form>
                     <form class="row g-3" id="form-datos" action="">
-                        <div class="col-md-6">
-                            <label for="nombre" class="form-label">Contraseña Actual</label>
-                            <h5 id="datos">LubrillantasJezreel</h5>
 
-                        </div>
-                        <div   class="col-6 align-content-left ">
+                        <div   class="col-12 d-flex justify-content-center ">
 
-                            <a href="<%=basePath%>jsp/editarContraseña.jsp" class="btn btn-primary"> Editar Contraseña</a>
+                            <a href="<%=basePath%>./jsp/editarContraseña.jsp" class="btn btn-primary"  > Editar Contraseña</a>
                         </div>
                     </form>
                 </div>
@@ -210,6 +229,26 @@
             </div>
         </div>
     </footer>
+    <script src="<%=basePath%>js/sesion.js"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+
+        document.body.onload = function exist() {
+
+
+            if (<%=passwordCambiada.equals("si")%>) {
+                 swal("Excelente!", "Contraseña Actualizada Correctamente!", "success");
+        <% request.getSession().setAttribute("passwordcambiada", "no");%>
+            }
+            if (<%= datosActualizados.equals("si")%>) {
+                 swal("Excelente!", "Tus Datos han sido Actualizados Correctamente!", "success");
+                
+        <% request.getSession().setAttribute("actualizados", "no");%>
+            }
+
+
+        }
+    </script>
     <!--FIN FOOTER-->
 </body>
 </html>

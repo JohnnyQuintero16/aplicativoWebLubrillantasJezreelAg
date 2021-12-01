@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author USUARIO
+ * @author Cristian
  */
-public class MostrarServiciosIndex extends HttpServlet {
+public class ObtenerHorarios extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,13 +30,25 @@ public class MostrarServiciosIndex extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Jezreel je = new Jezreel();
-        String ser = je.mostrarServiciosIndex();
-        if(ser.equals(" ")){
-        ser="No hay servicios para mostrar";}
+        
+        Jezreel j = new Jezreel();
+        
+        if(request.getSession().getAttribute("usuario")==null){
+            
+            request.getRequestDispatcher("jsp/iniciarsesion.jsp").forward(request, response);
+            
+        }else{
+        
+            String horarios = j.cargarHorarios();
+            String servicios = j.optionsServicios();
+            request.getSession().removeAttribute("horarios");
+            request.getSession().removeAttribute("servAct");
+            request.getSession().setAttribute("horarios", horarios);
+            request.getSession().setAttribute("servAct", servicios);
 
-        request.getSession().setAttribute("listaServiciosIndex",ser );
-        request.getRequestDispatcher("./index.jsp").forward(request, response);
+            request.getRequestDispatcher("jsp/agendarCitaUsu.jsp").forward(request, response);
+        
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

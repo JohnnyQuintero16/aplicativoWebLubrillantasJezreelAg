@@ -81,18 +81,17 @@
                                     <%=request.getSession().getAttribute("nameUser")%>
                                 </a>
                                 <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
-                                    <li><a class="dropdown-item" href="#" >Mi Cuenta</a></li>
-                                    <li><a class="dropdown-item" href="./MisVehiculos.do" >Mis Vehiculos</a></li>
+                                    <li><a class="dropdown-item" href="<%=basePath%>./jsp/datosCliente.jsp" >Mi Cuenta</a></li>
+                                    <li><a class="dropdown-item" href="<%=basePath%>MisVehiculos.do" >Mis Vehiculos</a></li>
                                     <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
+                                    <li><a class="dropdown-item" href="<%=basePath%>MostrarCitasUsu.do" >Mis Citas</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="./cerrarSesion.do">Salir</a></li>
+                                    <li><a class="dropdown-item" href="<%=basePath%>/cerrarSesion.do">Salir</a></li>
                                 </ul>
                             </li>
-
-                            <svg xmlns="http://www.w3.org/2000/svg" style="color:#fff" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                            </svg>
+                            <div class="user">
+                                <img src="<%= request.getSession().getAttribute("urlFoto").toString()%>" width="70" height="70" class="rounded-circle me-2">
+                            </div>
 
                         </ul>
                     </template>
@@ -165,9 +164,8 @@
                     <h3>SOBRE NOSOTROS</h3>
                     <h1 >Quiénes <p style="color: blue; display: inline;">somos</p></h1>
                     <hr size= "6" style="color: blue;">
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut rerum dolores numquam possimus, porro praesentium repellendus sequi velit eius facilis animi hic deserunt itaque quis. Veritatis quo voluptatem distinctio exercitationem.</p>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut rerum dolores numquam possimus, porro praesentium repellendus sequi velit eius facilis animi hic deserunt itaque quis. Veritatis quo voluptatem distinctio exercitationem.</p>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut rerum dolores numquam possimus, porro praesentium repellendus sequi velit eius facilis animi hic deserunt itaque quis. Veritatis quo voluptatem distinctio exercitationem.</p>
+                    <p>LUBRILLANTAS JEZREEL AG es una micro-empresa que se desempeña en el sector comercial relacionado con los vehiculos, en el que ofrece todo tipo de servicios de mantenimiento de cambio de aceite, servicio de frenos de suspension, montallantas y venta de productos. Llevamos más de 20 años en el mercado, ofreciendo servicios y productos de alta calidad, en pro y beneficio de nuestros clientes.</p>
+
                 </div>
             </div>
 
@@ -177,8 +175,7 @@
             <div class="container-fluid contenido-mv">
 
                 <h1 >Nuestra <p style="color: blue; display: inline;">Misión</p></h1> <br>
-                <p class="texto">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque aut quasi, explicabo eveniet provident illo quisquam accusamus aperiam dolore maxime? Vel nostrum quisquam omnis quis, perspiciatis ex vitae officiis eius?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae illum, quia eaque ab et laudantium qui saepe tempora quos autem nam fugiat sapiente corporis modi atque cum earum quam vitae.
+                <p class="texto">Satisfacemos las necesidades de nuestros clientes mediante un servicio profesional garantizado, a precio justo y ofreciendo productos de excelente calidad, mundialmente reconocidos. Estamos comprometidos con el cuidado del medio ambiente al participar en el reciclaje de piezas y recolección de residuos tóxicos, mediante acciones conjuntas con nuestros proveedores.
                 </p>
 
             </div>
@@ -187,8 +184,7 @@
         <div class="container-fluid contenido-mv">
 
             <h1 >Nuestra <p style="color: blue; display: inline;">Visión</p></h1> <br>
-            <p class="texto">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque aut quasi, explicabo eveniet provident illo quisquam accusamus aperiam dolore maxime? Vel nostrum quisquam omnis quis, perspiciatis ex vitae officiis eius?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae illum, quia eaque ab et laudantium qui saepe tempora quos autem nam fugiat sapiente corporis modi atque cum earum quam vitae.
+            <p class="texto">Ser la empresa líder en el ramo, buscando superar las expectativas de nuestros clientes, con servicios y productos de alta calidad y excelencia, procurando el mejor ambiente de trabajo y nuestra máxima capacidad operativa.
             </p>
 
         </div>
