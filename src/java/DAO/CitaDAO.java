@@ -96,15 +96,6 @@ public class CitaDAO {
         //AQUI FALTA RECIBIR UNA ATENCION
         c.setEstado("ATENDIDO");
         this.update(c);
-//            try{
-//            GmailNotificacion n = new GmailNotificacion();
-//            
-//            n.enviarCorreo(c.getIdPersona().getEmail(),"TU SERVICIO ESTA EN PROCESO","📣 Hola desde lubrillantas Jezreel! 😁 \n"
-//                +
-//            "Hola "+c.getIdPersona().getNombres()+" queremos notificarte que tu servicio esta en proceso! pronto recibiras una notificacion cuando tu auto es listo.🔩 🔧🚗\n");
-//            }catch(Exception e){
-//                System.out.println("no se pudo notificar");
-//            }
     }
 
     public List<Cita> citasUsuario(String cedula) {

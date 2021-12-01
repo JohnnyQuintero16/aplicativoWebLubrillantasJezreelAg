@@ -289,7 +289,7 @@
     </main>
         <script>
             function sele(){
-                let dias = ['LUNES','MARTES','MIÉRCOLES','JUEVES','VIERNES','SÁBADO','DOMINGO'];
+                let dias = ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY'];
                 let fecha = document.getElementById('fecha');
                 let diaNum = new Date(fecha.value);
                 let num = diaNum.getDay();
@@ -299,7 +299,7 @@
                 var select = document.getElementById('hora');
                 select.innerHTML ="<option value=\"default\" selected disabled>Horarios disponibles</option>";
                 
-                if(diaSeleccionado!=='DOMINGO'){
+                if(diaSeleccionado!=='SUNDAY'){
                     
                     for(let i =0; i<horarios.length; i++){         //TOMO SEMANA POR SEMANA
                     let horarioDia = horarios[i].split(',');

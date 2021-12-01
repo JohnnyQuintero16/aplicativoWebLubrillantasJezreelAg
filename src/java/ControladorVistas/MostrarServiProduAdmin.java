@@ -44,7 +44,6 @@ public class MostrarServiProduAdmin extends HttpServlet {
             int idCita = Integer.parseInt((String)request.getSession().getAttribute("idCitaServicio"));
             String placa = request.getParameter("placa");
             String km = request.getParameter("km");
-            System.out.println("PLACA "+placa + " - " + "km " + km);
             Cita user = cita.readCita(idCita);
             Persona per = user.getIdPersona();
             String nameUser = per.getNombres().split(" ")[0] + " " + per.getApellidos().split(" ")[0];

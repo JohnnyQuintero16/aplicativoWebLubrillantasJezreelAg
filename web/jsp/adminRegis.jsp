@@ -127,7 +127,7 @@
                                 for (Servicio ser : servicios) {
                                     servi = ser.getId() + ","
                                             + ser.getNombre() + ","
-                                            + i  + ";";
+                                            + i + ";";
                             %>
                             <tr>
                                 <td value = '<%=ser.getId()%>'><%=ser.getId()%></td>
@@ -171,16 +171,18 @@
 
                         <table class="table" >
                             <tr>
+                                <th>Cantidad</th>
+                                <th>Acción</th>
                                 <th>id</th>
-                                <th>Nombre Producto</th>
-                                <th>Accion</th>
+                                <th>Nombre</th>
                             </tr>
-                            <tbody>
+                            <tbody id="tablaBody">
                             <template id="TablaProductosCliente">
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td> <button type="button" class="btn btn-primary btn-lg" style="background-color: red !important;">X</button></td>                        
+                                    <td></td>
+                                    <td></td>
+                                    <td><input name = "cantidadProducto" placeholder="Digite cantidad" style="height: 30px; width: 100px;"></td>
+                                    <td> <button type="button" class="btn btn-primary btn-lg" style="background-color: red !important;" onclick="eliminarProducto()">X</button></td>                        
                                 </tr>
                             </template>
                             </tbody>
@@ -191,13 +193,14 @@
 
 
                     <div class="search-container col-12 col-sm-6 col-md-6 col-lg-6" style="padding: 1rem;"> <br>
-                        <select class = "selectPro" name = "pro">
-                            <option value="0">Elegir Producto</option>
+                        <select class = "selectPro" id="selectProductos">
+                            <option select disabled>Elegir Producto</option>
                             <%
                                 List<Producto> productos = (List<Producto>) request.getSession().getAttribute("productos");
                                 for (Producto pro : productos) {
+                                String value = pro.getCodigo() + "," + pro.getNombre();
                             %>
-                            <option value="<%=pro.getCodigo()%>"><%=pro.getNombre()%></option>
+                            <option value="<%=value%>"><%=pro.getNombre()%></option>
                             <%}%>
                         </select>
                         <br><br>
@@ -222,13 +225,13 @@
                     </div>
 
                     <div class="col-12 col-sm-6 col-md-6 col-lg-3" style="padding-top: 0.5rem; ">
-                        <select style=" background-color: rgb(214, 205, 205);" >
+                        <select style=" background-color: rgb(214, 205, 205);"  name="mecanico">
                             <%=request.getSession().getAttribute("mecanicos").toString()%>
                         </select> 
 
                         <div style="margin-top: 4rem;">
                             <button type="reset" class="btn btn-primary btn-lg"  style="background-color: rgb(235, 71, 71) !important;">Cancelar</button>
-                            <button type="submit" class="btn btn-primary btn-lg"  style="background-color: #001971  !important;">Agregar</button>
+                            <input type="submit" class="btn btn-primary btn-lg"  style="background-color: #001971  !important;" value='Agregar'>
                         </div>
                     </div>   
 
@@ -284,17 +287,15 @@
             const btn = document.querySelectorAll(".btnAddServicio");
             let servicios = [];
             function addServicio(servicio) {
-            console.log()
             const tr = document.createElement("TR");
             let td1 = document.createElement("TD");
             let td2 = document.createElement("TD");
             let td3 = document.createElement("TD");
             let input = document.createElement("INPUT");
-            
+            let buton = document.createElement("BUTTON");
             var ServicioArr = servicio.split(";");
             servicios.push(ServicioArr);
             var arr = ServicioArr[0].split(",");
-            console.log("ARR " + arr);
             td1.value = arr[0];
             td1.innerHTML = arr[0];
             btn[arr[2]].innerHTML = "-";
@@ -302,15 +303,15 @@
             btn[arr[2]].disabled = true;
             td2.value = arr[1];
             td2.innerHTML = arr[1];            
-            td3.innerHTML = 
-            "<td>" + 
-            "<button type='button' class='btn btn-primary btn-lg' style='background-color: red !important;' onclick='eliminarServicioLista('arr[0]')'>" + 'X' + 
-            "</button></td>\n";
-            
-            input.setAttribute("name", "ids[]");
+            buton.setAttribute("type","button");
+            buton.setAttribute("style","background-color: red !important");
+            buton.classList.add("btn", "btn-primary", "btn-lg");
+            buton.addEventListener("click",eliminarServicioLista(tr));
+            buton.textContent = "-";
+            input.setAttribute("name", "ids");
             input.setAttribute("value", arr[0]);
             input.setAttribute("style","display: none");
-            
+            td3.appendChild(buton);
             tr.appendChild(td1);
             tr.appendChild(td2);
             tr.appendChild(td3);
@@ -319,11 +320,49 @@
             }
 
             function eliminarServicioLista(fila){
-                console.log(fila);
-                console.log(listaServicio);
+            console.log(fila.target)
+            console.log("Entra a eliminaR");
+            console.log(fila);
+            /*btn[arr[2]].innerHTML = "-";
+            btn[arr[2]].style.backgroundColor = "#ff1";
+            btn[arr[2]].disabled = true;,*/
             }
 
-
+            //Productos
+            const padreTemplate = document.getElementById("TablaProductosCliente").content;
+            const hijoTr = padreTemplate.querySelector("tr");
+            const hijoTd = hijoTr.querySelectorAll("td");
+            
+            
+            $(".selectPro").on("select2:select", function (e) { 
+            var select_val = $(e.currentTarget).val();
+            cargarProductos(select_val);
+            });
+            
+            function cargarProductos(value){
+            $("option").addClass("disabled");
+                var valor = value.split(",");
+                const fragment = document.createDocumentFragment();
+                console.log(valor[0]);
+                let input = document.createElement("INPUT");
+                input.setAttribute("name", "idp");
+                input.setAttribute("value", valor[0]);
+                input.setAttribute("style","display: none");
+                
+                hijoTd[0].innerHTML = valor[0];
+                hijoTd[0].setAttribute("value",valor[0]);
+                hijoTd[0].setAttribute("name",valor[0]);
+                hijoTd[1].innerHTML = valor[1];
+                hijoTd[1].setAttribute("value",valor[1]);
+                hijoTr.appendChild(hijoTd[0]);
+                hijoTr.appendChild(hijoTd[1]);
+                hijoTr.appendChild(input);
+                const clone = hijoTr.cloneNode(true);
+                fragment.appendChild(clone);
+                
+                document.getElementById("tablaBody").appendChild(fragment);
+            }
+            
         </script>
 
         <!-- Validación de formulario -->

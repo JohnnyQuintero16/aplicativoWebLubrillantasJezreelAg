@@ -5,8 +5,13 @@
  */
 package ControladorVistas;
 
+import DAO.CitaDAO;
+import DTO.Factura;
+import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,19 +35,38 @@ public class ProcesarAtencionServicio extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProcesarAtencionServicio</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProcesarAtencionServicio at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        
+        String [] productos = request.getParameterValues("idp");
+        String [] servicios = request.getParameterValues("ids");
+        String [] cntPro = request.getParameterValues("cantidadProducto");
+        String km = request.getParameter("kilometraje");
+        String descripcion = request.getParameter("descri");
+        String idCita = (String) request.getSession().getAttribute("idCitaServicio");
+        ArrayList<String> lista = new ArrayList<>();
+        CitaDAO c = new CitaDAO();
+        c.actualizarCita(Integer.parseInt(idCita));
+        Jezreel j = new Jezreel();
+        int n = cntPro.length;
+        int i = 1;
+        while(n>0){
+            if(!(j.productoDisponible(productos[productos.length-i], Integer.parseInt(cntPro[n-1])))){
+                request.setAttribute("error", "erroPro");
+                request.getRequestDispatcher("./jsp/adminRegis.jsp").forward(request, response);
+            }else{
+                lista.add(productos[productos.length-i] + "," + cntPro[n-1]);
+            }
+            i++;
+            n--;
         }
-        response.sendRedirect("./jsp/adminRegis.jsp");
+        int idcita = Integer.parseInt(idCita);
+        Factura factura = j.crearFactura(lista, 0, Integer.parseInt(idCita));
+        String placa = (String)request.getSession().getAttribute("placa");
+        j.crearFichaVehiculo(placa);
+        j.crearAtencionServicio(Integer.parseInt(km), "Esto es una prueba", idcita, placa, factura);
+        
+        j.registrarItemServicio(idcita, servicios, factura);
+        
+        response.sendRedirect("CitasAdmin.do");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
