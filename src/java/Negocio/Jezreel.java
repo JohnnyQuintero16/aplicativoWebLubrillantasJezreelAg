@@ -455,6 +455,7 @@ public class Jezreel {
             Dia diaSemana = getDiaSemana(semana,diaCita); //dia de la semana de esa cita
             ArrayList<Hora> h = diaSemana.getHoras(); //horas de ese dia
             Hora horaDia = getHoraDia(h,horaCita);   //obtengo la hora de la cita dentro de las horas del dia
+            
             horaDia.aumentarCupo();
             
             if(horaDia.getCupo()==4){
@@ -484,6 +485,9 @@ public class Jezreel {
     
     public Hora getHoraDia(ArrayList<Hora> h, String horaCita){
     
+        if(horaCita.charAt(0)=='0'){
+            horaCita = horaCita.charAt(1)+"";
+        }
         for (Hora ho : h) {
             if(ho.getHora().equals(horaCita)){
                 return ho;
@@ -568,6 +572,16 @@ public class Jezreel {
         return fechaAmandar;
     }
     
+    public String optionsServicios(){
+            ServicioDAO se = new ServicioDAO();
+            List<Servicio> s = se.readServiciosActivos();
+            String rta ="";
+                for(Servicio ser : s){
+                    rta+=" <option value=\""+ser.getNombre()+"\">"+ser.getNombre()+"</option>\n";
+                }
+            return rta;
+    }
+    
     
     
     public String getDia(Date fecha){
@@ -577,10 +591,34 @@ public class Jezreel {
         return dia;
     }
     
-    private List<Cita> getCitasNoAtendidas(){
+    public void actualizarCitasAgendadas(){
+    
+        CitaDAO c = new CitaDAO();
+        List<Cita> citas = c.read();
+        Calendar calendar = Calendar.getInstance();
+        Date fechaActual = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()); //hora actual
+        for (Cita ci : citas) {
+            Date fechaCita = ci.getFecha();   //Obtengo la fecha de la cita
+            fechaCita.setHours(ci.getHora().getHours()); //le pongo la hora a la fecha
+            
+            calendar.setTime(fechaCita);
+            calendar.add(Calendar.MINUTE, 30);  //le doy media hora mas para que llege
+            
+            if(ci.getEstado().equals("NO ATENDIDA")){
+                if(fechaCita.compareTo(fechaActual) < 0) {
+                    ci.setEstado("CANCELADA");
+                }
+            }
+        }
+    
+    }
+    
+    public List<Cita> getCitasNoAtendidas(){
         CitaDAO c = new CitaDAO();
         List<Cita> citas = c.read();
         List<Cita> citasNoAtendidas = new ArrayList<Cita>();
+        actualizarCitasAgendadas(); 
+        
         for (Cita ci : citas) {
             if(ci.getEstado().equals("NO ATENDIDO")){
                 citasNoAtendidas.add(ci);
@@ -588,6 +626,7 @@ public class Jezreel {
         }
         return citasNoAtendidas;
     }
+    
 
     public String mostrarServiciosIndex() {
 
