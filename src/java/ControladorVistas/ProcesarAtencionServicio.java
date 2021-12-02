@@ -35,38 +35,52 @@ public class ProcesarAtencionServicio extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        String [] productos = request.getParameterValues("idp");
-        String [] servicios = request.getParameterValues("ids");
-        String [] cntPro = request.getParameterValues("cantidadProducto");
-        String km = request.getParameter("kilometraje");
-        String descripcion = request.getParameter("descri");
-        String idCita = (String) request.getSession().getAttribute("idCitaServicio");
-        ArrayList<String> lista = new ArrayList<>();
-        CitaDAO c = new CitaDAO();
-        c.actualizarCita(Integer.parseInt(idCita));
-        Jezreel j = new Jezreel();
-        int n = cntPro.length;
-        int i = 1;
-        while(n>0){
-            if(!(j.productoDisponible(productos[productos.length-i], Integer.parseInt(cntPro[n-1])))){
-                request.setAttribute("error", "erroPro");
-                request.getRequestDispatcher("./jsp/adminRegis.jsp").forward(request, response);
-            }else{
-                lista.add(productos[productos.length-i] + "," + cntPro[n-1]);
+        try {
+            String[] productos = request.getParameterValues("idp");
+            String[] servicios = request.getParameterValues("ids");
+            String[] cntPro = request.getParameterValues("cantidadProducto");
+            String km = request.getParameter("kilometraje");
+            String descripcion = request.getParameter("descri");
+            String mecani = request.getParameter("mecanico");
+            String desc = request.getParameter("descuento");
+            String idCita = (String) request.getSession().getAttribute("idCitaServicio");
+            ArrayList<String> lista = new ArrayList<>();
+            CitaDAO c = new CitaDAO();
+            Jezreel j = new Jezreel();
+            int n = cntPro.length;
+            int i = 1;
+            while (n > 0) {
+                if (!(j.productoDisponible(productos[productos.length - i], Integer.parseInt(cntPro[n - 1])))) {
+                    request.setAttribute("error", "erroPro");
+                    request.getRequestDispatcher("./jsp/adminRegis.jsp").forward(request, response);
+                } else {
+                    lista.add(productos[productos.length - i] + "," + cntPro[n - 1]);
+                }
+                i++;
+                n--;
             }
-            i++;
-            n--;
+            int idcita = Integer.parseInt(idCita);
+            
+            Factura factura = j.crearFactura(lista, Integer.parseInt(desc), idcita);
+            
+            String placa = (String) request.getSession().getAttribute("placa");
+            
+            j.crearFichaVehiculo(placa);
+            descripcion = "Ayuda Diosito debemo pasar api x dio";
+            j.crearAtencionServicio(Integer.parseInt(km), descripcion, idcita, mecani, placa, factura);
+            
+            j.registrarItemServicio(idcita, servicios, factura);
+            
+            j.registrarItemProductos(idcita, lista);
+            
+            c.actualizarCita(idcita);
+            
+            response.sendRedirect("CitasAdmin.do");
+        } catch (Exception e) {
+            System.err.println(e.getCause());
+            //request.getRequestDispatcher("./jsp/adminRegis.jsp").forward(request, response);
         }
-        int idcita = Integer.parseInt(idCita);
-        Factura factura = j.crearFactura(lista, 0, Integer.parseInt(idCita));
-        String placa = (String)request.getSession().getAttribute("placa");
-        j.crearFichaVehiculo(placa);
-        j.crearAtencionServicio(Integer.parseInt(km), "Esto es una prueba", idcita, placa, factura);
-        
-        j.registrarItemServicio(idcita, servicios, factura);
-        
-        response.sendRedirect("CitasAdmin.do");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

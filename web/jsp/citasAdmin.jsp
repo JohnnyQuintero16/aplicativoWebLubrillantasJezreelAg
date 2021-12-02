@@ -238,7 +238,7 @@
                 asunto = "SERVICIO EN PROCESO";
                 cuerpo = "📣 Hola desde Lubrillantas Jezreel queremos avisarte que tu servicio esta en proceso 🔩 🔧\n\n\
                        pronto recibiras un correo cuando tu servicio este listo!";
-                alert('entre a proceso');
+                //alert('entre a proceso');
                 mail(correo,asunto,cuerpo,'confirmar1');
             }
             else{
@@ -247,7 +247,7 @@
                 asunto = "SERVICIO FINALIZADO";
                 cuerpo = "📣 Hola desde Lubrillantas Jezreel queremos avisarte que tu servicio ha finalizado\n\n\
                        ya puedes acercarte por tu vehiculo 🔩 🔧🚗!";
-               alert('entre a finalizado');
+               //alert('entre a finalizado');
                mail(correo,asunto,cuerpo,'confirma'+arr[1]);
                 
             }

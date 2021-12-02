@@ -186,7 +186,6 @@
                                 </tr>
                             </template>
                             </tbody>
-
                         </table>
 
                     </div>
@@ -194,7 +193,7 @@
 
                     <div class="search-container col-12 col-sm-6 col-md-6 col-lg-6" style="padding: 1rem;"> <br>
                         <select class = "selectPro" id="selectProductos">
-                            <option select disabled>Elegir Producto</option>
+                            <option selected readonly>Elegir Producto</option>
                             <%
                                 List<Producto> productos = (List<Producto>) request.getSession().getAttribute("productos");
                                 for (Producto pro : productos) {
@@ -204,11 +203,14 @@
                             <%}%>
                         </select>
                         <br><br>
+                        <p>Por favor digite descuento (es opcional)</p>
+                        <input type="number" id="kilometraje" name="descuento" placeholder="Descuento" value = "0" min="0" max="100"> 
+                        <br><br>
                         <p>Kilometraje actual del vehiculo</p>
                         <input type="text" id="kilometraje" value='<%=request.getSession().getAttribute("km")%>' readonly> <br>
                         <br>
                         <p>Por favor digite el kilometraje del vehiculo:</p>
-                        <input type="number" id="kilometraje" name="kilometraje" placeholder="kilometraje"  required> <br> <br>
+                        <input type="number" id="kilometraje" name="kilometraje" placeholder="kilometraje"  required min="0"> <br> <br>
                     </div>
 
 
@@ -237,11 +239,6 @@
 
                 </div>
             </form>
-            <!-- <tr>
-                <td></td>
-                <td></td>
-                <td> <button type="button" class="btn btn-primary btn-lg"  style="background-color: red !important;">-</button></td>                        
-            </tr>>-->
 
 
 
@@ -281,11 +278,14 @@
             }
             );
             } );
+            
             //Servicios
 
             const listaServicio = document.querySelector('#TablaServicioCliente');
+            
             const btn = document.querySelectorAll(".btnAddServicio");
-            let servicios = [];
+            
+            
             function addServicio(servicio) {
             const tr = document.createElement("TR");
             let td1 = document.createElement("TD");
@@ -294,7 +294,6 @@
             let input = document.createElement("INPUT");
             let buton = document.createElement("BUTTON");
             var ServicioArr = servicio.split(";");
-            servicios.push(ServicioArr);
             var arr = ServicioArr[0].split(",");
             td1.value = arr[0];
             td1.innerHTML = arr[0];
@@ -338,12 +337,13 @@
             var select_val = $(e.currentTarget).val();
             cargarProductos(select_val);
             });
-            
+            let idsProducto = [];
             function cargarProductos(value){
-            $("option").addClass("disabled");
                 var valor = value.split(",");
-                const fragment = document.createDocumentFragment();
-                console.log(valor[0]);
+                let existe = idsProducto.indexOf(valor[0]);
+                if(existe == -1){
+                idsProducto.push(valor[0]);
+                const fragment = document.createDocumentFragment();    
                 let input = document.createElement("INPUT");
                 input.setAttribute("name", "idp");
                 input.setAttribute("value", valor[0]);
@@ -361,6 +361,9 @@
                 fragment.appendChild(clone);
                 
                 document.getElementById("tablaBody").appendChild(fragment);
+                }else{
+                alert("Ya tiene seleccionado este producto, elija otro");
+                }
             }
             
         </script>

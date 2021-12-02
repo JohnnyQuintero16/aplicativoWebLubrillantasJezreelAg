@@ -12,7 +12,7 @@ const expresiones = {
     cedula: /^\d{8,10}$/, // 8 a 10 numeros.
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     telefono: /^\d{10}$/, // 10 numeros exactos.
-    direccion: /^[a-zA-Z0-9\_\-\#\s]{4,60}$/ //Letras, numeros, guion, guion_bajo., espacios #
+    direccion: /^[a-zA-Z0-9\_\-\#\s]{4,150}$/ //Letras, numeros, guion, guion_bajo., espacios #
 };
 
 
