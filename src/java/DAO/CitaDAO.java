@@ -58,19 +58,19 @@ public class CitaDAO {
             Logger.getLogger(CitaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void insertarCita(String anio, String mes, String dia, int hora,String cedula, String descripcion){
-        
+
+    public void insertarCita(String anio, String mes, String dia, int hora, String cedula, String descripcion) {
+
         PersonaDAO p = new PersonaDAO();
-        Date fecha = new Date(Integer.parseInt(anio)-1900, Integer.parseInt(mes)-1, Integer.parseInt(dia), hora, 0, 0);
-        Cita ci  = new Cita(0,fecha,fecha, descripcion,"NO ATENDIDO");
+        Date fecha = new Date(Integer.parseInt(anio) - 1900, Integer.parseInt(mes) - 1, Integer.parseInt(dia), hora, 0, 0);
+        Cita ci = new Cita(0, fecha, fecha, descripcion, "NO ATENDIDO");
         ci.setIdPersona(p.readPersona(cedula));
         create(ci);
-        
+
     }
-    
-    public void delete(int id) throws IllegalOrphanException, NonexistentEntityException{
-        
+
+    public void delete(int id) throws IllegalOrphanException, NonexistentEntityException {
+
         try {
             cit.destroy(id);
         } catch (NonexistentEntityException ex) {
@@ -106,18 +106,15 @@ public class CitaDAO {
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC-5"));
         Date fechaActual = calendar.getTime();
         for (Cita c : citas) {
-           // System.out.println("SOY FECHA ACTUAL : " + ci.parseIntFecha(fechaActual));
-            //System.out.println("SOY FECHA ENTRANTE : " + ci.parseIntFecha(c.getFecha()));
-            if (c.getIdPersona().getCedula().equals(cedula) && c.parseLongFecha(fechaActual,fechaActual) <= c.parseLongFecha(c.getFecha(),c.getHora())) {
-                
-                //System.out.println("SOY FECHA ELEGIDA : " + c.parseIntFecha(c.getFecha()));
+
+            if (c.getIdPersona().getCedula().equals(cedula) && c.parseLongFecha(fechaActual, fechaActual) <= c.parseLongFecha(c.getFecha(), c.getHora()) && !c.getEstado().equals("ATENDIDO") && !c.getEstado().equals("CANCELADA")) {
+
                 activas.add(c);
             }
 
         }
 
         Collections.sort(activas);
-
 
         return activas;
     }

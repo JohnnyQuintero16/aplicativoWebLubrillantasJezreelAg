@@ -102,17 +102,51 @@
                 <div class="titulo">
                     <h1 style="color:blue">Cliente: <%=request.getSession().getAttribute("usuarioCliente").toString()%></h1> 
                 </div>
-                    <form action="<%=basePath%>CargarAddVehiculo.do" method="GET">
+                <form action="<%=basePath%>CargarAddVehiculo.do" method="GET">
                     <div class="boton">
                         <input style = "display: none" name = "cedula" value="<%=request.getSession().getAttribute("IdCliente")%>"> 
-                    <button class="btn btn-primary btn-lg" type="submit" value="Regresar" style="color: white;"> Añadir Vehiculo </button>
-                </div>
+                        <button class="btn btn-primary btn-lg" type="submit" value="Regresar" style="color: white;"> Añadir Vehiculo </button>
+                    </div>
                 </form>
-                
+
 
             </div>
             <div class="main" >
-                <form class="row " name="formdatos" action="<%=basePath%>MostrarServiProduAdmin.do" method="GET" > 
+                <form class="row " name="formdatos" action="<%=basePath%>MostrarServiProduAdmin.do" method="POST" > 
+                    <h3 style="display: flex; align-items: center">Datos de la cita agendada por el cliente</h3>
+                    <div class = "row">
+                        <div class="col-md-4">
+                            <div class="div">
+                                <h5>No. Placa: <i><%=request.getSession().getAttribute("idPlacaCita")%></i></h5>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="div">
+                                <h5>Modelo: <i><%=request.getSession().getAttribute("idModeloCita")%></i></h5>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="div">
+                                <h5>Marca: <i><%=request.getSession().getAttribute("idMarcaCita")%></i></h5>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="div">
+                                <h5>Año: <i><%=request.getSession().getAttribute("idAnioCita")%></i></h5>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="div">
+                                <h5>Kilometraje: <i><%=request.getSession().getAttribute("idKilometraCita")%></i></h5>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="div">
+                                <h5>Descripción <i><%=request.getSession().getAttribute("idDescripcionCita")%></i></h5>
+                            </div>
+                        </div>
+                    </div>
+
                     <div id="vehiculo"  class="col-md-6">
                         <label  for="vehiculo" name="vehiculo" class="form-label">Escoja el Vehículo</label>  
                         <br><br>
@@ -125,7 +159,7 @@
 
                     <div class="col-md-6">
                         <select id="inputState" class="form-select">
-                            <option selected>Seleccione un vehiculo</option>
+                            <option selected required>Seleccione un vehiculo</option>
                             <%=request.getSession().getAttribute("getVehiculo").toString()%>
                         </select>
                     </div>
@@ -189,14 +223,14 @@
             document.getElementById('inputPlaca').value = option;
             document.getElementById('inputkm').value = arrVehiculo[2];
             if(cnt > 1){
-                var elem = document.getElementsByClassName('msg');
-                while(elem.length > 0){
-                    elem[0].remove();
-                }
+            var elem = document.getElementsByClassName('msg');
+            while(elem.length > 0){
+            elem[0].remove();
+            }
             }
             for(var i = 0; i < div.length; i++){
-                 div[i].appendChild(campos[i].content.cloneNode(true));
-                 document.getElementsByClassName('msg')[i].innerHTML = arrVehiculo[i];
+            div[i].appendChild(campos[i].content.cloneNode(true));
+            document.getElementsByClassName('msg')[i].innerHTML = arrVehiculo[i];
             }
             }
             $(document).ready(function () {

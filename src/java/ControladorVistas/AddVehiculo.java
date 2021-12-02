@@ -13,6 +13,7 @@ import DTO.Marca;
 import DTO.Persona;
 import DTO.Tipo;
 import DTO.Vehiculo;
+import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -54,6 +55,7 @@ public class AddVehiculo extends HttpServlet {
         Vehiculo nuevo =  new Vehiculo();
         MarcaDAO m = new MarcaDAO();
         TipoDAO t = new TipoDAO();
+        Jezreel j = new Jezreel();
         nuevo.setPlaca(placa);
         nuevo.setModelo(modelo);
         nuevo.setColor(color);
@@ -71,6 +73,7 @@ public class AddVehiculo extends HttpServlet {
         p = per.readPersona((String) request.getSession().getAttribute("cedula"));
         nuevo.setIdPersona(p);
         ve.create(nuevo);
+        j.crearFichaVehiculo(placa);
         request.getRequestDispatcher("./MostrarDatosAgendaConfirAdmin.do").forward(request,response);
     }
 

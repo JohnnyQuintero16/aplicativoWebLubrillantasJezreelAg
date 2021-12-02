@@ -102,13 +102,9 @@
                     <h1 style="color:blue">Cliente: <%=request.getSession().getAttribute("usuarioCliente").toString()%></h1> 
                 </div>
 
-                <div class="boton">
-                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1">Salir</button>
-                </div>
-
             </div>
 
-            <form action = "<%=basePath%>ProcesarAtencionServicio.do" method = "GET">
+            <form action = "<%=basePath%>ProcesarAtencionServicio.do" method = "POST">
                 <div class="row" style=" background-color: white; padding-top: 1rem; width: 100%; ">
                     <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
                         <h2 style="color: #001971;">Escoja los servicio:</h2>
@@ -168,7 +164,7 @@
                     <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
                         <h2 style="color: #001971;">Escoja el Producto:</h2>
                         <p>Lista de productos con los que se llevo a cabo el servicio.</p>
-
+                        <%int j = 0;%>
                         <table class="table" >
                             <tr>
                                 <th>Cantidad</th>
@@ -178,16 +174,18 @@
                             </tr>
                             <tbody id="tablaBody">
                             <template id="TablaProductosCliente">
+                                
                                 <tr>
                                     <td></td>
                                     <td></td>
                                     <td><input name = "cantidadProducto" placeholder="Digite cantidad" style="height: 30px; width: 100px;"></td>
-                                    <td> <button type="button" class="btn btn-primary btn-lg" style="background-color: red !important;" onclick="eliminarProducto()">X</button></td>                        
+                                    
+                                    <td> <button type="button" id="<%=j%>" class="btn btn-primary btn-lg" style="background-color: red !important;" onclick="eliminarElement()">X</button></td>                        
                                 </tr>
                             </template>
                             </tbody>
                         </table>
-
+                                <%j++;%>
                     </div>
 
 
@@ -197,14 +195,14 @@
                             <%
                                 List<Producto> productos = (List<Producto>) request.getSession().getAttribute("productos");
                                 for (Producto pro : productos) {
-                                String value = pro.getCodigo() + "," + pro.getNombre();
+                                    String value = pro.getCodigo() + "," + pro.getNombre();
                             %>
                             <option value="<%=value%>"><%=pro.getNombre()%></option>
                             <%}%>
                         </select>
                         <br><br>
                         <p>Por favor digite descuento (es opcional)</p>
-                        <input type="number" id="kilometraje" name="descuento" placeholder="Descuento" value = "0" min="0" max="100"> 
+                        <input type="number" id="descuento" name="descuento" placeholder="Descuento" value = "0" min="0" max="100"> 
                         <br><br>
                         <p>Kilometraje actual del vehiculo</p>
                         <input type="text" id="kilometraje" value='<%=request.getSession().getAttribute("km")%>' readonly> <br>
@@ -221,21 +219,25 @@
 
 
 
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 3rem">
                         <h2 style="color: #001971;">Escoja el Mecánico:</h2>
-                        <img src="<%=basePath%>img/vehicle.png" alt="LogoA"  width="140px" height="120px" >
-                    </div>
-
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3" style="padding-top: 0.5rem; ">
                         <select style=" background-color: rgb(214, 205, 205);"  name="mecanico">
                             <%=request.getSession().getAttribute("mecanicos").toString()%>
-                        </select> 
+                        </select>
+                        <!--<img src="<%=basePath%>img/vehicle.png" alt="LogoA"  width="140px" height="120px" >-->
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 3rem">
+                        <h2 style="color: #001971;">Descripción del servicio realizado</h2>
+                        <textarea id="txtarea" name="descri" rows="5" cols="30" required=""></textarea>
+                    </div>
 
-                        <div style="margin-top: 4rem;">
-                            <button type="reset" class="btn btn-primary btn-lg"  style="background-color: rgb(235, 71, 71) !important;">Cancelar</button>
-                            <input type="submit" class="btn btn-primary btn-lg"  style="background-color: #001971  !important;" value='Agregar'>
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-3" style="padding-top: 3rem; display: flex; justify-content: center; align-items: center ">
+                        <div style="margin-top: 2rem;">
+                            <button type="reset" class="btn btn-primary btn-lg"  style="background-color: rgb(235, 71, 71) !important; width: 20rem">Cancelar</button>
+                            <input type="submit" class="btn btn-primary btn-lg"  style="background-color: #001971  !important;  width: 20rem;" value='Agregar'>
                         </div>
-                    </div>   
+                    </div>
+
 
                 </div>
             </form>
@@ -278,14 +280,14 @@
             }
             );
             } );
-            
+
             //Servicios
 
             const listaServicio = document.querySelector('#TablaServicioCliente');
-            
+
             const btn = document.querySelectorAll(".btnAddServicio");
-            
-            
+
+
             function addServicio(servicio) {
             const tr = document.createElement("TR");
             let td1 = document.createElement("TD");
@@ -331,41 +333,61 @@
             const padreTemplate = document.getElementById("TablaProductosCliente").content;
             const hijoTr = padreTemplate.querySelector("tr");
             const hijoTd = hijoTr.querySelectorAll("td");
-            
-            
+            let cntPro = 0;
+
             $(".selectPro").on("select2:select", function (e) { 
+            
             var select_val = $(e.currentTarget).val();
             cargarProductos(select_val);
             });
             let idsProducto = [];
             function cargarProductos(value){
-                var valor = value.split(",");
-                let existe = idsProducto.indexOf(valor[0]);
-                if(existe == -1){
-                idsProducto.push(valor[0]);
-                const fragment = document.createDocumentFragment();    
-                let input = document.createElement("INPUT");
-                input.setAttribute("name", "idp");
-                input.setAttribute("value", valor[0]);
-                input.setAttribute("style","display: none");
+            var valor = value.split(",");
+            let existe = idsProducto.indexOf(valor[0]);
+            if(existe == -1){
+            cntPro++;
+            idsProducto.push(valor[0]);
+            const fragment = document.createDocumentFragment();    
+            let input = document.createElement("INPUT");
+            input.setAttribute("name", "idp");
+            input.setAttribute("value", valor[0]);
+            input.setAttribute("style","display: none");
+
+            hijoTd[0].innerHTML = valor[0];
+            hijoTd[0].setAttribute("value",valor[0]);
+            hijoTd[0].setAttribute("name",valor[0]);
+            hijoTd[1].innerHTML = valor[1];
+            hijoTd[1].setAttribute("value",valor[1]);
+            hijoTr.appendChild(hijoTd[0]);
+            hijoTr.appendChild(hijoTd[1]);
+            hijoTr.appendChild(input);
+            const clone = hijoTr.cloneNode(true);
+            fragment.appendChild(clone);
+
+            document.getElementById("tablaBody").appendChild(fragment);
+            }else{
+            alert("Ya tiene seleccionado este producto, elija otro");
+            }
+            }
+            function eliminarElement(){
+                element = document.getElementById(cntPro);
                 
-                hijoTd[0].innerHTML = valor[0];
-                hijoTd[0].setAttribute("value",valor[0]);
-                hijoTd[0].setAttribute("name",valor[0]);
-                hijoTd[1].innerHTML = valor[1];
-                hijoTd[1].setAttribute("value",valor[1]);
-                hijoTr.appendChild(hijoTd[0]);
-                hijoTr.appendChild(hijoTd[1]);
-                hijoTr.appendChild(input);
-                const clone = hijoTr.cloneNode(true);
-                fragment.appendChild(clone);
+                function eliminarElemento(id){	
+                padre = element.parentNode;
                 
-                document.getElementById("tablaBody").appendChild(fragment);
-                }else{
-                alert("Ya tiene seleccionado este producto, elija otro");
+                padre.removeChild(element);
+                cntPro--;
                 }
             }
             
+            function verificarCantidad(){
+            let error = '<%=request.getSession().getAttribute("error")%>';
+            console.log(error);
+            if(error == "erroPro"){
+            alert("No hay suficientes productos");
+            }
+            }
+            verificarCantidad();
         </script>
 
         <!-- Validación de formulario -->

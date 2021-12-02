@@ -153,7 +153,7 @@
                             for (Producto p : productos) {
                         %>
                         <tr>
-                            <th class="enc" scope="row"><%=i%></th>
+                            <th class="enc" scope="row"><%=p.getCodigo()%></th>
                             <td><%=p.getNombre()%></td>
                             <td><%=p.getMarca()%></td>
                             <td><%=p.getTipo()%></td>

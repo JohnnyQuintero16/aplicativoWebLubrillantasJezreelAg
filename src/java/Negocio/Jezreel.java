@@ -56,16 +56,16 @@ import javax.swing.JOptionPane;
  * @author USUARIO
  */
 public class Jezreel {
-    
+
     public String mostrarServicios() {
-        
+
         ServicioDAO da = new ServicioDAO();
         List<Servicio> servicios = da.read();
-        
+
         String cardServicios = " ";
         for (Servicio ser : servicios) {
             if (ser.getEstado().equals("ACTIVO")) {
-                
+
                 cardServicios += "			<div class=\"card\">\n"
                         + "	\n"
                         + "				<div class=\"row g-0 \">\n"
@@ -82,24 +82,24 @@ public class Jezreel {
                         + "			</div> \n";
             }
         }
-        
+
         return cardServicios;
-        
+
     }
-    
+
     public String[] mostrarProductos() {
-        
-        String[] tipo = {"ACEITES", "FILTROS", "VALVULINAS", "ADICTIVOS", "OTROS"};
+
+        String[] tipo = {"ACEITES", "FILTROS", "VALVULINAS", "ADITIVOS", "OTROS"};
         ProductoDAO da = new ProductoDAO();
         String[] rta = new String[tipo.length];
         for (int i = 0; i < tipo.length; i++) {
-            
+
             List<Producto> pt = da.findProductoTipo(tipo[i]);
-            
+
             if (!pt.isEmpty()) {
                 rta[i] = "";
                 for (Producto pro : pt) {
-                    
+
                     rta[i] += "					<div class=\"card\">\n"
                             + "						<img src=" + '"' + pro.getImgUrl() + '"' + " alt=\"\">\n"
                             + "						<h4 class=\"titulo-card\">" + pro.getNombre() + " </h4>\n"
@@ -109,59 +109,66 @@ public class Jezreel {
                             + "\n"
                             + "						\n"
                             + "					</div> \n";
-                    
+
                 }
             } else {
-                
+
                 rta[i] = "<h4> No se econtraron resultados</h4>";
             }
-            
+
         }
         return rta;
-        
+
     }
-    
+
     public String misServiciosUsu(String cedula) {
-        
+
         String rta;
         VehiculoDAO vda = new VehiculoDAO();
         AtencionServicioDAO atendao = new AtencionServicioDAO();
         List<AtencionServicio> servi = new ArrayList<AtencionServicio>();
         List<Vehiculo> vehiculos = vda.findVehiculosUser(cedula);
-        
+
         if (!vehiculos.isEmpty()) {
             for (Vehiculo ve : vehiculos) {
-                
+
                 FichaTecnicaDAO fida = new FichaTecnicaDAO();
-                FichaTecnica ficha = fida.findFichaVehiculo(ve.getPlaca());
-                atendao.findServiciosFicha(ficha.getId(), servi);
-                
+                if (fida.findFichaVehiculo(ve.getPlaca()) != null) {
+                    FichaTecnica ficha = fida.findFichaVehiculo(ve.getPlaca());
+                    atendao.findServiciosFicha(ficha.getId(), servi);
+                }
             }
-            Collections.sort(servi);
-            
+
+            if (!servi.isEmpty()) {
+                Collections.sort(servi);
+            }
             rta = vistaMisServicios(servi);
-            
+
         } else {
             rta = "<h3>Aun no tienes servicios con nostros :( </h3>";
         }
         return rta;
     }
-    
+
     public String misServiciosUsuFitroVehiculo(String placa) {
         String rta = "";
         AtencionServicioDAO atendao = new AtencionServicioDAO();
         List<AtencionServicio> servi = new ArrayList<AtencionServicio>();
         FichaTecnicaDAO fida = new FichaTecnicaDAO();
-        FichaTecnica ficha = fida.findFichaVehiculo(placa);
-        atendao.findServiciosFicha(ficha.getId(), servi);
-        Collections.sort(servi);
-        
-        rta = vistaMisServicios(servi);
-        return rta;
+        if (fida.findFichaVehiculo(placa) != null) {
+            FichaTecnica ficha = fida.findFichaVehiculo(placa);
+
+            atendao.findServiciosFicha(ficha.getId(), servi);
+            Collections.sort(servi);
+
+            rta = vistaMisServicios(servi);
+            return rta;
+        }
+        return "<h4>Error al mostrar los servicios, registro de atencion no terminada. Contactate con el administrador y pide que terminen el proceso. :) </h4>";
     }
-    
+
     public String vistaMisServicios(List<AtencionServicio> servi) {
-        
+
         String rta = "";
         DetallesServicioDAO sdao = new DetallesServicioDAO();
         DetallesProductoDAO pdao = new DetallesProductoDAO();
@@ -169,11 +176,11 @@ public class Jezreel {
         costo.add(0.0);
         costo.add(0.0);
         int i = 0;
-        
+
         for (AtencionServicio a : servi) {
-            
+
             List<DetallesServicio> dser = sdao.findDetalleServicioAtencion(a.getId());
-            
+
             List<DetallesProducto> dpro = pdao.findDetalleProductoAtencion(a.getId());
             Persona mecanico = a.getIdPersona();
             Factura factura = a.getIdFactura();
@@ -240,33 +247,33 @@ public class Jezreel {
                         + "                            " + tablaListaProductosUsu(dpro, costo)
                         + "                          </tbody>\n"
                         + "                        </table>\n";
-                
+
                 rta += costosAtencion(costo, a.getIdFactura(), a);
             } catch (Exception e) {
-                
+
             }
-            
+
             i++;
             costo.set(0, 0.0);
             costo.set(1, 0.0);
         }
-        
+
         return rta;
     }
-    
+
     public String tablaListaServiciosUsu(List<DetallesServicio> detalles) {
         String rta = "";
         for (DetallesServicio d : detalles) {
-            
+
             rta += "<tr>\n"
                     + "                              <td>" + d.getIdServicio().getNombre() + "</td>\n"
                     + "                              <td>" + d.getIdServicio().getDescripcion() + "</td>\n"
                     + "                            </tr>\n";
         }
-        
+
         return rta;
     }
-    
+
     public String tablaListaProductosUsu(List<DetallesProducto> detalles, List<Double> costo) {
         String rta = "";
         for (DetallesProducto d : detalles) {
@@ -275,7 +282,7 @@ public class Jezreel {
                     + "                              <td>" + d.getIdProducto().getNombre() + "</td>\n"
                     + "                              <td>" + d.getCantidad() + "</td>\n"
                     + "                              <td> $ " + d.getCosto() + "</td>\n"
-                    + "                              <td> $ " + d.getCosto()* 0.19 + "</td>\n"
+                    + "                              <td> $ " + d.getCosto() * 0.19 + "</td>\n"
                     + "                              <td>$" + (d.getCosto() + d.getCosto() * 0.19) * d.getCantidad() + "</td>\n"
                     + "                            </tr>\n";
 
@@ -285,16 +292,16 @@ public class Jezreel {
 
         return rta;
     }
-    
-public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) {
+
+    public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) {
 
         CalificacionDAO cadao = new CalificacionDAO();
         return "  <br>\n"
-                + "                        <h6>KILOMETRAJE : " + a.getKilometraje() +" Km"+ "</h6>\n"
+                + "                        <h6>KILOMETRAJE : " + a.getKilometraje() + " Km" + "</h6>\n"
                 + "                        <hr width=\"30%\">\n"
-                + "                        <h6>SUBTOTAL: $" + (Math.round(costo.get(0)*100.0)/100.0) + "</h6>\n"
+                + "                        <h6>SUBTOTAL: $" + (Math.round(costo.get(0) * 100.0) / 100.0) + "</h6>\n"
                 + "                        <hr width=\"30%\">\n"
-                + "                        <h6>IVA: $ " + (Math.round(costo.get(1)*100.0)/100.0) + "</h6>\n"
+                + "                        <h6>IVA: $ " + (Math.round(costo.get(1) * 100.0) / 100.0) + "</h6>\n"
                 + "                        <hr width=\"30%\">\n"
                 + "                         <h6>DESCUENTO: $ " + (Math.round(((costo.get(0) + costo.get(1)) * (f.getDescuento() / 100.0)) * 100.0) / 100.0) + "</h6>\n"
                 + "                        <hr width=\"30%\">\n"
@@ -314,16 +321,16 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
                 + "        </div>\n"
                 + "        <br>";
     }
-    
+
     public String mostrarVehiculosUser(String cedula) {
-        
+
         PersonaDAO p = new PersonaDAO();
         Persona per = p.readPersona(cedula);
         List<Vehiculo> ve = per.getVehiculoList();
         String rta = "";
-        
+
         if (ve.isEmpty()) {
-            
+
             rta = "<table class=\"tabla-vehiculo\">\n"
                     + "                <tr>\n"
                     + "                  <th>No tienes ningun vehiculo registrado :(</th>\n"
@@ -333,9 +340,9 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
                     + "                </tr>\n"
                     + "               \n"
                     + "              </table> <br><br>";
-            
+
         } else {
-            
+
             for (Vehiculo vehiculo : ve) {
                 rta += "<form action=\"MisServiciosUsu.do\"><table class=\"tabla-vehiculo\">\n"
                         + "                <tr>\n"
@@ -363,20 +370,20 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
                         + "                  \n"
                         + "              </table></form> <br><br>";
             }
-            
+
         }
         return rta;
     }
-    
+
     public String getCitas() {
-        
+
         CitaDAO c = new CitaDAO();
         String rta = "";
-        
+
         List<Cita> citas = c.read();
         for (Cita ci : citas) {
             Persona p = ci.getIdPersona();
-            
+
             rta += "<tr class=\"" + ci.getId() + "\">\n"
                     + "                            <th class=\"enc\" scope=\"row\">" + ci.getId() + "</th>\n"
                     + "                            <td>" + p.getCedula() + "</td>\n"
@@ -421,12 +428,12 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
                         + "</form>\n"
                         + "                           </td>\n";
             }
-            
+
             rta += "</tr>";
         }
         return rta;
     }
-    
+
     public String getFecha(Date fecha, Date hora) {
         SimpleDateFormat formateador = new SimpleDateFormat(
                 "dd '/' MM '/' yyyy", new Locale("es_ES"));
@@ -436,7 +443,7 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
         String horas = formateador2.format(hora);
         return "Dia: " + fechad.replace(" ", "") + "\nHora: " + horas;
     }
-    
+
     public ArrayList<Dia> cargarHorario() {
         //OBTENGO CITAS NO ATENDIDAS
         List<Cita> citas = this.getCitasNoAtendidas();
@@ -458,7 +465,7 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
             Hora horaDia = getHoraDia(h, horaCita);   //obtengo la hora de la cita dentro de las horas del dia
 
             horaDia.aumentarCupo();
-            
+
             if (horaDia.getCupo() == 4) {
                 diaSemana.getHoras().remove(horaDia);
             }
@@ -468,15 +475,15 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
 
     //PARSEO LA SEMANA CON LAS HORAS A STRING PARA MANIPULARLO EN EL JS
     public String cargarHorarios() {
-        
+
         String rta = "";
         ArrayList<Dia> semana = this.cargarHorario();
-        
+
         for (Dia d : semana) {
-            
+
             rta += d.getNombre();
             ArrayList<Hora> horas = d.getHoras();
-            
+
             for (Hora h : horas) {
                 rta += "," + h.getHora();
             }
@@ -484,9 +491,9 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
         }
         return rta;
     }
-    
+
     public Hora getHoraDia(ArrayList<Hora> h, String horaCita) {
-        
+
         if (horaCita.charAt(0) == '0') {
             horaCita = horaCita.charAt(1) + "";
         }
@@ -497,17 +504,17 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
         }
         return null;
     }
-    
+
     public String getHora(Date hora) {
-        
+
         SimpleDateFormat formateador2 = new SimpleDateFormat(
                 "HH", new Locale("es_ES"));
         String horas = formateador2.format(hora);
         return horas;
     }
-    
+
     public Dia getDiaSemana(ArrayList<Dia> sem, String dia) {
-        
+
         for (Dia d : sem) {
             if (d.getNombre().equals(dia)) {
                 return d;
@@ -516,14 +523,14 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
         System.err.println("No se encontro el dia");
         return null;
     }
-    
+
     public ArrayList<Dia> getSemana(Date diaInicio) {
-        
+
         Date dia = diaInicio;
         Calendar calendar = Calendar.getInstance();
         ArrayList<Dia> semana = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
-            
+
             Dia d = new Dia(getDia(dia)); //CREO UN DIA
             semana.add(d); //lo agrego a la semana
             calendar.setTime(dia); //CONFIGUURO EL DIA
@@ -533,9 +540,9 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
         }
         return semana;
     }
-    
+
     public Date validarDiaDeBusqueda(String dia) {
-        
+
         Date fechaAmandar = new Date();// LA FECHA QUE VOY A USAR
         Calendar calendar = Calendar.getInstance();
         //MODELO DE FECHA QUE QUIERO
@@ -550,14 +557,14 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
             String parteHora = "7:30:00";
             //MODELO DE FORMATO DE FECHA Y HORA A LA QUE VOY A CONVERTIR PARA HACER RESTAS
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            
+
             try {
                 fechaAmandar = sdf.parse(parteFecha + " " + parteHora);
             } catch (ParseException ex) {
                 Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            
+
             Date fechaManana = calendar.getTime();
             //LA PARTE STRING DE LA FECHA
             String parteFecha = formatearFecha.format(fechaManana);
@@ -573,7 +580,7 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
         }
         return fechaAmandar;
     }
-    
+
     public String optionsServicios() {
         ServicioDAO se = new ServicioDAO();
         List<Servicio> s = se.readServiciosActivos();
@@ -583,16 +590,16 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
         }
         return rta;
     }
-    
+
     public String getDia(Date fecha) {
-        
+
         SimpleDateFormat ObtenerDia = new SimpleDateFormat("EEEE");
         String dia = ObtenerDia.format(fecha).toUpperCase();
         return dia;
     }
-    
+
     public void actualizarCitasAgendadas() {
-        
+
         CitaDAO c = new CitaDAO();
         List<Cita> citas = c.read();
         Calendar calendar = Calendar.getInstance();
@@ -610,15 +617,15 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
                 }
             }
         }
-        
+
     }
-    
+
     public List<Cita> getCitasNoAtendidas() {
         CitaDAO c = new CitaDAO();
         List<Cita> citas = c.read();
         List<Cita> citasNoAtendidas = new ArrayList<Cita>();
         actualizarCitasAgendadas();
-        
+
         for (Cita ci : citas) {
             if (ci.getEstado().equals("NO ATENDIDO")) {
                 citasNoAtendidas.add(ci);
@@ -626,36 +633,36 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
         }
         return citasNoAtendidas;
     }
-    
+
     public String mostrarServiciosIndex() {
-        
+
         ServicioDAO da = new ServicioDAO();
         List<Servicio> servicios = da.readServiciosActivos();
-        
+
         int cantidad = 4;
         if (servicios.size() < 4) {
             cantidad = servicios.size();
         }
         String cardServicios = " ";
         for (int j = 0; j < cantidad; j++) {
-            
+
             cardServicios += "<div class=\"col-md-6  mb-5 colum\">\n"
                     + "\n"
                     + "                    <a href=" + '"' + servicios.get(j).getImgUrl() + '"' + " data-lightbox=\"galeriaS\" data-title=\"Nombre servicio\"> <img src=" + '"' + servicios.get(j).getImgUrl() + '"' + " alt=\"\"></a>\n"
                     + "                    <div class=\"titulo\">" + servicios.get(j).getNombre() + " </div>\n"
                     + "\n"
                     + "                </div>";
-            
+
         }
-        
+
         return cardServicios;
     }
-    
+
     public String tablaDatosClienteFicha(String cedula) {
-        
+
         PersonaDAO perdao = new PersonaDAO();
         Persona per = perdao.readPersona(cedula);
-        
+
         String tabla = "<h4>Datos del Cliente </h4> <br>\n"
                 + "                <table  class=\"table table-bordered table-striped table-hover\" >\n"
                 + "                    <thead class=\"table-secondary\">\n"
@@ -676,18 +683,18 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
                 + "                        </tr>\n"
                 + "                    </tbody>\n"
                 + "                </table>";
-        
+
         return tabla;
     }
-    
+
     public String tableDatosVehiculosFicha(String cedula) {
-        
+
         VehiculoDAO vedao = new VehiculoDAO();
         String tdTable = "";
         List<Vehiculo> vehiculos = vedao.findVehiculosUser(cedula);
         if (!vehiculos.isEmpty()) {
             for (Vehiculo v : vehiculos) {
-                
+
                 tdTable += "             <tr>\n"
                         + "                            <td>" + v.getPlaca() + "</td>\n"
                         + "                            <td>" + v.getIdMarca().getNombre() + "</td>\n"
@@ -709,33 +716,33 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
         } else {
             tdTable = "<td colspan=\"9\">No tiene vehiculos asociados</td>\n";
         }
-        
+
         return tdTable;
     }
-    
+
     public String atencionServiciosFicha(String cedula) {
-        
+
         VehiculoDAO vedao = new VehiculoDAO();
         List<Vehiculo> vehiculos = vedao.findVehiculosUser(cedula);
         AtencionServicioDAO andao = new AtencionServicioDAO();
         List<AtencionServicio> aServicios = new ArrayList<AtencionServicio>();
         String rta = "";
-        
+
         if (!vehiculos.isEmpty()) {
             for (Vehiculo ve : vehiculos) {
-                
+
                 FichaTecnicaDAO fida = new FichaTecnicaDAO();
                 FichaTecnica ficha = fida.findFichaVehiculo(ve.getPlaca());
                 andao.findServiciosFicha(ficha.getId(), aServicios);
-                
+
             }
             Collections.sort(aServicios);
             rta = tableServiciosFicha(aServicios);
-            
+
         }
         return rta;
     }
-    
+
     public String tableServiciosFicha(List<AtencionServicio> servi) {
         String tbody = "";
         int i = 1;
@@ -755,7 +762,7 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
         }
         return tbody;
     }
-    
+
     public String stringServicios(AtencionServicio a) {
         int i = 1;
         String rta = "";
@@ -765,11 +772,11 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
             rta += d.getIdServicio().getNombre() + (detalles.size() > i ? ", " : ".");
             i++;
         }
-        
+
         return rta;
-        
+
     }
-    
+
     public String stringProductos(AtencionServicio a) {
         String rta = "";
         int i = 1;
@@ -779,39 +786,39 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
             rta += d.getIdProducto().getNombre() + (detalles.size() > i ? ", " : ".");
             i++;
         }
-        
+
         return rta;
-        
+
     }
-    
+
     public String selectMarca() {
-        
+
         String rta = "";
         MarcaDAO mdao = new MarcaDAO();
         List<Marca> marca = mdao.read();
-        
+
         for (Marca m : marca) {
-            
+
             rta += "       <option value=" + '"' + m.getId() + '"' + ">" + m.getNombre() + "</option>\n";
         }
-        
+
         return rta;
     }
-    
+
     public String selectTipo() {
-        
+
         String rta = "";
         TipoDAO tdao = new TipoDAO();
         List<Tipo> tipo = tdao.read();
-        
+
         for (Tipo t : tipo) {
-            
+
             rta += "       <option value=" + '"' + t.getId() + '"' + ">" + t.getNombre() + "</option>\n";
         }
-        
+
         return rta;
     }
-    
+
     public String getVehiculoClienteAtencion(String cedula) {
         String rta = "";
         VehiculoDAO vehiculo = new VehiculoDAO();
@@ -821,7 +828,7 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
         }
         return rta;
     }
-    
+
     public String getMecanico() {
         String rta = "";
         PersonaDAO per = new PersonaDAO();
@@ -831,70 +838,64 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
             if (p.getIdRol().getId() == 3) {
                 String nombre = p.getNombres().split(" ")[0] + " " + p.getApellidos().split(" ")[0];
                 rta += " <option value=" + '"' + p.getCedula() + '"' + ">" + nombre + "</option>\n";
-                
+
             }
-            
+
         }
         return rta;
     }
-    
-   public String mostrarCitasActivasUsuario(String cedula) {
+
+    public String mostrarCitasActivasUsuario(String cedula) {
 
         String rta = "";
         CitaDAO cidao = new CitaDAO();
         List<Cita> citasActivas = cidao.citasUsuario(cedula);
 
-        if (!citasActivas.isEmpty()) {
+        for (Cita c : citasActivas) {
+            if (!c.getEstado().equals("ATENDIDO")) {
+                String[] dcita = c.getDescripcion().split(",");
 
-            for (Cita c : citasActivas) {
-                if (!c.getEstado().equals("ATENDIDO")) {
-                    String[] dcita = c.getDescripcion().split(",");
-
-                    rta += "                    <div class=\"row\" id=\"form\">\n"
-                            + "                        <div class=\"col col-md-12\">\n"
-                            + "                            <div id=\"fecha\" class=\"media align-items-center\">							\n"
-                            + "                                <label  for=\"fecha\" class=\"form-label\">FECHA: " + c.formatoFecha(c.getFecha()) + "</label>\n"
-                            + "                            </div>\n"
-                            + "                            <div class=\"media-body\">\n"
-                            + "                                <div class=\"row align-items-center\">\n"
-                            + "                                    <div class=\"col-md-9 col-sm-9\">\n"
-                            + "                                        <div style=\"padding: 15px\">\n"
-                            + "                                            <h6>HORA: " + c.formatoHora(c.getHora()) + "</h6>\n"
-                            + "                                            <h6>VEHÍCULO: " + dcita[0] + "</h6>\n"
-                            + "                                            <h6>SERVICIO SOLICITADO : " + dcita[5] + "</h6>\n"
-                            + "                                        </div>																		\n"
-                            + "                                    </div>\n"
-                            + "                                    <!-- botón eliminar-->\n"
-                            + "                                    <div class=\" col-3\" align=\"center\" >"
-                            + "                                    <input  style=\"display: none\" value=" + '"' + c.getId() + '"' + "type=\"text\" class=\"form-control\" id=\"cita\" name=\"cita\" required>								\n"
-                            + "                                        <a  href=\"#\" class=\"btn btn-outline-danger float-right\"data-bs-toggle=\"modal\" data-bs-target=\"#modal1\">\n"
-                            + "                                            <svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" fill=\"currentColor\" class=\"bi bi-trash\" viewBox=\"0 0 16 16\">\n"
-                            + "                                            <path d=\"M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z\"/>\n"
-                            + "                                            <path fill-rule=\"evenodd\" d=\"M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z\"/>\n"
-                            + "                                            </svg>\n"
-                            + "                                            <span class=\"visually-hidden\"></span>\n"
-                            + "                                        </a>\n"
-                            + "\n"
-                            + "                                        <!--Fin de Botón Eliminar-->\n"
-                            + "\n"
-                            + "                                        <!--Botón de editar la cita-->\n"
-                            + "                                    </div>\n"
-                            + "                                    <!--Fin de botón Editar-->\n"
-                            + "                                </div>\n"
-                            + "                            </div>					\n"
-                            + "                        </div>\n"
-                            + "                    </div>";
-
-                }
+                rta += "                    <div class=\"row\" id=\"form\">\n"
+                        + "                        <div class=\"col col-md-12\">\n"
+                        + "                            <div id=\"fecha\" class=\"media align-items-center\">							\n"
+                        + "                                <label  for=\"fecha\" class=\"form-label\">FECHA: " + c.formatoFecha(c.getFecha()) + "</label>\n"
+                        + "                            </div>\n"
+                        + "                            <div class=\"media-body\">\n"
+                        + "                                <div class=\"row align-items-center\">\n"
+                        + "                                    <div class=\"col-md-9 col-sm-9\">\n"
+                        + "                                        <div style=\"padding: 15px\">\n"
+                        + "                                            <h6>HORA: " + c.formatoHora(c.getHora()) + "</h6>\n"
+                        + "                                            <h6>VEHÍCULO: " + dcita[0] + "</h6>\n"
+                        + "                                            <h6>SERVICIO SOLICITADO : " + dcita[5] + "</h6>\n"
+                        + "                                        </div>																		\n"
+                        + "                                    </div>\n"
+                        + "                                    <!-- botón eliminar-->\n"
+                        + "                                    <div class=\" col-3\" align=\"center\" >"
+                        + "                                    <input  style=\"display: none\" value=" + '"' + c.getId() + '"' + "type=\"text\" class=\"form-control\" id=\"cita\" name=\"cita\" required>								\n"
+                        + "                                        <a  href=\"#\" class=\"btn btn-outline-danger float-right\"data-bs-toggle=\"modal\" data-bs-target=\"#modal1\">\n"
+                        + "                                            <svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" fill=\"currentColor\" class=\"bi bi-trash\" viewBox=\"0 0 16 16\">\n"
+                        + "                                            <path d=\"M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z\"/>\n"
+                        + "                                            <path fill-rule=\"evenodd\" d=\"M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z\"/>\n"
+                        + "                                            </svg>\n"
+                        + "                                            <span class=\"visually-hidden\"></span>\n"
+                        + "                                        </a>\n"
+                        + "\n"
+                        + "                                        <!--Fin de Botón Eliminar-->\n"
+                        + "\n"
+                        + "                                        <!--Botón de editar la cita-->\n"
+                        + "                                    </div>\n"
+                        + "                                    <!--Fin de botón Editar-->\n"
+                        + "                                </div>\n"
+                        + "                            </div>					\n"
+                        + "                        </div>\n"
+                        + "                    </div>";
+            } else {
+                rta = "<h4>No tienes citas</h4>";
             }
-        } else {
-            rta = "<h4>No tienes citas</h4>";
-
         }
-
         return rta;
     }
-    
+
     public boolean productoDisponible(String id, int cnt) {
         boolean ans = false;
         ProductoDAO pro = new ProductoDAO();
@@ -910,7 +911,7 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
         }
         return ans;
     }
-    
+
     public void crearFichaVehiculo(String placa) {
         FichaTecnicaDAO ficha = new FichaTecnicaDAO();
         if (ficha.findFichaVehiculo(placa) == null) {
@@ -927,7 +928,7 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC-5"));
         Date fechaActual = calendar.getTime();
         Factura facturaNueva = new Factura();
-        
+
         for (String info : productos) {
             String fila[] = info.split(",");
             int cnt = Integer.parseInt(fila[1]);
@@ -936,15 +937,22 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
             totalSinIva += nuevo.getPrecioVenta() * cnt;
             total += ((nuevo.getPrecioVenta() * 1.19F) * cnt);
         }
-        total = (total - ((descuento/100.0)*totalSinIva)); 
+        total = (total - ((descuento / 100.0) * totalSinIva));
         facturaNueva.setDescuento((short) descuento);
         facturaNueva.setFecha(fechaActual);
         facturaNueva.setHora(fechaActual);
         facturaNueva.setId(null);
-        facturaNueva.setTotal(Math.round(total*100.0)/100.0);
+        facturaNueva.setTotal(Math.round(total * 100.0) / 100.0);
         FacturaDAO fac = new FacturaDAO();
         fac.create(facturaNueva);
         return facturaNueva;
+    }
+    
+    public void actualizarKmVehiculo(String placa, int kmActual){
+        VehiculoDAO v = new VehiculoDAO();
+        Vehiculo ve = v.readVehiculo(placa);
+        ve.setKilometraje(kmActual);
+        v.update(ve);
     }
 
     public void crearAtencionServicio(int kmActual, String descripcion, int idCita, String idMecanico, String placa, Factura factura) {
@@ -965,6 +973,7 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
         atencion.setKilometraje(kmActual);
         atencion.setIdPersona(mecani.readPersona(idMecanico));
         atencion.setIdFactura(factura);
+        this.actualizarKmVehiculo(placa, kmActual);
         AtencionServicioDAO atenciondao = new AtencionServicioDAO();
         atenciondao.create(atencion);
     }
@@ -992,7 +1001,7 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
         for (String info : productos) {
             DetallesProducto detalle = new DetallesProducto();
             String fila[] = info.split(",");
-            Producto produc = pro.readProducto(fila[0]); 
+            Producto produc = pro.readProducto(fila[0]);
             detalle.setId(0);
             detalle.setCosto(produc.getPrecioVenta());
             detalle.setCantidad(Short.parseShort(fila[1]));
@@ -1000,6 +1009,6 @@ public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) 
             detalle.setIdAtencionServicio(atencion);
             deta.create(detalle);
         }
-        
+
     }
 }

@@ -51,8 +51,9 @@ public class ProcesarAtencionServicio extends HttpServlet {
             int i = 1;
             while (n > 0) {
                 if (!(j.productoDisponible(productos[productos.length - i], Integer.parseInt(cntPro[n - 1])))) {
-                    request.setAttribute("error", "erroPro");
+                    request.getSession().setAttribute("error", "erroPro");
                     request.getRequestDispatcher("./jsp/adminRegis.jsp").forward(request, response);
+                    return;
                 } else {
                     lista.add(productos[productos.length - i] + "," + cntPro[n - 1]);
                 }
@@ -65,8 +66,6 @@ public class ProcesarAtencionServicio extends HttpServlet {
             
             String placa = (String) request.getSession().getAttribute("placa");
             
-            j.crearFichaVehiculo(placa);
-            descripcion = "Ayuda Diosito debemo pasar api x dio";
             j.crearAtencionServicio(Integer.parseInt(km), descripcion, idcita, mecani, placa, factura);
             
             j.registrarItemServicio(idcita, servicios, factura);

@@ -33,13 +33,10 @@ public class AdminAddProducto extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        try {
+         try {
             Producto nuevo = new Producto();
             ProductoDAO pro = new ProductoDAO();
             String codigo = request.getParameter("codigo");
-            if (pro.readProducto(codigo) != null) {
-                request.getRequestDispatcher("./jsp/productosAdmin.jsp").forward(request, response);
-            } else {
                 String tipo = request.getParameter("tipo");
                 switch (tipo) {
                     case "1":
@@ -69,9 +66,15 @@ public class AdminAddProducto extends HttpServlet {
                 nuevo.setImgUrl(request.getParameter("url"));
                 nuevo.setDescripcion(request.getParameter("descripcion"));
                 nuevo.setEstado("ACTIVO");
-                pro.create(nuevo);
-                response.sendRedirect("MostrarProductosAdmin.do");
-            }
+                
+                if(pro.readProducto(codigo) != null && pro.existeProductoInactivo(codigo)){
+                    pro.update(nuevo);
+                }else{
+                    pro.create(nuevo);
+                }
+                
+                
+            response.sendRedirect("MostrarProductosAdmin.do");
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
