@@ -32,9 +32,9 @@ public class cerrarSesion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(true);
         session.invalidate();
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("./index.jsp");
         //RequestDispatcher dispatcher = request.getRequestDispatcher("./index.jsp");
         //dispatcher.forward(request, response);
         

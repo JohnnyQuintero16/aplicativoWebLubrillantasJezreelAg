@@ -1,0 +1,334 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28/11/2021, 10:11:56 p. m.
+    Author     : Sebastian C
+*/
+
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 40px;
+    background: #f3f3f3;
+}
+
+.registro {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    min-height: 50vh;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+/* body del formulario */
+.form-register__body {
+    display: flex;
+    align-items: flex-start;
+}
+
+:root {
+    color-header-step: #2F80ED;
+    color-shadow: #222;
+    color-border-input: #ddd;
+}
+
+/* Header del formulario */
+
+/* Título del formulario */
+.form-register__title {
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 35px;
+    color: var(--color-header-step);
+}
+
+/* Progressbar */
+.progressbar {
+    display: flex;
+    list-style: none;
+    margin-bottom: 25px;
+    counter-reset: step;
+}
+
+.progressbar__option {
+    width: 100%;
+    text-align: center;
+    font-size: .8rem;
+    text-transform: uppercase;
+    position: relative;
+}
+
+li.progressbar__option{
+    color: #000;
+    font-weight: bold;
+}
+
+.progressbar__option:before {
+    display: flex;
+    content: counter(step);
+    counter-increment: step;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    font-weight: bold;
+    background: #001971;
+    margin: 0 auto 5px;
+    border-radius: 50px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.progressbar__option:after {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #000;
+    position: absolute;
+    top: 10px;
+    left: -50%;
+    z-index: 1;
+}
+
+.progressbar__option:first-child:after {
+    content: none;
+}
+
+.progressbar__option.active:before, .progressbar__option.active:after {
+    background-color: var(--color-header-step);
+}
+
+/* step */
+.step {
+    padding: 20px;
+    min-width: 100%;
+    opacity: 0;
+    transition: all .2s linear;
+}
+
+/* body de step */
+.step__body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+ .formulario__label {
+	display: block;
+	font-weight: 700;
+	padding: 10px;
+	cursor: pointer;
+    text-align: center;
+} 
+
+.formulario__grupo{
+    overflow: hidden;
+}
+
+.formulario__grupo-input {
+	position: relative;
+    margin: 20px;
+    overflow: hidden;
+}
+
+.formulario__texto {
+    
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 40%;
+    margin-left: 5%;
+    margin-right: 5%;
+    overflow: hidden;
+}
+
+.negrita {
+    font-weight: 700;
+}
+
+.parrafo1{
+    margin-bottom: 5%;
+}
+
+.parrafo2{
+    margin-top: 5%;
+}
+
+.formulario__input {
+	width: 100%;
+	background: #fff;
+	border: 3px solid #505050;
+	border-radius: 3px;
+	height: 45px;
+	line-height: 45px;
+	padding: 0 10px 0 10px;
+	transition: .3s ease all;
+}
+
+.formulario__input:focus {
+	border: 3px solid #0075FF;
+	outline: none;
+	box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
+}
+
+.formulario__select {
+	width: 100%;
+	background: #fff;
+	border: 3px solid #505050;
+	border-radius: 3px;
+	height: 45px;
+	line-height: 45px;
+	transition: .3s ease all;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.formulario__select:focus {
+	border: 3px solid #0075FF;
+	outline: none;
+	box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
+}
+
+select{
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    font-size: 20px;
+}
+
+.step.active {
+    opacity: 1;
+}
+
+.step.to-left {
+    margin-left: -100%;
+}
+
+.step.inactive {
+    animation-name: scale;
+    animation-duration: .2s;
+    animation-direction: alternate;
+    animation-iteration-count: 2;
+}
+
+@keyframes scale {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+/* header de step */
+.step__header {
+    padding: 20px 15px;
+    color: var(--color-header-step);
+    border-radius: 3px 3px 0 0;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.step__title {
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+
+/* step footer */
+.step__footer {
+    padding: 30px 0px 10px 0px;
+}
+
+.formulario__grupo-btn-enviar {
+	display: flex;
+	justify-content: center;
+}
+
+
+.formulario__btn {
+    margin: 10px;;
+	height: 50px;
+	line-height: 45px;
+	width: 30%;
+	background: #001971;
+	color: #fff;
+	font-weight: bold;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: .1s ease all;
+    font-size: 16px;
+}
+
+button.green{
+    background:#14ee55 !important;
+}
+
+.formulario__btn:hover {
+	box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+}
+
+/* ----- -----  Mediaqueries ----- ----- */
+
+ @media screen and (max-width: 835px) {
+
+    .formulario__grupo{
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .formulario__btn{
+        width: 100%;
+    }
+
+} 
+
+
+.alert{
+    text-align: center;
+}
+
+/* ----- -----  Estilos para Validacion ----- ----- */
+.formulario__grupo-correcto .formulario__validacion-estado {
+	color: #1ed12d;
+	opacity: 1;
+}
+
+.formulario__grupo-incorrecto .formulario__label {
+	color: #bb2929;
+}
+
+.formulario__grupo-incorrecto .formulario__validacion-estado {
+	color: #bb2929;
+	opacity: 1;
+}
+
+.formulario__grupo-incorrecto .formulario__input, 
+.formulario__grupo-incorrecto .formulario__select{
+	border: 3px solid #bb2929;
+}
+
+.formulario__input-error {
+	font-size: 15px;
+	display: none;
+}
+
+.formulario__input-error-activo {
+	display: block;
+}
+
+
+
+

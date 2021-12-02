@@ -5,13 +5,12 @@
  */
 package Persistencia;
 
+import DTO.DetallesServicio;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import DTO.AtencionServicio;
-import DTO.DetallesServicio;
 import DTO.Servicio;
 import Persistencia.exceptions.NonexistentEntityException;
 import java.util.List;
@@ -38,21 +37,12 @@ public class DetallesServicioJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            AtencionServicio idAtencionServicio = detallesServicio.getIdAtencionServicio();
-            if (idAtencionServicio != null) {
-                idAtencionServicio = em.getReference(idAtencionServicio.getClass(), idAtencionServicio.getId());
-                detallesServicio.setIdAtencionServicio(idAtencionServicio);
-            }
             Servicio idServicio = detallesServicio.getIdServicio();
             if (idServicio != null) {
                 idServicio = em.getReference(idServicio.getClass(), idServicio.getId());
                 detallesServicio.setIdServicio(idServicio);
             }
             em.persist(detallesServicio);
-            if (idAtencionServicio != null) {
-                idAtencionServicio.getDetallesServicioList().add(detallesServicio);
-                idAtencionServicio = em.merge(idAtencionServicio);
-            }
             if (idServicio != null) {
                 idServicio.getDetallesServicioList().add(detallesServicio);
                 idServicio = em.merge(idServicio);
@@ -71,27 +61,13 @@ public class DetallesServicioJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             DetallesServicio persistentDetallesServicio = em.find(DetallesServicio.class, detallesServicio.getId());
-            AtencionServicio idAtencionServicioOld = persistentDetallesServicio.getIdAtencionServicio();
-            AtencionServicio idAtencionServicioNew = detallesServicio.getIdAtencionServicio();
             Servicio idServicioOld = persistentDetallesServicio.getIdServicio();
             Servicio idServicioNew = detallesServicio.getIdServicio();
-            if (idAtencionServicioNew != null) {
-                idAtencionServicioNew = em.getReference(idAtencionServicioNew.getClass(), idAtencionServicioNew.getId());
-                detallesServicio.setIdAtencionServicio(idAtencionServicioNew);
-            }
             if (idServicioNew != null) {
                 idServicioNew = em.getReference(idServicioNew.getClass(), idServicioNew.getId());
                 detallesServicio.setIdServicio(idServicioNew);
             }
             detallesServicio = em.merge(detallesServicio);
-            if (idAtencionServicioOld != null && !idAtencionServicioOld.equals(idAtencionServicioNew)) {
-                idAtencionServicioOld.getDetallesServicioList().remove(detallesServicio);
-                idAtencionServicioOld = em.merge(idAtencionServicioOld);
-            }
-            if (idAtencionServicioNew != null && !idAtencionServicioNew.equals(idAtencionServicioOld)) {
-                idAtencionServicioNew.getDetallesServicioList().add(detallesServicio);
-                idAtencionServicioNew = em.merge(idAtencionServicioNew);
-            }
             if (idServicioOld != null && !idServicioOld.equals(idServicioNew)) {
                 idServicioOld.getDetallesServicioList().remove(detallesServicio);
                 idServicioOld = em.merge(idServicioOld);
@@ -128,11 +104,6 @@ public class DetallesServicioJpaController implements Serializable {
                 detallesServicio.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The detallesServicio with id " + id + " no longer exists.", enfe);
-            }
-            AtencionServicio idAtencionServicio = detallesServicio.getIdAtencionServicio();
-            if (idAtencionServicio != null) {
-                idAtencionServicio.getDetallesServicioList().remove(detallesServicio);
-                idAtencionServicio = em.merge(idAtencionServicio);
             }
             Servicio idServicio = detallesServicio.getIdServicio();
             if (idServicio != null) {

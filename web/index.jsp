@@ -3,11 +3,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-                <%
+        <%
             String path = request.getContextPath();
             String basePath = request.getScheme() + "://" + request.getServerName() + ":"
                     + request.getServerPort() + path + "/";
-            
+
+            if (request.getSession().getAttribute("listaServiciosIndex") == null) {
+                request.getRequestDispatcher(("MostrarServiciosIndex.do")).forward(request, response);
+
+            }
         %>
         <base href="<%=basePath%>">
         <meta charset="UTF-8">
@@ -35,10 +39,6 @@
 
     </head>
     <body onload="sesion('<%=request.getSession().getAttribute("usuario")%>')">
-        <%  response.setHeader("Pragma", "No-chache");
-            response.setHeader("Expires", "0");
-            response.setHeader("Cache-Control", "no-cache");
-            response.setHeader("Cache", "no-cache");%>
         <!--MenÃº -->
         <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
             <div class="container-fluid">
@@ -58,7 +58,7 @@
                             <a class="nav-link active" aria-current="page" href="index.jsp">INICIO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./jsp/nosotros.jsp">NOSOTROS</a>
+                            <a class="nav-link" href="<%=basePath%>jsp/nosotros.jsp">NOSOTROS</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<%=basePath%>MostrarServicios.do">SERVICIOS</a>
@@ -74,11 +74,11 @@
                                 <a class="nav-link" href="<%=basePath%>jsp/iniciarsesion.jsp">INICIAR SESIÓN</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./jsp/registrarse.jsp">REGISTRARSE</a>
+                                <a class="nav-link" href="<%=basePath%>jsp/registrarse.jsp">REGISTRARSE</a>
                             </li>
                         </ul>
                     </template>
-                            
+
                     <template id="SiSesion">
                         <ul class="navbar-nav ml-auto m-4">
                             <li class="nav-item dropdown" style="list-style-type: none;">
@@ -86,17 +86,18 @@
                                     <%=request.getSession().getAttribute("nameUser")%>
                                 </a>
                                 <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
-                                    <li><a class="dropdown-item" href="#" >Mi Cuenta</a></li>
-                                    <li><a class="dropdown-item" href="./MisVehiculos.do" >Mis Vehiculos</a></li>
+                                    <li><a class="dropdown-item" href="<%=basePath%>./jsp/datosCliente.jsp" >Mi Cuenta</a></li>
+                                    <li><a class="dropdown-item" href="<%=basePath%>MisVehiculos.do" >Mis Vehiculos</a></li>
+                                    <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
+                                    <li><a class="dropdown-item" href="<%=basePath%>MostrarCitasUsu.do" >Mis Citas</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="./cerrarSesion.do">Salir</a></li>
+                                    <li><a class="dropdown-item" href="<%=basePath%>/cerrarSesion.do">Salir</a></li>
                                 </ul>
                             </li>
 
-                            <svg xmlns="http://www.w3.org/2000/svg" style="color:#fff" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                            </svg>
+                            <div class="user">
+                            <img src="<%=request.getSession().getAttribute("urlFoto")%>" width="70" height="70" class="rounded-circle me-2">
+                            </div>
 
                         </ul>
                     </template>
@@ -122,7 +123,7 @@
                         <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel">
                             <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel ">
                                 <h1 class="tittle-carrusel" >Lubrillantas <p style="color: blue; display: inline;">Jezreel</p> AG</h1>
-                                <input class="boton" id="botonAgendar" type="button" value="Agendar Servicio" >         
+                                <input class="boton" id="botonAgendar" type="button" value="Agendar Servicio" onclick="location.href='ObtenerHorarios.do'">         
                             </div>
                         </div>
 
@@ -133,7 +134,7 @@
                         <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel">
                             <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel ">
                                 <h1 class="tittle-carrusel" >Lubrillantas <p style="color: blue; display: inline;">Jezreel</p> AG</h1>
-                                <input class="boton" id="botonAgendar" type="button" value="Agendar Servicio" onclick="location.href='html/iniciarsesion.jsp'"> 
+                                <input class="boton" id="botonAgendar" type="button" value="Agendar Servicio" onclick="location.href='ObtenerHorarios.do'"> 
                             </div> 
                         </div>
                     </div>
@@ -143,7 +144,7 @@
                         <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel">
                             <div class="carousel-caption d-flex flex-column justify-content-center h-100 txt-carousel ">
                                 <h1 class="tittle-carrusel" >Lubrillantas <p style="color: blue; display: inline;">Jezreel</p> AG</h1>
-                                <input class="boton" id="botonAgendar" type="button" value="Agendar Servicio" onclick="location.href='html/iniciarsesion.jsp'"> 
+                                <input class="boton" id="botonAgendar" type="button" value="Agendar Servicio" onclick="location.href='ObtenerHorarios.do'"> 
                             </div> 
                         </div>
                     </div>
@@ -192,7 +193,7 @@
 
                         <div class="col-md-4"></div>
                         <div class="col-md-6"> 	
-                            <input class="boton3" id="botonLeerMas" type="button" value="Leer mas" onclick="location.href='<%=basePath%>jsp/nosotros.jsp'">
+                            <input class="boton3" id="botonLeerMas" type="button" value="Leer mas" onclick="location.href = '<%=basePath%>jsp/nosotros.jsp'">
                         </div>
                         <div class="col-md-2"></div>
                     </div>
@@ -216,35 +217,14 @@
             </div>
         </section>
 
-
+        <%
+            String listServicios = request.getSession().getAttribute("listaServiciosIndex").toString();
+        %>
 
 
         <div class="container">
             <div class="row galeria">
-                <div class="col-md-6  mb-5 colum">
-
-                    <a href="https://academiarallymontecarlo.com/wp-content/uploads/2020/03/bigstock-sistema-de-lubricaci%C3%B3n-aceite-auto.jpg"  data-lightbox="galeriaS" data-title="Nombre servicio"> <img src="https://academiarallymontecarlo.com/wp-content/uploads/2020/03/bigstock-sistema-de-lubricaci%C3%B3n-aceite-auto.jpg" alt=""></a>
-                    <div class="titulo">Titulo imagen ejemplo </div>
-
-                </div>
-
-                <div class="col-md-6 mb-5 colum">
-                    <a href="https://i.blogs.es/f21c04/frenos-coche/1366_2000.jpg" data-lightbox="galeriaS" data-title="Nombre servicio"> <img src="https://i.blogs.es/f21c04/frenos-coche/1366_2000.jpg" alt="" ></a>
-                    <div class="titulo">Titulo imagen ejemplo </div>
-                </div>
-
-                <div class="col-md-6 mb-5 colum">
-
-                    <a href="https://www.sanvicentedechucuri.com/wp-content/uploads/2020/04/montallantas-1.jpg" data-lightbox="galeriaS" data-title="Nombre servicio"> <img src="https://www.sanvicentedechucuri.com/wp-content/uploads/2020/04/montallantas-1.jpg" alt="" ></a>
-                    <div class="titulo">Titulo imagen ejemplo </div>
-                </div>
-
-                <div class="col-md-6 mb-5 colum">
-
-                    <a href="https://noticias.coches.com/wp-content/uploads/2013/11/filtro-de-aire-sucio.jpg"  data-lightbox="galeriaS" data-title="Nombre servicio"> <img src="https://noticias.coches.com/wp-content/uploads/2013/11/filtro-de-aire-sucio.jpg" alt=""></a>
-                    <div class="titulo">Titulo imagen ejemplo </div>
-                </div> 
-
+                <%=listServicios%>
 
             </div>
 
@@ -255,48 +235,48 @@
         <section class="contenido mt-3 mb-5">
             <div class="col-md-2"></div>
             <div class="col-md-8"> 		
-                <input class="boton2" id="botonServicios" type="button" value="Ver todos" onclick="location.href='<%=basePath%>jsp/servicios.jsp'">
+                <input class="boton2" id="botonServicios" type="button" value="Ver todos" onclick="location.href = '<%=basePath%>MostrarServicios.do'">
             </div>
             <div class="col-md-2"></div>
         </section>
 
 
 
-        <!--FOOTER-->
+         <!--FOOTER-->
         <footer>
             <div class="container-fluid">
-                <div class="row ">
-                    <div class="col-12 redes" style="background-color: #00114e;">
-                        <img src="./img/whatsapp.png" >
-                        <img src="./img/facebook.png" >
-                        <img src="./img/instagram.png" >
-                    </div>
+              <div class="row ">
+                <div class="col-12 redes" style="background-color: #00114e;">
+                  <a href="https://api.whatsapp.com/send/?phone=573112810082&text&app_absent=0"><img src="<%=basePath%>/img/whatsapp.png" ></a>
+                  <a href="https://web.facebook.com/profile.php?id=100075532121136"><img src="<%=basePath%>/img/facebook.png" ></a>
+                  <a href="https://www.instagram.com/lubrillantasjag/"><img src="<%=basePath%>/img/instagram.png" ></a>
                 </div>
-                <div class="row" style="background-color: #001971;">
-
-                    <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-                        <img src="./img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
-                    </div>
-
-                    <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
-                        <h4 >HORARIOS DE ATENCIÓN</h4>
-                        <p>Lunes a Viernes</p>
-                        <p>7:30 AM a 6:00 PM</p>
-                        <p>SÁbado</p>
-                        <p>7:30 AM a 5:00 PM</p>
-                    </div>
-
-                    <div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
-                        <h4 > CONTACTO </h4>
-                        <P>Av 5 # 0N-54 Barrio La Merced</P>
-                        <p>San José de Cúcuta - Colombia</p>
-                        <p>albeirofonseca74@gmail.com</p>
-                        <p>+57 3112810082</p>
-                    </div>
-
+              </div>
+              <div class="row" style="background-color: #001971;">
+        
+                <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+                  <img src="<%=basePath%>/img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
                 </div>
+        
+                <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
+                  <h4 >HORARIOS DE ATENCIÓN</h4>
+                  <p>Lunes a Viernes</p>
+                  <p>7:30 AM a 6:00 PM</p>
+                  <p>Sábado</p>
+                  <p>7:30 AM a 5:00 PM</p>
+                </div>
+      
+                <div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
+                  <h4 > CONTACTO </h4>
+                  <P>Av 5 # 0N-54 Barrio La Merced</P>
+                  <p>San José de Cúcuta - Colombia</p>
+                  <p>albeirofonseca74@gmail.com</p>
+                  <p>+57 3112810082</p>
+                </div>
+      
+              </div>
             </div>
-        </footer>
+          </footer>
         <!--FIN FOOTER-->
 
 
@@ -305,7 +285,6 @@
 
         <script src="./js/ligthboxjs/lightbox-plus-jquery.min.js"></script>
         <script src="./js/sesion.js"></script>
-
         <!--  <script>
            lightbox.option({
              'maxWidth' : 800,
@@ -313,6 +292,7 @@
              'maxHeight' : 300,
            })
        </script> -->
+
 
     </body>
 </html>

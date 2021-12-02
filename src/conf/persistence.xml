@@ -2,7 +2,6 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="LubrillantasJezreelPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>DTO.Producto</class>
     <class>DTO.Tipo</class>
     <class>DTO.Rol</class>
     <class>DTO.FichaTecnica</class>
@@ -16,11 +15,10 @@
     <class>DTO.DetallesProducto</class>
     <class>DTO.Marca</class>
     <class>DTO.Servicio</class>
+    <class>DTO.Producto</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://3.91.35.248:3306/bdJezreel?serverTimeZone=UTC"/>
-
       <property name="javax.persistence.jdbc.user" value="root2"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="api1234"/>

@@ -12,7 +12,6 @@ import java.io.StringWriter;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -24,22 +23,22 @@ import javax.servlet.http.HttpSession;
  *
  * @author johnny
  */
-public class dontCacheFilter implements Filter {
-
+public class validarSesion implements Filter {
+    
     private static final boolean debug = true;
 
     // The filter configuration object we are associated with.  If
     // this value is null, this filter instance is not currently
     // configured. 
     private FilterConfig filterConfig = null;
-
-    public dontCacheFilter() {
-    }
-
+    
+    public validarSesion() {
+    }    
+    
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("dontCacheFilter:DoBeforeProcessing");
+            log("validarSesion:DoBeforeProcessing");
         }
 
         // Write code here to process the request and/or response before
@@ -62,12 +61,12 @@ public class dontCacheFilter implements Filter {
 	    log(buf.toString());
 	}
          */
-    }
-
+    }    
+    
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("dontCacheFilter:DoAfterProcessing");
+            log("validarSesion:DoAfterProcessing");
         }
 
         // Write code here to process the request and/or response after
@@ -101,23 +100,27 @@ public class dontCacheFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-
+        
         if (debug) {
-            log("dontCacheFilter:doFilter()");
+            log("validarSesion:doFilter()");
         }
-
+        
         doBeforeProcessing(request, response);
-
+        
         Throwable problem = null;
         try {
-           /* HttpServletResponse res = (HttpServletResponse) response;
-            res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-            res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-            res.setDateHeader("Expires", 0); // Proxies.
-            */
-           chain.doFilter(request, response); // Logged-in user found, so just continue request.
+            HttpServletRequest req = (HttpServletRequest) request;
+            HttpServletResponse res = (HttpServletResponse) response;
+            HttpSession sesion = req.getSession();
+            String user = (String) sesion.getAttribute("usuario");
             
-
+            if(user == null){
+                req.setAttribute("msg","null");
+                res.sendRedirect("../jsp/NotificacionSesion.jsp");
+                return;
+            }
+                chain.doFilter(request, response);
+            
         } catch (Throwable t) {
             // If an exception is thrown somewhere down the filter chain,
             // we still want to execute our after processing, and then
@@ -125,7 +128,7 @@ public class dontCacheFilter implements Filter {
             problem = t;
             t.printStackTrace();
         }
-
+        
         doAfterProcessing(request, response);
 
         // If there was a problem, we want to rethrow it if it is
@@ -160,17 +163,17 @@ public class dontCacheFilter implements Filter {
     /**
      * Destroy method for this filter
      */
-    public void destroy() {
+    public void destroy() {        
     }
 
     /**
      * Init method for this filter
      */
-    public void init(FilterConfig filterConfig) {
+    public void init(FilterConfig filterConfig) {        
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
-            if (debug) {
-                log("dontCacheFilter:Initializing filter");
+            if (debug) {                
+                log("validarSesion:Initializing filter");
             }
         }
     }
@@ -181,27 +184,27 @@ public class dontCacheFilter implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("dontCacheFilter()");
+            return ("validarSesion()");
         }
-        StringBuffer sb = new StringBuffer("dontCacheFilter(");
+        StringBuffer sb = new StringBuffer("validarSesion(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());
     }
-
+    
     private void sendProcessingError(Throwable t, ServletResponse response) {
-        String stackTrace = getStackTrace(t);
-
+        String stackTrace = getStackTrace(t);        
+        
         if (stackTrace != null && !stackTrace.equals("")) {
             try {
                 response.setContentType("text/html");
                 PrintStream ps = new PrintStream(response.getOutputStream());
-                PrintWriter pw = new PrintWriter(ps);
+                PrintWriter pw = new PrintWriter(ps);                
                 pw.print("<html>\n<head>\n<title>Error</title>\n</head>\n<body>\n"); //NOI18N
 
                 // PENDING! Localize this for next official release
-                pw.print("<h1>The resource did not process correctly</h1>\n<pre>\n");
-                pw.print(stackTrace);
+                pw.print("<h1>The resource did not process correctly</h1>\n<pre>\n");                
+                pw.print(stackTrace);                
                 pw.print("</pre></body>\n</html>"); //NOI18N
                 pw.close();
                 ps.close();
@@ -218,7 +221,7 @@ public class dontCacheFilter implements Filter {
             }
         }
     }
-
+    
     public static String getStackTrace(Throwable t) {
         String stackTrace = null;
         try {
@@ -232,9 +235,9 @@ public class dontCacheFilter implements Filter {
         }
         return stackTrace;
     }
-
+    
     public void log(String msg) {
-        filterConfig.getServletContext().log(msg);
+        filterConfig.getServletContext().log(msg);        
     }
-
+    
 }

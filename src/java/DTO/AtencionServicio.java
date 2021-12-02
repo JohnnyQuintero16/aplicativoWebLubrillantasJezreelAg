@@ -6,6 +6,7 @@
 package DTO;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -37,12 +38,12 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "Atencion_Servicio")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "AtencionServicio.findAll", query = "SELECT a FROM AtencionServicio a")
-    , @NamedQuery(name = "AtencionServicio.findById", query = "SELECT a FROM AtencionServicio a WHERE a.id = :id")
-    , @NamedQuery(name = "AtencionServicio.findByKilometraje", query = "SELECT a FROM AtencionServicio a WHERE a.kilometraje = :kilometraje")
-    , @NamedQuery(name = "AtencionServicio.findByFecha", query = "SELECT a FROM AtencionServicio a WHERE a.fecha = :fecha")
-    , @NamedQuery(name = "AtencionServicio.findByHora", query = "SELECT a FROM AtencionServicio a WHERE a.hora = :hora")})
-public class AtencionServicio implements Serializable {
+    @NamedQuery(name = "AtencionServicio.findAll", query = "SELECT a FROM AtencionServicio a"),
+    @NamedQuery(name = "AtencionServicio.findById", query = "SELECT a FROM AtencionServicio a WHERE a.id = :id"),
+    @NamedQuery(name = "AtencionServicio.findByKilometraje", query = "SELECT a FROM AtencionServicio a WHERE a.kilometraje = :kilometraje"),
+    @NamedQuery(name = "AtencionServicio.findByFecha", query = "SELECT a FROM AtencionServicio a WHERE a.fecha = :fecha"),
+    @NamedQuery(name = "AtencionServicio.findByHora", query = "SELECT a FROM AtencionServicio a WHERE a.hora = :hora")})
+public class AtencionServicio implements Serializable, Comparable<AtencionServicio> {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -227,5 +228,34 @@ public class AtencionServicio implements Serializable {
     public String toString() {
         return "DTO.AtencionServicio[ id=" + id + " ]";
     }
-    
+
+    @Override
+    public int compareTo(AtencionServicio a) {
+        return new Long(parseLongFecha(a.getFecha(), a.getHora())).compareTo((parseLongFecha(fecha, hora)));
+    }
+
+    public String formatoFecha(Date fecha) {
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
+        String[] split = formatter.format(fecha).split(" ");
+        String[] split2 = split[0].split("/");
+        return split2[0] + "/" + split2[1] + "/" + split2[2];
+    }
+
+    public String formatoHora(Date fecha) {
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
+        String[] split = formatter.format(fecha).split(" ");
+        String[] split2 = split[2].split(":");
+        return split2[0] + ":" + split2[1];
+    }
+
+    public long parseLongFecha(Date fecha, Date hora) {
+
+        String[] split = formatoFecha(fecha).split("/");
+        String[] split2 = formatoHora(hora).split(":");
+
+        return Long.parseLong(split[2] + split[1] + split[0] + split2[0] + split2[1]);
+    }
+
 }

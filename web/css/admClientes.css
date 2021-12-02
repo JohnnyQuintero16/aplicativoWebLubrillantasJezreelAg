@@ -39,3 +39,42 @@
   .boton3:hover{
       background: #0342ee;
   }
+  
+  .botonSI{
+      background:  #001971;
+       border-bottom: 5px solid #001971;
+        border-radius: 10px;
+        font-size: 17px;
+        font-weight: 900;
+        width: 90px;
+        height: 30px;
+        color: #fff;
+        cursor: pointer;
+     text-align: center;
+     transition: all 0.2s ease 0s;
+      
+  }
+  
+  .botonSI:hover{
+       background: #0342ee;
+  }
+  
+  .botonNO{
+    background:  #ff0800;
+    border-bottom: 5px solid #bb5851;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 900;
+    width: 90px;
+    height: 30px;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease 0s;
+  }
+
+  .botonNO:hover{
+      background: #f70000;
+  }
+
+  

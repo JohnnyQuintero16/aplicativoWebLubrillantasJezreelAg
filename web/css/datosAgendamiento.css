@@ -1,0 +1,40 @@
+#form-citas{
+	padding: 15px;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 25px;
+	border-bottom: 1px solid #efefef;
+
+}
+.main{
+	background: #fff;
+	justify-content: space-between;
+	margin: 18px;
+	padding: 20px 10px 20px 10px;
+	margin: 10px;
+	width: 98%;
+	border-radius: 5px;
+}
+
+#vehiculo{
+	color: #001971;
+	font-size: 150%;
+	font-weight: bold;
+	text-align: center;
+
+}
+#datos{
+	text-align: center;
+	font-size: 150%;
+	font-weight: bold;
+
+}
+
+.divs{
+
+	padding-bottom: 30px;
+}
+#logo{
+	width:140px; 
+	height:120px;
+	}

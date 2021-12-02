@@ -59,4 +59,18 @@ public class FichaTecnicaDAO {
         }
         
     }
+    
+    public FichaTecnica findFichaVehiculo(String placa){
+    
+        List<FichaTecnica> fichas = ficha.findFichaTecnicaEntities(); 
+        
+        for(FichaTecnica f : fichas){
+        
+            if(f.getIdVehiculo().getPlaca().equals(placa)){
+            return f;
+            }
+        }
+        return null;
+    }
+    
 }

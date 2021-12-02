@@ -61,13 +61,13 @@
                     </ul>
 
 
-                    <template id="NoSesion">
+                     <template id="NoSesion">
                         <ul class="navbar-nav ml-auto m-4">
                             <li class="nav-item">
                                 <a class="nav-link" href="<%=basePath%>jsp/iniciarsesion.jsp">INICIAR SESIÓN</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<%=basePath%>jsp/registrarse.jsp">REGISTRARSE</a>
+                                <a class="nav-link" href="./jsp/registrarse.jsp">REGISTRARSE</a>
                             </li>
                         </ul>
                     </template>
@@ -79,17 +79,18 @@
                                     <%=request.getSession().getAttribute("nameUser")%>
                                 </a>
                                 <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
-                                    <li><a class="dropdown-item" href="#" >Mi Cuenta</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="./cerrarSesion.do">Salir</a></li>
-                                </ul>
+                                <li><a class="dropdown-item" href="<%=basePath%>./jsp/datosCliente.jsp" >Mi Cuenta</a></li>
+                                <li><a class="dropdown-item" href="<%=basePath%>MisVehiculos.do" >Mis Vehiculos</a></li>
+                                <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
+                                <li><a class="dropdown-item" href="<%=basePath%>MostrarCitasUsu.do" >Mis Citas</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="<%=basePath%>/cerrarSesion.do">Salir</a></li>
+                            </ul>
                             </li>
 
-                            <svg xmlns="http://www.w3.org/2000/svg" style="color:#fff" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                            </svg>
-
+                            <div class="user">
+                            <img src="<%= request.getSession().getAttribute("urlFoto")%>" width="70" height="70" class="rounded-circle me-2">
+                            </div>
                         </ul>
                     </template>
 
@@ -257,47 +258,43 @@
 
 
         <!--FOOTER-->
+         <!--FOOTER-->
         <footer>
             <div class="container-fluid">
-                <div class="row ">
-                    <div class="col-12 redes" style="background-color: #00114e;">
-                        <img src="<%=basePath%>img/whatsapp.png" >
-                        <img src="<%=basePath%>img/facebook.png" >
-                        <img src="<%=basePath%>img/instagram.png" >
-                    </div>
+              <div class="row ">
+                <div class="col-12 redes" style="background-color: #00114e;">
+                  <a href="https://api.whatsapp.com/send/?phone=573112810082&text&app_absent=0"><img src="<%=basePath%>/img/whatsapp.png" ></a>
+                  <a href="https://web.facebook.com/profile.php?id=100075532121136"><img src="<%=basePath%>/img/facebook.png" ></a>
+                  <a href="https://www.instagram.com/lubrillantasjag/"><img src="<%=basePath%>/img/instagram.png" ></a>
                 </div>
-                <div class="row" style="background-color: #001971;">
-
-                    <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-                        <img src="<%=basePath%>img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
-                    </div>
-
-                    <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
-                        <h4 >HORARIOS DE ATENCIÓN</h4>
-                        <p>Lunes a Viernes</p>
-                        <p>7:30 AM a 6:00 PM</p>
-                        <p>Sábado</p>
-                        <p>7:30 AM a 5:00 PM</p>
-                    </div>
-
-                    <div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
-                        <h4 > CONTACTO </h4>
-                        <P>Av 5 # 0N-54 Barrio La Merced</P>
-                        <p>San José de Cúcuta - Colombia</p>
-                        <p>albeirofonseca74@gmail.com</p>
-                        <p>+57 3112810082</p>
-                    </div>
-
+              </div>
+              <div class="row" style="background-color: #001971;">
+        
+                <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+                  <img src="<%=basePath%>/img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
                 </div>
+        
+                <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
+                  <h4 >HORARIOS DE ATENCIÓN</h4>
+                  <p>Lunes a Viernes</p>
+                  <p>7:30 AM a 6:00 PM</p>
+                  <p>Sábado</p>
+                  <p>7:30 AM a 5:00 PM</p>
+                </div>
+      
+                <div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
+                  <h4 > CONTACTO </h4>
+                  <P>Av 5 # 0N-54 Barrio La Merced</P>
+                  <p>San José de Cúcuta - Colombia</p>
+                  <p>albeirofonseca74@gmail.com</p>
+                  <p>+57 3112810082</p>
+                </div>
+      
+              </div>
             </div>
-        </footer>
+          </footer>
         <!--FIN FOOTER-->
-
-
-<<<<<<< HEAD
-
-=======
-<script src="<%=basePath%>js/sesion.js"></script>
->>>>>>> Test
+        <!--FIN FOOTER-->
+        <script src="<%=basePath%>js/sesion.js"></script>
     </body>
 </html> 
