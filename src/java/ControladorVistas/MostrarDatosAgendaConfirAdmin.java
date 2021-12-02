@@ -53,6 +53,14 @@ public class MostrarDatosAgendaConfirAdmin extends HttpServlet {
             vehiculoss += ve.getIdMarca().getNombre()+",";
             vehiculoss += ve.getIdTipo().getNombre()+";";
         }
+        String datosCita = user.getDescripcion();
+        String [] datos = datosCita.split(",");
+        request.getSession().setAttribute("idPlacaCita", datos[0]);
+        request.getSession().setAttribute("idModeloCita", datos[1]);
+        request.getSession().setAttribute("idMarcaCita", datos[2]);
+        request.getSession().setAttribute("idAnioCita", datos[3]);
+        request.getSession().setAttribute("idKilometraCita", datos[4]);
+        request.getSession().setAttribute("idDescripcionCita", datos[5]);
         request.getSession().setAttribute("usuarioCliente", nameUser);
         request.getSession().setAttribute("IdCliente", per.getCedula());
         request.getSession().setAttribute("idCita", idCita);

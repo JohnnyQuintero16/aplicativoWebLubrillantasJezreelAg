@@ -245,41 +245,41 @@
 
 
 
-        <!--FOOTER-->
+         <!--FOOTER-->
         <footer>
             <div class="container-fluid">
-                <div class="row ">
-                    <div class="col-12 redes" style="background-color: #00114e;">
-                        <img src="<%=basePath%>img/whatsapp.png" >
-                        <img src="<%=basePath%>img/facebook.png" >
-                        <img src="<%=basePath%>img/instagram.png" >
-                    </div>
+              <div class="row ">
+                <div class="col-12 redes" style="background-color: #00114e;">
+                  <a href="https://api.whatsapp.com/send/?phone=573112810082&text&app_absent=0"><img src="<%=basePath%>/img/whatsapp.png" ></a>
+                  <a href="https://web.facebook.com/profile.php?id=100075532121136"><img src="<%=basePath%>/img/facebook.png" ></a>
+                  <a href="https://www.instagram.com/lubrillantasjag/"><img src="<%=basePath%>/img/instagram.png" ></a>
                 </div>
-                <div class="row" style="background-color: #001971;">
-
-                    <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-                        <img src="<%=basePath%>img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
-                    </div>
-
-                    <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
-                        <h4 >HORARIOS DE ATENCIÓN</h4>
-                        <p>Lunes a Viernes</p>
-                        <p>7:30 AM a 6:00 PM</p>
-                        <p>Sábado</p>
-                        <p>7:30 AM a 5:00 PM</p>
-                    </div>
-
-                    <div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
-                        <h4 > CONTACTO </h4>
-                        <P>Av 5 # 0N-54 Barrio La Merced</P>
-                        <p>San José de Cúcuta - Colombia</p>
-                        <p>albeirofonseca74@gmail.com</p>
-                        <p>+57 3112810082</p>
-                    </div>
-
+              </div>
+              <div class="row" style="background-color: #001971;">
+        
+                <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+                  <img src="<%=basePath%>/img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
                 </div>
+        
+                <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
+                  <h4 >HORARIOS DE ATENCIÓN</h4>
+                  <p>Lunes a Viernes</p>
+                  <p>7:30 AM a 6:00 PM</p>
+                  <p>Sábado</p>
+                  <p>7:30 AM a 5:00 PM</p>
+                </div>
+      
+                <div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
+                  <h4 > CONTACTO </h4>
+                  <P>Av 5 # 0N-54 Barrio La Merced</P>
+                  <p>San José de Cúcuta - Colombia</p>
+                  <p>albeirofonseca74@gmail.com</p>
+                  <p>+57 3112810082</p>
+                </div>
+      
+              </div>
             </div>
-        </footer>
+          </footer>
         <!--FIN FOOTER-->
         <script src="<%=basePath%>js/sesion.js"></script>
 
