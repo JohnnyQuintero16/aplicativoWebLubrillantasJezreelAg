@@ -108,133 +108,137 @@
 
             </div>
 
-
-            <div class="row" style=" background-color: white; padding-top: 1rem; width: 100%; ">
-                <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
-                    <h2 style="color: #001971;">Escoja los servicio:</h2>
-                    <p>Lista de servicios: </p>
-                    <table class="table" >
-                        <tr>
-                            <th>id</th>
-                            <th>Nombre del servicio</th>
-                            <th>Accion</th>
-                        </tr>
-
-                        <%
-                            List<Servicio> servicios = (List<Servicio>) request.getSession().getAttribute("servicios");
-                            for (Servicio ser : servicios) {
-                        %>
-                        <tr>
-                            <td><%=ser.getId()%></td>
-                            <td><%=ser.getNombre()%></td>
-                            <td> <button type="button" value = "<%=ser.getId()%>" id="btnMasServicio" class="btn btn-primary btn-lg" style="background-color: green !important;">+</button></td>                        
-                        </tr>
-                        <%}%>
-                    </table>
-
-                </div>
-
-
-                <div class="search-container col-12 col-sm-6 col-md-6 col-lg-6" style="padding: 1rem;"> <br>
-                    <p>Servicios seleccionados: </p>
-                    <table class="table" >
-                        <tr>
-                            <th>id</th>
-                            <th>Nombre del servicio</th>
-                            <th>Accion</th>
-                        </tr>
-                        <template id="TablaServicioCliente">
-                        <tr>
-                            <td></td>
-                            <td>Montallantas</td>
-                            <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: red !important;">-</button></td>                        
-                        </tr>
-                        </template>
-                    </table>
-
-
-                </div>
-
-
-
-            </div>
-
-
-
-
-            <div class="row" style=" background-color: white; padding-top: 1rem; width: 100%;">
-                <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
-                    <h2 style="color: #001971;">Escoja el Producto:</h2>
-                    <p>Lista de productos con los que se llevo a cabo el servicio.</p>
-
-                    <table class="table" >
-                        <tr>
-                            <th>id</th>
-                            <th>Nombre Producto</th>
-                            <th>Accion</th>
-                        </tr>
-                        <template id="TablaProductosCliente">
+            <form action = "<%=basePath%>ProcesarAtencionServicio.do" method = "GET">
+                <div class="row" style=" background-color: white; padding-top: 1rem; width: 100%; ">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
+                        <h2 style="color: #001971;">Escoja los servicio:</h2>
+                        <p>Lista de servicios: </p>
+                        <table class="table" >
                             <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: red !important;">X</button></td>                        
+                                <th>id</th>
+                                <th>Nombre del servicio</th>
+                                <th>Accion</th>
                             </tr>
-                        </template>
-                    </table>
 
-                </div>
+                            <%
+                                List<Servicio> servicios = (List<Servicio>) request.getSession().getAttribute("servicios");
+                                String servi = "";
+                                int i = 0;
+                                for (Servicio ser : servicios) {
+                                    servi = ser.getId() + ","
+                                            + ser.getNombre() + ","
+                                            + i + ";";
+                            %>
+                            <tr>
+                                <td value = '<%=ser.getId()%>'><%=ser.getId()%></td>
+                                <td value = '<%=ser.getNombre()%>'><%=ser.getNombre()%></td>
+                                <td> <button type="button" value = "<%=i%>"  onclick="addServicio('<%=servi%>')" class="btn btn-primary btn-lg btnAddServicio" style="background-color: green !important;">+</button></td>                        
+                            </tr>
+                            <%i++;
+                                }%>
+                        </table>
 
-
-                <div class="search-container col-12 col-sm-6 col-md-6 col-lg-6" style="padding: 1rem;"> <br>
-                    <select class = "selectPro" name = "pro">
-                        <option value="0">Elegir Producto</option>
-                        <%
-                            List<Producto> productos = (List<Producto>) request.getSession().getAttribute("productos");
-                            for (Producto pro : productos) {
-                        %>
-                        <option value="<%=pro.getCodigo()%>"><%=pro.getNombre()%></option>
-                        <%}%>
-                    </select>
-                    <br><br>
-                    <p>Por favor digite el kilometraje del vehiculo:</p>
-                    <input type="number" id="kilometraje" name="kilometraje" placeholder="kilometraje"  required> <br> <br>
-
-
-                </div>
-
-
-
-            </div> <br><br>
-
-            <div class="row" style="margin-bottom: 4rem; width: 100%;" >
-
-
-
-                <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
-                    <h2 style="color: #001971;">Escoja el Mecánico:</h2>
-                    <img src="../img/vehicle.png" alt="LogoA"  width="140px" height="120px" >
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3" style="padding-top: 0.5rem; ">
-                    <select style=" background-color: rgb(214, 205, 205);" >
-                        <option value="0">-</option> 
-                        <option value="1" style="background-color: rgb(241, 233, 233);">Sebastian Casadiegos</option> 
-                        <option value="2">Cristian Mendoza</option> 
-                        <option value="3" style="background-color: rgb(241, 233, 233);">Jeferson Muriel</option> 
-                        <option value="4">Jhoel Castilla</option> 
-
-                    </select> 
-
-                    <div style="margin-top: 4rem;">
-                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: rgb(235, 71, 71) !important;">Cancelar</button>
-                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: #001971  !important;">Agregar</button>
                     </div>
-                </div>   
+
+
+                    <div class="search-container col-12 col-sm-6 col-md-6 col-lg-6" style="padding: 1rem;"> <br>
+                        <p>Servicios seleccionados: </p>
+                        <table class="table" >
+                            <tr>
+                                <th>id</th>
+                                <th>Nombre del servicio</th>
+                                <th>Accion</th>
+                            </tr>
+                            <tbody id="TablaServicioCliente">
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
 
 
 
-            </div>
+                </div>
 
+
+
+
+                <div class="row" style=" background-color: white; padding-top: 1rem; width: 100%;">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
+                        <h2 style="color: #001971;">Escoja el Producto:</h2>
+                        <p>Lista de productos con los que se llevo a cabo el servicio.</p>
+
+                        <table class="table" >
+                            <tr>
+                                <th>Cantidad</th>
+                                <th>Acción</th>
+                                <th>id</th>
+                                <th>Nombre</th>
+                            </tr>
+                            <tbody id="tablaBody">
+                            <template id="TablaProductosCliente">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td><input name = "cantidadProducto" placeholder="Digite cantidad" style="height: 30px; width: 100px;"></td>
+                                    <td> <button type="button" class="btn btn-primary btn-lg" style="background-color: red !important;" onclick="eliminarProducto()">X</button></td>                        
+                                </tr>
+                            </template>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+                    <div class="search-container col-12 col-sm-6 col-md-6 col-lg-6" style="padding: 1rem;"> <br>
+                        <select class = "selectPro" id="selectProductos">
+                            <option selected readonly>Elegir Producto</option>
+                            <%
+                                List<Producto> productos = (List<Producto>) request.getSession().getAttribute("productos");
+                                for (Producto pro : productos) {
+                                String value = pro.getCodigo() + "," + pro.getNombre();
+                            %>
+                            <option value="<%=value%>"><%=pro.getNombre()%></option>
+                            <%}%>
+                        </select>
+                        <br><br>
+                        <p>Por favor digite descuento (es opcional)</p>
+                        <input type="number" id="kilometraje" name="descuento" placeholder="Descuento" value = "0" min="0" max="100"> 
+                        <br><br>
+                        <p>Kilometraje actual del vehiculo</p>
+                        <input type="text" id="kilometraje" value='<%=request.getSession().getAttribute("km")%>' readonly> <br>
+                        <br>
+                        <p>Por favor digite el kilometraje del vehiculo:</p>
+                        <input type="number" id="kilometraje" name="kilometraje" placeholder="kilometraje"  required min="0"> <br> <br>
+                    </div>
+
+
+
+                </div> <br><br>
+
+                <div class="row" style="margin-bottom: 4rem; width: 100%;" >
+
+
+
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
+                        <h2 style="color: #001971;">Escoja el Mecánico:</h2>
+                        <img src="<%=basePath%>img/vehicle.png" alt="LogoA"  width="140px" height="120px" >
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-3" style="padding-top: 0.5rem; ">
+                        <select style=" background-color: rgb(214, 205, 205);"  name="mecanico">
+                            <%=request.getSession().getAttribute("mecanicos").toString()%>
+                        </select> 
+
+                        <div style="margin-top: 4rem;">
+                            <button type="reset" class="btn btn-primary btn-lg"  style="background-color: rgb(235, 71, 71) !important;">Cancelar</button>
+                            <input type="submit" class="btn btn-primary btn-lg"  style="background-color: #001971  !important;" value='Agregar'>
+                        </div>
+                    </div>   
+
+                </div>
+            </form>
 
 
 
@@ -248,9 +252,10 @@
 
 
         <script>
-            $(document).ready(function() {
-            $('.selectPro').select2();
+            $(document).ready(function () {
+            $(".selectPro").select2();
             });
+
             $(document).ready(function() {
             $('#example').DataTable({
 
@@ -273,13 +278,94 @@
             }
             );
             } );
-            const btn = document.getElementById('btnMasServicio');
-            btn.addEventListener('click',(event)=>{
-                cargarItems(event.target.parentNode.parentNode);
-            });
-            function cargarItems(producto){
-                console.log(producto);
+            
+            //Servicios
+
+            const listaServicio = document.querySelector('#TablaServicioCliente');
+            
+            const btn = document.querySelectorAll(".btnAddServicio");
+            
+            
+            function addServicio(servicio) {
+            const tr = document.createElement("TR");
+            let td1 = document.createElement("TD");
+            let td2 = document.createElement("TD");
+            let td3 = document.createElement("TD");
+            let input = document.createElement("INPUT");
+            let buton = document.createElement("BUTTON");
+            var ServicioArr = servicio.split(";");
+            var arr = ServicioArr[0].split(",");
+            td1.value = arr[0];
+            td1.innerHTML = arr[0];
+            btn[arr[2]].innerHTML = "-";
+            btn[arr[2]].style.backgroundColor = "#ff1";
+            btn[arr[2]].disabled = true;
+            td2.value = arr[1];
+            td2.innerHTML = arr[1];            
+            buton.setAttribute("type","button");
+            buton.setAttribute("style","background-color: red !important");
+            buton.classList.add("btn", "btn-primary", "btn-lg");
+            buton.addEventListener("click",eliminarServicioLista(tr));
+            buton.textContent = "-";
+            input.setAttribute("name", "ids");
+            input.setAttribute("value", arr[0]);
+            input.setAttribute("style","display: none");
+            td3.appendChild(buton);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(input);
+            listaServicio.appendChild(tr);
             }
+
+            function eliminarServicioLista(fila){
+            console.log(fila.target)
+            console.log("Entra a eliminaR");
+            console.log(fila);
+            /*btn[arr[2]].innerHTML = "-";
+            btn[arr[2]].style.backgroundColor = "#ff1";
+            btn[arr[2]].disabled = true;,*/
+            }
+
+            //Productos
+            const padreTemplate = document.getElementById("TablaProductosCliente").content;
+            const hijoTr = padreTemplate.querySelector("tr");
+            const hijoTd = hijoTr.querySelectorAll("td");
+            
+            
+            $(".selectPro").on("select2:select", function (e) { 
+            var select_val = $(e.currentTarget).val();
+            cargarProductos(select_val);
+            });
+            let idsProducto = [];
+            function cargarProductos(value){
+                var valor = value.split(",");
+                let existe = idsProducto.indexOf(valor[0]);
+                if(existe == -1){
+                idsProducto.push(valor[0]);
+                const fragment = document.createDocumentFragment();    
+                let input = document.createElement("INPUT");
+                input.setAttribute("name", "idp");
+                input.setAttribute("value", valor[0]);
+                input.setAttribute("style","display: none");
+                
+                hijoTd[0].innerHTML = valor[0];
+                hijoTd[0].setAttribute("value",valor[0]);
+                hijoTd[0].setAttribute("name",valor[0]);
+                hijoTd[1].innerHTML = valor[1];
+                hijoTd[1].setAttribute("value",valor[1]);
+                hijoTr.appendChild(hijoTd[0]);
+                hijoTr.appendChild(hijoTd[1]);
+                hijoTr.appendChild(input);
+                const clone = hijoTr.cloneNode(true);
+                fragment.appendChild(clone);
+                
+                document.getElementById("tablaBody").appendChild(fragment);
+                }else{
+                alert("Ya tiene seleccionado este producto, elija otro");
+                }
+            }
+            
         </script>
 
         <!-- Validación de formulario -->

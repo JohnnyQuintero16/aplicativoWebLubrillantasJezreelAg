@@ -47,18 +47,19 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="<%=basePath%>index.jsp">INICIO</a>
+                            <a class="nav-link" href="<%=basePath%>/index.jsp">INICIO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./nosotros.jsp">NOSOTROS</a>
+                            <a class="nav-link" href="<%=basePath%>/jsp/nosotros.jsp">NOSOTROS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./servicios.jsp">SERVICIOS</a>
+                            <a class="nav-link" href="<%=basePath%>/MostrarServicios.do">SERVICIOS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./productos.jsp">PRODUCTOS</a>
+                            <a class="nav-link active" aria-current="page"href="#">PRODUCTOS</a>
                         </li>
                     </ul>
 
@@ -123,7 +124,7 @@
                                     <strong > Mis Servicios</strong> </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link link-dark">
+                                <a href="<%=basePath%>MostrarCitasUsu.do" class="nav-link link-dark">
                                     <svg class="bi me-2" width="16" height="16">
                                     <use xlink:href="#grid" />
                                     </svg> 

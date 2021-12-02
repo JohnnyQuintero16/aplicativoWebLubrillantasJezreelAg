@@ -76,7 +76,7 @@
                     <span class="tooltip">Clientes</span>
                 </li>
                 <li>
-                    <a href="<%=basePath%>jsp/serviciosAdmin.jsp">
+                    <a href="<%=basePath%>MostrarServiciosAdmin.do">
                         <i class="fas fa-user-cog"></i>
                         <span class="links_name">Servicios</span>
                     </a>
@@ -207,7 +207,7 @@
                     </div>
                     <div class="modal-footer">
                      
-                        <form name="confirmar1" action="./ConfirmaAsistenciaAdmin.do">
+                        <form name="confirmar1" id="confirmar1" action="./ConfirmaAsistenciaAdmin.do">
                             <input hidden name="respuesta" value="si"/>
                             <input name="idCi" hidden id="optiona" value="">
                             
@@ -225,9 +225,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>        
         <script>
-        function enviarMail(llamado){
+            function enviarMail(llamado){
             let correo="";
             let asunto="";
             let cuerpo="";
@@ -238,9 +238,8 @@
                 asunto = "SERVICIO EN PROCESO";
                 cuerpo = "📣 Hola desde Lubrillantas Jezreel queremos avisarte que tu servicio esta en proceso 🔩 🔧\n\n\
                        pronto recibiras un correo cuando tu servicio este listo!";
-                alert('entre');
-                mail(correo,asunto,cuerpo);
-                document.confirmar1.submit();
+                //alert('entre a proceso');
+                mail(correo,asunto,cuerpo,'confirmar1');
             }
             else{
                 arr = llamado.split(",");
@@ -248,14 +247,14 @@
                 asunto = "SERVICIO FINALIZADO";
                 cuerpo = "📣 Hola desde Lubrillantas Jezreel queremos avisarte que tu servicio ha finalizado\n\n\
                        ya puedes acercarte por tu vehiculo 🔩 🔧🚗!";
-               alert('entre a finalizado');
-               mail(correo,asunto,cuerpo);
-                document.getElementById('confirma'+arr[1]).submit();
+               //alert('entre a finalizado');
+               mail(correo,asunto,cuerpo,'confirma'+arr[1]);
+                
             }
             
         }
-        function mail(correo,asunto,cuerpo){
-            
+        function mail(correo,asunto,cuerpo,formul){
+            alert('se enviara un mensaje a '+correo);
             Email.send({
                 Host: "smtp.gmail.com",
                 Username: 'lubrillantasjezreel@gmail.com',
@@ -265,10 +264,8 @@
                 Subject: asunto,
                 Body: cuerpo,
                        
-            }).then((message) => alert("se envio el mensaje"));
+            }).then((message) => document.getElementById(formul).submit());
         }
-        
-            
         </script>
 
         <script src="<%=basePath%>js/menuAdministrador.js"></script>
@@ -278,55 +275,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
         
-        <script>
-        function enviarMail(llamado){
-            let correo="";
-            let asunto="";
-            let cuerpo="";
-            let arr[];
-            if(llamado==='modal'){
-                let fila = document.getElementsByClassName(document.getElementById('option1').value)[0];
-                correo = fila.children[4].innerText;
-                asunto = "SERVICIO EN PROCESO";
-                cuerpo = "📣 Hola desde Lubrillantas Jezreel queremos avisarte que tu servicio esta en proceso 🔩 🔧\n\n\
-                       pronto recibiras un correo cuando tu servicio este listo!";
-                alert('entre');
-            Email.send({
-                Host: "smtp.gmail.com",
-                Username: 'lubrillantasjezreel@gmail.com',
-                Password: "rvuxyiyppggwcrvx",
-                To: correo,
-                From: 'lubrillantasjezreel@gmail.com',
-                Subject: asunto,
-                Body: cuerpo,
-                       
-            }).then((message) => alert("se envio el mensaje"));
-                document.confirmar1.submit();
-            }
-            else{
-                arr = llamado.split(",");
-                correo = arr[0];
-                asunto = "SERVICIO FINALIZADO";
-                cuerpo = "📣 Hola desde Lubrillantas Jezreel queremos avisarte que tu servicio ha finalizado\n\n\
-                       ya puedes acercarte por tu vehiculo 🔩 🔧🚗!";
-               alert('entre');
-            Email.send({
-                Host: "smtp.gmail.com",
-                Username: 'lubrillantasjezreel@gmail.com',
-                Password: "rvuxyiyppggwcrvx",
-                To: correo,
-                From: 'lubrillantasjezreel@gmail.com',
-                Subject: asunto,
-                Body: cuerpo,
-                       
-            }).then((message) => alert("se envio el mensaje"));
-                document.getElementById('confirma'+arr[1]).submit();
-            }
-            
-        }
-        
-            
-        </script>
+
         <script>
         $(document).ready(function () {
             

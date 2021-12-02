@@ -89,7 +89,7 @@
                             </li>
 
                             <div class="user">
-                            <img src="<%= request.getSession().getAttribute("urlFoto").toString()%>" width="70" height="70" class="rounded-circle me-2">
+                            <img src="<%= request.getSession().getAttribute("urlFoto")%>" width="70" height="70" class="rounded-circle me-2">
                             </div>
                         </ul>
                     </template>

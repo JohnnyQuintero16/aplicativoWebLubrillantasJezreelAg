@@ -54,7 +54,7 @@
                 </li>
 
                 <li>
-                    <a href="<%=basePath%>CitasAdmin.do"">
+                    <a href="<%=basePath%>CitasAdmin.do">
                         <i class="far fa-calendar-alt"></i>
                         <span class="links_name">Agendamientos</span>
                     </a>
@@ -106,76 +106,79 @@
         </div>
 
         <div class="container">
-            <form class="row g-3 needs-validation" novalidate>
+            <form class="row g-3 needs-validation" action = "<%=basePath%>AddVehiculo.do" novalidate>
                 <h3>Datos del vehículo</h3>
         
                 <div class="col-md-4" style="text-align: center;">
                     <strong for="validationCustom01" class="form-label">No. Placa</strong>
-                    <input type="text" class="form-control" id="validationCustom01" required>
-                </div>
-        
-                <div class="col-md-4" style="text-align: center;">
-                    <strong for="validationCustom01" class="form-label">Marca</strong>
-                    <input type="text" class="form-control" id="validationCustom01" required>
+                    <input type="text" name = "placa" class="form-control" id="validationCustom01" required>
                 </div>
         
                 <div class="col-md-4" style="text-align: center;">
                     <strong for="validationCustom01" class="form-label">Modelo</strong>
-                    <input type="text" class="form-control" id="validationCustom01" required>
+                    <input type="text" name = "modelo" class="form-control" id="validationCustom01" required>
                 </div>
         
                 <div class="col-md-4" style="text-align: center;">
                     <strong for="validationCustom01" class="form-label">Color</strong>
-                    <input type="text" class="form-control" id="validationCustom01" required>
-                </div>
-        
-                <div class="col-md-4" style="text-align: center;">
-                    <strong for="validationCustom01" class="form-label">Clase</strong>
-                    <input type="text" class="form-control" id="validationCustom01" required>
+                    <input type="text" name = "color" class="form-control" id="validationCustom01" required>
                 </div>
         
                 <div class="col-md-4" style="text-align: center;">
                     <strong for="validationCustom01" class="form-label">Ruedas</strong>
-                    <input type="text" class="form-control" id="validationCustom01" required>
+                    <input type="number" name="ruedas" class="form-control" id="validationCustom01" required>
                 </div>
         
                 <div class="col-md-4" style="text-align: center;">
                     <strong for="validationCustom01" class="form-label">Cilindraje</strong>
-                    <input type="text" class="form-control" id="validationCustom01" required>
+                    <input type="number" name="cilindra" class="form-control" id="validationCustom01" required>
                 </div>
         
                 <div class="col-md-4" style="text-align: center;">
                     <strong for="validationCustom01" class="form-label">Kilometraje</strong>
-                    <input type="text" class="form-control" id="validationCustom01" required>
+                    <input type="number" name="km" class="form-control" id="validationCustom01" required>
                 </div>
         
                 <div class="col-md-4" style="text-align: center;">
-                    <strong for="validationCustom01" class="form-label">Carrosería</strong>
-                    <input type="text" class="form-control" id="validationCustom01" required>
+                    <strong for="validationCustom01" class="form-label">Carrocería</strong>
+                    <input type="text" name="carroceria" class="form-control" id="validationCustom01" required>
                 </div>
         
                 <div class="col-md-4" style="text-align: center;">
                     <strong for="validationCustom01" class="form-label"> Peso</strong>
-                    <input type="text" class="form-control" id="validationCustom01" required>
+                    <input type="number" name="peso" class="form-control" id="validationCustom01" required>
                 </div>
         
                 <div class="col-md-4" style="text-align: center;">
                     <strong for="validationCustom01" class="form-label">No. Motor</strong>
-                    <input type="text" class="form-control" id="validationCustom01" required>
+                    <input type="text" name = "motor" class="form-control" id="validationCustom01" required>
                 </div>
         
                 <div class="col-md-4" style="text-align: center;">
                     <strong for="validationCustom01" class="form-label">Dimensión</strong>
-                    <input type="text" class="form-control" id="validationCustom01" required>
+                    <input type="text" name="dimension" class="form-control" id="validationCustom01" required>
                 </div>
 
                 <br>
-        
+                <div class="col-md-3 mx-2" style="text-align: center;">
+                    <strong for="validationCustom01" class="form-label">Marca</strong>
+                    <select name = "Marca" class = "form-control">
+                        <option selected value = " ">Seleccione Marca</option>
+                        <%=request.getSession().getAttribute("marca").toString()%>
+                    </select>                    
+                </div>
+                <div class="col-md-3 mx-2" style="text-align: center;">
+                    <strong for="validationCustom01" class="form-label">Tipo</strong>
+                    <select name = "Tipo" class = "form-control">
+                        <option selected value = " ">Seleccione Tipo</option>
+                        <%=request.getSession().getAttribute("tipo").toString()%>
+                    </select>                    
+                </div>
                 <div class="col-12" style="text-align: center;">
                 
                     <button class="btn btn-primary margin-right" type="submit">Guardar</button>
                 
-                    <button  class="btn btn-danger" id="cancelar" type="button">Cancelar</button>
+                    <button  class="btn btn-danger" id="cancelar" type="reset" >Cancelar</button>
                 </div>
             </form>
         </div>

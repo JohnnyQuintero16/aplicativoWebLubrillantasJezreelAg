@@ -88,7 +88,7 @@
                             </li>
 
                             <div class="user">
-                                <img src="<%= request.getSession().getAttribute("urlFoto").toString()%>" width="70" height="70" class="rounded-circle me-2">
+                                <img src="<%= request.getSession().getAttribute("urlFoto")%>" width="70" height="70" class="rounded-circle me-2">
                             </div>
 
                         </ul>
@@ -190,7 +190,7 @@
 
             <div class="col-md-2"></div>
             <div class="col-md-8"> 		
-                <input class="boton" id="botonAgendar" type="button" value="Agendar Servicio" onclick="location.href = 'iniciarsesion.jsp'">
+                <input class="boton" id="botonAgendar" type="button" value="Agendar Servicio" onclick="location.href = '<%=basePath%>ObtenerHorarios.do'">
             </div>
             <div class="col-md-2"></div>
         </section>
