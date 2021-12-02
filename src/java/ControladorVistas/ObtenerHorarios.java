@@ -5,14 +5,9 @@
  */
 package ControladorVistas;
 
-import DAO.AtencionServicioDAO;
-import DAO.CitaDAO;
-import DTO.AtencionServicio;
-import DTO.Cita;
 import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Cristian
  */
-public class CitasAdmin extends HttpServlet {
+public class ObtenerHorarios extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,43 +30,25 @@ public class CitasAdmin extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         
         Jezreel j = new Jezreel();
-        CitaDAO c = new CitaDAO();
         
-        AtencionServicioDAO a = new AtencionServicioDAO();
-        
-        List<Cita> ci = c.read();
-        String citasNoAtendidas ="";
-        String citasAtendidas="";
-        
-        for (Cita aten: ci) {
-            if(!aten.getEstado().equals("ATENDIDO")){
-                citasNoAtendidas+=aten.getId()+",";
-                citasNoAtendidas+=aten.getDescripcion()+";";
-            }else{
-                citasAtendidas+=aten.getId()+",";
-                AtencionServicio s = a.getServicio(aten.getId());
-                citasAtendidas+=s.getDescripcion()+",";
-                citasAtendidas+=s.getIdFichaTecnica().getIdVehiculo().getPlaca()+",";
-                citasAtendidas+=aten.getEstado()+";";
-            }
+        if(request.getSession().getAttribute("usuario")==null){
             
+            request.getRequestDispatcher("jsp/iniciarsesion.jsp").forward(request, response);
+            
+        }else{
+        
+            String horarios = j.cargarHorarios();
+            String servicios = j.optionsServicios();
+            request.getSession().removeAttribute("horarios");
+            request.getSession().removeAttribute("servAct");
+            request.getSession().setAttribute("horarios", horarios);
+            request.getSession().setAttribute("servAct", servicios);
+
+            request.getRequestDispatcher("jsp/agendarCitaUsu.jsp").forward(request, response);
+        
         }
-        
-        
-        request.getSession().removeAttribute("citas");
-        request.getSession().removeAttribute("atendida");
-        request.getSession().removeAttribute("noatendida");
-        
-        request.getSession().setAttribute("atendida", citasAtendidas);
-        request.getSession().setAttribute("noatendida", citasNoAtendidas);
-        request.getSession().setAttribute("citas", j.getCitas());
-        
-        
-//        request.getSession().setAttribute("cita", new CitaDAO());
-        request.getRequestDispatcher("jsp/citasAdmin.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

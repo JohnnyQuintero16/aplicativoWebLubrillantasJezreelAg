@@ -15,7 +15,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Lubrillantas Jezreel AG - Administración</title>
-
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
 
         <link href="<%=basePath%>css/menuAdministrador.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="<%=basePath%>css/datosAgendamiento" />
@@ -32,7 +32,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
     </head>
-    <body>
+    <body onload="enviarMail()">
 
         <div class="sidebar">
             <div class="logo-details">
@@ -63,21 +63,21 @@
                     <span class="tooltip">Agendamientos</span>
                 </li>
                 <li>
-                    <a href="<%=basePath%>jsp/adminClientes.jsp">
+                    <a href="<%=basePath%>./jsp/adminClientes.jsp">
                         <i class="icon fas fa-user"></i>
                         <span class="links_name">Clientes</span>
                     </a>
                     <span class="tooltip">Clientes</span>
                 </li>
                 <li>
-                    <a href="<%=basePath%>jsp/serviciosAdmin.jsp">
+                    <a href="<%=basePath%>MostrarServiciosAdmin.do">
                         <i class="fas fa-user-cog"></i>
                         <span class="links_name">Servicios</span>
                     </a>
                     <span class="tooltip">Servicios</span>
                 </li>
                 <li>
-                    <a href="<%=basePath%>jsp/productosAdmin.jsp">
+                    <a href="<%=basePath%>MostrarProductosAdmin.do">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="links_name">Productos</span>
                     </a>
@@ -85,7 +85,7 @@
                 </li>
 
                 <li class="profile">
-                    <a href="#">
+                    <a href="<%=basePath%>cerrarSesion.do">
                         <i class='bx bx-log-out'></i>
                         <span class="links_name">Salir</span>
                     </a>
@@ -99,17 +99,16 @@
             <div class="title">
 
                 <div class="titulo">
-                    <h1>Cliente- Juan Fernandez</h1>
+                    <h1 style="color:blue">Cliente: <%=request.getSession().getAttribute("usuarioCliente").toString()%></h1> 
                 </div>
 
                 <div class="boton">
-                    <button class="btn btn-primary btn-lg" type="button" value="Regresar" style="color: white;" onclick="location.href = '<%=basePath%>'"> Regresar</button>
+                    <button class="btn btn-primary btn-lg" type="button" value="Regresar" style="color: white;" href="<%=basePath%>jsp/FichaTecnicaAdd.jsp"> Añadir Vehiculo </button>
                 </div>
 
             </div>
             <div class="main" >
-                <form class="row " action="" method="post" > 
-
+                <form class="row " action="<%=basePath%>MostrarServiProduAdmin.do" method="post" > 
                     <div id="vehiculo"  class="col-md-6">
                         <label  for="vehiculo" name="vehiculo" class="form-label">Escoja el Vehículo</label>  
                         <br><br>
@@ -151,7 +150,7 @@
                             <h5> Año: 2015</h5>
                         </div>
                         <div class="divs">
-                            <button class="btn btn-primary btn-lg" type="submit">Continuar</button>
+                            <button class="btn btn-primary btn-lg" href="" type="submit">Continuar</button>
                         </div>
                     </div>
 
@@ -168,28 +167,29 @@
 
 
         <script>
-                        $(document).ready(function () {
-                            $('#example').DataTable({
+            $(document).ready(function () {
+            $('#example').DataTable({
 
-                                "language": {
-                                    "lengthMenu": "Mostrar_MENU_registros",
-                                    "zeroRecords": "No se encontraron resultados",
-                                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                                    "infoFiltered": "(Filtrado de un total de _MAX_ registros)",
-                                    "sSearch": "Buscar:",
-                                    "oPaginate": {
-                                        "sFirst": "Primero",
-                                        "sLast": "Último",
-                                        "sNext": "Siguiente",
-                                        "sPrevious": "Anterior"
-                                    },
-                                    "sProcessing": "Procesando...",
-                                }
+            "language": {
+            "lengthMenu": "Mostrar_MENU_registros",
+            "zeroRecords": "No se encontraron resultados",
+            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "infoFiltered": "(Filtrado de un total de _MAX_ registros)",
+            "sSearch": "Buscar:",
+            "oPaginate": {
+            "sFirst": "Primero",
+            "sLast": "Último",
+            "sNext": "Siguiente",
+            "sPrevious": "Anterior"
+            },
+            "sProcessing": "Procesando...",
+            }
 
-                            }
-                            );
-                        });
+            }
+            );
+            });
+            }
         </script>
 
     </body>

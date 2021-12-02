@@ -5,14 +5,10 @@
  */
 package ControladorVistas;
 
-import DAO.AtencionServicioDAO;
-import DAO.CitaDAO;
-import DTO.AtencionServicio;
-import DTO.Cita;
-import Negocio.Jezreel;
+import DAO.PersonaDAO;
+import DTO.Persona;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Cristian
+ * @author Jefersonrr
  */
-public class CitasAdmin extends HttpServlet {
+public class UpdatePassword extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,43 +31,32 @@ public class CitasAdmin extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    
+        PersonaDAO pdao = new PersonaDAO();
+        Persona p = pdao.readPersona(request.getSession().getAttribute("usuario").toString());
         
-        Jezreel j = new Jezreel();
-        CitaDAO c = new CitaDAO();
+        String pactual = request.getParameter("actual");
+        String newPassword = request.getParameter("newpassword");
+        String newPassword2 = request.getParameter("newpassword2");
+        if(!newPassword.equals(newPassword2)){
+        request.getSession().setAttribute("iguales","no");
+        request.getRequestDispatcher("./jsp/editarContraseña.jsp").forward(request, response);
         
-        AtencionServicioDAO a = new AtencionServicioDAO();
+        }else if(!p.getContraseña().equals(request.getParameter("actual"))){
         
-        List<Cita> ci = c.read();
-        String citasNoAtendidas ="";
-        String citasAtendidas="";
+            request.getSession().setAttribute("passwordcorrecta","no");
+            request.getRequestDispatcher("./jsp/editarContraseña.jsp").forward(request, response);
+        }else{
         
-        for (Cita aten: ci) {
-            if(!aten.getEstado().equals("ATENDIDO")){
-                citasNoAtendidas+=aten.getId()+",";
-                citasNoAtendidas+=aten.getDescripcion()+";";
-            }else{
-                citasAtendidas+=aten.getId()+",";
-                AtencionServicio s = a.getServicio(aten.getId());
-                citasAtendidas+=s.getDescripcion()+",";
-                citasAtendidas+=s.getIdFichaTecnica().getIdVehiculo().getPlaca()+",";
-                citasAtendidas+=aten.getEstado()+";";
-            }
+        p.setContraseña(request.getParameter("newpassword"));
+        pdao.update(p);
+        request.getSession().setAttribute("passwordcambiada","si");
+        request.getRequestDispatcher("./jsp/datosCliente.jsp").forward(request, response);
             
         }
         
         
-        request.getSession().removeAttribute("citas");
-        request.getSession().removeAttribute("atendida");
-        request.getSession().removeAttribute("noatendida");
         
-        request.getSession().setAttribute("atendida", citasAtendidas);
-        request.getSession().setAttribute("noatendida", citasNoAtendidas);
-        request.getSession().setAttribute("citas", j.getCitas());
-        
-        
-//        request.getSession().setAttribute("cita", new CitaDAO());
-        request.getRequestDispatcher("jsp/citasAdmin.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

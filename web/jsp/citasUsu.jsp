@@ -73,28 +73,31 @@
                     <!-- MENU DESPLEGABLE NOMBRE USUARIO -->
                     <ul class="navbar-nav ml-auto m-4">
                         <li class="nav-item dropdown" style="list-style-type: none;">
-                            <a class="nav-link dropdown-toggle link-dark  " href="#" id="navbarDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                NOMBRE USUARIO
+                            <a  class="nav-link dropdown-toggle link-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                                <%=request.getSession().getAttribute("nameUser")%>
                             </a>
-                            <ul class="dropdown-menu text-small " aria-labelledby="dropdownUser2">
-                                <li><a class="dropdown-item" href="#">Mi Cuenta</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="./cerrarSesion.do">Salir</a></li>
+                            <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
+                                <li><a class="dropdown-item" href="<%=basePath%>./jsp/datosCliente.jsp" >Mi Cuenta</a></li>
+                                <li><a class="dropdown-item" href="<%=basePath%>MisVehiculos.do" >Mis Vehiculos</a></li>
+                                <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
+                                <li><a class="dropdown-item" href="<%=basePath%>MostrarCitasUsu.do" >Mis Citas</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="<%=basePath%>/cerrarSesion.do">Salir</a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
 
                 <div class="perfil-nav">
-                    <img src="<%=basePath%>img/user.png" width="70" height="70" class="rounded-circle me-2">
+                    <img src="<%= request.getSession().getAttribute("urlFoto").toString() %>" width="70" height="70" class="rounded-circle me-2">
                 </div>
             </div>
         </nav>
         <!--Fin Menú -->
+        <%
+            String citasUsu = request.getSession().getAttribute("citasUsu").toString();
 
+        %>
 
         <div class="container-fluid">
             <div class="row ">
@@ -104,15 +107,21 @@
                         <aside>
                             <div class="side-inner">
                                 <div class="profile">
-                                    <img  src="<%=basePath%>img/usuario.png" alt="Image" class="img-fluid">
-                                    <h3 class="name">Hola, Nombre de Usuario</h3>
+                                    <div class="perfil-nav">
+                                       <img  src="<%= request.getSession().getAttribute("urlFoto").toString() %>" alt="Image" class="img-fluid rounded-circle ">
+                                    </div>
+                                    <br>
+                                    <h4>
+                                        <%=request.getSession().getAttribute("nameUser")%>
+                                    </h4>
+                                    <hr>
                                 </div>
                                 <div class="nav-menu">
                                     <ul > 
-                                        <li><a href="#"><span class=""></span>Mis Datos Personales</a></li>
-                                        <li><a href="#"><span class=""></span>Mis Vehículos</a></li>
-                                        <li><a href="<%=basePath%>jsp/serviciosUsu.jsp"><span class=""></span>Mis Servicios</a></li>
-                                        <li id="misCitas"><a href="<%=basePath%>jsp/citasUsu.jsp"><span class=""></span>Mis Citas</a></li>
+                                        <li><a href="<%=basePath%>./jsp/datosCliente.jsp"<%=basePath%>MostrarServiciosAdmin.do"><span class=""></span>Mis Datos Personales</a></li>
+                                        <li><a href="<%=basePath%>MisVehiculos.do"><span class=""></span>Mis Vehículos</a></li>
+                                        <li><a href="<%=basePath%>MisServiciosUsu.do"><span class=""></span>Mis Servicios</a></li>
+                                        <li id="misCitas"><a href="<%=basePath%>MostrarCitasUsu.do"><span class=""></span>Mis Citas</a></li>
                                     </ul>
                                 </div>
                             </div>  
@@ -130,86 +139,52 @@
 
                     <div id="newCita">
                         <a  style="color:#4EB70E;
-                            font-weight: bolder;" href="">
+                            font-weight: bolder;" href="ObtenerHorarios.do">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-                            </svg>   Agendar Nueva Cita</a>		
+                            </svg> Agendar Nueva Cita</a>		
                     </div>	
 
                     <!-- Tarjeta con los datos de la cita del cliente -->
-                    <div class="row" id="form">
-                        <div class="col col-md-12">
-                            <div id="fecha" class="media align-items-center">							
-                                <label  for="fecha" class="form-label">FECHA: Noviembre 10 de 2021 </label>
-                            </div>
-                            <div class="media-body">
-                                <div class="row align-items-center">
-                                    <div class="col-md-9 col-sm-9">
-                                        <div style="padding: 15px">
-                                            <h6>HORA: 09 : 30 a.m.</h6>
-                                            <h6>VEHÍCULO: CHEVROLET CORVETTE</h6>
-                                            <h6>SERVICIO SOLICITADO : Cambio de Aceite</h6>
-                                        </div>																		
-                                    </div>
-                                    <!-- botón eliminar-->
-                                    <div class=" col-3" align="center" >								
-                                        <a  href="#" class="btn btn-outline-danger float-right"data-bs-toggle="modal" data-bs-target="#modal1">
-                                            <svg  xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                                            </svg>
-                                            <span class="visually-hidden"></span>
-                                        </a>
 
-                                        <!-- Modal para el botón eliminar-->
-                                        <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog ">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Cita</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        ¿Estás seguro de cancelar tu Cita?
-                                                    </div>
-                                                    <div class="modal-footer">
+                    <%=citasUsu%>
 
-                                           
-                                                        <form >
 
-                                                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" data-bs-dismiss="modal" >
-                                                            <label class="btn btn-info" for="option1">Confirmar</label>
 
-                                                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" data-bs-dismiss="modal">
-                                                            <label class="btn btn-danger" for="option2">Cancelar</label>
 
-                                                        </form>
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!--Fin de Botón Eliminar-->
-
-                                        <!--Botón de editar la cita-->
-                                        <a href="<%=basePath%>jsp/editarCitaUsu.jsp" class="btn float-right btn-outline-info float-right">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                            </svg>
-                                            <span class="visually-hidden"></span>
-                                        </a>					
-                                    </div>
-                                    <!--Fin de botón Editar-->
-                                </div>
-                            </div>					
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- Modal para el botón eliminar-->
+        <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Cita</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Estás seguro de cancelar tu Cita?
+                    </div>
+                    <div class="modal-footer">
+
+
+                        <form action="<%=basePath%>EliminarCita.do" method="POST">
+                            <input style="display: none" name="idCita" id="oculto"   required >
+                            <button class="btn btn-primary" id="boton" type="submit">
+                                Confirmar</button>
+
+                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" data-bs-dismiss="modal">
+                            <label class="btn btn-danger" for="option2">Cancelar</label>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--FOOTER-->
         <footer>
             <div class="container-fluid">
@@ -246,5 +221,20 @@
             </div>
         </footer>
         <!--FIN FOOTER-->
+        <script>
+
+            var modalEditarCliente = document.getElementById('modal1');
+            modalEditarCliente.addEventListener('show.bs.modal', (e) => {
+                console.log("Hola");
+
+                var btn = e.relatedTarget.valueOf().parentNode;
+                datos = btn.querySelector("input");
+                console.log(datos);
+                modalBodyInput = modalEditarCliente.querySelector('.modal-footer').querySelectorAll('input');
+                console.log(modalBodyInput[0]);
+                modalBodyInput[0].setAttribute("value", datos.value);
+            });
+
+        </script>
     </body>
 </html>

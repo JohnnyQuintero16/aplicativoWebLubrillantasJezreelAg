@@ -1,3 +1,6 @@
+<%@page import="DTO.Servicio"%>
+<%@page import="DTO.Producto"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +28,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
 
+        <!-- Selector -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <!--Importar CSS y script del menú -->
         <link rel="stylesheet" href="<%=basePath%>css/menuAdministrador.css" />
         <link rel="stylesheet" href="<%=basePath%>css/admClientes.css" />
@@ -47,13 +52,13 @@
                             <img src="<%=basePath%>img/user.png" alt="Administrador">
                         </div>
                         <div class="container-name">
-                            <p><span class="links_name"><%=request.getSession().getAttribute("nameUser")%></span></p>
+                            <!--<p><span class="links_name"></span></p>-->
                         </div>
                     </div>
                 </li>
 
                 <li>
-                    <a href="<%=basePath%>jsp/citasAdmin.jsp"">
+                    <a href="<%=basePath%>CitasAdmin.do">
                         <i class="far fa-calendar-alt"></i>
                         <span class="links_name">Agendamientos</span>
                     </a>
@@ -94,30 +99,120 @@
 
             <div class=" title">            
                 <div class="titulo">
-                    <h1>Cliente: </h1>
+                    <h1 style="color:blue">Cliente: <%=request.getSession().getAttribute("usuarioCliente").toString()%></h1> 
                 </div>
+
+                <div class="boton">
+                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1">Salir</button>
+                </div>
+
             </div>
 
-            <div class="row" style="margin-bottom: 4rem;" >
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3" style="padding-left: 5rem">
-                    <h2 style="color: #001971;">Escoja el Servicio:</h2>
-                    <img src="<%=basePath%>img/LogoLJAG.png" alt="LogoA"  width="140px" height="120px" >
+
+            <div class="row" style=" background-color: white; padding-top: 1rem; width: 100%; ">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
+                    <h2 style="color: #001971;">Escoja los servicio:</h2>
+                    <p>Lista de servicios: </p>
+                    <table class="table" >
+                        <tr>
+                            <th>id</th>
+                            <th>Nombre del servicio</th>
+                            <th>Accion</th>
+                        </tr>
+
+                        <%
+                            List<Servicio> servicios = (List<Servicio>) request.getSession().getAttribute("servicios");
+                            for (Servicio ser : servicios) {
+                        %>
+                        <tr>
+                            <td><%=ser.getId()%></td>
+                            <td><%=ser.getNombre()%></td>
+                            <td> <button type="button" value = "<%=ser.getId()%>" id="btnMasServicio" class="btn btn-primary btn-lg" style="background-color: green !important;">+</button></td>                        
+                        </tr>
+                        <%}%>
+                    </table>
+
                 </div>
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3" style="padding-top: 0.5rem; ">
-                    <select style="background-color: rgb(214, 205, 205);" >
-                        <option value="0">-</option> 
-                        <option value="1" style="background-color: rgb(241, 233, 233);">Cambio de Aceite</option> 
-                        <option value="2">Cambio de Filtro de aire</option> 
-                        <option value="3" style="background-color: rgb(241, 233, 233);">Servicio de Montallantas</option> 
-                        <option value="4">Servicio de frenos</option> 
 
+                <div class="search-container col-12 col-sm-6 col-md-6 col-lg-6" style="padding: 1rem;"> <br>
+                    <p>Servicios seleccionados: </p>
+                    <table class="table" >
+                        <tr>
+                            <th>id</th>
+                            <th>Nombre del servicio</th>
+                            <th>Accion</th>
+                        </tr>
+                        <template id="TablaServicioCliente">
+                        <tr>
+                            <td></td>
+                            <td>Montallantas</td>
+                            <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: red !important;">-</button></td>                        
+                        </tr>
+                        </template>
+                    </table>
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+            <div class="row" style=" background-color: white; padding-top: 1rem; width: 100%;">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
+                    <h2 style="color: #001971;">Escoja el Producto:</h2>
+                    <p>Lista de productos con los que se llevo a cabo el servicio.</p>
+
+                    <table class="table" >
+                        <tr>
+                            <th>id</th>
+                            <th>Nombre Producto</th>
+                            <th>Accion</th>
+                        </tr>
+                        <template id="TablaProductosCliente">
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: red !important;">X</button></td>                        
+                            </tr>
+                        </template>
+                    </table>
+
+                </div>
+
+
+                <div class="search-container col-12 col-sm-6 col-md-6 col-lg-6" style="padding: 1rem;"> <br>
+                    <select class = "selectPro" name = "pro">
+                        <option value="0">Elegir Producto</option>
+                        <%
+                            List<Producto> productos = (List<Producto>) request.getSession().getAttribute("productos");
+                            for (Producto pro : productos) {
+                        %>
+                        <option value="<%=pro.getCodigo()%>"><%=pro.getNombre()%></option>
+                        <%}%>
                     </select>
-                </div>  
+                    <br><br>
+                    <p>Por favor digite el kilometraje del vehiculo:</p>
+                    <input type="number" id="kilometraje" name="kilometraje" placeholder="kilometraje"  required> <br> <br>
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3" style="padding-left: 5rem">
+
+                </div>
+
+
+
+            </div> <br><br>
+
+            <div class="row" style="margin-bottom: 4rem; width: 100%;" >
+
+
+
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
                     <h2 style="color: #001971;">Escoja el Mecánico:</h2>
-                    <img src="<%=basePath%>img/vehicle.png" alt="LogoA"  width="140px" height="120px" >
+                    <img src="../img/vehicle.png" alt="LogoA"  width="140px" height="120px" >
                 </div>
 
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3" style="padding-top: 0.5rem; ">
@@ -128,65 +223,34 @@
                         <option value="3" style="background-color: rgb(241, 233, 233);">Jeferson Muriel</option> 
                         <option value="4">Jhoel Castilla</option> 
 
-                    </select>
-                </div>    
+                    </select> 
 
-            </div>
-
-
-
-            <div class="row" style=" background-color: white; padding-top: 1rem; ">
-                <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
-                    <h2 style="color: #001971;">Escoja el Producto:</h2>
-                    <p>Lista de productos con los que se llevo a cabo el servicio.</p>
-                    <table class="table" >
-                        <tr>
-                            <th>id</th>
-                            <th>Nombre Producto</th>
-                            <th>Accion</th>
-                        </tr>
-
-                        <tr>
-                            <td>1</td>
-                            <td>Aceite Max</td>
-                            <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: red !important;">X</button></td>                        
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Aceite Min</td>
-                            <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: red !important;">X</button></td>                        
-                        </tr>
-
-                    </table>
-
-                </div>
-
-
-                <div class="search-container col-12 col-sm-6 col-md-6 col-lg-6" style="padding: 1rem;"> <br>
-
-                    <form action="">
-                        <input type="text" placeholder="Buscar Producto.." name="search">
-                        <button  type="submit"><i class="fa fa-search " style="width: 2rem;"></i></button>
-                    </form> <br><br>
-
-                    <p>Por favor digite el kilometraje del vehiculo:</p>
-                    <input type="number" id="kilometraje" name="kilometraje" placeholder="kilometraje"  required> <br> <br>
-                    <div>
+                    <div style="margin-top: 4rem;">
                         <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: rgb(235, 71, 71) !important;">Cancelar</button>
                         <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: #001971  !important;">Agregar</button>
                     </div>
+                </div>   
 
-                </div>
+
+
             </div>
+
+
+
+
         </section>
         <script src="<%=basePath%>js/menuAdministrador.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
         <script>
+            $(document).ready(function() {
+            $('.selectPro').select2();
+            });
             $(document).ready(function() {
             $('#example').DataTable({
 
@@ -209,6 +273,13 @@
             }
             );
             } );
+            const btn = document.getElementById('btnMasServicio');
+            btn.addEventListener('click',(event)=>{
+                cargarItems(event.target.parentNode.parentNode);
+            });
+            function cargarItems(producto){
+                console.log(producto);
+            }
         </script>
 
         <!-- Validación de formulario -->

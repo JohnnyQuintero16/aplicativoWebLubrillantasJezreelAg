@@ -36,9 +36,9 @@ main{
 }
 
 :root {
-    --color-header-step: #2F80ED;
-    --color-shadow: #222;
-    --color-border-input: #ddd;
+    color-header-step: #2F80ED;
+    color-shadow: #222;
+    color-border-input: #ddd;
 }
 
 /* Header del formulario */

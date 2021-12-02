@@ -30,7 +30,7 @@ public class MostrarServiciosIndex extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       Jezreel je = new Jezreel();
+        Jezreel je = new Jezreel();
         String ser = je.mostrarServiciosIndex();
         if(ser.equals(" ")){
         ser="No hay servicios para mostrar";}

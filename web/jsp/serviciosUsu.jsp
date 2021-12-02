@@ -79,19 +79,17 @@
                                 <a  class="nav-link dropdown-toggle link-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
                                     <%=request.getSession().getAttribute("nameUser")%>
                                 </a>
-                                <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
-                                    <li><a class="dropdown-item" href="#" >Mi Cuenta</a></li>
-                                    <li><a class="dropdown-item" href="<%=basePath%>MisVehiculos.do" >Mis Vehiculos</a></li>
-                                    <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="./cerrarSesion.do">Salir</a></li>
-                                </ul>
+                                    <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
+                                        <li><a class="dropdown-item" href="<%=basePath%>./jsp/datosCliente.jsp" >Mi Cuenta</a></li>
+                                        <li><a class="dropdown-item" href="<%=basePath%>MisVehiculos.do" >Mis Vehiculos</a></li>
+                                        <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
+                                        <li><a class="dropdown-item" href="<%=basePath%>MostrarCitasUsu.do" >Mis Citas</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="<%=basePath%>/cerrarSesion.do">Salir</a></li>
+                                    </ul>
                             </li>
 
-                            <!--<svg xmlns="http://www.w3.org/2000/svg" style="color:#fff" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">-->
-                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                            </svg>
+                       
 
                         </ul>
                     </template>
@@ -99,7 +97,7 @@
 
                 <!-- IMAGEN DE USARIO EN EL NAV -->
                 <div class="user">
-                    <img src="<%=basePath%>/img/user.png" width="70" height="70" class="rounded-circle me-2">
+                     <img src="<%= request.getSession().getAttribute("urlFoto").toString() %>" width="70" height="70" class="rounded-circle me-2">
                 </div>
             </div>
         </nav>
@@ -111,7 +109,7 @@
                 <div class="col-md-3 col-lg-3 verticalLine">
                     <div class="d-flex flex-column flex-shrink-0 p-3 bg-light colum-datos">
                         <!-- img grande de usuario -->
-                        <img class="bd-placeholder-img rounded-circle" id="Perfil" src="<%=basePath%>/img/usuario.png">
+                        <img class="bd-placeholder-img rounded-circle" id="Perfil" src="<%=request.getSession().getAttribute("urlFoto") %>">
                         <br>
                         <h4>
                             <%=request.getSession().getAttribute("nameUser")%>
@@ -119,7 +117,7 @@
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
                             <li class="nav-item">
-                                <a href="#" class="nav-link link-dark" aria-current="page">
+                                <a href="<%=basePath%>./jsp/datosCliente.jsp" class="nav-link link-dark" aria-current="page">
                                     <svg class="bi me-2" width="16" height="16">
                                     <use xlink:href="#home" />
                                     </svg>
@@ -133,14 +131,14 @@
                                     <strong> Mis Vehículos</strong> </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link link-dark">
+                                <a href="<%=basePath%>/MisServiciosUsu.do" class="nav-link link-dark">
                                     <svg class="bi me-2 servicios" width="16" height="16">
                                     <use xlink:href="#table" />
                                     </svg>
                                     <strong id="servi"> Mis Servicios</strong> </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link link-dark">
+                                <a href="<%=basePath%>/MostrarCitasUsu.do" class="nav-link link-dark">
                                     <svg class="bi me-2" width="16" height="16">
                                     <use xlink:href="#grid" />
                                     </svg>

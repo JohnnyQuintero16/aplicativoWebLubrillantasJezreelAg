@@ -5,14 +5,9 @@
  */
 package ControladorVistas;
 
-import DAO.AtencionServicioDAO;
 import DAO.CitaDAO;
-import DTO.AtencionServicio;
-import DTO.Cita;
-import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Cristian
  */
-public class CitasAdmin extends HttpServlet {
+public class InsertarCita extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,41 +32,27 @@ public class CitasAdmin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        Jezreel j = new Jezreel();
+        String placa = request.getParameter("placa");
+        String marca = request.getParameter("marca");
+        String modelo = request.getParameter("modelo");
+        String anio = request.getParameter("año");
+        String Kilometraje = request.getParameter("marca");
+        String fecha[] = request.getParameter("fecha").split("-");
+        String hora = request.getParameter("hora");
+        String servicio = request.getParameter("servicio");
+        
+        String horaDia[] = hora.split(",");   //VIERNES,9:00 a.m.
+        String horaFormat[] = horaDia[1].split(" "); //9:00,p.m
+        int num = Integer.parseInt(horaFormat[1].split(":")[0]);   //9
+        String ampm = horaFormat[2]; // a,m
+        
+        int horaMil = ampm.charAt(0)=='p'?num+12:num;
+        String descripcion = placa+","+modelo+","+marca+","+anio+","+Kilometraje+","+servicio;
+      
         CitaDAO c = new CitaDAO();
+        c.insertarCita(fecha[0],fecha[1],fecha[2], horaMil, request.getSession().getAttribute("usuario").toString(), descripcion);
+        request.getRequestDispatcher("MostrarCitasUsu.do").forward(request, response);
         
-        AtencionServicioDAO a = new AtencionServicioDAO();
-        
-        List<Cita> ci = c.read();
-        String citasNoAtendidas ="";
-        String citasAtendidas="";
-        
-        for (Cita aten: ci) {
-            if(!aten.getEstado().equals("ATENDIDO")){
-                citasNoAtendidas+=aten.getId()+",";
-                citasNoAtendidas+=aten.getDescripcion()+";";
-            }else{
-                citasAtendidas+=aten.getId()+",";
-                AtencionServicio s = a.getServicio(aten.getId());
-                citasAtendidas+=s.getDescripcion()+",";
-                citasAtendidas+=s.getIdFichaTecnica().getIdVehiculo().getPlaca()+",";
-                citasAtendidas+=aten.getEstado()+";";
-            }
-            
-        }
-        
-        
-        request.getSession().removeAttribute("citas");
-        request.getSession().removeAttribute("atendida");
-        request.getSession().removeAttribute("noatendida");
-        
-        request.getSession().setAttribute("atendida", citasAtendidas);
-        request.getSession().setAttribute("noatendida", citasNoAtendidas);
-        request.getSession().setAttribute("citas", j.getCitas());
-        
-        
-//        request.getSession().setAttribute("cita", new CitaDAO());
-        request.getRequestDispatcher("jsp/citasAdmin.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

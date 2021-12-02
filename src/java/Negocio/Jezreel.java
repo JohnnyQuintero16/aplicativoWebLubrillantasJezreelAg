@@ -25,6 +25,7 @@ import DAO.PersonaDAO;
 import DAO.ProductoDAO;
 import DAO.ServicioDAO;
 import DAO.TipoDAO;
+import DAO.main;
 import DTO.Cita;
 import DTO.Marca;
 import DTO.Persona;
@@ -32,13 +33,21 @@ import DTO.Producto;
 import DTO.Servicio;
 import DTO.Tipo;
 import DTO.Vehiculo;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -78,7 +87,7 @@ public class Jezreel {
 
     public String[] mostrarProductos() {
 
-        String[] tipo = {"ACEITES", "FILROS", "VALVULINAS", "ADICTIVOS", "OTROS"};
+        String[] tipo = {"ACEITES", "FILTROS", "VALVULINAS", "ADICTIVOS", "OTROS"};
         ProductoDAO da = new ProductoDAO();
         String[] rta = new String[tipo.length];
         for (int i = 0; i < tipo.length; i++) {
@@ -88,17 +97,17 @@ public class Jezreel {
             if (!pt.isEmpty()) {
                 rta[i] = "";
                 for (Producto pro : pt) {
-                    if (pro.getEstado().equals("ACTIVO")) {
-                        rta[i] += "					<div class=\"card\">\n"
-                                + "						<img src=" + '"' + pro.getImgUrl() + '"' + " alt=\"\">\n"
-                                + "						<h4 class=\"titulo-card\">" + pro.getNombre() + " </h4>\n"
-                                + "						<p  id=\"desc\">" + pro.getDescripcion() + "</p>\n"
-                                + "						<p><strong id=\"ref-prec\">Referencia:</strong>" + pro.getReferencia() + "</p>				\n"
-                                + "						<p><strong id=\"ref-prec\">Precio: $ </strong>" + pro.getPrecioVenta() + "</p>\n"
-                                + "\n"
-                                + "						\n"
-                                + "					</div> \n";
-                    }
+
+                    rta[i] += "					<div class=\"card\">\n"
+                            + "						<img src=" + '"' + pro.getImgUrl() + '"' + " alt=\"\">\n"
+                            + "						<h4 class=\"titulo-card\">" + pro.getNombre() + " </h4>\n"
+                            + "						<p  id=\"desc\">" + pro.getDescripcion() + "</p>\n"
+                            + "						<p><strong id=\"ref-prec\">Referencia:</strong>" + pro.getReferencia() + "</p>				\n"
+                            + "						<p><strong id=\"ref-prec\">Precio: $ </strong>" + pro.getPrecioVenta() + "</p>\n"
+                            + "\n"
+                            + "						\n"
+                            + "					</div> \n";
+
                 }
             } else {
 
@@ -127,7 +136,7 @@ public class Jezreel {
 
             }
             Collections.sort(servi);
-          
+
             rta = vistaMisServicios(servi);
 
         } else {
@@ -144,7 +153,7 @@ public class Jezreel {
         FichaTecnica ficha = fida.findFichaVehiculo(placa);
         atendao.findServiciosFicha(ficha.getId(), servi);
         Collections.sort(servi);
-    
+
         rta = vistaMisServicios(servi);
         return rta;
     }
@@ -162,7 +171,7 @@ public class Jezreel {
         for (AtencionServicio a : servi) {
 
             List<DetallesServicio> dser = sdao.findDetalleServicioAtencion(a.getId());
-           
+
             List<DetallesProducto> dpro = pdao.findDetalleProductoAtencion(a.getId());
             Persona mecanico = a.getIdPersona();
             Factura factura = a.getIdFactura();
@@ -220,7 +229,7 @@ public class Jezreel {
                         + "                            <tr>\n"
                         + "                              <th scope=\"col\">Producto</th>\n"
                         + "                              <th scope=\"col\">Und</th>\n"
-                        + "                              <th scope=\"col\">Precio</th>\n"
+                        + "                              <th scope=\"col\">Precio Unidad</th>\n"
                         + "                              <th scope=\"col\">IVA</th>\n"
                         + "                              <th scope=\"col\">Total</th>\n"
                         + "                            </tr>\n"
@@ -265,11 +274,11 @@ public class Jezreel {
                     + "                              <td>" + d.getCantidad() + "</td>\n"
                     + "                              <td> $ " + d.getIdProducto().getPrecioVenta() + "</td>\n"
                     + "                              <td> $ " + d.getIdProducto().getPrecioVenta() * 0.19 + "</td>\n"
-                    + "                              <td>$" + (d.getIdProducto().getPrecioVenta() + d.getIdProducto().getPrecioVenta() * 0.19) + "</td>\n"
+                    + "                              <td>$" + (d.getIdProducto().getPrecioVenta() + d.getIdProducto().getPrecioVenta() * 0.19) * d.getCantidad() + "</td>\n"
                     + "                            </tr>\n";
 
-            costo.set(0, costo.get(0) + d.getIdProducto().getPrecioVenta());
-            costo.set(1, costo.get(1) + d.getIdProducto().getPrecioVenta() * 0.19);
+            costo.set(0, costo.get(0) + d.getIdProducto().getPrecioVenta() * d.getCantidad());
+            costo.set(1, costo.get(1) + d.getIdProducto().getPrecioVenta() * 0.19 * d.getCantidad());
         }
 
         return rta;
@@ -290,7 +299,7 @@ public class Jezreel {
                 + "                    </div>\n"
                 + "                    <div class=\"modal-footer\" id=\"foterM\">\n"
                 + "                    <input style=\"display:none\" value=" + a.getId() + ">\n"
-                + "                    "+((cadao.calificado(a)==false)?"<button  class=\"btn\" id=\"boton\" data-bs-toggle=\"modal\" data-bs-target=\"#modal2\" type=\"button\">Calificar servicio</button>\n":"<button style=\"background-color: #119200\" class=\"btn\" id=\"boton\" type=\"button\">Calificado</button>\n")
+                + "                    " + ((cadao.calificado(a) == false) ? "<button  class=\"btn\" id=\"boton\" data-bs-toggle=\"modal\" data-bs-target=\"#modal2\" type=\"button\">Calificar servicio</button>\n" : "<button style=\"background-color: #119200\" class=\"btn\" id=\"boton\" type=\"button\">Calificado</button>\n")
                 + "                    </div>\n"
                 + "                  </div>\n"
                 + "                </div>\n"
@@ -354,12 +363,12 @@ public class Jezreel {
         }
         return rta;
     }
-    
+
     public String getCitas(){
     
         CitaDAO c = new CitaDAO();
-        String rta ="";
-        
+        String rta = "";
+
         List<Cita> citas = c.read();
             for (Cita ci : citas) {
                 Persona p = ci.getIdPersona();
@@ -415,6 +424,8 @@ public class Jezreel {
         return rta;
     }
     
+    
+    
     public String getFecha(Date fecha, Date hora){
             SimpleDateFormat formateador = new SimpleDateFormat(
                  "dd '/' MM '/' yyyy", new Locale("es_ES"));
@@ -424,11 +435,203 @@ public class Jezreel {
             String horas = formateador2.format(hora);
         return "Dia: "+fechad.replace(" ", "")+"\nHora: "+horas;
     }
+    
+    public ArrayList<Dia> cargarHorario(){
+        //OBTENGO CITAS NO ATENDIDAS
+        List<Cita> citas = this.getCitasNoAtendidas();
+        //OBTENGO EL DIA DE HOY
+        String diaEntroAReservar = getDia(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault())
+                            .toInstant())); //ejm lunes, martes...
+        Date fechaRealDeInicio = validarDiaDeBusqueda(diaEntroAReservar);
+        ArrayList<Dia> semana = getSemana(fechaRealDeInicio); //OBTENGO LA SEMANA A PARTIR DEL DIA QUE ME PARE
+        //ENTRO A REVISAR A PARTIR DE LA FECHA
+        for (Cita ci: citas) {
+            
+            //desde las 8 a las 16
+            String diaCita = getDia(ci.getFecha());
+            String horaCita = getHora(ci.getHora());
+            
+            //CUANDO OBTENGA EL DIA DE LA LISTA AUMENTO EL CUPO Y SI SE LLENA ELIMINO LA HORA DE LA SEMANA
+            Dia diaSemana = getDiaSemana(semana,diaCita); //dia de la semana de esa cita
+            ArrayList<Hora> h = diaSemana.getHoras(); //horas de ese dia
+            Hora horaDia = getHoraDia(h,horaCita);   //obtengo la hora de la cita dentro de las horas del dia
+            
+            horaDia.aumentarCupo();
+            
+            if(horaDia.getCupo()==4){
+               diaSemana.getHoras().remove(horaDia);
+            }
+        }
+        return semana;
+    }
+    //PARSEO LA SEMANA CON LAS HORAS A STRING PARA MANIPULARLO EN EL JS
+    public String cargarHorarios(){
+        
+        String rta="";
+        ArrayList<Dia> semana = this.cargarHorario();
+        
+        for(Dia d : semana){
+            
+            rta+=d.getNombre();
+            ArrayList<Hora> horas = d.getHoras();
+            
+            for (Hora h : horas) {
+               rta+=","+h.getHora();
+            } 
+            rta+=";";
+        }
+        return rta;
+    }
+    
+    public Hora getHoraDia(ArrayList<Hora> h, String horaCita){
+    
+        if(horaCita.charAt(0)=='0'){
+            horaCita = horaCita.charAt(1)+"";
+        }
+        for (Hora ho : h) {
+            if(ho.getHora().equals(horaCita)){
+                return ho;
+            }
+        }
+        return null;
+    }
+    
+    public String getHora(Date hora){
+    
+        SimpleDateFormat formateador2 = new SimpleDateFormat(
+                 "HH", new Locale("es_ES"));
+            String horas = formateador2.format(hora);
+            return horas;
+    }
+    
+    public Dia getDiaSemana(ArrayList<Dia> sem, String dia){
+        
+        for (Dia d : sem) {
+            if(d.getNombre().equals(dia)){
+                return d;
+            }
+        }
+        System.err.println("No se encontro el dia");
+        return null;
+    }
+    
+    public ArrayList<Dia> getSemana(Date diaInicio){
+        
+        Date dia = diaInicio;
+        Calendar calendar = Calendar.getInstance();
+        ArrayList<Dia> semana = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+           
+            Dia d = new Dia(getDia(dia)); //CREO UN DIA
+            semana.add(d); //lo agrego a la semana
+            calendar.setTime(dia); //CONFIGUURO EL DIA
+            
+            calendar.add(Calendar.DAY_OF_WEEK, 1);//LE SUMO UNO
+            dia = calendar.getTime();
+        }
+        return semana;
+    }
+    
+    public Date validarDiaDeBusqueda(String dia){
+        
+        Date fechaAmandar = new Date();// LA FECHA QUE VOY A USAR
+        Calendar calendar = Calendar.getInstance();
+        //MODELO DE FECHA QUE QUIERO
+        SimpleDateFormat formatearFecha = new SimpleDateFormat("yyyy-MM-dd", new Locale("es_ES"));
+        if(dia.equals("DOMINGO")){//O ESTA FUERA DEL HORARIO LABORAL
+             //COMIENZO A BUSCAR A PARTIR DEL LUNES en adelante
+             calendar.add(Calendar.DAY_OF_WEEK, 1); //AQUI OBTENGO EL DIA(domingo) Y LE SUMO 1
+             Date fechaManana = calendar.getTime();
+             //LA PARTE STRING DE LA FECHA
+             String parteFecha = formatearFecha.format(fechaManana);
+             //LA PARTE DE HORAS DE LA FECHA(INICIO HORARIO LABORAL)
+             String parteHora = "7:30:00";
+             //MODELO DE FORMATO DE FECHA Y HORA A LA QUE VOY A CONVERTIR PARA HACER RESTAS
+             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            
+            try {
+                fechaAmandar = sdf.parse(parteFecha+" "+parteHora);
+            } catch (ParseException ex) {
+                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         }else{
+            
+             Date fechaManana = calendar.getTime();
+             //LA PARTE STRING DE LA FECHA
+             String parteFecha = formatearFecha.format(fechaManana);
+             //LA PARTE DE HORAS DE LA FECHA(INICIO HORARIO LABORAL)
+             String parteHora = "7:30:00";
+             //MODELO DE FORMATO DE FECHA Y HORA A LA QUE VOY A CONVERTIR PARA COMPARAR MAS ADELANTE
+             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+             try {
+                fechaAmandar = sdf.parse(parteFecha+" "+parteHora);
+            } catch (ParseException ex) {
+                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return fechaAmandar;
+    }
+    
+    public String optionsServicios(){
+            ServicioDAO se = new ServicioDAO();
+            List<Servicio> s = se.readServiciosActivos();
+            String rta ="";
+                for(Servicio ser : s){
+                    rta+=" <option value=\""+ser.getNombre()+"\">"+ser.getNombre()+"</option>\n";
+                }
+            return rta;
+    }
+    
+    
+    
+    public String getDia(Date fecha){
+    
+        SimpleDateFormat ObtenerDia = new SimpleDateFormat("EEEE");
+        String dia = ObtenerDia.format(fecha).toUpperCase();
+        return dia;
+    }
+    
+    public void actualizarCitasAgendadas(){
+    
+        CitaDAO c = new CitaDAO();
+        List<Cita> citas = c.read();
+        Calendar calendar = Calendar.getInstance();
+        Date fechaActual = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()); //hora actual
+        for (Cita ci : citas) {
+            Date fechaCita = ci.getFecha();   //Obtengo la fecha de la cita
+            fechaCita.setHours(ci.getHora().getHours()); //le pongo la hora a la fecha
+            
+            calendar.setTime(fechaCita);
+            calendar.add(Calendar.MINUTE, 30);  //le doy media hora mas para que llege
+            
+            if(ci.getEstado().equals("NO ATENDIDA")){
+                if(fechaCita.compareTo(fechaActual) < 0) {
+                    ci.setEstado("CANCELADA");
+                }
+            }
+        }
+    
+    }
+    
+    public List<Cita> getCitasNoAtendidas(){
+        CitaDAO c = new CitaDAO();
+        List<Cita> citas = c.read();
+        List<Cita> citasNoAtendidas = new ArrayList<Cita>();
+        actualizarCitasAgendadas(); 
+        
+        for (Cita ci : citas) {
+            if(ci.getEstado().equals("NO ATENDIDO")){
+                citasNoAtendidas.add(ci);
+            }
+        }
+        return citasNoAtendidas;
+    }
+    
 
     public String mostrarServiciosIndex() {
 
         ServicioDAO da = new ServicioDAO();
-        List<Servicio> servicios = da.read();
+        List<Servicio> servicios = da.readServiciosActivos();
 
         int cantidad = 4;
         if (servicios.size() < 4) {
@@ -528,7 +731,6 @@ public class Jezreel {
 
             }
             Collections.sort(aServicios);
-            //System.out.println("SERVICIOS " + servi.toString());
             rta = tableServiciosFicha(aServicios);
 
         }
@@ -541,6 +743,7 @@ public class Jezreel {
         for (AtencionServicio s : servi) {
             tbody += "<tr>\n"
                     + "                            <th class=\"enc\" scope=\"row\">" + i + "</th>\n"
+                    + "                            <td>" + s.getIdFichaTecnica().getIdVehiculo().getPlaca() + "</td>\n"
                     + "                            <td>" + stringServicios(s) + "</td>\n"
                     + "                            <td>" + stringProductos(s) + "</td>\n"
                     + "                            <td>" + s.getDescripcion() + "</td>\n"
@@ -605,6 +808,61 @@ public class Jezreel {
         for (Tipo t : tipo) {
 
             rta += "       <option value=" + '"' + t.getId() + '"' + ">" + t.getNombre() + "</option>\n";
+        }
+
+        return rta;
+    }
+
+    public String mostrarCitasActivasUsuario(String cedula) {
+
+        String rta = "";
+        CitaDAO cidao = new CitaDAO();
+        List<Cita> citasActivas = cidao.citasUsuario(cedula);
+
+        if (!citasActivas.isEmpty()) {
+
+            for (Cita c : citasActivas) {
+                String[] dcita = c.getDescripcion().split(",");
+
+                rta += "                    <div class=\"row\" id=\"form\">\n"
+                        + "                        <div class=\"col col-md-12\">\n"
+                        + "                            <div id=\"fecha\" class=\"media align-items-center\">							\n"
+                        + "                                <label  for=\"fecha\" class=\"form-label\">FECHA: " + c.formatoFecha(c.getFecha()) + "</label>\n"
+                        + "                            </div>\n"
+                        + "                            <div class=\"media-body\">\n"
+                        + "                                <div class=\"row align-items-center\">\n"
+                        + "                                    <div class=\"col-md-9 col-sm-9\">\n"
+                        + "                                        <div style=\"padding: 15px\">\n"
+                        + "                                            <h6>HORA: " + c.formatoHora(c.getHora()) + "</h6>\n"
+                        + "                                            <h6>VEHÍCULO: " + dcita[0] + "</h6>\n"
+                        + "                                            <h6>SERVICIO SOLICITADO : " + dcita[5] + "</h6>\n"
+                        + "                                        </div>																		\n"
+                        + "                                    </div>\n"
+                        + "                                    <!-- botón eliminar-->\n"
+                        + "                                    <div class=\" col-3\" align=\"center\" >"
+                        + "                                    <input  style=\"display: none\" value="+'"'+ c.getId()+'"'+"type=\"text\" class=\"form-control\" id=\"cita\" name=\"cita\" required>								\n"
+                        + "                                        <a  href=\"#\" class=\"btn btn-outline-danger float-right\"data-bs-toggle=\"modal\" data-bs-target=\"#modal1\">\n"
+                        + "                                            <svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" fill=\"currentColor\" class=\"bi bi-trash\" viewBox=\"0 0 16 16\">\n"
+                        + "                                            <path d=\"M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z\"/>\n"
+                        + "                                            <path fill-rule=\"evenodd\" d=\"M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z\"/>\n"
+                        + "                                            </svg>\n"
+                        + "                                            <span class=\"visually-hidden\"></span>\n"
+                        + "                                        </a>\n"
+                        + "\n"
+                        + "                                        <!--Fin de Botón Eliminar-->\n"
+                        + "\n"
+                        + "                                        <!--Botón de editar la cita-->\n"			
+                        + "                                    </div>\n"
+                        + "                                    <!--Fin de botón Editar-->\n"
+                        + "                                </div>\n"
+                        + "                            </div>					\n"
+                        + "                        </div>\n"
+                        + "                    </div>";
+
+            }
+        } else {
+            rta = "<h4>No tienes citas</h4>";
+
         }
 
         return rta;

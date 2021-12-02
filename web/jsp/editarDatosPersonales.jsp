@@ -1,5 +1,7 @@
 
 
+<%@page import="DTO.Persona"%>
+<%@page import="DAO.PersonaDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +36,19 @@
 
 
     </head>
-    <body>
+    <body onload="sesion('<%=request.getSession().getAttribute("usuario")%>')">
+
+        <%
+            PersonaDAO pdao = new PersonaDAO();
+            Persona p = pdao.readPersona(request.getSession().getAttribute("usuario").toString());
+            String correoigual = "no";
+
+            if (request.getSession().getAttribute("correoigual") != null) {
+                correoigual = request.getSession().getAttribute("correoigual").toString();
+
+            }
+
+        %>
         <!--Menú -->
         <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
             <div class="container-fluid">
@@ -72,21 +86,22 @@
                         <li class="nav-item dropdown" style="list-style-type: none;">
                             <a class="nav-link dropdown-toggle link-dark  " href="#" id="navbarDropdown" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
-                                NOMBRE USUARIO
+                                <%= request.getSession().getAttribute("nameUser")%>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         b
                             </a>
-                            <ul class="dropdown-menu text-small " aria-labelledby="dropdownUser2">
-                                <li><a class="dropdown-item" href="#">Mi Cuenta</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="./cerrarSesion.do">Salir</a></li>
-                            </ul>
+                             <ul class="dropdown-menu text-small "aria-labelledby="dropdownUser2"  >
+                                        <li><a class="dropdown-item" href="<%=basePath%>./jsp/datosCliente.jsp" >Mi Cuenta</a></li>
+                                        <li><a class="dropdown-item" href="<%=basePath%>MisVehiculos.do" >Mis Vehiculos</a></li>
+                                        <li><a class="dropdown-item" href="<%=basePath%>MisServiciosUsu.do" >Mis Servicios</a></li>
+                                        <li><a class="dropdown-item" href="<%=basePath%>MostrarCitasUsu.do" >Mis Citas</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="<%=basePath%>/cerrarSesion.do">Salir</a></li>
+                                    </ul>
                         </li>
                     </ul>
                 </div>
 
                 <div class="perfil-nav">
-                    <img src="<%=basePath%>img/user.png" width="70" height="70" class="rounded-circle me-2">
+                    <img src="<%= request.getSession().getAttribute("urlFoto").toString() %>" width="70" height="70" class="rounded-circle me-2">
                 </div>
             </div>
         </nav>
@@ -100,16 +115,16 @@
                     <div class="d-flex flex-column flex-shrink-0 p-3 bg-light colum-datos">					
                         <aside>
                             <div class="side-inner">
-                                <div class="profile">
-                                    <img  src="<%=basePath%>img/usuario.png" alt="Image" class="img-fluid">
-                                    <h3 class="name">Hola, Nombre de Usuario</h3>
+                               <div class="profile">
+                                    <img  src="<%= request.getSession().getAttribute("urlFoto").toString() %>" alt="Image" class="img-fluid rounded-circle ">
+                                    <h3 class="name"><%= request.getSession().getAttribute("nameUser")%></h3>
                                 </div>
                                 <div class="nav-menu">
                                     <ul > 
-                                        <li id="misCitas" ><a href="<%=basePath%>jsp/datosCliente.jsp"><span class=""></span>Mis Datos Personales</a></li>
-                                        <li><a href="#"><span class=""></span>Mis Vehículos</a></li>
-                                        <li><a href="<%=basePath%>jsp/serviciosUsu.jsp"><span class=""></span>Mis Servicios</a></li>
-                                        <li ><a href="<%=basePath%>jsp/citasUsu.jsp"><span class=""></span>Mis Citas</a></li>
+                                        <li><a href="<%=basePath%>./jsp/datosCliente.jsp"<%=basePath%>MostrarServiciosAdmin.do"><span class=""></span>Mis Datos Personales</a></li>
+                                        <li><a href="<%=basePath%>MisVehiculos.do"><span class=""></span>Mis Vehículos</a></li>
+                                        <li><a href="<%=basePath%>MisServiciosUsu.do"><span class=""></span>Mis Servicios</a></li>
+                                        <li id="misCitas"><a href="<%=basePath%>MostrarCitasUsu.do"><span class=""></span>Mis Citas</a></li>
                                     </ul>
                                 </div>
                             </div>  
@@ -125,26 +140,34 @@
                         <h1 id="citas"> MIS DATOS PERSONALES</h1>
                     </div>	
                     <div>
-                        <form class="row g-3" id="form-datos" action=" ">
+                        <form class="row g-3" id="form-datos" action="<%=basePath%>UpdatePersona.do" method="POST" >
                             <div class="col-md-6">
                                 <label for="nombre" class="form-label">Nombres</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                <input type="text" class="form-control" id="nombre"  readonly="readonly" value="<%=p.getNombres()%>" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="apellidos" class="form-label">Apellidos</label>
-                                <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+                                <input type="text" class="form-control" id="apellidos" readonly="readonly"value="<%=p.getApellidos()%>" name="apellidos" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="inputCity" class="form-label">Cédula</label>
-                                <input type="text" class="form-control" id="cedula" name="cedula" for="cedula" required>
+                                <input type="text" class="form-control" id="cedula" readonly="readonly" value="<%=p.getCedula()%>" for="cedula" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="celular" class="form-label">Celular</label>
-                                <input type="text" class="form-control" id="celular" name="celular" required>
+                                <input type="text" class="form-control" id="celular"  value="<%=p.getCelular()%>" name="celular" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label">E-mail</label>
-                                <input type="text" class="form-control" id="email" name="email" required>
+                                <input type="email" class="form-control" id="email" value="<%=p.getEmail()%>" name="correo" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="email" name="direccion" value="<%=p.getDirecccion()%>" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Url Foto</label>
+                                <input type="url" class="form-control" id="email" name="url" value="<%=p.getUrlFoto() %>" required>
                             </div>
                             <div  id="boton" class="col-6 align-content-center ">
                                 <br>
@@ -192,5 +215,17 @@
             </div>
         </footer>
         <!--FIN FOOTER-->
+        <script src="<%=basePath%>js/sesion.js"></script>
+          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+
+            if (<%=correoigual.equals("si")%>) {
+                swal("Oops!", "Correo no  valido,  ya registrado en el sistema!", "error");
+            <% request.getSession().setAttribute("correoigual", "no");%>
+            }
+
+
+
+        </script>
     </body>
 </html>

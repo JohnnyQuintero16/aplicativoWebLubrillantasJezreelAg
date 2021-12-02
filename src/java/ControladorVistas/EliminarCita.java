@@ -5,14 +5,13 @@
  */
 package ControladorVistas;
 
-import DAO.AtencionServicioDAO;
 import DAO.CitaDAO;
-import DTO.AtencionServicio;
-import DTO.Cita;
-import Negocio.Jezreel;
+import Persistencia.exceptions.IllegalOrphanException;
+import Persistencia.exceptions.NonexistentEntityException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Cristian
+ * @author Jefersonrr
  */
-public class CitasAdmin extends HttpServlet {
+public class EliminarCita extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,44 +33,15 @@ public class CitasAdmin extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+            throws ServletException, IOException, IllegalOrphanException, NonexistentEntityException {
+
         
-        Jezreel j = new Jezreel();
-        CitaDAO c = new CitaDAO();
-        
-        AtencionServicioDAO a = new AtencionServicioDAO();
-        
-        List<Cita> ci = c.read();
-        String citasNoAtendidas ="";
-        String citasAtendidas="";
-        
-        for (Cita aten: ci) {
-            if(!aten.getEstado().equals("ATENDIDO")){
-                citasNoAtendidas+=aten.getId()+",";
-                citasNoAtendidas+=aten.getDescripcion()+";";
-            }else{
-                citasAtendidas+=aten.getId()+",";
-                AtencionServicio s = a.getServicio(aten.getId());
-                citasAtendidas+=s.getDescripcion()+",";
-                citasAtendidas+=s.getIdFichaTecnica().getIdVehiculo().getPlaca()+",";
-                citasAtendidas+=aten.getEstado()+";";
-            }
-            
-        }
+        CitaDAO cdao = new CitaDAO();
+        System.out.println("SOY ID CITA :" + request.getParameter("idCita"));
+        cdao.delete(Integer.parseInt(request.getParameter("idCita")));
+        request.getRequestDispatcher("./MostrarCitasUsu.do").forward(request, response);
         
         
-        request.getSession().removeAttribute("citas");
-        request.getSession().removeAttribute("atendida");
-        request.getSession().removeAttribute("noatendida");
-        
-        request.getSession().setAttribute("atendida", citasAtendidas);
-        request.getSession().setAttribute("noatendida", citasNoAtendidas);
-        request.getSession().setAttribute("citas", j.getCitas());
-        
-        
-//        request.getSession().setAttribute("cita", new CitaDAO());
-        request.getRequestDispatcher("jsp/citasAdmin.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -86,7 +56,13 @@ public class CitasAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (IllegalOrphanException ex) {
+            Logger.getLogger(EliminarCita.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(EliminarCita.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -100,7 +76,13 @@ public class CitasAdmin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (IllegalOrphanException ex) {
+            Logger.getLogger(EliminarCita.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(EliminarCita.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
