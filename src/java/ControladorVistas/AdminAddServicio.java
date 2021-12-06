@@ -33,8 +33,9 @@ public class AdminAddServicio extends HttpServlet {
             throws ServletException, IOException {
      
         ServicioDAO serdao = new ServicioDAO();
+        
         serdao.create(new Servicio(null, request.getParameter("nombre"),request.getParameter("descripcion"),
-                request.getParameter("img"),Short.parseShort(request.getParameter("duracion")),"ACTIVO"));
+                request.getParameter("img"),Short.parseShort(request.getParameter("duracion")),"ACTIVO",request.getParameter("tipo")));
         request.getRequestDispatcher("./MostrarServiciosAdmin.do").forward(request, response);
     }
 

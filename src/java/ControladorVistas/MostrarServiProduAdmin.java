@@ -5,14 +5,17 @@
  */
 package ControladorVistas;
 
+import DAO.AtencionServicioDAO;
 import DAO.CitaDAO;
 import DAO.ProductoDAO;
 import DAO.ServicioDAO;
 import DTO.Cita;
 import DTO.Persona;
+import DTO.Servicio;
 import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +44,7 @@ public class MostrarServiProduAdmin extends HttpServlet {
             ServicioDAO ser = new ServicioDAO();
             Jezreel j = new Jezreel();
             CitaDAO cita = new CitaDAO();
-            int idCita = Integer.parseInt((String)request.getSession().getAttribute("idCitaServicio"));
+            int idCita = Integer.parseInt((String) request.getSession().getAttribute("idCitaServicio"));
             String placa = request.getParameter("placa");
             String km = request.getParameter("km");
             Cita user = cita.readCita(idCita);
@@ -53,10 +56,12 @@ public class MostrarServiProduAdmin extends HttpServlet {
             request.getSession().setAttribute("servicios", ser.readServiciosActivos());
             request.getSession().setAttribute("mecanicos", j.getMecanico());
             request.getSession().setAttribute("placa", placa);
-            request.getSession().setAttribute("km", km);
+            request.getSession().setAttribute("km", j.getKilometrajeAtencionServicio(placa));
+            request.getSession().setAttribute("productosJS", j.cargarProductosJS());
+            request.getSession().setAttribute("serviciosJS", j.cargarServiciosJS());
             response.sendRedirect("./jsp/adminRegis.jsp");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getCause());
         }
     }
 

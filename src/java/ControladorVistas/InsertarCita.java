@@ -36,7 +36,7 @@ public class InsertarCita extends HttpServlet {
         String marca = request.getParameter("marca");
         String modelo = request.getParameter("modelo");
         String anio = request.getParameter("año");
-        String Kilometraje = request.getParameter("marca");
+        String Kilometraje = request.getParameter("kilometraje");
         String fecha[] = request.getParameter("fecha").split("-");
         String hora = request.getParameter("hora");
         String servicio = request.getParameter("servicio");
