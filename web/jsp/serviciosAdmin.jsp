@@ -139,8 +139,8 @@
                             <th class="enc" style="width: 6%" scope="col">No</th>
                             <th style="display: none"class="enc" style="width: 6%" scope="col">Id</th>
                             <th class="enc" style="width: 19%" scope="col">Nombre</th>
-                            <th class="enc" style="width: 34%" scope="col">Descripción</th>
-                            <th class="enc" style="width: 32%" scope="col">ImagenURL</th>
+                            <th class="enc" style="width: 44%" scope="col">Descripción</th>
+                            <th class="enc" style="width: 22%" scope="col">Tipos de productos relacionados</th>
                             <th class="enc" style="width:  9%" scope="col">Duración-min</th>
                             <th class="enc" style="width: 10%" scope="col">Acciones</th>
                         </tr>
@@ -153,7 +153,7 @@
                             <td style="display: none" ><%=s.getId()%></td>S
                             <td ><%=s.getNombre()%></td>
                             <td><%= s.getDescripcion()%></td>
-                            <td><%=s.getImgUrl()%></td>
+                            <td><%=s.getTipoProdcuto()%></td>
                             <td><%=s.getDuracion()%></td>
                             <!-- Acciones: editar y cancelar. -->
                             <td>
@@ -198,7 +198,7 @@
                         <form action="<%=basePath%>AdminAddServicio.do" method="POST">
                             <div class="row text-center m-3">
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
 
                                     <div class="mb-3 ">
                                         <label for="exampleInputNombre" class="form-label">Nombre</label>
@@ -209,13 +209,26 @@
 
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-3">
 
                                     <div class="mb-3">
                                         <label for="exampleInputDuracion" class="form-label">Duración</label>
                                         <input type="number" class="form-control" id="exampleInputDuracion"  name="duracion" required>
                                     </div>
 
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="mb-6">
+                                        <label for="exampleInputCant" class="form-label">Productos relacionados</label>
+                                        <select class="form-select"  name = "tipo" aria-label="Default select example" required>
+                                            <option value="">Selecciona un tipo:</option>
+                                            <option value="ACEITES">ACEITES</option>
+                                            <option value="FILTROS">FILTROS</option>
+                                            <option value="VALVULINAS">VALVULINAS</option>
+                                            <option value="ADITIVOS">ADITIVOS</option>
+                                            <option value="OTROS">OTROS</option>
+                                        </select>
+                                    </div>
                                 </div>
 
 
@@ -224,11 +237,6 @@
                                     <label for="exampleInputImagenURL" class="form-label">ImagenURL</label>
                                     <input type="text" class="form-control" id="exampleInputImagenURL" name ="img" required>
                                 </div>
-
-
-
-
-
                                 <div class="mb-3">
                                     <label for="exampleDescripcion" class="form-label">Descripción</label>
                                     <textarea class="form-control" id="exampleInputDescripcion" rows="3" name="descripcion" required></textarea>
@@ -279,8 +287,7 @@
                         <form action="<%=basePath%>ActualizarServicio.do" method="POST">
                             <div class="row text-center m-3">
 
-                                <div class="col-md-6">
-
+                                <div class="col-md-4">
                                     <div class="mb-3" style="display: none">
                                         <label for="exampleInputNombre" class="form-label">ID</label>
                                         <input type="text" class="form-control " id="exampleInputNombre" name="id" required>
@@ -295,18 +302,27 @@
 
                                 </div>
 
-
-
-                                <div class="col-md-6">
+                                <div class="col-md-3">
 
                                     <div class="mb-3">
                                         <label for="exampleInputDuracion" class="form-label">Duración</label>
-                                        <input type="number" class="form-control" id="exampleInputDuracion"  name="duracion" value="30" required>
+                                        <input type="number" class="form-control" id="exampleInputDuracion"  name="duracion" required>
                                     </div>
 
                                 </div>
-
-
+                                <div class="col-md-5">
+                                    <div class="mb-6">
+                                        <label for="exampleInputCant" class="form-label">Productos relacionados</label>
+                                        <select class="form-select"  name = "tipo" aria-label="Default select example" required>
+                                            <option value="">Selecciona un tipo:</option>
+                                            <option value="ACEITES">ACEITES</option>
+                                            <option value="FILTROS">FILTROS</option>
+                                            <option value="VALVULINAS">VALVULINAS</option>
+                                            <option value="ADITIVOS">ADITIVOS</option>
+                                            <option value="OTROS">OTROS</option>
+                                        </select>
+                                    </div>
+                                </div>
 
                                 <div class="mb-3">
                                     <label for="exampleInputImagenURL" class="form-label">ImagenURL</label>
