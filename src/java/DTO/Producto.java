@@ -12,7 +12,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -34,7 +36,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Producto.findByCodigo", query = "SELECT p FROM Producto p WHERE p.codigo = :codigo"),
     @NamedQuery(name = "Producto.findByReferencia", query = "SELECT p FROM Producto p WHERE p.referencia = :referencia"),
     @NamedQuery(name = "Producto.findByNombre", query = "SELECT p FROM Producto p WHERE p.nombre = :nombre"),
-    @NamedQuery(name = "Producto.findByMarca", query = "SELECT p FROM Producto p WHERE p.marca = :marca"),
     @NamedQuery(name = "Producto.findByPrecioUnitario", query = "SELECT p FROM Producto p WHERE p.precioUnitario = :precioUnitario"),
     @NamedQuery(name = "Producto.findByPrecioVenta", query = "SELECT p FROM Producto p WHERE p.precioVenta = :precioVenta"),
     @NamedQuery(name = "Producto.findByCantidad", query = "SELECT p FROM Producto p WHERE p.cantidad = :cantidad"),
@@ -68,11 +69,6 @@ public class Producto implements Serializable {
     private String imgUrl;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 150)
-    @Column(name = "marca")
-    private String marca;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "precioUnitario")
     private double precioUnitario;
     @Basic(optional = false)
@@ -96,8 +92,12 @@ public class Producto implements Serializable {
     @Size(max = 15)
     @Column(name = "estado")
     private String estado;
+    @JoinColumn(name = "idMarca", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private MarcaProducto idMarca;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
     private List<DetallesProducto> detallesProductoList;
+
     public Producto() {
     }
 
@@ -105,12 +105,11 @@ public class Producto implements Serializable {
         this.codigo = codigo;
     }
 
-    public Producto(String codigo, String referencia, String nombre, String imgUrl, String marca, double precioUnitario, double precioVenta, int cantidad, String descripcion, String tipo) {
+    public Producto(String codigo, String referencia, String nombre, String imgUrl, double precioUnitario, double precioVenta, int cantidad, String descripcion, String tipo) {
         this.codigo = codigo;
         this.referencia = referencia;
         this.nombre = nombre;
         this.imgUrl = imgUrl;
-        this.marca = marca;
         this.precioUnitario = precioUnitario;
         this.precioVenta = precioVenta;
         this.cantidad = cantidad;
@@ -148,14 +147,6 @@ public class Producto implements Serializable {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
     }
 
     public double getPrecioUnitario() {
@@ -204,6 +195,14 @@ public class Producto implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public MarcaProducto getIdMarca() {
+        return idMarca;
+    }
+
+    public void setIdMarca(MarcaProducto idMarca) {
+        this.idMarca = idMarca;
     }
 
     @XmlTransient

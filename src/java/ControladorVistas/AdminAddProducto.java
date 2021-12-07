@@ -5,6 +5,7 @@
  */
 package ControladorVistas;
 
+import DAO.MarcaProductoDAO;
 import DAO.ProductoDAO;
 import DTO.Producto;
 import java.io.IOException;
@@ -33,13 +34,10 @@ public class AdminAddProducto extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        try {
+         try {
             Producto nuevo = new Producto();
             ProductoDAO pro = new ProductoDAO();
             String codigo = request.getParameter("codigo");
-            if (pro.readProducto(codigo) != null) {
-                request.getRequestDispatcher("./jsp/productosAdmin.jsp").forward(request, response);
-            } else {
                 String tipo = request.getParameter("tipo");
                 switch (tipo) {
                     case "1":
@@ -61,7 +59,8 @@ public class AdminAddProducto extends HttpServlet {
                 nuevo.setCodigo(codigo);
                 nuevo.setNombre(request.getParameter("nombre"));
                 nuevo.setReferencia(request.getParameter("referencia"));
-                nuevo.setMarca(request.getParameter("marca"));
+                MarcaProductoDAO mar = new MarcaProductoDAO();
+                nuevo.setIdMarca(mar.readMarcaProducto(Integer.parseInt(request.getParameter("marca"))));
                 nuevo.setPrecioUnitario(Double.parseDouble(request.getParameter("precioUnitario")));
                 nuevo.setPrecioVenta(Double.parseDouble(request.getParameter("precioVenta")));
                 nuevo.setCantidad(Integer.parseInt(request.getParameter("cantidad")));
@@ -69,9 +68,15 @@ public class AdminAddProducto extends HttpServlet {
                 nuevo.setImgUrl(request.getParameter("url"));
                 nuevo.setDescripcion(request.getParameter("descripcion"));
                 nuevo.setEstado("ACTIVO");
-                pro.create(nuevo);
-                response.sendRedirect("MostrarProductosAdmin.do");
-            }
+                
+                if(pro.readProducto(codigo) != null && pro.existeProductoInactivo(codigo)){
+                    pro.update(nuevo);
+                }else{
+                    pro.create(nuevo);
+                }
+                
+                
+            response.sendRedirect("MostrarProductosAdmin.do");
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

@@ -1,5 +1,7 @@
 
 
+<%@page import="DTO.Vehiculo"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +34,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
     </head>
-    <body onload="enviarMail()">
+    <body>
 
         <div class="sidebar">
             <div class="logo-details">
@@ -97,69 +99,137 @@
 
         <section class="home-section">
             <div class="title">
-
                 <div class="titulo">
                     <h1 style="color:blue">Cliente: <%=request.getSession().getAttribute("usuarioCliente").toString()%></h1> 
                 </div>
-
-                <div class="boton">
-                    <button class="btn btn-primary btn-lg" type="button" value="Regresar" style="color: white;" href="<%=basePath%>jsp/FichaTecnicaAdd.jsp"> Añadir Vehiculo </button>
-                </div>
-
+                <form action="<%=basePath%>CargarAddVehiculo.do" method="GET">
+                    <div class="boton">
+                        <input style = "display: none" name = "cedula" value="<%=request.getSession().getAttribute("IdCliente")%>"> 
+                        <button class="btn btn-primary btn-lg" type="submit" value="Regresar" style="color: white;"> Añadir Vehiculo </button>
+                    </div>
+                </form>
             </div>
             <div class="main" >
-                <form class="row " action="<%=basePath%>MostrarServiProduAdmin.do" method="post" > 
-                    <div id="vehiculo"  class="col-md-6">
-                        <label  for="vehiculo" name="vehiculo" class="form-label">Escoja el Vehículo</label>  
-                        <br><br>
-                    </div>
-
-                    <div id="datos"class="col-md-6">
-                        <label   for="datos" name="datos" class="form-label">Datos del Agendamento </label>  
-                        <br><br>
-                    </div>
-
-                    <div class="col-md-6">
-                        <select id="inputState" class="form-select">
-                            <option selected>No existe Vehículo</option>
-                            <option>LSI- 7489 Aveo</option>
-                            <option>DML-987 Corolla</option>
-                            <option>LOP-795 Suzuki</option>
-                            <option>Another</option>
-                        </select>
-                    </div>
-
-
-                    <div class="col-md-4">
-                        <div class="divs">
-                            <h5>No. Placa: DML- 978</h5>
-                        </div>
-                        <div class="divs">
-                            <h5>Modelo: Sedan</h5>
-                        </div>
-                        <div class="divs">
-                            <h5>Kilometraje: 40.500</h5>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <div class="divs">
-                            <h5>Marca: Aveo</h5>
-                        </div>
-                        <div class="divs" > 
-                            <h5> Año: 2015</h5>
-                        </div>
-                        <div class="divs">
-                            <button class="btn btn-primary btn-lg" href="" type="submit">Continuar</button>
+                <section>
+                    <div class="row">
+                        <div class="container shadow p-4 mb-10 bg-body rounded-10 m-5 col-11">
+                            <h3 style="display: flex; align-items: center">Datos de la cita agendada por el cliente</h3>
+                            <hr style="color:#000" size="1" width="100%">
+                         <div class = "row">
+                            <div class="col-md-4">
+                                <div class="div">
+                                    <h5>No. Placa: <i style='color:blue'><%=request.getSession().getAttribute("idPlacaCita")%></i></h5>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="div">
+                                    <h5>Modelo: <i style='color:blue'><%=request.getSession().getAttribute("idModeloCita")%></i></h5>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="div">
+                                    <h5>Marca: <i style='color:blue'><%=request.getSession().getAttribute("idMarcaCita")%></i></h5>
+                                </div>
+                            </div>
+                            <hr style="color:#000" size="1" width="100%">
+                            <div class="col-md-4">
+                                <div class="div">
+                                    <h5>Año: <i style='color:blue'><%=request.getSession().getAttribute("idAnioCita")%></i></h5>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="div">
+                                    <h5>Kilometraje: <i style='color:blue'><%=request.getSession().getAttribute("idKilometraCita")%></i></h5>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="div">
+                                    <h5>Descripción <i style='color:blue'><%=request.getSession().getAttribute("idDescripcionCita")%></i></h5>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    
+                    </div>
+                </section>
 
+                <form class="row " name="formdatos" action="<%=basePath%>MostrarServiProduAdmin.do" method="POST" > 
+                    <div class="row">
+                        <div class="col-4">
+                            <!-- Select Vehiculo -->
+                             <section>
+                                <div class="container shadow p-4 mb-10 bg-body rounded-10 ms-5">
+                                    <div id="vehiculo"  class="col-12">
+                                        <h2>Escoge el vehiculo</h2>
+                                    </div>        
+                                <br><br>
+                                    <div class="col-12">
+                                        <select id="inputState" class="form-select">
+                                            <option selected required>Seleccione un vehiculo</option>
+                                            <%=request.getSession().getAttribute("getVehiculo").toString()%>
+                                        </select>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-7">
+                            <!-- Vehiculo Datos -->
+                            <section>
+                                <div class="container shadow p-4 mb-10 ms-5 bg-body rounded-10 m-1 h-80 w-55">
+                                    <div id="datos"  class="col-md-6">
+                                        <h2>Datos del agendamiento</h2>
+                                    </div>        
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="divs">
+                                                <input hidden name="placa" value="" id="inputPlaca"/>
+                                                <h5>No. Placa:<template id = "placaV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="divs">
+                                                <h5>Modelo: <template id = "modeloV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="divs">
+                                                <input hidden name="km" value="" id="inputkm"/>
+                                                <h5>Kilometraje: <template id = "kmV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr style="color:#000" size="1" width="100%">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="divs">
+                                                <h5>Marca: <template id = "marcaV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="divs" > 
+                                                <h5> Tipo de Vehiculo: <template id = "anioV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="color:#000" size="1" width="100%">
+                                    <div class="row">
+                                        <div class="divsb">
+                                            <input class="btn btn-primary btn-lg"  type="submit" value="Continuar">
+                                        </div>
+                                    </div>                            
+                                </div>
+                        </section>
+                        </div>
+                    </div>
                 </form>
             </div>
 
         </section>
 
         <script src="<%=basePath%>/js/menuAdministrador.js"></script>
+        <script src="<%=basePath%>/js/datosAgendamiento.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
@@ -167,6 +237,8 @@
 
 
         <script>
+            var vehiculos = '<%=request.getSession().getAttribute("vehiculos").toString()%>'.split(";");
+            datosJSP(vehiculos);
             $(document).ready(function () {
             $('#example').DataTable({
 
@@ -189,7 +261,6 @@
             }
             );
             });
-            }
         </script>
 
     </body>

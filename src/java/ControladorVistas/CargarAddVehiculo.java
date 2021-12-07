@@ -5,17 +5,9 @@
  */
 package ControladorVistas;
 
-import DAO.AtencionServicioDAO;
-import DAO.CitaDAO;
-import DAO.ProductoDAO;
-import DAO.ServicioDAO;
-import DTO.Cita;
-import DTO.Persona;
-import DTO.Servicio;
 import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author johnny
  */
-public class MostrarServiProduAdmin extends HttpServlet {
+public class CargarAddVehiculo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,30 +31,12 @@ public class MostrarServiProduAdmin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            ProductoDAO pro = new ProductoDAO();
-            ServicioDAO ser = new ServicioDAO();
-            Jezreel j = new Jezreel();
-            CitaDAO cita = new CitaDAO();
-            int idCita = Integer.parseInt((String) request.getSession().getAttribute("idCitaServicio"));
-            String placa = request.getParameter("placa");
-            String km = request.getParameter("km");
-            Cita user = cita.readCita(idCita);
-            Persona per = user.getIdPersona();
-            String nameUser = per.getNombres().split(" ")[0] + " " + per.getApellidos().split(" ")[0];
-            request.getSession().setAttribute("usuarioCliente", nameUser);
-            request.getSession().setAttribute("idCita", idCita);
-            request.getSession().setAttribute("productos", pro.readProductosActivos());
-            request.getSession().setAttribute("servicios", ser.readServiciosActivos());
-            request.getSession().setAttribute("mecanicos", j.getMecanico());
-            request.getSession().setAttribute("placa", placa);
-            request.getSession().setAttribute("km", j.getKilometrajeAtencionServicio(placa));
-            request.getSession().setAttribute("productosJS", j.cargarProductosJS());
-            request.getSession().setAttribute("serviciosJS", j.cargarServiciosJS());
-            response.sendRedirect("./jsp/adminRegis.jsp");
-        } catch (Exception e) {
-            System.err.println(e.getCause());
-        }
+        String cedulaCliente = request.getParameter("cedula");
+        Jezreel j = new Jezreel();
+        request.getSession().setAttribute("tipo", j.selectTipo());
+        request.getSession().setAttribute("marca", j.selectMarca());
+        request.getSession().setAttribute("cedula", cedulaCliente);
+        response.sendRedirect("./jsp/FichaTecnicaAdd.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

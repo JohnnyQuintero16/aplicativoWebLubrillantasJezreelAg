@@ -5,17 +5,17 @@
  */
 package ControladorVistas;
 
-import DAO.AtencionServicioDAO;
-import DAO.CitaDAO;
-import DAO.ProductoDAO;
-import DAO.ServicioDAO;
-import DTO.Cita;
+import DAO.MarcaDAO;
+import DAO.PersonaDAO;
+import DAO.TipoDAO;
+import DAO.VehiculoDAO;
+import DTO.Marca;
 import DTO.Persona;
-import DTO.Servicio;
+import DTO.Tipo;
+import DTO.Vehiculo;
 import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author johnny
  */
-public class MostrarServiProduAdmin extends HttpServlet {
+public class AddVehiculo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,30 +39,42 @@ public class MostrarServiProduAdmin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            ProductoDAO pro = new ProductoDAO();
-            ServicioDAO ser = new ServicioDAO();
-            Jezreel j = new Jezreel();
-            CitaDAO cita = new CitaDAO();
-            int idCita = Integer.parseInt((String) request.getSession().getAttribute("idCitaServicio"));
-            String placa = request.getParameter("placa");
-            String km = request.getParameter("km");
-            Cita user = cita.readCita(idCita);
-            Persona per = user.getIdPersona();
-            String nameUser = per.getNombres().split(" ")[0] + " " + per.getApellidos().split(" ")[0];
-            request.getSession().setAttribute("usuarioCliente", nameUser);
-            request.getSession().setAttribute("idCita", idCita);
-            request.getSession().setAttribute("productos", pro.readProductosActivos());
-            request.getSession().setAttribute("servicios", ser.readServiciosActivos());
-            request.getSession().setAttribute("mecanicos", j.getMecanico());
-            request.getSession().setAttribute("placa", placa);
-            request.getSession().setAttribute("km", j.getKilometrajeAtencionServicio(placa));
-            request.getSession().setAttribute("productosJS", j.cargarProductosJS());
-            request.getSession().setAttribute("serviciosJS", j.cargarServiciosJS());
-            response.sendRedirect("./jsp/adminRegis.jsp");
-        } catch (Exception e) {
-            System.err.println(e.getCause());
-        }
+        String placa = request.getParameter("placa");
+        String modelo = request.getParameter("modelo");
+        String color = request.getParameter("color");
+        String ruedas = request.getParameter("ruedas");
+        String cilindra = request.getParameter("cilindra");
+        String kilom = request.getParameter("km");
+        String carroce = request.getParameter("carroceria");
+        String peso = request.getParameter("peso");
+        String motor = request.getParameter("motor");
+        String dimension = request.getParameter("dimension");
+        String marca = request.getParameter("Marca");
+        String tipo = request.getParameter("Tipo");
+        VehiculoDAO ve = new VehiculoDAO();
+        Vehiculo nuevo =  new Vehiculo();
+        MarcaDAO m = new MarcaDAO();
+        TipoDAO t = new TipoDAO();
+        Jezreel j = new Jezreel();
+        nuevo.setPlaca(placa);
+        nuevo.setModelo(modelo);
+        nuevo.setColor(color);
+        nuevo.setRuedas(Short.parseShort(ruedas));
+        nuevo.setCilindraje(Integer.parseInt(cilindra));
+        nuevo.setKilometraje(Integer.parseInt(kilom));
+        nuevo.setCarroceria(carroce);
+        nuevo.setPeso(peso);
+        nuevo.setNumeroMotor(motor);
+        nuevo.setDimension(dimension);
+        nuevo.setIdMarca(m.readMarca(Integer.parseInt(marca)));
+        nuevo.setIdTipo(t.readTipo(Integer.parseInt(tipo)));
+        Persona p = new Persona();
+        PersonaDAO per = new PersonaDAO();
+        p = per.readPersona((String) request.getSession().getAttribute("cedula"));
+        nuevo.setIdPersona(p);
+        ve.create(nuevo);
+        j.crearFichaVehiculo(placa);
+        request.getRequestDispatcher("./MostrarDatosAgendaConfirAdmin.do").forward(request,response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

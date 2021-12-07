@@ -231,7 +231,7 @@ public class AtencionServicio implements Serializable, Comparable<AtencionServic
 
     @Override
     public int compareTo(AtencionServicio a) {
-        return (parseIntFecha(a.getFecha())).compareTo((parseIntFecha(fecha)));
+        return new Long(parseLongFecha(a.getFecha(), a.getHora())).compareTo((parseLongFecha(fecha, hora)));
     }
 
     public String formatoFecha(Date fecha) {
@@ -242,11 +242,20 @@ public class AtencionServicio implements Serializable, Comparable<AtencionServic
         return split2[0] + "/" + split2[1] + "/" + split2[2];
     }
 
-    public Integer parseIntFecha(Date fecha) {
+    public String formatoHora(Date fecha) {
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
+        String[] split = formatter.format(fecha).split(" ");
+        String[] split2 = split[2].split(":");
+        return split2[0] + ":" + split2[1];
+    }
+
+    public long parseLongFecha(Date fecha, Date hora) {
 
         String[] split = formatoFecha(fecha).split("/");
+        String[] split2 = formatoHora(hora).split(":");
 
-        return Integer.parseInt(split[2] + split[1] + split[0]);
+        return Long.parseLong(split[2] + split[1] + split[0] + split2[0] + split2[1]);
     }
 
 }

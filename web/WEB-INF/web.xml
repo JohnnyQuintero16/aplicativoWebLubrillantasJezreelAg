@@ -148,6 +148,18 @@
         <servlet-class>ControladorVistas.MostrarDatosAgendaConfirAdmin</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ProcesarAtencionServicio</servlet-name>
+        <servlet-class>ControladorVistas.ProcesarAtencionServicio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CargarAddVehiculo</servlet-name>
+        <servlet-class>ControladorVistas.CargarAddVehiculo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddVehiculo</servlet-name>
+        <servlet-class>ControladorVistas.AddVehiculo</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ObtenerHorarios</servlet-name>
         <servlet-class>ControladorVistas.ObtenerHorarios</servlet-class>
     </servlet>
@@ -280,6 +292,18 @@
         <url-pattern>/MostrarDatosAgendaConfirAdmin.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ProcesarAtencionServicio</servlet-name>
+        <url-pattern>/ProcesarAtencionServicio.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CargarAddVehiculo</servlet-name>
+        <url-pattern>/CargarAddVehiculo.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddVehiculo</servlet-name>
+        <url-pattern>/AddVehiculo.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ObtenerHorarios</servlet-name>
         <url-pattern>/ObtenerHorarios.do</url-pattern>
     </servlet-mapping>
@@ -296,6 +320,6 @@
         <url-pattern>/UpdatePassword.do</url-pattern>
     </servlet-mapping>
     <session-config>
-        <session-timeout>15</session-timeout>
+        <session-timeout>35</session-timeout>
     </session-config>
 </web-app>
