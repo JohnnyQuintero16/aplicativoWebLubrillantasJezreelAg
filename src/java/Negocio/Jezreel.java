@@ -1019,7 +1019,7 @@ public class Jezreel {
             if (pro.getEstado().equals("ACTIVO")) {
                 rta += pro.getCodigo() + ","
                         + pro.getDescripcion() + ","
-                        + pro.getMarca() + ","
+                        + pro.getIdMarca().getNombre() + ","
                         + pro.getTipo() + ","
                         + pro.getPrecioVenta() + ";";
             }
@@ -1035,7 +1035,8 @@ public class Jezreel {
         for (Servicio ser : servicioss) {
             if (ser.getEstado().equals("ACTIVO")) {
                 rta += ser.getId() + ","
-                        + ser.getNombre() + ";";
+                        + ser.getNombre() + "," 
+                        + ser.getTipoProdcuto() + ";";
             }
 
         }

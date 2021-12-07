@@ -4,6 +4,8 @@
     Author     : Acer
 --%>
 
+<%@page import="DTO.MarcaProducto"%>
+<%@page import="DAO.MarcaProductoDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DTO.Producto"%>
 <%@page import="java.util.List"%>
@@ -155,7 +157,7 @@
                         <tr>
                             <th class="enc" scope="row"><%=p.getCodigo()%></th>
                             <td><%=p.getNombre()%></td>
-                            <td><%=p.getMarca()%></td>
+                            <td><%=p.getIdMarca().getNombre()%></td>
                             <td><%=p.getTipo()%></td>
                             <td><%=p.getReferencia()%></td>
                             <td><%=p.getDescripcion()%></td>
@@ -241,8 +243,15 @@
 
                                     <div class="mb-3 ">
                                         <label for="exampleInputMarca" class="form-label">Marca</label>
-                                        <input type="text" class="form-control " name = "marca" id="exampleInputMarca" required>
-
+                                        <select class="form-select"  name = "marca" aria-label="Default select example" required>
+                                            <option value="">Selecciona un tipo:</option>
+                                            <%
+                                                MarcaProductoDAO mar = new MarcaProductoDAO();
+                                                for (MarcaProducto m : mar.read()) {
+                                            %>
+                                            <option value="<%=m.getId()%>"><%=m.getNombre()%></option>
+                                            <%}%>
+                                        </select>
                                     </div>
 
 
@@ -280,7 +289,7 @@
 
                                     <div class="mb-3">
                                         <label for="exampleInputCant" class="form-label">Tipo</label>
-                                        <select class="form-select"  name = "tipo"aria-label="Default select example" required>
+                                        <select class="form-select"  name = "tipo" aria-label="Default select example" required>
                                             <option value="">Selecciona un tipo:</option>
                                             <option value="1">ACEITES</option>
                                             <option value="2">FILTROS</option>
@@ -367,7 +376,15 @@
 
                                     <div class="mb-3 ">
                                         <label for="exampleInputMarca" class="form-label">Marca</label>
-                                        <input type="text" class="form-control " id="exampleInputMarca" name = "marca" required>
+                                        <select class="form-select"  name = "marca" aria-label="Default select example" required>
+                                            <option value="">Selecciona un tipo:</option>
+                                            <%
+                                                
+                                                for (MarcaProducto m : mar.read()) {
+                                            %>
+                                            <option value="<%=m.getId()%>"><%=m.getNombre()%></option>
+                                            <%}%>
+                                        </select>
 
                                     </div>
 
@@ -527,11 +544,10 @@
             modalBodyInput[0].value = txtDatos.codigo;
             modalBodyInput[2].value = datos[0].innerHTML;
             modalBodyInput[1].value = datos[3].innerHTML;
-            modalBodyInput[3].value = datos[1].innerHTML;
-            modalBodyInput[4].value = datos[5].innerHTML;
-            modalBodyInput[5].value = datos[6].innerHTML;
-            modalBodyInput[6].value = datos[7].innerHTML;
-            modalBodyInput[7].value = txtDatos.url;
+            modalBodyInput[3].value = datos[5].innerHTML;
+            modalBodyInput[4].value = datos[6].innerHTML;
+            modalBodyInput[5].value = datos[7].innerHTML;
+            modalBodyInput[6].value = txtDatos.url;;
             textA[0].value = datos[4].innerHTML;                
             for(let i = 0; i < modalBodyOption.length; i++){
             if(modalBodyOption[i].innerHTML === datos[2].innerHTML){
@@ -548,7 +564,7 @@
             console.log(datosRecipien);
             modalBodyInput = modalEliminarProducto.querySelector('.modal-footer').querySelectorAll('input');
             modalBodyInput[0].value = datosRecipien;
-            
+
             });
 
         </script>
