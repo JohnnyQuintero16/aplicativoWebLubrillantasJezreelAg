@@ -76,7 +76,7 @@ public class ProcesarAtencionServicio extends HttpServlet {
             
             response.sendRedirect("CitasAdmin.do");
         } catch (Exception e) {
-            System.err.println(e.getCause());
+            System.out.println(e.getStackTrace());
             //request.getRequestDispatcher("./jsp/adminRegis.jsp").forward(request, response);
         }
 

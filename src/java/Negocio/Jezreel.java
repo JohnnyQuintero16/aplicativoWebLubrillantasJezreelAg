@@ -947,8 +947,8 @@ public class Jezreel {
         fac.create(facturaNueva);
         return facturaNueva;
     }
-    
-    public void actualizarKmVehiculo(String placa, int kmActual){
+
+    public void actualizarKmVehiculo(String placa, int kmActual) {
         VehiculoDAO v = new VehiculoDAO();
         Vehiculo ve = v.readVehiculo(placa);
         ve.setKilometraje(kmActual);
@@ -1009,6 +1009,58 @@ public class Jezreel {
             detalle.setIdAtencionServicio(atencion);
             deta.create(detalle);
         }
-
     }
+
+    public String cargarProductosJS() {
+        String rta = "";
+        ProductoDAO productos = new ProductoDAO();
+        List<Producto> productoss = productos.read();
+        for (Producto pro : productoss) {
+            if (pro.getEstado().equals("ACTIVO")) {
+                rta += pro.getCodigo() + ","
+                        + pro.getDescripcion() + ","
+                        + pro.getIdMarca().getNombre() + ","
+                        + pro.getTipo() + ","
+                        + pro.getPrecioVenta() + ";";
+            }
+
+        }
+        return rta;
+    }
+
+    public String cargarServiciosJS() {
+        String rta = "";
+        ServicioDAO servicio = new ServicioDAO();
+        List<Servicio> servicioss = servicio.read();
+        for (Servicio ser : servicioss) {
+            if (ser.getEstado().equals("ACTIVO")) {
+                rta += ser.getId() + ","
+                        + ser.getNombre() + "," 
+                        + ser.getTipoProdcuto() + ";";
+            }
+
+        }
+        return rta;
+    }
+
+    public int getKilometrajeAtencionServicio(String idFicha) {
+        int kilo = 0;
+        AtencionServicioDAO atencion = new AtencionServicioDAO();
+        if (atencion.findAtencionFicha(idFicha) == null) {
+            VehiculoDAO ve = new VehiculoDAO();
+            Vehiculo v = ve.readVehiculo(idFicha);
+            kilo = v.getKilometraje();
+        } else {
+            List<AtencionServicio> atenciones = atencion.findAtencionFicha(idFicha);
+            Collections.sort(atenciones);
+            for (AtencionServicio servi : atenciones) {
+                System.out.println(" Fecha: " + servi.getFecha().toString() + " Vehculo: " + servi.getIdFichaTecnica().getIdVehiculo().getPlaca());
+                System.out.println(servi);
+            }
+            kilo = atenciones.get(0).getKilometraje();
+        }
+
+        return kilo;
+    }
+
 }

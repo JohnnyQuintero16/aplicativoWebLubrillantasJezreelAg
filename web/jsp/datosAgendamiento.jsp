@@ -108,93 +108,128 @@
                         <button class="btn btn-primary btn-lg" type="submit" value="Regresar" style="color: white;"> Añadir Vehiculo </button>
                     </div>
                 </form>
-
-
             </div>
             <div class="main" >
+                <section>
+                    <div class="row">
+                        <div class="container shadow p-4 mb-10 bg-body rounded-10 m-5 col-11">
+                            <h3 style="display: flex; align-items: center">Datos de la cita agendada por el cliente</h3>
+                            <hr style="color:#000" size="1" width="100%">
+                         <div class = "row">
+                            <div class="col-md-4">
+                                <div class="div">
+                                    <h5>No. Placa: <i style='color:blue'><%=request.getSession().getAttribute("idPlacaCita")%></i></h5>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="div">
+                                    <h5>Modelo: <i style='color:blue'><%=request.getSession().getAttribute("idModeloCita")%></i></h5>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="div">
+                                    <h5>Marca: <i style='color:blue'><%=request.getSession().getAttribute("idMarcaCita")%></i></h5>
+                                </div>
+                            </div>
+                            <hr style="color:#000" size="1" width="100%">
+                            <div class="col-md-4">
+                                <div class="div">
+                                    <h5>Año: <i style='color:blue'><%=request.getSession().getAttribute("idAnioCita")%></i></h5>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="div">
+                                    <h5>Kilometraje: <i style='color:blue'><%=request.getSession().getAttribute("idKilometraCita")%></i></h5>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="div">
+                                    <h5>Descripción <i style='color:blue'><%=request.getSession().getAttribute("idDescripcionCita")%></i></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    </div>
+                </section>
+
                 <form class="row " name="formdatos" action="<%=basePath%>MostrarServiProduAdmin.do" method="POST" > 
-                    <h3 style="display: flex; align-items: center">Datos de la cita agendada por el cliente</h3>
-                    <div class = "row">
-                        <div class="col-md-4">
-                            <div class="div">
-                                <h5>No. Placa: <i><%=request.getSession().getAttribute("idPlacaCita")%></i></h5>
-                            </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <!-- Select Vehiculo -->
+                             <section>
+                                <div class="container shadow p-4 mb-10 bg-body rounded-10 ms-5">
+                                    <div id="vehiculo"  class="col-12">
+                                        <h2>Escoge el vehiculo</h2>
+                                    </div>        
+                                <br><br>
+                                    <div class="col-12">
+                                        <select id="inputState" class="form-select">
+                                            <option selected required>Seleccione un vehiculo</option>
+                                            <%=request.getSession().getAttribute("getVehiculo").toString()%>
+                                        </select>
+                                    </div>
+                                </div>
+                            </section>
                         </div>
-                        <div class="col-md-4">
-                            <div class="div">
-                                <h5>Modelo: <i><%=request.getSession().getAttribute("idModeloCita")%></i></h5>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="div">
-                                <h5>Marca: <i><%=request.getSession().getAttribute("idMarcaCita")%></i></h5>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="div">
-                                <h5>Año: <i><%=request.getSession().getAttribute("idAnioCita")%></i></h5>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="div">
-                                <h5>Kilometraje: <i><%=request.getSession().getAttribute("idKilometraCita")%></i></h5>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="div">
-                                <h5>Descripción <i><%=request.getSession().getAttribute("idDescripcionCita")%></i></h5>
-                            </div>
-                        </div>
-                    </div>
+                        <div class="col-7">
+                            <!-- Vehiculo Datos -->
+                            <section>
+                                <div class="container shadow p-4 mb-10 ms-5 bg-body rounded-10 m-1 h-80 w-55">
+                                    <div id="datos"  class="col-md-6">
+                                        <h2>Datos del agendamiento</h2>
+                                    </div>        
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="divs">
+                                                <input hidden name="placa" value="" id="inputPlaca"/>
+                                                <h5>No. Placa:<template id = "placaV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="divs">
+                                                <h5>Modelo: <template id = "modeloV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="divs">
+                                                <input hidden name="km" value="" id="inputkm"/>
+                                                <h5>Kilometraje: <template id = "kmV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                    <div id="vehiculo"  class="col-md-6">
-                        <label  for="vehiculo" name="vehiculo" class="form-label">Escoja el Vehículo</label>  
-                        <br><br>
-                    </div>
-
-                    <div id="datos"class="col-md-6">
-                        <label   for="datos" name="datos" class="form-label">Datos del Agendamento </label>  
-                        <br><br>
-                    </div>
-
-                    <div class="col-md-6">
-                        <select id="inputState" class="form-select">
-                            <option selected required>Seleccione un vehiculo</option>
-                            <%=request.getSession().getAttribute("getVehiculo").toString()%>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="divs">
-                            <input hidden name="placa" value="" id="inputPlaca"/>
-                            <h5>No. Placa:<template id = "placaV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
-                        </div>
-                        <div class="divs">
-                            <h5>Modelo: <template id = "modeloV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
-                        </div>
-                        <div class="divs">
-                            <input hidden name="km" value="" id="inputkm"/>
-                            <h5>Kilometraje: <template id = "kmV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
+                                    <hr style="color:#000" size="1" width="100%">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="divs">
+                                                <h5>Marca: <template id = "marcaV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="divs" > 
+                                                <h5> Tipo de Vehiculo: <template id = "anioV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="color:#000" size="1" width="100%">
+                                    <div class="row">
+                                        <div class="divsb">
+                                            <input class="btn btn-primary btn-lg"  type="submit" value="Continuar">
+                                        </div>
+                                    </div>                            
+                                </div>
+                        </section>
                         </div>
                     </div>
-
-                    <div class="col-md-2">
-                        <div class="divs">
-                            <h5>Marca: <template id = "marcaV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
-                        </div>
-                        <div class="divs" > 
-                            <h5> Tipo de Vehiculo: <template id = "anioV" class = "tmp"><b><h5 class='msg' style='color:blue'></h5></b></template></h5>
-                        </div>
-                        <div class="divsb">
-                            <input class="btn btn-primary btn-lg"  type="submit" value="Continuar">
-                        </div>
-                    </div>
-
                 </form>
             </div>
 
         </section>
 
         <script src="<%=basePath%>/js/menuAdministrador.js"></script>
+        <script src="<%=basePath%>/js/datosAgendamiento.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
@@ -202,37 +237,8 @@
 
 
         <script>
-            var select = document.getElementById('inputState');
-            var cnt = 0;
-            select.addEventListener('change',()=>{
-            cnt++;
-            var optionSelec = select.options[select.selectedIndex].value;
-            cargarContenido(optionSelec);
-            });
             var vehiculos = '<%=request.getSession().getAttribute("vehiculos").toString()%>'.split(";");
-            function cargarContenido(option){
-            var data;
-            for(var i = 0; i < vehiculos.length; i++){
-            var arrVehiculo = vehiculos[i].split(",");
-            if(arrVehiculo[0] == option){
-            break;
-            }
-            }
-            var campos = document.getElementsByClassName('tmp');
-            var div = document.getElementsByClassName('divs');
-            document.getElementById('inputPlaca').value = option;
-            document.getElementById('inputkm').value = arrVehiculo[2];
-            if(cnt > 1){
-            var elem = document.getElementsByClassName('msg');
-            while(elem.length > 0){
-            elem[0].remove();
-            }
-            }
-            for(var i = 0; i < div.length; i++){
-            div[i].appendChild(campos[i].content.cloneNode(true));
-            document.getElementsByClassName('msg')[i].innerHTML = arrVehiculo[i];
-            }
-            }
+            datosJSP(vehiculos);
             $(document).ready(function () {
             $('#example').DataTable({
 

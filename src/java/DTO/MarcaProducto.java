@@ -25,67 +25,66 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Cristian
+ * @author johnny
  */
 @Entity
-@Table(name = "Rol")
+@Table(name = "marcaProducto")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r")
-    , @NamedQuery(name = "Rol.findById", query = "SELECT r FROM Rol r WHERE r.id = :id")
-    , @NamedQuery(name = "Rol.findByCargo", query = "SELECT r FROM Rol r WHERE r.cargo = :cargo")
-    , @NamedQuery(name = "Rol.findByDescripcion", query = "SELECT r FROM Rol r WHERE r.descripcion = :descripcion")})
-public class Rol implements Serializable {
-
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "cargo")
-    private String cargo;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 150)
-    @Column(name = "descripcion")
-    private String descripcion;
+    @NamedQuery(name = "MarcaProducto.findAll", query = "SELECT m FROM MarcaProducto m"),
+    @NamedQuery(name = "MarcaProducto.findById", query = "SELECT m FROM MarcaProducto m WHERE m.id = :id"),
+    @NamedQuery(name = "MarcaProducto.findByNombre", query = "SELECT m FROM MarcaProducto m WHERE m.nombre = :nombre")})
+public class MarcaProducto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Short id;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRol")
-    private List<Persona> personaList;
+    private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
+    @Column(name = "nombre")
+    private String nombre;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMarca")
+    private List<Producto> productoList;
 
-    public Rol() {
+    public MarcaProducto() {
     }
 
-    public Rol(Short id) {
+    public MarcaProducto(Integer id) {
         this.id = id;
     }
 
-    public Rol(Short id, String cargo, String descripcion) {
+    public MarcaProducto(Integer id, String nombre) {
         this.id = id;
-        this.cargo = cargo;
-        this.descripcion = descripcion;
+        this.nombre = nombre;
     }
 
-    public Short getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Short id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-
-    @XmlTransient
-    public List<Persona> getPersonaList() {
-        return personaList;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setPersonaList(List<Persona> personaList) {
-        this.personaList = personaList;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @XmlTransient
+    public List<Producto> getProductoList() {
+        return productoList;
+    }
+
+    public void setProductoList(List<Producto> productoList) {
+        this.productoList = productoList;
     }
 
     @Override
@@ -98,10 +97,10 @@ public class Rol implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Rol)) {
+        if (!(object instanceof MarcaProducto)) {
             return false;
         }
-        Rol other = (Rol) object;
+        MarcaProducto other = (MarcaProducto) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -110,23 +109,7 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.Rol[ id=" + id + " ]";
-    }
-
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+        return "DTO.MarcaProducto[ id=" + id + " ]";
     }
     
 }
