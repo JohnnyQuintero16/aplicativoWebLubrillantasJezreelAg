@@ -128,7 +128,7 @@
                             <tr>
                                 <td value = '<%=ser.getId()%>'><%=ser.getId()%></td>
                                 <td value = '<%=ser.getNombre()%>'><%=ser.getNombre()%></td>
-                                <td> <button type="button" value = "<%=i%>"  onclick="javascript:addServicio('<%=servi%>')" class="btn btn-primary btn-lg btnAddServicio" style="background-color: green !important;">+</button></td>                        
+                                <td> <button type="button" data-bs-id = "<%=ser.getId()%>"  onclick="javascript:addServicio('<%=servi%>')" class="btn btn-primary btn-lg btnAddServicio" style="background-color: green !important;">+</button></td>                        
                             </tr>
                             <%i++;
                                 }%>
@@ -162,15 +162,8 @@
                     <div class="col-12" style="padding-left: 0.5rem">
                         <h2 style="color: #001971;">Escoja el Producto:</h2>
                         <br>
-                        <select class = "selectPro" id="selectProductos">
+                        <select class = "selectPro" id="selectProductos" disabled = "true">
                             <option select readonly>Elegir Producto</option>
-                            <%
-                                List<Producto> productos = (List<Producto>) request.getSession().getAttribute("productos");
-                                for (Producto pro : productos) {
-                                    String value = pro.getCodigo() + "," + pro.getNombre();
-                            %>
-                            <option value="<%=value%>"><%=pro.getNombre()%></option>
-                            <%}%>
                         </select>
                         <p>Lista de productos con los que se llevo a cabo el servicio.</p>
                         <table class="table" >
@@ -180,11 +173,12 @@
                                 <th>cantidad</th>
                                 <th>Acción</th>
                             </tr>
-                            <tbody id="tablaBody">
+                            <tbody id="tablaBodyPro">
                             <template id="TablaProductosCliente">
                                 <tr>
                                     <td scope = "row">1</td>
                                     <td>Aceite Max</td>
+                                    <td><input type="number" id = "cntPro" value="0" placeholder="Cantidad"></td>
                                     <td> <button type="button" class="btn btn-primary btn-lg eliminarProducto" style="background-color: red !important;">X</button></td>
                                 </tr>
                             </template>
@@ -209,24 +203,23 @@
                 </div>
                 </div>
                 
-                    <div class="row shadow rounded-3 bg-body m-auto" style=" background-color: white; width: 95%;  overflow-x: hidden; padding: 2rem;">
+                    <div class="row shadow rounded-3 bg-body m-auto" style=" background-color: #ffffff; width: 95%;  overflow-x: hidden; padding: 2rem; display: flex; align-items: center; justify-content: center;">
                         <div class="search-container col-4" style="padding: 1rem;"> <br>                        
                             <h4 style="color: #001971;">Ultimo kilometraje registrado del vehiculo</h4>
-                            <input type="text" id="kilometraje" value='<%=request.getSession().getAttribute("km")%>' readonly> <br>
+                            <input type="text" id="kilometraje" value='<%=request.getSession().getAttribute("km")%>' readonly style="background-color: rgb(219, 219, 219); text-align: center;"> <br>
                             <br>
                             <h4 style="color: #001971;">Por favor digite el kilometraje del vehiculo</h4>
-                            <p>Por favor digite el kilometraje del vehiculo:</p>
-                            <input type="number" id="kilometraje" name="kilometraje" placeholder="kilometraje"  required min="0"> <br> <br>
+                            <input type="number" id="kilometraje" name="kilometraje" placeholder="kilometraje"  required min="0" text-align: center> <br> <br>
                         </div>
-                        <div class="search-container col-4 " style="padding: 1rem;"> <br> 
+                        <div class="search-container col-3 " style="padding: 1rem;"> <br> 
                             <h4 style="color: #001971;">Escoja el Mecánico:</h4>
                             <select style=" background-color: rgb(214, 205, 205);"  name="mecanico">
                                 <%=request.getSession().getAttribute("mecanicos").toString()%>
                             </select>
                         </div>                        
-                        <div class="col-4" style="padding-left: 3rem">
+                        <div class="col-5" style="padding-left: 3rem">
                             <h4 style="color: #001971;">Descripción del servicio realizado</h4>
-                            <textarea id="txtarea" name="descri" rows="3" cols="20" required=""></textarea>
+                            <textarea id="txtarea" name="descri" rows="5" cols="25" required=""></textarea>
                         </div>
     
                     </div>
@@ -284,71 +277,12 @@
             }
             );
             
-            } );
+            } );            
             
-            
-
-
-            function eliminarServicioLista(fila){
-            console.log(fila.target)
-            console.log("Entra a eliminaR");
-            console.log(fila);
-            /*btn[arr[2]].innerHTML = "-";
-            btn[arr[2]].style.backgroundColor = "#ff1";
-            btn[arr[2]].disabled = true;,*/
-            }
-
-            //Productos
-            const padreTemplate = document.getElementById("TablaProductosCliente").content;
-            const hijoTr = padreTemplate.querySelector("tr");
-            const hijoTd = hijoTr.querySelectorAll("td");
-            let cntPro = 0;
-
-            $(".selectPro").on("select2:select", function (e) { 
-            
-            var select_val = $(e.currentTarget).val();
-            cargarProductos(select_val);
+            $(".selectPro").on("select2:select", function (e) {
+                var select_val = $(e.currentTarget).val();
+                cargarProductos(select_val);
             });
-            let idsProducto = [];
-            function cargarProductos(value){
-            var valor = value.split(",");
-            let existe = idsProducto.indexOf(valor[0]);
-            if(existe == -1){
-            cntPro++;
-            idsProducto.push(valor[0]);
-            const fragment = document.createDocumentFragment();    
-            let input = document.createElement("INPUT");
-            input.setAttribute("name", "idp");
-            input.setAttribute("value", valor[0]);
-            input.setAttribute("style","display: none");
-
-            hijoTd[0].innerHTML = valor[0];
-            hijoTd[0].setAttribute("value",valor[0]);
-            hijoTd[0].setAttribute("name",valor[0]);
-            hijoTd[1].innerHTML = valor[1];
-            hijoTd[1].setAttribute("value",valor[1]);
-            hijoTr.appendChild(hijoTd[0]);
-            hijoTr.appendChild(hijoTd[1]);
-            hijoTr.appendChild(input);
-            const clone = hijoTr.cloneNode(true);
-            fragment.appendChild(clone);
-
-            document.getElementById("tablaBody").appendChild(fragment);
-            }else{
-            alert("Ya tiene seleccionado este producto, elija otro");
-            }
-            }
-            function eliminarElement(){
-                element = document.getElementById(cntPro);
-                
-                function eliminarElemento(id){	
-                padre = element.parentNode;
-                
-                padre.removeChild(element);
-                cntPro--;
-                }
-            }
-            
             function verificarCantidad(){
             let error = '<%=request.getSession().getAttribute("error")%>';
             console.log(error);

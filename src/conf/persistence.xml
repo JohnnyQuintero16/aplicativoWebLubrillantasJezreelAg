@@ -14,8 +14,9 @@
     <class>DTO.Cita</class>
     <class>DTO.DetallesProducto</class>
     <class>DTO.Marca</class>
-    <class>DTO.Servicio</class>
     <class>DTO.Producto</class>
+    <class>DTO.MarcaProducto</class>
+    <class>DTO.Servicio</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://35.171.9.229:3306/bdJezreel?serverTimeZone=UTC"/>
