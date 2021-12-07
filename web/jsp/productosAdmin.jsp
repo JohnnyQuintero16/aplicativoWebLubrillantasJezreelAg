@@ -92,13 +92,13 @@
                     <span class="tooltip">Productos</span>
                 </li>
 
-                <!--<li>
-                  <a href="#">
+                  <li>
+                  <a href="<%=basePath%>jsp/reportesAdmin.jsp">
                     <i class="fas fa-chart-pie"></i>
-                    <span class="links_name">Reportes</span>
+                    <span class="links_name">Reportes y Estadísticas</span>
                   </a>
-                  <span class="tooltip">Reportes</span>
-                </li> -->
+                  <span class="tooltip">Reportes y Estadísticas</span>
+                </li> 
 
 
                 <li class="profile">
