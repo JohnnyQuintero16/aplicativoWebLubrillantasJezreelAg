@@ -282,7 +282,7 @@
         $(document).ready(function () {
             
             $('#example').DataTable({
-                "order": [[5, "asc"]],
+                "order": [[5, "desc"]],
                 "language": {
                     "lengthMenu": "Mostrar_MENU_registros",
                     "zeroRecords": "No se encontraron resultados",

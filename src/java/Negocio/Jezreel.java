@@ -27,6 +27,7 @@ import DAO.ProductoDAO;
 import DAO.ServicioDAO;
 import DAO.TipoDAO;
 import DAO.main;
+import DTO.Calificacion;
 import DTO.Cita;
 import DTO.Marca;
 import DTO.Persona;
@@ -1060,6 +1061,57 @@ public class Jezreel {
         }
 
         return kilo;
+    }
+
+    public int getAtendidas() {
+        return this.cuenta("ATENDIDO");
+    }
+    
+    public int getCanceladas() {
+       return this.cuenta("CANCELADA");
+    }
+    
+    private int cuenta(String estado){
+    
+        CitaDAO c = new CitaDAO();
+        List<Cita> citas = c.read();
+        int cont = 0;
+        for (Cita ci : citas) {
+            if(ci.getEstado().equals(estado))
+                cont++;
+        }
+        
+        return cont;
+    }
+
+    public String getCalificacionesPorPuntaje() {
+
+        int cal [] = new int[5];
+        CalificacionDAO ca = new CalificacionDAO();
+        List<Calificacion> calificaciones = ca.read();
+        for (Calificacion calif : calificaciones) {
+            cal[calif.getValor()-1]++;
+        }
+        return cal[0]+","+cal[1]+","+cal[2]+","+cal[3]+","+cal[4];
+    }
+
+    public String getMesesEst() {
+
+        int meses [] = new int[12];
+        CitaDAO ci = new CitaDAO();
+        List<Cita> citas = ci.getCitasAtendidasAnioActual();
+        Calendar calendar = Calendar.getInstance();
+        for (Cita cit : citas) {
+            calendar.setTime(cit.getFecha());
+            meses[calendar.get(Calendar.MONTH)]++;
+        }
+        return meses[0]+","+meses[1]+","+meses[2]+","+meses[3]+","+meses[4]+","+meses[5]+","+meses[6]+","
+                +meses[7]+","+meses[8]+","+meses[9]+","+meses[10]+","+meses[11];
+    }
+    
+    private String getMes(Date fecha){
+        SimpleDateFormat sdf = new SimpleDateFormat("MM");
+        return sdf.format(fecha);
     }
 
 }

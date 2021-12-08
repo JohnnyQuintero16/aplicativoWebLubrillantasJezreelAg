@@ -11,6 +11,9 @@ import Persistencia.CitaJpaController;
 import Persistencia.exceptions.IllegalOrphanException;
 import Persistencia.exceptions.NonexistentEntityException;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -96,6 +99,27 @@ public class CitaDAO {
         //AQUI FALTA RECIBIR UNA ATENCION
         c.setEstado("ATENDIDO");
         this.update(c);
+    }
+    
+    public List<Cita> getCitasAtendidasAnioActual(){
+    
+        List<Cita> citas = this.read();
+        List<Cita> citasAtendidas = new ArrayList<Cita>();
+        Date fechaActual = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()); //hora actual
+        int anioActual = getAnio(fechaActual);
+        
+        for (Cita ci : citas) {
+            
+            if (ci.getEstado().equals("ATENDIDO") && (this.getAnio(ci.getFecha())==anioActual)) {
+                citasAtendidas.add(ci);
+            }
+        }
+        return citasAtendidas;
+    }
+    
+    private int getAnio(Date fecha){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        return Integer.parseInt(sdf.format(fecha));
     }
 
     public List<Cita> citasUsuario(String cedula) {
