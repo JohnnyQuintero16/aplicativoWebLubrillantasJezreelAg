@@ -164,7 +164,6 @@
             <th class="enc" scope="col">Correo Electronico</th>
             <th class="enc" scope="col">Descripción</th>
             <th class="enc" scope="col">Fecha / Hora</th>
-            <th class="enc" scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -177,16 +176,6 @@
             <td>XXX54, Runner, Toyota, 2018, 150, Cambio de aceite</td>
             <td>29/09/2021 4:50 p.m</td>
             <!-- Acciones: editar y cancelar. -->
-            <td>
-              <div class="icons-acciones">
-                <div>
-                  <i class="fas fa-edit"></i>
-                </div>
-                <div>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </div>
-            </td>
           </tr>
 
           <tr>
@@ -197,17 +186,6 @@
             <td>casadiegosgomezjs@ufps.edu.co</td>
             <td>XXX54, Runner, Toyota, 2018, 150, Cambio de aceite</td>
             <td>29/09/2021 4:50 p.m</td>
-            <!-- Acciones: editar y cancelar. -->
-            <td>
-              <div class="icons-acciones">
-                <div>
-                  <i class="fas fa-edit"></i>
-                </div>
-                <div>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </div>
-            </td>
           </tr>
         </tbody>
       </table>
