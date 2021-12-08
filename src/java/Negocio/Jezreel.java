@@ -398,11 +398,12 @@ public class Jezreel {
                                     if(ci.getEstado().equals("ATENDIDO")){
                 
                                         rta+="<td class=\"text-center\"> \n"
-                                +            "<form action=\"MostrarFichaTecnica.do\">"//AQUI PONER LA PAGINA DE FICHA TECNICA
-                                            +"<input name=\"idCita\" hidden value=\""+ci.getId()+"\"/>"
-                                    +        "<button class=\"btn btn-primary\" type=\"submit\" > Ver</button>"
-                                +           "</form>\n" +
-                                            "</td>\n";
+                                            + "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" fill=\"currentColor\" class=\"bi bi-journal-check\" viewBox=\"0 0 16 16\">\n" +
+                                                "  <path fill-rule=\"evenodd\" d=\"M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z\"/>\n" +
+                                                "  <path d=\"M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z\"/>\n" +
+                                                "  <path d=\"M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z\"/>\n" +
+                                                "</svg>\n"
+                                         +   "</td>\n";
                                     }
                                     if(ci.getEstado().equals("CANCELADA")){
                                         rta+="<td class=\"text-center\">CITA CANCELADA\n"
@@ -466,7 +467,6 @@ public class Jezreel {
     }
     //PARSEO LA SEMANA CON LAS HORAS A STRING PARA MANIPULARLO EN EL JS
     public String cargarHorarios(){
-        
         String rta="";
         ArrayList<Dia> semana = this.cargarHorario();
         
@@ -538,7 +538,7 @@ public class Jezreel {
         Calendar calendar = Calendar.getInstance();
         //MODELO DE FECHA QUE QUIERO
         SimpleDateFormat formatearFecha = new SimpleDateFormat("yyyy-MM-dd", new Locale("es_ES"));
-        if(dia.equals("DOMINGO")){//O ESTA FUERA DEL HORARIO LABORAL
+        if(dia.equals("SUNDAY")){//O ESTA FUERA DEL HORARIO LABORAL
              //COMIENZO A BUSCAR A PARTIR DEL LUNES en adelante
              calendar.add(Calendar.DAY_OF_WEEK, 1); //AQUI OBTENGO EL DIA(domingo) Y LE SUMO 1
              Date fechaManana = calendar.getTime();

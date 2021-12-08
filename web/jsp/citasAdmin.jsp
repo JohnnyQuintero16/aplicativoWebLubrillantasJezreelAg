@@ -207,7 +207,7 @@
                     </div>
                     <div class="modal-footer">
                      
-                        <form name="confirmar1" action="./ConfirmaAsistenciaAdmin.do">
+                        <form name="confirmar1" id="confirmar1" action="./ConfirmaAsistenciaAdmin.do">
                             <input hidden name="respuesta" value="si"/>
                             <input name="idCi" hidden id="optiona" value="">
                             
@@ -238,9 +238,8 @@
                 asunto = "SERVICIO EN PROCESO";
                 cuerpo = "📣 Hola desde Lubrillantas Jezreel queremos avisarte que tu servicio esta en proceso 🔩 🔧\n\n\
                        pronto recibiras un correo cuando tu servicio este listo!";
-                alert('entre');
-                mail(correo,asunto,cuerpo);
-                document.confirmar1.submit();
+                alert('entre a proceso');
+                mail(correo,asunto,cuerpo,'confirmar1');
             }
             else{
                 arr = llamado.split(",");
@@ -249,13 +248,13 @@
                 cuerpo = "📣 Hola desde Lubrillantas Jezreel queremos avisarte que tu servicio ha finalizado\n\n\
                        ya puedes acercarte por tu vehiculo 🔩 🔧🚗!";
                alert('entre a finalizado');
-               mail(correo,asunto,cuerpo);
-                document.getElementById('confirma'+arr[1]).submit();
+               mail(correo,asunto,cuerpo,'confirma'+arr[1]);
+                
             }
             
         }
-        function mail(correo,asunto,cuerpo){
-            
+        function mail(correo,asunto,cuerpo,formul){
+            alert('se enviara un mensaje a '+correo);
             Email.send({
                 Host: "smtp.gmail.com",
                 Username: 'lubrillantasjezreel@gmail.com',
@@ -265,7 +264,7 @@
                 Subject: asunto,
                 Body: cuerpo,
                        
-            }).then((message) => alert("se envio el mensaje"));
+            }).then((message) => document.getElementById(formul).submit());
         }
         
             
