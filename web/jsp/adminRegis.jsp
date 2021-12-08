@@ -85,6 +85,14 @@
                     </a>
                     <span class="tooltip">Productos</span>
                 </li>
+                
+                 <li>
+                  <a href="<%=basePath%>jsp/reportesAdmin.jsp">
+                    <i class="fas fa-chart-pie"></i>
+                    <span class="links_name">Reportes y Estadísticas</span>
+                  </a>
+                  <span class="tooltip">Reportes y Estadísticas</span>
+                </li> 
 
                 <li class="profile">
                     <a href="<%=basePath%>cerrarSesion.do">
@@ -102,144 +110,143 @@
                     <h1 style="color:blue">Cliente: <%=request.getSession().getAttribute("usuarioCliente").toString()%></h1> 
                 </div>
 
-                <div class="boton">
-                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1">Salir</button>
-                </div>
-
             </div>
 
-
-            <div class="row" style=" background-color: white; padding-top: 1rem; width: 100%; ">
-                <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
-                    <h2 style="color: #001971;">Escoja los servicio:</h2>
-                    <p>Lista de servicios: </p>
-                    <table class="table" >
-                        <tr>
-                            <th>id</th>
-                            <th>Nombre del servicio</th>
-                            <th>Accion</th>
-                        </tr>
-
-                        <%
-                            List<Servicio> servicios = (List<Servicio>) request.getSession().getAttribute("servicios");
-                            for (Servicio ser : servicios) {
-                        %>
-                        <tr>
-                            <td><%=ser.getId()%></td>
-                            <td><%=ser.getNombre()%></td>
-                            <td> <button type="button" value = "<%=ser.getId()%>" id="btnMasServicio" class="btn btn-primary btn-lg" style="background-color: green !important;">+</button></td>                        
-                        </tr>
-                        <%}%>
-                    </table>
-
-                </div>
-
-
-                <div class="search-container col-12 col-sm-6 col-md-6 col-lg-6" style="padding: 1rem;"> <br>
-                    <p>Servicios seleccionados: </p>
-                    <table class="table" >
-                        <tr>
-                            <th>id</th>
-                            <th>Nombre del servicio</th>
-                            <th>Accion</th>
-                        </tr>
-                        <template id="TablaServicioCliente">
-                        <tr>
-                            <td></td>
-                            <td>Montallantas</td>
-                            <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: red !important;">-</button></td>                        
-                        </tr>
-                        </template>
-                    </table>
-
-
-                </div>
-
-
-
-            </div>
-
-
-
-
-            <div class="row" style=" background-color: white; padding-top: 1rem; width: 100%;">
-                <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
-                    <h2 style="color: #001971;">Escoja el Producto:</h2>
-                    <p>Lista de productos con los que se llevo a cabo el servicio.</p>
-
-                    <table class="table" >
-                        <tr>
-                            <th>id</th>
-                            <th>Nombre Producto</th>
-                            <th>Accion</th>
-                        </tr>
-                        <template id="TablaProductosCliente">
+            <form action = "<%=basePath%>ProcesarAtencionServicio.do" method = "POST">
+                <div class="row shadow m-auto rounded-3 bd-body" style=" background-color: white; padding: 2rem; width: 95%; overflow-x: hidden;">
+                    <div class="col-6" style="padding-left: 1rem; border-right: 1px solid #323;">
+                        <h2 style="color: #001971;">Escoja los servicio:</h2>
+                        <p>Lista de servicios: </p>
+                        <table class="table" >
                             <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td> <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: red !important;">X</button></td>                        
+                                <th>id</th>
+                                <th>Nombre del servicio</th>
+                                <th>Accion</th>
                             </tr>
-                        </template>
-                    </table>
 
-                </div>
+                            <%
+                                List<Servicio> servicios = (List<Servicio>) request.getSession().getAttribute("servicios");
+                                String servi = "";
+                                int i = 0;
+                                for (Servicio ser : servicios) {
+                                    servi = ser.getId() + ","
+                                            + ser.getNombre() + ","
+                                            + i + ";";
+                            %>
+                            <tr>
+                                <td value = '<%=ser.getId()%>'><%=ser.getId()%></td>
+                                <td value = '<%=ser.getNombre()%>'><%=ser.getNombre()%></td>
+                                <td> <button type="button" data-bs-id = "<%=ser.getId()%>"  onclick="javascript:addServicio('<%=servi%>')" class="btn btn-primary btn-lg btnAddServicio" style="background-color: green !important;">+</button></td>                        
+                            </tr>
+                            <%i++;
+                                }%>
+                        </table>
 
-
-                <div class="search-container col-12 col-sm-6 col-md-6 col-lg-6" style="padding: 1rem;"> <br>
-                    <select class = "selectPro" name = "pro">
-                        <option value="0">Elegir Producto</option>
-                        <%
-                            List<Producto> productos = (List<Producto>) request.getSession().getAttribute("productos");
-                            for (Producto pro : productos) {
-                        %>
-                        <option value="<%=pro.getCodigo()%>"><%=pro.getNombre()%></option>
-                        <%}%>
-                    </select>
-                    <br><br>
-                    <p>Por favor digite el kilometraje del vehiculo:</p>
-                    <input type="number" id="kilometraje" name="kilometraje" placeholder="kilometraje"  required> <br> <br>
-
-
-                </div>
-
-
-
-            </div> <br><br>
-
-            <div class="row" style="margin-bottom: 4rem; width: 100%;" >
-
-
-
-                <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
-                    <h2 style="color: #001971;">Escoja el Mecánico:</h2>
-                    <img src="../img/vehicle.png" alt="LogoA"  width="140px" height="120px" >
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3" style="padding-top: 0.5rem; ">
-                    <select style=" background-color: rgb(214, 205, 205);" >
-                        <option value="0">-</option> 
-                        <option value="1" style="background-color: rgb(241, 233, 233);">Sebastian Casadiegos</option> 
-                        <option value="2">Cristian Mendoza</option> 
-                        <option value="3" style="background-color: rgb(241, 233, 233);">Jeferson Muriel</option> 
-                        <option value="4">Jhoel Castilla</option> 
-
-                    </select> 
-
-                    <div style="margin-top: 4rem;">
-                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: rgb(235, 71, 71) !important;">Cancelar</button>
-                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: #001971  !important;">Agregar</button>
                     </div>
-                </div>   
 
 
+                    <div class="search-container col-6" style="padding: 1rem;"> <br>
+                        <p>Servicios seleccionados: </p>
+                        <table class="table" >
+                            <tr>
+                                <th>id</th>
+                                <th>Nombre del servicio</th>
+                                <th>Accion</th>
+                            </tr>
+                            <tbody id = "TablaServicioCliente">
+                                <template id = "template-ServicioSelect">
+                                    <tr>
+                                        <td scope="row">1</td>
+                                        <td>Montallantas</td>
+                                        <td> <button type="button" class="btn btn-primary btn-lg eliminarServicio" style="background-color: red !important;">-</button></td>                        
+                                        </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-            </div>
-
-
-
-
+                <div class="row shadow rounded-3 bg-body m-auto my-3" style=" background-color: white; width: 95%;  overflow-x: hidden; padding: 2rem;">
+                    <div class="col-12" style="padding-left: 0.5rem">
+                        <h2 style="color: #001971;">Escoja el Producto:</h2>
+                        <br>
+                        <select class = "selectPro" id="selectProductos" disabled = "true">
+                            <option select readonly>Elegir Producto</option>
+                        </select>
+                        <p>Lista de productos con los que se llevo a cabo el servicio.</p>
+                        <table class="table" >
+                            <tr>
+                                <th>id</th>
+                                <th>Nombre</th>
+                                <th>cantidad</th>
+                                <th>Acción</th>
+                            </tr>
+                            <tbody id="tablaBodyPro">
+                            <template id="TablaProductosCliente">
+                                <tr>
+                                    <td scope = "row">1</td>
+                                    <td>Aceite Max</td>
+                                    <td><input type="number" id = "cntPro" value="0" placeholder="Cantidad"></td>
+                                    <td> <button type="button" class="btn btn-primary btn-lg eliminarProducto" style="background-color: red !important;">X</button></td>
+                                </tr>
+                            </template>
+                            </tbody>
+                            <tfoot>
+                                <tr id = "footer">
+                                    <th scope="row" colspan="4">No se ha seleccionado productos, seleccione!</th>
+                                </tr>
+                            </tfoot>
+                            <template id="template-footer">
+                                <th scope="row" colspan="3">Costo De Los Productos</th>
+                                <td class="font-weight-bold" colspan="2">$ <span>5000</span></td>
+                                <br>
+                                <p>Por favor digite descuento (Se aplica al total de los productos)</p>
+                                <input type="number" id="descuento" name="descuento" placeholder="Descuento" value = "0" min="0" max="100"> 
+                                <br>
+                                <th scope="row" colspan="3">Costo De Los Productos Con Descuento</th>
+                                <td class="font-weight-bold" colspan="2">$ <span>5000</span></td>
+                            </template>
+                        </table>
+                    </div>
+                </div>
+                </div>
+                
+                    <div class="row shadow rounded-3 bg-body m-auto" style=" background-color: #ffffff; width: 95%;  overflow-x: hidden; padding: 2rem; display: flex; align-items: center; justify-content: center;">
+                        <div class="search-container col-4" style="padding: 1rem;"> <br>                        
+                            <h4 style="color: #001971;">Ultimo kilometraje registrado del vehiculo</h4>
+                            <input type="text" id="kilometraje" value='<%=request.getSession().getAttribute("km")%>' readonly style="background-color: rgb(219, 219, 219); text-align: center;"> <br>
+                            <br>
+                            <h4 style="color: #001971;">Por favor digite el kilometraje del vehiculo</h4>
+                            <input type="number" id="kilometraje" name="kilometraje" placeholder="kilometraje"  required min="0" text-align: center> <br> <br>
+                        </div>
+                        <div class="search-container col-3 " style="padding: 1rem;"> <br> 
+                            <h4 style="color: #001971;">Escoja el Mecánico:</h4>
+                            <select style=" background-color: rgb(214, 205, 205);"  name="mecanico">
+                                <%=request.getSession().getAttribute("mecanicos").toString()%>
+                            </select>
+                        </div>                        
+                        <div class="col-5" style="padding-left: 3rem">
+                            <h4 style="color: #001971;">Descripción del servicio realizado</h4>
+                            <textarea id="txtarea" name="descri" rows="5" cols="25" required=""></textarea>
+                        </div>
+    
+                    </div>
+                    <div class="row shadow rounded-3 bg-body m-auto" style=" background-color: white; width: 95%;  overflow-x: hidden">
+                        <div class="col-6 " style="padding-top: 1rem; display: flex; justify-content: center; align-items: center ">
+                            <div style="margin-bottom: 1rem;">
+                                <button type="reset" class="btn btn-primary btn-lg"  style="background-color: rgb(235, 71, 71) !important; width: 20rem">Cancelar</button>
+                            </div>
+                        </div>    
+                        <div class="col-6 " style="padding-top: 1rem; display: flex; justify-content: center; align-items: center ">
+                            <div style="margin-bottom: 1rem;">
+                                <input type="submit" class="btn btn-primary btn-lg"  style="background-color: #001971  !important;  width: 20rem;" value='Agregar'>
+                            </div>
+                        </div>    
+                    </div>
+            </form>
         </section>
         <script src="<%=basePath%>js/menuAdministrador.js"></script>
+        <script src="<%=basePath%>js/adminRegis.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
@@ -248,9 +255,14 @@
 
 
         <script>
-            $(document).ready(function() {
-            $('.selectPro').select2();
+            let serviciosJavaS = '<%=request.getSession().getAttribute("serviciosJS").toString()%>'.split(";");
+            let productoJavaS = '<%=request.getSession().getAttribute("productosJS").toString()%>'.split(";");
+            infoDataJSP(serviciosJavaS, productoJavaS);
+
+            $(document).ready(function () {
+            $(".selectPro").select2();
             });
+
             $(document).ready(function() {
             $('#example').DataTable({
 
@@ -272,18 +284,23 @@
 
             }
             );
-            } );
-            const btn = document.getElementById('btnMasServicio');
-            btn.addEventListener('click',(event)=>{
-                cargarItems(event.target.parentNode.parentNode);
+            
+            } );            
+            
+            $(".selectPro").on("select2:select", function (e) {
+                var select_val = $(e.currentTarget).val();
+                cargarProductos(select_val);
             });
-            function cargarItems(producto){
-                console.log(producto);
+            function verificarCantidad(){
+            let error = '<%=request.getSession().getAttribute("error")%>';
+            console.log(error);
+            if(error == "erroPro"){
+            alert("No hay suficientes productos");
             }
-        </script>
-
-        <!-- Validación de formulario -->
-        <script>
+            }
+            verificarCantidad();
+            
+            
             (function () {
             'use strict'
 

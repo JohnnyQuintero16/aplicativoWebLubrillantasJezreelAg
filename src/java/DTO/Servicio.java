@@ -26,26 +26,21 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author USUARIO
+ * @author johnny
  */
 @Entity
 @Table(name = "Servicio")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Servicio.findAll", query = "SELECT s FROM Servicio s")
-    , @NamedQuery(name = "Servicio.findById", query = "SELECT s FROM Servicio s WHERE s.id = :id")
-    , @NamedQuery(name = "Servicio.findByNombre", query = "SELECT s FROM Servicio s WHERE s.nombre = :nombre")
-    , @NamedQuery(name = "Servicio.findByDescripcion", query = "SELECT s FROM Servicio s WHERE s.descripcion = :descripcion")
-    , @NamedQuery(name = "Servicio.findByDuracion", query = "SELECT s FROM Servicio s WHERE s.duracion = :duracion")
-    , @NamedQuery(name = "Servicio.findByEstado", query = "SELECT s FROM Servicio s WHERE s.estado = :estado")})
+    @NamedQuery(name = "Servicio.findAll", query = "SELECT s FROM Servicio s"),
+    @NamedQuery(name = "Servicio.findById", query = "SELECT s FROM Servicio s WHERE s.id = :id"),
+    @NamedQuery(name = "Servicio.findByNombre", query = "SELECT s FROM Servicio s WHERE s.nombre = :nombre"),
+    @NamedQuery(name = "Servicio.findByDescripcion", query = "SELECT s FROM Servicio s WHERE s.descripcion = :descripcion"),
+    @NamedQuery(name = "Servicio.findByDuracion", query = "SELECT s FROM Servicio s WHERE s.duracion = :duracion"),
+    @NamedQuery(name = "Servicio.findByEstado", query = "SELECT s FROM Servicio s WHERE s.estado = :estado"),
+    @NamedQuery(name = "Servicio.findByTipoProdcuto", query = "SELECT s FROM Servicio s WHERE s.tipoProdcuto = :tipoProdcuto")})
 public class Servicio implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 60)
@@ -71,6 +66,18 @@ public class Servicio implements Serializable {
     @Size(min = 1, max = 15)
     @Column(name = "estado")
     private String estado;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 40)
+    @Column(name = "tipoProdcuto")
+    private String tipoProdcuto;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idServicio")
     private List<DetallesServicio> detallesServicioList;
 
@@ -81,13 +88,14 @@ public class Servicio implements Serializable {
         this.id = id;
     }
 
-    public Servicio(Integer id, String nombre, String descripcion, String imgUrl, short duracion, String estado) {
+    public Servicio(Integer id, String nombre, String descripcion, String imgUrl, short duracion, String estado, String tipoProdcuto) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imgUrl = imgUrl;
         this.duracion = duracion;
         this.estado = estado;
+        this.tipoProdcuto = tipoProdcuto;
     }
 
     public Integer getId() {
@@ -96,6 +104,42 @@ public class Servicio implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+
+    @XmlTransient
+    public List<DetallesServicio> getDetallesServicioList() {
+        return detallesServicioList;
+    }
+
+    public void setDetallesServicioList(List<DetallesServicio> detallesServicioList) {
+        this.detallesServicioList = detallesServicioList;
+    }
+
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Servicio)) {
+            return false;
+        }
+        Servicio other = (Servicio) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "DTO.Servicio[ id=" + id + " ]";
     }
 
     public String getNombre() {
@@ -138,38 +182,12 @@ public class Servicio implements Serializable {
         this.estado = estado;
     }
 
-    @XmlTransient
-    public List<DetallesServicio> getDetallesServicioList() {
-        return detallesServicioList;
+    public String getTipoProdcuto() {
+        return tipoProdcuto;
     }
 
-    public void setDetallesServicioList(List<DetallesServicio> detallesServicioList) {
-        this.detallesServicioList = detallesServicioList;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Servicio)) {
-            return false;
-        }
-        Servicio other = (Servicio) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "DTO.Servicio[ id=" + id + " ]";
+    public void setTipoProdcuto(String tipoProdcuto) {
+        this.tipoProdcuto = tipoProdcuto;
     }
 
 }

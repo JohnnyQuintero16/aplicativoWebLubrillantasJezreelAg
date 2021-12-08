@@ -5,6 +5,7 @@
  */
 package ControladorVistas;
 
+import DAO.MarcaProductoDAO;
 import DAO.ProductoDAO;
 import DTO.Producto;
 import java.io.IOException;
@@ -56,7 +57,8 @@ public class ActualizarProducto extends HttpServlet {
             nuevo.setCodigo(request.getParameter("codigo"));
             nuevo.setNombre(request.getParameter("nombre"));
             nuevo.setReferencia(request.getParameter("referencia"));
-            nuevo.setMarca(request.getParameter("marca"));
+            MarcaProductoDAO mar = new MarcaProductoDAO();
+            nuevo.setIdMarca(mar.readMarcaProducto(Integer.parseInt(request.getParameter("marca"))));
             nuevo.setPrecioUnitario(Double.parseDouble(request.getParameter("precioUnitario")));
             nuevo.setPrecioVenta(Double.parseDouble(request.getParameter("precioVenta")));
             nuevo.setCantidad(Integer.parseInt(request.getParameter("cantidad")));
@@ -64,6 +66,7 @@ public class ActualizarProducto extends HttpServlet {
             nuevo.setImgUrl(request.getParameter("url"));
             nuevo.setDescripcion(request.getParameter("descripcion"));
             nuevo.setEstado("ACTIVO");
+            System.out.println(nuevo);
             pro.update(nuevo);
             response.sendRedirect("MostrarProductosAdmin.do");
         } catch (Exception e) {

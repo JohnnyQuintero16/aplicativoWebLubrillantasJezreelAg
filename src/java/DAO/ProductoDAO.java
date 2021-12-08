@@ -88,5 +88,11 @@ public class ProductoDAO {
         }
         return activos;
     }
+    
+    public boolean existeProductoInactivo(String codigo){
+        if(this.readProducto(codigo).getEstado().equals("INACTIVO"))
+            return true;
+        return false;
+    }
 
 }
