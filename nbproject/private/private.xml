@@ -56,5 +56,27 @@
             <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/datosAgendamiento.jsp</file>
             <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/productosAdmin.jsp</file>
         </group>
+<<<<<<< HEAD
+=======
+        <group>
+            <file>file:/D:/Lubrillantas%20v1/aplicativoWebLubrillantasJezreelAg/web/js/formulario.js</file>
+        </group>
+        <group>
+            <file>file:/D:/Lubrillantas%20v1/aplicativoWebLubrillantasJezreelAg/web/jsp/agendarCitaUsu.jsp</file>
+            <file>file:/D:/Lubrillantas%20v1/aplicativoWebLubrillantasJezreelAg/web/js/formulario.js</file>
+        </group>
+        <group>
+            <file>file:/D:/Lubrillantas%20v1/aplicativoWebLubrillantasJezreelAg/web/jsp/agendarCitaUsu.jsp</file>
+            <file>file:/D:/Lubrillantas%20v1/aplicativoWebLubrillantasJezreelAg/web/js/formulario.js</file>
+        </group>
+        <group>
+            <file>file:/D:/Lubrillantas%20v1/aplicativoWebLubrillantasJezreelAg/web/jsp/agendarCitaUsu.jsp</file>
+            <file>file:/D:/Lubrillantas%20v1/aplicativoWebLubrillantasJezreelAg/web/js/formulario.js</file>
+        </group>
+        <group/>
+        <group>
+            <file>file:/D:/Lubrillantas%20v1/aplicativoWebLubrillantasJezreelAg/web/index.jsp</file>
+        </group>
+>>>>>>> Test
     </open-files>
 </project-private>
