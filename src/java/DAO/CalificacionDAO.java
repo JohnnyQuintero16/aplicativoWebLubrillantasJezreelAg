@@ -77,5 +77,16 @@ public class CalificacionDAO {
         }
         return false;
     }
+    
+     public int cantidadCalificacion() {
+        int cant = 0;
+        List<Calificacion> cali = read();
+        if (cali != null) {
+            cant = cali.size();
+        }
+
+        return cant;
+    }
+
 
 }
