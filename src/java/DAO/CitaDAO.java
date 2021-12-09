@@ -118,4 +118,40 @@ public class CitaDAO {
 
         return activas;
     }
+
+    public List<Cita> citasCanceladas() {
+
+        List<Cita> citas = read();
+        List<Cita> canceladas = new ArrayList<Cita>();
+
+        for (Cita c : citas) {
+
+            if (c.getEstado().equals("CANCELADA")) {
+
+                canceladas.add(c);
+
+            }
+        }
+        return canceladas;
+    }
+
+    public int cantidadCitas() {
+        int cant = 0;
+        List<Cita> citas = read();
+        if (citas != null) {
+            cant = citas.size();
+        }
+
+        return cant;
+    }
+
+    public int cantidadCitasCanceladas() {
+        int cant = 0;
+        List<Cita> citas = citasCanceladas();
+        if (citas != null) {
+            cant = citas.size();
+        }
+
+        return cant;
+    }
 }

@@ -45,7 +45,7 @@
     </head>
     <body>
 
-       <div class="sidebar">
+        <div class="sidebar">
             <div class="logo-details">
                 <i class="fas fa-tire icon"></i> <!-- Espacio entre mensaje Bienvenido-->
                 <div class="logo_name">Bienvenido</div>
@@ -95,12 +95,12 @@
                     <span class="tooltip">Productos</span>
                 </li>
 
-                  <li>
-                  <a href="<%=basePath%>jsp/reportesAdmin.jsp">
-                    <i class="fas fa-chart-pie"></i>
-                    <span class="links_name">Reportes y Estadísticas</span>
-                  </a>
-                  <span class="tooltip">Reportes y Estadísticas</span>
+                <li>
+                    <a href="<%=basePath%>ValoresEstadisticas.do">
+                        <i class="fas fa-chart-pie"></i>
+                        <span class="links_name">Reportes y Estadísticas</span>
+                    </a>
+                    <span class="tooltip">Reportes y Estadísticas</span>
                 </li> 
 
 
@@ -123,12 +123,21 @@
                 </div>
 
                 <div class="boton">
-                    <button type="button" class="btn btn-primary btn-lg" onclick="location.href='#'">Estadísticas</button>
+                    <button type="button" class="btn btn-primary btn-lg" onclick="location.href = '#'">Estadísticas</button>
                 </div>
 
             </div>
-
-
+            <%
+                String numeroClientes = request.getSession().getAttribute("numeroCliente").toString();
+                String numeroUsuarios = request.getSession().getAttribute("numeroUsuarios").toString();
+                String numeroMecanicos = request.getSession().getAttribute("numeroMecanicos").toString();
+                String numeroCitas = request.getSession().getAttribute("numeroCitas").toString();
+                String numeroCitasCanceladas = request.getSession().getAttribute("numeroCitasCanceladas").toString();
+                String numeroAtenciones = request.getSession().getAttribute("numeroAtencion").toString();
+                String numeroCalificacion = request.getSession().getAttribute("numeroCaificacion").toString();
+                String totalIngresos = request.getSession().getAttribute("totalIngresos").toString();
+               
+            %>
 
             <div class="container">
                 <div class="row">
@@ -140,7 +149,7 @@
                                         <i class="fas fa-user-check fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">26</div>
+                                        <div class="huge"><%=numeroClientes %></div>
                                         <div>Clientes</div>
                                     </div>
                                 </div>
@@ -156,7 +165,7 @@
                                         <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">12</div>
+                                        <div class="huge"><%=numeroCitas %></div>
                                         <div>Citas agendadas</div>
                                     </div>
                                 </div>
@@ -172,7 +181,7 @@
                                         <i class="fa fa-shopping-cart fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">124</div>
+                                        <div class="huge"><%=numeroAtenciones %></div>
                                         <div>Atención servicios</div>
                                     </div>
                                 </div>
@@ -189,7 +198,7 @@
 
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">10</div>
+                                        <div class="huge"><%=numeroCalificacion %></div>
                                         <div>Calificaciones</div>
                                     </div>
                                 </div>
@@ -206,7 +215,7 @@
                                         <i class="fas fa-user fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">39</div>
+                                        <div class="huge"><%=numeroUsuarios %></div>
                                         <div>Usuarios registrados</div>
                                     </div>
                                 </div>
@@ -223,7 +232,7 @@
                                         <i class="far fa-calendar-times fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">2</div>
+                                        <div class="huge"><%=numeroCitasCanceladas  %></div>
                                         <div>Citas canceladas</div>
                                     </div>
                                 </div>
@@ -239,7 +248,7 @@
                                         <i class="fas fa-wrench fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">4</div>
+                                        <div class="huge"><%=numeroMecanicos %></div>
                                         <div>Mecánicos</div>
                                     </div>
                                 </div>
@@ -255,8 +264,8 @@
                                         <i class="fas fa-dollar-sign fa-5x"></i>
 
                                     </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">$13.500</div>
+                                    <div class="col-xs-9 text-right ">
+                                        <div  style="font-size: 2em"class="huge"><%=totalIngresos %></div>
                                         <div>$Ventas totales</div>
                                     </div>
                                 </div>
@@ -327,28 +336,28 @@
 
 
         <script>
-            $(document).ready(function () {
-                $('#example').DataTable({
+                        $(document).ready(function () {
+                            $('#example').DataTable({
 
-                    "language": {
-                        "lengthMenu": "Mostrar_MENU_registros",
-                        "zeroRecords": "No se encontraron resultados",
-                        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                        "infoFiltered": "(Filtrado de un total de _MAX_ registros)",
-                        "sSearch": "Buscar:",
-                        "oPaginate": {
-                            "sFirst": "Primero",
-                            "sLast": "Último",
-                            "sNext": "Siguiente",
-                            "sPrevious": "Anterior"
-                        },
-                        "sProcessing": "Procesando...",
-                    }
+                                "language": {
+                                    "lengthMenu": "Mostrar_MENU_registros",
+                                    "zeroRecords": "No se encontraron resultados",
+                                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                    "infoFiltered": "(Filtrado de un total de _MAX_ registros)",
+                                    "sSearch": "Buscar:",
+                                    "oPaginate": {
+                                        "sFirst": "Primero",
+                                        "sLast": "Último",
+                                        "sNext": "Siguiente",
+                                        "sPrevious": "Anterior"
+                                    },
+                                    "sProcessing": "Procesando...",
+                                }
 
-                }
-                );
-            });
+                            }
+                            );
+                        });
         </script>
 
     </body>
