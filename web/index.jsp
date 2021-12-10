@@ -67,7 +67,7 @@
                             <a class="nav-link" href="<%=basePath%>MostrarProductos.do">PRODUCTOS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<%=basePath%>jsp/cotizacion.jsp">COTIZA YA!</a>
+                            <a class="nav-link" href="<%=basePath%>MostrarServiciosCotizacion.do">COTIZA YA!</a>
                         </li>
                     </ul>
 

@@ -751,7 +751,7 @@ public class Jezreel {
 
     public String tableServiciosFicha(List<AtencionServicio> servi) {
         String tbody = "";
-         NumberFormat formatoNumero = NumberFormat.getNumberInstance();
+        NumberFormat formatoNumero = NumberFormat.getNumberInstance();
         formatoNumero.setMaximumFractionDigits(2);
         int i = 1;
         for (AtencionServicio s : servi) {
@@ -763,7 +763,7 @@ public class Jezreel {
                     + "                            <td>" + s.getDescripcion() + "</td>\n"
                     + "                            <td>" + s.formatoFecha(s.getFecha()) + "</td>\n"
                     + "                            <td>" + s.getIdPersona().getNombres() + " " + s.getIdPersona().getApellidos() + "</td>\n"
-                    + "                            <td>" +  s.getIdFactura().getDescuento() + "%"+ "</td>\n"
+                    + "                            <td>" + s.getIdFactura().getDescuento() + "%" + "</td>\n"
                     + "                            <td>" + formatoNumero.format(s.getIdFactura().getTotal()) + "</td>\n"
                     + "\n"
                     + "                        </tr>";
@@ -1070,6 +1070,32 @@ public class Jezreel {
         }
 
         return kilo;
+    }
+
+    public String MostrarServiciosCotizaciones() {
+        String rta = "";
+        ServicioDAO s = new ServicioDAO();
+        List<Servicio> servi = s.readServiciosActivos();
+        for (Servicio ser : servi) {
+
+            rta += "<div class=\"card\">\n"
+                    + "<div class=\"imagen\">\n"
+                    + "<img src=" + '"' + ser.getImgUrl() + '"' + " alt=\"...\">\n"
+                    + " <div class=\"titulo\">\n"
+                    + "<h3 class=\"text-primary\">" + ser.getNombre() + "</h3>\n"
+                    + "</div>\n"
+                    + "</div>\n"
+                    + "<div class=\"descripcion\">\n"
+                    + "<div class=\"texto\">\n"
+                    + "<p>" + ser.getDescripcion() + "</p>\n"
+                    + "</div>\n"
+                    + "<a href=\"#\">\n"
+                    + "<button type=\"button\" class=\"btn btn-primary\">COTIZAR</button>\n"
+                    + "</a>\n"
+                    + "</div>\n"
+                    + "</div>\n";
+        }
+        return rta;
     }
 
 }
