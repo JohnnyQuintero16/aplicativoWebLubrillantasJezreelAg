@@ -126,9 +126,9 @@
                                 mantenimiento más frecuentes que se realizan sobre el vehículo. 
                                 Asimismo, el neumático puede presentar otros tipo de anomalías </p>
                         </div>
-                        <a href="#">
-                            <button type="button" class="btn btn-primary">COTIZAR</button>
-                        </a>
+                        
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">COTIZAR</button>
+                        
                     </div>
 
                 </div>
@@ -245,6 +245,7 @@
 
             </div>
         </main>
+       
         
         
         <!--FOOTER-->
