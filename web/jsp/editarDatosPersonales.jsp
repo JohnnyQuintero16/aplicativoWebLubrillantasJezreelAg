@@ -79,6 +79,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="<%=basePath%>MostrarProductos.do">PRODUCTOS</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<%=basePath%>MostrarServiciosCotizacion.do">COTIZA YA!</a>
+                        </li>
                     </ul>
 
                     <!-- MENU DESPLEGABLE NOMBRE USUARIO -->
