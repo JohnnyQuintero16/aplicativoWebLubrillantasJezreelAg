@@ -1089,9 +1089,7 @@ public class Jezreel {
                     + "<div class=\"texto\">\n"
                     + "<p>" + ser.getDescripcion() + "</p>\n"
                     + "</div>\n"
-                    + "<a href=\"#\">\n"
-                    + "<button type=\"button\" class=\"btn btn-primary\">COTIZAR</button>\n"
-                    + "</a>\n"
+                    + "<button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">COTIZAR</button>\n"
                     + "</div>\n"
                     + "</div>\n";
         }
