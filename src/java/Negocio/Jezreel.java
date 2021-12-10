@@ -1121,6 +1121,7 @@ public class Jezreel {
     private String getMes(Date fecha){
         SimpleDateFormat sdf = new SimpleDateFormat("MM");
         return sdf.format(fecha);
+    }
     public String MostrarServiciosCotizaciones() {
         String rta = "";
         ServicioDAO s = new ServicioDAO();
