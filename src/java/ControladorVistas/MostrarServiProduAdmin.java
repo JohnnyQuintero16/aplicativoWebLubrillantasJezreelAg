@@ -51,6 +51,7 @@ public class MostrarServiProduAdmin extends HttpServlet {
             Persona per = user.getIdPersona();
             String nameUser = per.getNombres().split(" ")[0] + " " + per.getApellidos().split(" ")[0];
             request.getSession().setAttribute("usuarioCliente", nameUser);
+            request.getSession().setAttribute("usuarioCorreo", per.getEmail());
             request.getSession().setAttribute("idCita", idCita);
             request.getSession().setAttribute("productos", pro.readProductosActivos());
             request.getSession().setAttribute("servicios", ser.readServiciosActivos());

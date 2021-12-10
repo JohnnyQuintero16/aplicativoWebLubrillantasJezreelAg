@@ -1018,7 +1018,7 @@ public class Jezreel {
         for (Producto pro : productoss) {
             if (pro.getEstado().equals("ACTIVO")) {
                 rta += pro.getCodigo() + ","
-                        + pro.getDescripcion() + ","
+                        + pro.getNombre() + ","
                         + pro.getIdMarca().getNombre() + ","
                         + pro.getTipo() + ","
                         + pro.getPrecioVenta() + ";";

@@ -1,11 +1,24 @@
+/*
+
+        ESTO ES UN AVISO IMPORTANTE, JAY DE QUIEN ME VAYA A TOCA ESTE CÓDIGO
+        VAMO A TENER PROBLEMAS SERIOS DONDE DEJE DE FUNCIONAR
+
+        BAI
+*/
 var infoServicios, infoProductos, ServicioArr;
-var serviciosSplit = [];
+var serviciosSplit = [],
+  productosSplit = [];
+
 let infoDataJSP = (servicio, productos) => {
   infoServicios = servicio;
   infoProductos = productos;
 
   infoServicios.forEach((element) => {
     serviciosSplit.push(element.split(","));
+  });
+
+  infoProductos.forEach((element) => {
+    productosSplit.push(element.split(","));
   });
 };
 
@@ -15,6 +28,7 @@ const templaeteItemPro = document.getElementById(
   "TablaProductosCliente"
 ).content;
 const selectOption = document.getElementById("selectProductos");
+
 var index = 0;
 listaServicio.addEventListener("click", (e) => {
   eliminarServicio(e);
@@ -60,19 +74,50 @@ function addServicio(servicio) {
 
 let eliminarServicio = (e) => {
   if (e.target.classList.contains("eliminarServicio")) {
-    let pos = itemSelects.indexOf(e.target.dataset.id);
+    let deleteIndex = e.target.dataset.id;
+    let pos = itemSelects.indexOf(deleteIndex);
     e.target.parentNode.parentNode.remove();
     itemSelects.splice(pos, 1);
+    for (var i = 0; i < serviciosSplit.length; i++) {
+      if (serviciosSplit[i][0] === deleteIndex) {
+        if (serviciosSplit[i].length > 3) {
+          let posicionesEliminar = [];
+          for (var k = 2; k < serviciosSplit[i].length; k++) {
+            itemsTiposProductos.delete(serviciosSplit[i][k]);
+          }
+        } else {
+          itemsTiposProductos.delete(serviciosSplit[i][2]);
+        }
+      }
+    }
   }
+  if (itemSelects.length === 0) {
+    itemsTiposProductos.clear();
+    selectOption.disabled = true;
+    tableBody.innerHTML = "";
+    idsProducto = [];
+    tableFooter.innerHTML =
+      '<tr><th scope="row" colspan="4">No se ha seleccionado productos, seleccione!</th></tr>';
+  }
+  cargarSelectProductos();
 };
 
-let cargarTipoSeleccionado = (servicioSeleccionado) => {
-
-  
-  /*const proUnicos = tipoProductos.filter((valor,indice) =>{
-    return tipoProductos.indexOf(valor) === indice;
-  });*/
-  const proUnicos = [...new Set(arrayPro)];
+var itemsTiposProductos = new Set();
+let cargarTipoSeleccionado = () => {
+  for (var i = 0; i < serviciosSplit.length; i++) {
+    for (var j = 0; j < itemSelects.length; j++) {
+      if (serviciosSplit[i][0] === itemSelects[j]) {
+        if (serviciosSplit[i].length > 3) {
+          for (var k = 2; k < serviciosSplit[i].length; k++) {
+            itemsTiposProductos.add(serviciosSplit[i][k]);
+          }
+        } else {
+          itemsTiposProductos.add(serviciosSplit[i][2]);
+        }
+      }
+    }
+  }
+  const proUnicos = [...itemsTiposProductos];
   return proUnicos;
 };
 
@@ -80,53 +125,228 @@ let cargarSelectProductos = () => {
   if (selectOption.disabled == true) {
     selectOption.disabled = false;
   }
+  limpiarSelect();
   const option = document.createElement("option");
-  let optionCargadas = cargarTipoSeleccionado(itemSelects);
-  console.log(optionCargadas);
+  let optionCargadas = cargarTipoSeleccionado();
+  let arrayProductos = cargarProductosTipo(optionCargadas);
+  arrayProductos.forEach((element) => {
+    const option = document.createElement("option");
+    option.text = element.valor;
+    option.value = element.id;
+    selectOption.appendChild(option);
+  });
+};
+
+let cargarProductosTipo = (tiposProductos) => {
+  let productosArray = [];
+  for (var i = 0; i < tiposProductos.length; i++) {
+    for (var j = 0; j < productosSplit.length; j++) {
+      if (tiposProductos[i] == productosSplit[j][3]) {
+        var pro = {
+          id: "",
+          valor: "",
+        };
+        pro.id = productosSplit[j][0];
+        pro.valor = productosSplit[j][1];
+        productosArray.push(pro);
+      }
+    }
+  }
+  const proUnicos = [...new Set(productosArray)];
+  return proUnicos;
+};
+
+const limpiarSelect = () => {
+  for (let i = selectOption.options.length; i >= 0; i--) {
+    selectOption.remove(i);
+  }
 };
 
 //Productos
 const padreTemplate = document.getElementById("TablaProductosCliente").content;
-const hijoTr = padreTemplate.querySelector("tr");
-const hijoTd = hijoTr.querySelectorAll("td");
-let cntPro = 0;
-
+const templateFooterPrev = document.getElementById(
+  "template-footerPrev"
+).content;
+const templateFooterNex = document.getElementById("template-footerNex").content;
+const tableBody = document.getElementById("tablaBodyPro");
+const tableFooter = document.getElementById("footer");
 let idsProducto = [];
-function cargarProductos(value) {
-  var valor = value.split(",");
-  let existe = idsProducto.indexOf(valor[0]);
-  if (existe == -1) {
-    cntPro++;
-    idsProducto.push(valor[0]);
+let preciosProductos = [];
+tableBody.addEventListener("click", (e) => {
+  eliminarProducto(e);
+});
+tableFooter.addEventListener("click", (e) => {
+  calcularCostos(e);
+  limpiarCostos(e);
+});
+let cargarProductos = (value) => {
+  let existe = idsProducto.indexOf(value);
+  if (existe === -1) {
+    idsProducto.push(value);
+    let productoSeleccionado = searchProducto(value);
+    const filasTable = padreTemplate.querySelectorAll("td");
+    filasTable[0].textContent = value;
+    filasTable[1].textContent = productoSeleccionado[1];
+    padreTemplate.querySelector(".eliminarProducto").dataset.id = value;
+    padreTemplate.querySelectorAll("input")[1].value = value;
     const fragment = document.createDocumentFragment();
-    let input = document.createElement("INPUT");
-    input.setAttribute("name", "idp");
-    input.setAttribute("value", valor[0]);
-    input.setAttribute("style", "display: none");
-
-    hijoTd[0].innerHTML = valor[0];
-    hijoTd[0].setAttribute("value", valor[0]);
-    hijoTd[0].setAttribute("name", valor[0]);
-    hijoTd[1].innerHTML = valor[1];
-    hijoTd[1].setAttribute("value", valor[1]);
-    hijoTr.appendChild(hijoTd[0]);
-    hijoTr.appendChild(hijoTd[1]);
-    hijoTr.appendChild(input);
-    const clone = hijoTr.cloneNode(true);
+    const clone = padreTemplate.cloneNode(true);
     fragment.appendChild(clone);
-
-    document.getElementById("tablaBody").appendChild(fragment);
+    tableBody.appendChild(fragment);
+    tableFooter.innerHTML = "";
+    cargarFooterPrev();
   } else {
     alert("Ya tiene seleccionado este producto, elija otro");
   }
-}
-function eliminarElement() {
-  element = document.getElementById(cntPro);
+};
 
-  function eliminarElemento(id) {
-    padre = element.parentNode;
-
-    padre.removeChild(element);
-    cntPro--;
+let searchProducto = (value) => {
+  for (let i = 0; i < productosSplit.length; i++) {
+    if (productosSplit[i][0] == value) {
+      return productosSplit[i];
+    }
   }
+};
+
+let eliminarProducto = (e) => {
+  if (e.target.classList.contains("eliminarProducto")) {
+    let pos = idsProducto.indexOf(e.target.dataset.id);
+    idsProducto.splice(pos, 1);
+    e.target.parentNode.parentNode.remove();
+  }
+};
+let cargarFooterPrev = () => {
+  const clone = templateFooterPrev.cloneNode(true);
+  const fragment = document.createDocumentFragment();
+  fragment.appendChild(clone);
+  tableFooter.appendChild(fragment);
+};
+
+let entroYa = 0;
+let totalSinIva = 0.0;
+    let total = 0.0,
+      totalDescuento = 0.0;
+      let descuento = 0;
+let calcularCostos = (e) => {
+  if (e.target.classList.contains("calcularCostos")) {
+    entroYa++;
+    let valorDescuento = document.getElementById("descuento").value;
+    let cantidadesProducto = document.getElementsByName("cantidadProducto");
+    descuento = parseInt(valorDescuento, 10);
+    for (let i = 0; i < cantidadesProducto.length; i++) {
+      let productoSelec = searchProducto(
+        cantidadesProducto[i].parentNode.parentNode.childNodes[1].textContent
+      );
+      let cantidadUnitaria = cantidadesProducto[i].value;
+      let precioVenta = parseFloat(productoSelec[4]);
+      totalSinIva += precioVenta * cantidadUnitaria;
+      total += precioVenta * 1.19 * cantidadUnitaria;
+    }
+    totalDescuento = total;
+    if (descuento != 0) {
+      totalDescuento = total - (descuento / 100.0) * totalSinIva;
+    }
+    templateFooterNex.querySelectorAll("h5")[0].textContent = formatCurrency("es-CO", "COP", 2, Math.round(total));
+    templateFooterNex.querySelectorAll("h5")[1].textContent = formatCurrency("es-CO", "COP", 2, Math.round(totalDescuento));
+    const clone = templateFooterNex.cloneNode(true);
+    const fragment = document.createDocumentFragment();
+    fragment.appendChild(clone);
+    tableFooter.appendChild(fragment);
+  }
+};
+
+let limpiarCostos = (e) => {
+  console.log(e.target.classList.contains("inputDescuento"));
+  if (e.target.classList.contains("inputDescuento")) {
+    if (entroYa != 0) {
+      tableFooter.children[2].remove();
+      entroYa = 0;
+    }
+  }
+};
+
+//Validar kilometraje
+let inputIngresa = document.querySelectorAll('#kilometraje');
+inputIngresa[1].addEventListener('change', e =>{
+  let ingresa = parseInt(inputIngresa[1].value);
+  let esta = parseInt(inputIngresa[0].value);
+  if(ingresa < esta){
+    alert("El kilometraje no puede ser menor al que esta registrado, por favor verifique");
+  }
+});
+
+let returnDataJS = () =>{
+  let body = "";
+  body = "<div clas = 'container'>" +
+  "<h4>Hola! Desde lubrillantas Jezreel AG te enviamos la siguiente información relacionada con el costo de los productos que se emplearon en el servicio de tu vehiculo!</h4>"+
+  "<p> En esta tabla te resumimos los productos que se emplearon en el servicio:</p>"+
+  "<div style='margin: auto;'>"+
+      "<style type='text/css'>"+
+          ".tg  {border-collapse:collapse;border-spacing:0;}"+
+          ".tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;"+
+            "overflow:hidden;padding:10px 5px;word-break:normal;}"+
+          ".tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;"+
+            "font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}"+
+          ".tg .tg-baqh{text-align:center;vertical-align:top}"+
+          ".tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}"+
+          "</style>"+
+          "<table class='tg' style='table-layout: fixed; width: 342px'>"+
+          "<colgroup>"+
+          "<col style='width: 204px'>"+
+          "<col style='width: 77px'>"+
+          "<col style='width: 100px'>"+
+          "</colgroup>"+
+          "<thead>"+
+            "<tr>"+
+              "<th class='tg-amwm'>Nombre Producto<br></th>"+
+              "<th class='tg-amwm'>Cantidad</th>"+
+              "<th class='tg-amwm'>Costo</th>"+
+            "</tr>"+
+          "</thead>"+
+          "<tbody>"+
+          cargarProductosHTML() +
+          "</tbody>"+
+          "<tfoot>"+
+              "<tr>"+
+                  "<td colspan = '2'> <h3 class='tg-amwm' >Descuento</h3> </td>"+
+                  "<td colspan = '1'><h3 class='tg-amwm'>  " + descuento + "%</h3></td>"+
+              "</tr>"+
+              "<tr>"+
+                  "<td colspan = '2'> <h3 class='tg-amwm' >Costo Total</h3> </td>"+
+                  "<td colspan = '1'><h3 class='tg-amwm'>" + formatCurrency("es-CO", "COP", 2, total) + "</h3></td>"+
+              "</tr>"+
+          "</tfoot>"+
+          "</table>"+
+          "<h4>Te recodamos que tu vehiculo esta listo para que pases por el! Cualquier inquietud sobre tu costo nos lo puedes hacer saber para dar solución a tu inquietud</h4>"+
+          "<h3 style='color: blue;'>Por utlimo!</h3>"+
+          "<h4>Te recodamos que el proximo mantenimiento de tu vehiculo es dentro de 3 meses, te esperamos que vuelvas!</h4>"+
+          "<h2 style='color: crimson;'>Feliz Navidad te deseamos la familia de Lubrillantas Jezreel AG</h2>"+
+  "</div>"+
+"</div>";
+
+  return body;
+}
+
+let cargarProductosHTML = () =>{
+  let html = "";
+  let cantidadesProducto = document.getElementsByName("cantidadProducto");
+  for(let i = 0; i < idsProducto.length; i++){
+    let product = searchProducto(idsProducto[i]);
+    html+="<tr>"+
+    "<td class='tg-amwm' center>" + product[1] + "</td>"+
+    "<td class='tg-amwm' center>" + cantidadesProducto[i].value + "</td>"+
+    "<td class='tg-amwm' center>" + formatCurrency("es-CO", "COP", 2, (product[4]*1.19) * cantidadesProducto[i].value) + "</td>"+
+  "</tr>";
+  }
+
+  return html;
+}
+
+function formatCurrency (locales, currency, fractionDigits, number) {
+  var formatted = new Intl.NumberFormat(locales, {
+    style: 'currency',
+    currency: currency,
+    minimumFractionDigits: fractionDigits
+  }).format(number);
+  return formatted;
 }
