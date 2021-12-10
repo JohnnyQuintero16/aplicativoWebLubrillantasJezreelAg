@@ -61,6 +61,9 @@
 			  <li class="nav-item">
 				<a class="nav-link" href="<%=basePath%>MostrarProductos.do">PRODUCTOS</a>
 			  </li>
+                          <li class="nav-item">
+				<a class="nav-link" href="<%=basePath%>jsp/cotizacion.jsp">PRODUCTOS</a>
+			  </li>
 			</ul>
 
 			<template id="NoSesion">

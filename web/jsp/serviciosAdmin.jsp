@@ -7,7 +7,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="DTO.Servicio"%>
 <%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -438,7 +438,6 @@
             modalBodyInput[0].value = datos[0].innerHTML;
             modalBodyInput[1].value = datos[1].innerHTML;
             modalBodyInput[2].value = datos[4].innerHTML;
-            modalBodyInput[3].value = datos[3].innerHTML;
             textA[0].value = datos[2].innerHTML;
 
             });

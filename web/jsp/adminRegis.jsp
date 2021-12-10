@@ -16,6 +16,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Lubrillantas Jezreel AG - Administración</title>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
 
         <!-- Fuente de google: Open Sans - Regular 400 -->
         <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
@@ -112,7 +113,7 @@
 
             </div>
 
-            <form action = "<%=basePath%>ProcesarAtencionServicio.do" method = "POST">
+            <form action = "<%=basePath%>ProcesarAtencionServicio.do" method = "GET" id="procesasAtencion">
                 <div class="row shadow m-auto rounded-3 bd-body" style=" background-color: white; padding: 2rem; width: 95%; overflow-x: hidden;">
                     <div class="col-6" style="padding-left: 1rem; border-right: 1px solid #323;">
                         <h2 style="color: #001971;">Escoja los servicio:</h2>
@@ -171,8 +172,9 @@
                         <h2 style="color: #001971;">Escoja el Producto:</h2>
                         <br>
                         <select class = "selectPro" id="selectProductos" disabled = "true">
-                            <option select readonly>Elegir Producto</option>
+                            <option selectted >Elegir Producto</option>
                         </select>
+
                         <p>Lista de productos con los que se llevo a cabo el servicio.</p>
                         <table class="table" >
                             <tr>
@@ -186,25 +188,40 @@
                                 <tr>
                                     <td scope = "row">1</td>
                                     <td>Aceite Max</td>
-                                    <td><input type="number" id = "cntPro" value="0" placeholder="Cantidad"></td>
-                                    <td> <button type="button" class="btn btn-primary btn-lg eliminarProducto" style="background-color: red !important;">X</button></td>
+                                    <td><input type="number" id = "cntPro" name = "cantidadProducto" value="1" min="1" max="50" placeholder="Cantidad"></td>
+                                    <td> <button type="button" class="btn btn-primary btn-lg eliminarProducto m-auto d-flex align-items-center" style="background-color: red !important;">X</button></td>
+                                    <input type="text" id = "cntPro" name="idp" style="display: none;" value="0">
                                 </tr>
                             </template>
                             </tbody>
-                            <tfoot>
-                                <tr id = "footer">
+                            <tfoot  id = "footer" style="border-top: 3px solid #000;">
+                                <tr>
                                     <th scope="row" colspan="4">No se ha seleccionado productos, seleccione!</th>
                                 </tr>
                             </tfoot>
-                            <template id="template-footer">
-                                <th scope="row" colspan="3">Costo De Los Productos</th>
-                                <td class="font-weight-bold" colspan="2">$ <span>5000</span></td>
-                                <br>
-                                <p>Por favor digite descuento (Se aplica al total de los productos)</p>
-                                <input type="number" id="descuento" name="descuento" placeholder="Descuento" value = "0" min="0" max="100"> 
-                                <br>
-                                <th scope="row" colspan="3">Costo De Los Productos Con Descuento</th>
-                                <td class="font-weight-bold" colspan="2">$ <span>5000</span></td>
+                            <template id = "template-footerPrev">
+                                <p class = "vw-100" style="margin: 10px !important;">Por favor digite descuento (Se aplica al total de los productos)</p>
+                                <div class="row vw-100">
+                                    <div class="col-4">
+                                        <input type="number" class ="inputDescuento" id="descuento" name="descuento" placeholder="Descuento (ejem: 40)" value = "0" min="0" max="100"><span>%</span>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="button" class="btn btn-primary calcularCostos">Calcular Costo</button>
+                                    </div>
+                                </div>
+                                
+                            </template>
+                            <template id="template-footerNex">
+                                <div class="row vw-100">
+                                    <div class="col">
+                                        <p>Costo Total</p>
+                                        <h5 style="color: forestgreen;">5000</h5>
+                                    </div>
+                                    <div class="col">
+                                        <p>Costo Total Con Descuento</p>
+                                        <h5 style="color: firebrick;">5000</h5>
+                                    </div>
+                                </div>                            
                             </template>
                         </table>
                     </div>
@@ -239,7 +256,7 @@
                         </div>    
                         <div class="col-6 " style="padding-top: 1rem; display: flex; justify-content: center; align-items: center ">
                             <div style="margin-bottom: 1rem;">
-                                <input type="submit" class="btn btn-primary btn-lg"  style="background-color: #001971  !important;  width: 20rem;" value='Agregar'>
+                                <button type="button" class="btn btn-primary btn-lg"  style = "background-color: blue  !important;  width: 20rem;" onclick = "javascript:sendEmail('<%=request.getSession().getAttribute("usuarioCorreo")%>');" value='Agregar'>Agregar</button>
                             </div>
                         </div>    
                     </div>
@@ -257,10 +274,12 @@
         <script>
             let serviciosJavaS = '<%=request.getSession().getAttribute("serviciosJS").toString()%>'.split(";");
             let productoJavaS = '<%=request.getSession().getAttribute("productosJS").toString()%>'.split(";");
+            let tipo =  '<%=request.getSession().getAttribute("tipoVehiculo")%>';
             infoDataJSP(serviciosJavaS, productoJavaS);
 
             $(document).ready(function () {
-            $(".selectPro").select2();
+            $(".selectPro").select2();            
+            $(".selecPro").css("with","300px");
             });
 
             $(document).ready(function() {
@@ -300,7 +319,28 @@
             }
             verificarCantidad();
             
-            
+            function sendEmail(correo){
+                let asunto = "";
+                let cuerpo = "";
+                asunto = "FACTURA DE SU SERVICIO";
+                cuerpo = returnDataJS(tipo);
+                mail(correo,asunto,cuerpo)
+            }
+            function mail(correo,asunto,cuerpo){
+                alert('se enviara un mensaje a '+correo);
+                Email.send({
+                    Host: "smtp.gmail.com",
+                    Username: 'lubrillantasjezreel@gmail.com',
+                    Password: "rvuxyiyppggwcrvx",
+                    To: correo,
+                    From: 'lubrillantasjezreel@gmail.com',
+                    Subject: asunto,
+                    Body: cuerpo,
+                
+                }).then((message) => document.getElementById("procesasAtencion").submit());
+            }
+
+
             (function () {
             'use strict'
 
