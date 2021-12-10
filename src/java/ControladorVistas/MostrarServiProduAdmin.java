@@ -9,6 +9,7 @@ import DAO.AtencionServicioDAO;
 import DAO.CitaDAO;
 import DAO.ProductoDAO;
 import DAO.ServicioDAO;
+import DAO.VehiculoDAO;
 import DTO.Cita;
 import DTO.Persona;
 import DTO.Servicio;
@@ -42,6 +43,7 @@ public class MostrarServiProduAdmin extends HttpServlet {
         try {
             ProductoDAO pro = new ProductoDAO();
             ServicioDAO ser = new ServicioDAO();
+            VehiculoDAO v = new VehiculoDAO();
             Jezreel j = new Jezreel();
             CitaDAO cita = new CitaDAO();
             int idCita = Integer.parseInt((String) request.getSession().getAttribute("idCitaServicio"));
@@ -60,6 +62,7 @@ public class MostrarServiProduAdmin extends HttpServlet {
             request.getSession().setAttribute("km", j.getKilometrajeAtencionServicio(placa));
             request.getSession().setAttribute("productosJS", j.cargarProductosJS());
             request.getSession().setAttribute("serviciosJS", j.cargarServiciosJS());
+            request.getSession().setAttribute("tipoVehiculo", v.readVehiculo(placa).getIdTipo().getEstacionMatenimiento());
             response.sendRedirect("./jsp/adminRegis.jsp");
         } catch (Exception e) {
             System.err.println(e.getCause());

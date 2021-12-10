@@ -275,8 +275,21 @@ inputIngresa[1].addEventListener('change', e =>{
   }
 });
 
-let returnDataJS = () =>{
+let returnDataJS = (tipo) =>{
   let body = "";
+  let tipoMante = parseInt(tipo);
+  let fecha = new Date();
+  let mes = 0;
+  if(tipo == 1){
+    mes = 30;
+  }else if(tipo == 2){
+    mes = 60;
+  }else{
+    mes = 30;
+  }
+  fecha.setDate(fecha.getDate() + mes);
+  let Costototal = (totalDescuento != 0)?totalDescuento:total;
+  
   body = "<div clas = 'container'>" +
   "<h4>Hola! Desde lubrillantas Jezreel AG te enviamos la siguiente información relacionada con el costo de los productos que se emplearon en el servicio de tu vehiculo!</h4>"+
   "<p> En esta tabla te resumimos los productos que se emplearon en el servicio:</p>"+
@@ -313,18 +326,37 @@ let returnDataJS = () =>{
               "</tr>"+
               "<tr>"+
                   "<td colspan = '2'> <h3 class='tg-amwm' >Costo Total</h3> </td>"+
-                  "<td colspan = '1'><h3 class='tg-amwm'>" + formatCurrency("es-CO", "COP", 2, total) + "</h3></td>"+
+                  "<td colspan = '1'><h3 class='tg-amwm'>" + formatCurrency("es-CO", "COP", 2, Costototal) + "</h3></td>"+
               "</tr>"+
           "</tfoot>"+
           "</table>"+
           "<h4>Te recodamos que tu vehiculo esta listo para que pases por el! Cualquier inquietud sobre tu costo nos lo puedes hacer saber para dar solución a tu inquietud</h4>"+
           "<h3 style='color: blue;'>Por utlimo!</h3>"+
-          "<h4>Te recodamos que el proximo mantenimiento de tu vehiculo es dentro de 3 meses, te esperamos que vuelvas!</h4>"+
+          "<h4>Te recodamos que el proximo mantenimiento de tu vehiculo es el "+ 
+            "Dia " + fecha.getDate().toString() +
+            " de " + mesUTC(fecha.getMonth().toString()) +
+            " del año " + fecha.getFullYear().toString() +
+            ", esperamos que vuelvas!</h4>"+
           "<h2 style='color: crimson;'>Feliz Navidad te deseamos la familia de Lubrillantas Jezreel AG</h2>"+
   "</div>"+
 "</div>";
 
   return body;
+}
+
+let mesUTC = (mes) =>{
+  if(mes == 0) return "Enero";
+  if(mes == 1) return "Febrero";
+  if(mes == 2) return "Marzo";
+  if(mes == 3) return "Abril";
+  if(mes == 4) return "Mayo";
+  if(mes == 5) return "Junio";
+  if(mes == 6) return "Julio";
+  if(mes == 7) return "Agosto";
+  if(mes == 8) return "Septiembre";
+  if(mes == 9) return "Octubre";
+  if(mes == 10) return "Noviembre";
+  if(mes == 11) return "Diciembre";
 }
 
 let cargarProductosHTML = () =>{

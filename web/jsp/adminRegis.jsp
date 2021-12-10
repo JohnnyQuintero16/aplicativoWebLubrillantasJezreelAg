@@ -256,7 +256,7 @@
                         </div>    
                         <div class="col-6 " style="padding-top: 1rem; display: flex; justify-content: center; align-items: center ">
                             <div style="margin-bottom: 1rem;">
-                                <button type="button" class="btn btn-primary btn-lg"  style = "background-color: #d1d4dd  !important;  width: 20rem;" onclick = "javascript:sendEmail('<%=request.getSession().getAttribute("usuarioCorreo")%>');" value='Agregar'>Agregar</button>
+                                <button type="button" class="btn btn-primary btn-lg"  style = "background-color: blue  !important;  width: 20rem;" onclick = "javascript:sendEmail('<%=request.getSession().getAttribute("usuarioCorreo")%>');" value='Agregar'>Agregar</button>
                             </div>
                         </div>    
                     </div>
@@ -274,6 +274,7 @@
         <script>
             let serviciosJavaS = '<%=request.getSession().getAttribute("serviciosJS").toString()%>'.split(";");
             let productoJavaS = '<%=request.getSession().getAttribute("productosJS").toString()%>'.split(";");
+            let tipo =  '<%=request.getSession().getAttribute("tipoVehiculo")%>';
             infoDataJSP(serviciosJavaS, productoJavaS);
 
             $(document).ready(function () {
@@ -322,7 +323,7 @@
                 let asunto = "";
                 let cuerpo = "";
                 asunto = "FACTURA DE SU SERVICIO";
-                cuerpo = returnDataJS();
+                cuerpo = returnDataJS(tipo);
                 mail(correo,asunto,cuerpo)
             }
             function mail(correo,asunto,cuerpo){
