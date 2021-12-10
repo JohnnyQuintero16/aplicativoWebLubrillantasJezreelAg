@@ -95,5 +95,16 @@ public class AtencionServicioDAO {
         }
         return (find.size() != 0)?find:null;
     }
+    
+     public int cantidadAtenciones() {
+        int cant = 0;
+        List<AtencionServicio> atenciones = read();
+        if (atenciones != null) {
+            cant = atenciones.size();
+        }
+
+        return cant;
+    }
+
    
 }
