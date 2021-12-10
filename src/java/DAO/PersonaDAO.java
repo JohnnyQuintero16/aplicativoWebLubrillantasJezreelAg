@@ -103,17 +103,80 @@ public class PersonaDAO {
         }
         return clientes;
     }
-    
-    public boolean  existeCorreoActualizar(String correo, String cedula){
-       
+
+    public boolean existeCorreoActualizar(String correo, String cedula) {
+
         List<Persona> personas = read();
-        for(Persona p : personas ){
-        if(!p.getCedula().equals(cedula) && p.getEmail().equals(correo)){
-        return true;
+        for (Persona p : personas) {
+            if (!p.getCedula().equals(cedula) && p.getEmail().equals(correo)) {
+                return true;
+            }
+
         }
-        
-        }
-        
+
         return false;
     }
+
+    public List<Persona> Usuarios() {
+        List<Persona> personas = read();
+        List<Persona> rta = new ArrayList<Persona>();
+
+        for (Persona p : personas) {
+            if (p.getIdRol().getId()==2) {
+                rta.add(p);
+                System.out.println("USUARIOS !!! " + p.getNombres());
+            }
+
+        }
+        return rta;
+    }
+
+    public List<Persona> Mecanicos() {
+        List<Persona> personas = read();
+        List<Persona> rta = new ArrayList<Persona>();
+
+        for (Persona p : personas) {
+            if (p.getIdRol().getId()==3) {
+                rta.add(p);
+            }
+
+        }
+        return rta;
+    }
+
+    public int cantidadUsuarios() {
+        int cant = 0;
+        List<Persona> personas = Usuarios();
+        if (personas != null) {
+            cant = personas.size();
+        }
+        return cant;
+    }
+
+    public int cantidadMecanicos() {
+        int cant = 0;
+        List<Persona> personas = Mecanicos();
+        if (personas != null) {
+            cant = personas.size();
+        }
+        return cant;
+    }
+
+    public int cantidadClientes() {
+        int cant = 0;
+
+        List<Persona> personas = Usuarios();
+        for (Persona p : personas) {
+            if (!p.getVehiculoList().isEmpty()) {
+                cant++;
+            }
+
+        }
+        return cant;
+    }
+
+    /*public List<Object[]> getCantidad(){
+    
+    return per.getPersonaClienteCount();
+    }*/
 }

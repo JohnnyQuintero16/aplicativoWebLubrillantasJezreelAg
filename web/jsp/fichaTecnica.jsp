@@ -85,6 +85,14 @@
                     </a>
                     <span class="tooltip">Productos</span>
                 </li>
+                
+                 <li>
+                  <a href="<%=basePath%>jsp/reportesAdmin.jsp">
+                    <i class="fas fa-chart-pie"></i>
+                    <span class="links_name">Reportes y Estadísticas</span>
+                  </a>
+                  <span class="tooltip">Reportes y Estadísticas</span>
+                </li> 
 
                 <li class="profile">
                     <a href="#">
@@ -164,6 +172,7 @@
                             <th class="enc" scope="col">Descripcion</th>
                             <th class="enc" scope="col">Fecha</th>
                             <th class="enc" scope="col">Mecanico</th>
+                            <th class="enc" scope="col">Descuento</th>
                             <th class="enc" scope="col">Total</th
 
 

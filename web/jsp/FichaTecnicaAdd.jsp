@@ -81,14 +81,15 @@
                     </a>
                     <span class="tooltip">Productos</span>
                 </li>
-                <!--   <li>
-                    <a href="#">
-                      <i class="fas fa-chart-pie"></i>
-                      <span class="links_name">Reportes</span>
-                    </a>
-                    <span class="tooltip">Reportes</span>
-                  </li> -->
-
+                
+                 <li>
+                  <a href="<%=basePath%>ValoresEstadisticas.do">
+                    <i class="fas fa-chart-pie"></i>
+                    <span class="links_name">Reportes y Estadísticas</span>
+                  </a>
+                  <span class="tooltip">Reportes y Estadísticas</span>
+                </li> 
+                
 
                 <li class="profile">
                     <a href="<%=basePath%>cerrarSesion.do">

@@ -34,6 +34,7 @@ import DTO.Producto;
 import DTO.Servicio;
 import DTO.Tipo;
 import DTO.Vehiculo;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -180,7 +181,8 @@ public class Jezreel {
         for (AtencionServicio a : servi) {
 
             List<DetallesServicio> dser = sdao.findDetalleServicioAtencion(a.getId());
-
+            NumberFormat formatoNumero = NumberFormat.getNumberInstance();
+            formatoNumero.setMaximumFractionDigits(2);
             List<DetallesProducto> dpro = pdao.findDetalleProductoAtencion(a.getId());
             Persona mecanico = a.getIdPersona();
             Factura factura = a.getIdFactura();
@@ -194,7 +196,7 @@ public class Jezreel {
                         + "              <h4> Fecha : " + a.formatoFecha(a.getFecha()) + " Hora :" + a.formatoHora(a.getHora()) + "</h4>\n"
                         + "            </div>\n"
                         + "            <div class=\"col-4\">\n"
-                        + "              <h4>Total $  " + a.getIdFactura().getTotal() + "</h4>\n"
+                        + "              <h4>Total $  " + formatoNumero.format(a.getIdFactura().getTotal()) + "</h4>\n"
                         + "            </div>\n"
                         + "          </div>\n"
                         + "          <div class=\"card-body row\">\n"
@@ -275,15 +277,18 @@ public class Jezreel {
     }
 
     public String tablaListaProductosUsu(List<DetallesProducto> detalles, List<Double> costo) {
+        NumberFormat formatoNumero = NumberFormat.getNumberInstance();
+        formatoNumero.setMaximumFractionDigits(2);
+
         String rta = "";
         for (DetallesProducto d : detalles) {
 
             rta += "<tr>\n"
                     + "                              <td>" + d.getIdProducto().getNombre() + "</td>\n"
                     + "                              <td>" + d.getCantidad() + "</td>\n"
-                    + "                              <td> $ " + d.getCosto() + "</td>\n"
-                    + "                              <td> $ " + d.getCosto() * 0.19 + "</td>\n"
-                    + "                              <td>$" + (d.getCosto() + d.getCosto() * 0.19) * d.getCantidad() + "</td>\n"
+                    + "                              <td> $ " + formatoNumero.format(d.getCosto()) + "</td>\n"
+                    + "                              <td> $ " + formatoNumero.format(d.getCosto() * 0.19) + "</td>\n"
+                    + "                              <td>$" + formatoNumero.format((d.getCosto() + d.getCosto() * 0.19) * d.getCantidad()) + "</td>\n"
                     + "                            </tr>\n";
 
             costo.set(0, costo.get(0) + d.getCosto() * d.getCantidad());
@@ -294,18 +299,19 @@ public class Jezreel {
     }
 
     public String costosAtencion(List<Double> costo, Factura f, AtencionServicio a) {
-
+        NumberFormat formatoNumero = NumberFormat.getNumberInstance();
+        formatoNumero.setMaximumFractionDigits(2);
         CalificacionDAO cadao = new CalificacionDAO();
         return "  <br>\n"
                 + "                        <h6>KILOMETRAJE : " + a.getKilometraje() + " Km" + "</h6>\n"
                 + "                        <hr width=\"30%\">\n"
-                + "                        <h6>SUBTOTAL: $" + (Math.round(costo.get(0) * 100.0) / 100.0) + "</h6>\n"
+                + "                        <h6>SUBTOTAL: $" + formatoNumero.format(costo.get(0)) + "</h6>\n"
                 + "                        <hr width=\"30%\">\n"
-                + "                        <h6>IVA: $ " + (Math.round(costo.get(1) * 100.0) / 100.0) + "</h6>\n"
+                + "                        <h6>IVA: $ " + formatoNumero.format(costo.get(1)) + "</h6>\n"
                 + "                        <hr width=\"30%\">\n"
-                + "                         <h6>DESCUENTO: $ " + (Math.round(((costo.get(0) + costo.get(1)) * (f.getDescuento() / 100.0)) * 100.0) / 100.0) + "</h6>\n"
+                + "                         <h6>DESCUENTO: $ " + formatoNumero.format(((costo.get(0) + costo.get(1)) * (f.getDescuento() / 100.0))) + "</h6>\n"
                 + "                        <hr width=\"30%\">\n"
-                + "                        <h6>TOTAL : $ " + f.getTotal() + "</h6>\n"
+                + "                        <h6>TOTAL : $ " + formatoNumero.format(f.getTotal()) + "</h6>\n"
                 + "                        <hr width=\"30%\">\n"
                 + "                    </div>\n"
                 + "                    <div class=\"modal-footer\" id=\"foterM\">\n"
@@ -745,6 +751,8 @@ public class Jezreel {
 
     public String tableServiciosFicha(List<AtencionServicio> servi) {
         String tbody = "";
+         NumberFormat formatoNumero = NumberFormat.getNumberInstance();
+        formatoNumero.setMaximumFractionDigits(2);
         int i = 1;
         for (AtencionServicio s : servi) {
             tbody += "<tr>\n"
@@ -755,7 +763,8 @@ public class Jezreel {
                     + "                            <td>" + s.getDescripcion() + "</td>\n"
                     + "                            <td>" + s.formatoFecha(s.getFecha()) + "</td>\n"
                     + "                            <td>" + s.getIdPersona().getNombres() + " " + s.getIdPersona().getApellidos() + "</td>\n"
-                    + "                            <td>" + s.getIdFactura().getTotal() + "</td>\n"
+                    + "                            <td>" +  s.getIdFactura().getDescuento() + "%"+ "</td>\n"
+                    + "                            <td>" + formatoNumero.format(s.getIdFactura().getTotal()) + "</td>\n"
                     + "\n"
                     + "                        </tr>";
             i++;
@@ -1035,7 +1044,7 @@ public class Jezreel {
         for (Servicio ser : servicioss) {
             if (ser.getEstado().equals("ACTIVO")) {
                 rta += ser.getId() + ","
-                        + ser.getNombre() + "," 
+                        + ser.getNombre() + ","
                         + ser.getTipoProdcuto() + ";";
             }
 
