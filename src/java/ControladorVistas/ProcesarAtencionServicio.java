@@ -62,7 +62,7 @@ public class ProcesarAtencionServicio extends HttpServlet {
             }
             int idcita = Integer.parseInt(idCita);
             
-            Factura factura = j.crearFactura(lista, Integer.parseInt(desc), idcita);
+            Factura factura = j.crearFactura(lista, 0, idcita);
             
             String placa = (String) request.getSession().getAttribute("placa");
             
@@ -76,7 +76,7 @@ public class ProcesarAtencionServicio extends HttpServlet {
             
             response.sendRedirect("CitasAdmin.do");
         } catch (Exception e) {
-            System.out.println(e.getStackTrace());
+            System.out.println(e.getCause());
             //request.getRequestDispatcher("./jsp/adminRegis.jsp").forward(request, response);
         }
 

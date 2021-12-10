@@ -65,7 +65,7 @@
                     <span class="tooltip">Agendamientos</span>
                 </li>
                 <li>
-                    <a href="<%=basePath%>./jsp/adminClientes.jsp">
+                    <a href="<%=basePath%>jsp/adminClientes.jsp">
                         <i class="icon fas fa-user"></i>
                         <span class="links_name">Clientes</span>
                     </a>
@@ -172,6 +172,7 @@
                             <th class="enc" scope="col">Descripcion</th>
                             <th class="enc" scope="col">Fecha</th>
                             <th class="enc" scope="col">Mecanico</th>
+                            <th class="enc" scope="col">Descuento</th>
                             <th class="enc" scope="col">Total</th
 
 

@@ -84,7 +84,7 @@
                     <span class="tooltip">Productos</span>
                 </li>
                 <li>
-                  <a href="<%=basePath%>jsp/reportesAdmin.jsp">
+                  <a href="<%=basePath%>ValoresEstadisticas.do">
                     <i class="fas fa-chart-pie"></i>
                     <span class="links_name">Reportes y Estadísticas</span>
                   </a>

@@ -15,7 +15,6 @@
             String path = request.getContextPath();
             String basePath = request.getScheme() + "://" + request.getServerName() + ":"
                     + request.getServerPort() + path + "/";
-
         %>
         <base href="<%=basePath%>">
         <meta charset="UTF-8">
@@ -91,7 +90,7 @@
                 </li>
                 
                  <li>
-                  <a href="<%=basePath%>jsp/reportesAdmin.jsp">
+                  <a href="<%=basePath%>ValoresEstadisticas.do">
                     <i class="fas fa-chart-pie"></i>
                     <span class="links_name">Reportes y Estadísticas</span>
                   </a>

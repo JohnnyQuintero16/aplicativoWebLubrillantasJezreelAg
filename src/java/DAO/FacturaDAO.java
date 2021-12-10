@@ -59,4 +59,15 @@ public class FacturaDAO {
         }
         
     }
+    
+    public double ingresosTotales(){
+    double ingresos=0.0;
+    List<Factura> facturas = read();
+    for(Factura f: facturas){
+    
+        ingresos+= f.getTotal();
+    }
+    
+    return ingresos;
+    }
 }
