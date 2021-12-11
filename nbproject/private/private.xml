@@ -5,7 +5,7 @@
             <url>src/java/ControladorVistas/MostrarServiProduAdmin.java</url>
             <bookmark id="1">
                 <name/>
-                <line>51</line>
+                <line>49</line>
                 <key/>
             </bookmark>
         </file>
@@ -95,6 +95,13 @@
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/adminRegis.jsp</file>
         </group>
         <group>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/jsp/reportesAdmin.jsp</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/CitasAdmin.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/DAO/CitaDAO.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/DAO/main.java</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/jsp/adminreportesatencion.jsp</file>
+            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/tipoReporte.java</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/serviciosUsu.jsp</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/servicios.jsp</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/vehiculos.jsp</file>
