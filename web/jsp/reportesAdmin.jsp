@@ -123,7 +123,7 @@
                 </div>
 
                 <div class="boton">
-                    <button type="button" class="btn btn-primary btn-lg" onclick="location.href = '#'">Estadísticas</button>
+                    <button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%=basePath%>MostrarEstadisticas.do'">Estadísticas</button>
                 </div>
 
             </div>
