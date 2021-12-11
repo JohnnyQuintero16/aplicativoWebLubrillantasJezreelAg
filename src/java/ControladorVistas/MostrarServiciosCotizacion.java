@@ -33,6 +33,8 @@ public class MostrarServiciosCotizacion extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Jezreel j = new Jezreel();
         request.getSession().setAttribute("serviciosCoti", j.MostrarServiciosCotizaciones());
+        request.getSession().setAttribute("productosJS", j.cargarProductosJS());
+        request.getSession().setAttribute("serviciosJS", j.cargarServiciosJS());
         request.getRequestDispatcher("./jsp/cotizacion.jsp").forward(request, response);
     }
 
