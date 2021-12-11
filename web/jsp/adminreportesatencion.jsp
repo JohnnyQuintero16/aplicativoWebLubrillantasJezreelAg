@@ -16,7 +16,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lubrillantas Jezreel AG - AdministraciÃ³n</title>
+        <title>Lubrillantas Jezreel AG - Administracion</title>
 
         <!-- Fuente de google: Open Sans - Regular 400 -->
         <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
@@ -28,11 +28,11 @@
         <!-- DataTable -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
-
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
         
         <link rel="stylesheet" href="<%=basePath%>css/menuAdministrador.css" />
         <link rel="stylesheet" href="<%=basePath%>css/admClientes.css" />
-
+        
         <style>
             .arreglo{
                 background-color: #10f035f6 !important;
@@ -194,12 +194,14 @@
             </div>
 
             <br>
-            <!-- reporte -->
+            <!-- reporte
 
             <button type="button" class=" arreglo btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1">Generar excel</button>
+ -->
 
-
-            <!-- modal-->
+            
+        </section>
+<!-- modal
             <div class="modal fade" tabindex="-1" id="modal1" aria-labelledby="modal1" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -212,29 +214,39 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #f70b0b !important;">Cancelar</button>
-                            <button type="button" class="btn btn-primary">Confirmar</button>
+                            <button type="button" data-bs-dismiss="modal" class="btn btn-primary" onclick="expo()" id="btnExportar">Confirmar</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+-->
 
-
-
-
+       
+        
+        
         <script src="../js/menuAdministrador.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+         <!--generar excel en este orden-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
+        
         
         <script>
+            
             function filtrar(){
-                    $('#example').DataTable().draw();
+                  $('#example').DataTable().draw();
             }
-            $(document).ready(function() {
-                
-                $.fn.dataTable.ext.search.push(
+            
+             $(document).ready(function() {
+                 
+                 $.fn.dataTable.ext.search.push(
                        function (settings, data, dataIndex) {
                            var desde = $('#desde').val();
                            var hasta = $('#hasta').val();
@@ -248,9 +260,9 @@
                            return false;
                        }
                    );
-            
+             
             $('#example').DataTable({
-
+                    
                     "language":{
                     "lengthMenu": "Mostrar_MENU_registros",
                     "zeroRecords": "No se encontraron resultados",
@@ -265,17 +277,26 @@
                     "sPrevious": "Anterior"
                     },
                     "sProcessing": "Procesando...",
-
-                    } 
                     
+                    },
+                    dom: 'Bfrtip',
+                    buttons: [
+                        {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'LEGAL'
+                        },
+                        'excel'
+                    ]
             });
             
             });
+
         </script>
         
         
         <!-- ValidaciÃ³n de formulario -->
-        <script>
+       <script>
             (function () {
             'use strict'
 
@@ -295,5 +316,7 @@
             })
             })()
         </script>
+        
     </body>
+    
 </html>
