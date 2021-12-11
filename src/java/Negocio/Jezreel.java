@@ -1045,9 +1045,9 @@ public class Jezreel {
             if (ser.getEstado().equals("ACTIVO")) {
                 rta += ser.getId() + ","
                         + ser.getNombre() + ","
-                        + ser.getTipoProdcuto() + ";";
+                        + ser.getTipoProdcuto() + ","
+                        + ser.getDuracion() + ";";
             }
-
         }
         return rta;
     }
@@ -1062,10 +1062,6 @@ public class Jezreel {
         } else {
             List<AtencionServicio> atenciones = atencion.findAtencionFicha(idFicha);
             Collections.sort(atenciones);
-            for (AtencionServicio servi : atenciones) {
-                System.out.println(" Fecha: " + servi.getFecha().toString() + " Vehculo: " + servi.getIdFichaTecnica().getIdVehiculo().getPlaca());
-                System.out.println(servi);
-            }
             kilo = atenciones.get(0).getKilometraje();
         }
 
@@ -1089,7 +1085,7 @@ public class Jezreel {
                     + "<div class=\"texto\">\n"
                     + "<p>" + ser.getDescripcion() + "</p>\n"
                     + "</div>\n"
-                    + "<button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">COTIZAR</button>\n"
+                    + "<button type=\"button\" class=\"btn btn-primary selectCotizacion\" data-id=" + '"' + ser.getId() + '"' + " data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">COTIZAR</button>\n"
                     + "</div>\n"
                     + "</div>\n";
         }
