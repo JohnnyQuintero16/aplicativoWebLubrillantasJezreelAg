@@ -89,16 +89,40 @@ public class Jezreel {
 
     }
 
-    public String[] mostrarProductos() {
+   public boolean saberSiEsNuloTodos(String[] tipo , ProductoDAO da ){
 
-        String[] tipo = {"ACEITES", "FILTROS", "VALVULINAS", "ADITIVOS", "OTROS"};
+        boolean verificar=false;
+        int contador=0;
+         for (int i = 4; i < tipo.length; i++) {
+             List<Producto> pt = da.findProductoTipo(tipo[i]);
+              if (pt.isEmpty()) {
+              
+              contador++;
+              }
+         
+         }
+         System.out.println(contador);
+         if(contador==3) verificar=true;
+        return verificar;
+    
+    }
+
+    public String[] mostrarProductos() {
+        String[] tipo = {"ACEITES", "FILTROS", "VALVULINAS", "ADITIVOS", "LLANTAS","BUJIAS","LUCES"};
         ProductoDAO da = new ProductoDAO();
         String[] rta = new String[tipo.length];
+        
+      boolean vef= saberSiEsNuloTodos(tipo,da);
+        
         for (int i = 0; i < tipo.length; i++) {
 
             List<Producto> pt = da.findProductoTipo(tipo[i]);
-
-            if (!pt.isEmpty()) {
+            
+               
+            
+            if(i<=3){
+            
+                   if (!pt.isEmpty()) {
                 rta[i] = "";
                 for (Producto pro : pt) {
 
@@ -118,7 +142,36 @@ public class Jezreel {
                 rta[i] = "<h4> No se econtraron resultados</h4>";
             }
 
+            }else{
+                 
+                    if (!pt.isEmpty()) {
+                rta[i] = "";
+                for (Producto pro : pt) {
+
+                    rta[i] += "					<div class=\"card\">\n"
+                            + "						<img src=" + '"' + pro.getImgUrl() + '"' + " alt=\"\">\n"
+                            + "						<h4 class=\"titulo-card\">" + pro.getNombre() + " </h4>\n"
+                            + "						<p  id=\"desc\">" + pro.getDescripcion() + "</p>\n"
+                            + "						<p><strong id=\"ref-prec\">Referencia:</strong>" + pro.getReferencia() + "</p>				\n"
+                            + "						<p><strong id=\"ref-prec\">Precio: $ </strong>" + pro.getPrecioVenta() + "</p>\n"
+                            + "\n"
+                            + "						\n"
+                            + "					</div> \n";
+
+                }
+            }  else {
+
+              rta[i] = "<h4></h4>";
+            }
+            
+            
+            }
+
         }
+        
+      if(vef)   rta[4] = "<h4> No se econtraron resultados</h4>";
+        
+        
         return rta;
 
     }
