@@ -1,3 +1,7 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.List"%>
+<%@page import="DAO.AtencionServicioDAO"%>
+<%@page import="DTO.AtencionServicio"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,14 +118,10 @@
                 <div class="titulo">
                     <h1>Reportes de atencion de servicios de clientes</h1>
                 </div>
-
-                <div class="boton">
-                    <button type="button" class="btn btn-primary btn-lg">Regresar</button>
-                </div>
             </div>
 
             <div class="container-fluid">
-                <div class="row"> 
+                <div class="row" id="date_filter"> 
                     <!--select -->
 
 
@@ -130,7 +130,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Desde:</label>
                             <div class="col-sm-8">
-                                <input type="date" class="form-control">
+                                <input type="date" id="desde" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -140,15 +140,15 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Hasta:</label>
                             <div class="col-sm-8">
-                                <input type="date" class="form-control">
+                                <input type="date" id="hasta" class="form-control date_range_filter date">
                             </div>
                         </div>
                     </div>
 
-                    <!--fecha boton -->
+                    <!--fecha boton-->
                     <div class="col-4">
-                        <button type="button" class="btn btn-primary btn-lg">Consultar</button>
-                    </div>
+                        <button type="button" class="btn btn-primary btn-lg" onclick="filtrar()">Consultar</button>
+                    </div> 
                 </div>
             </div>
 
@@ -169,20 +169,25 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <%
+                            AtencionServicioDAO a = new AtencionServicioDAO();
+                            List<AtencionServicio> atenciones = a.read();
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                            for (AtencionServicio atencion : atenciones) {
+                        %>
                         <tr>
-                            <th class="enc" scope="row">1</th>
-                            <td>CUX-347</td>
-                            <td>Spark </td>
-                            <td>61200</td>
-                            <td>1149453973</td>
-                            <td>Susana Rojas Triana</td>
-                            <td>No se que poner</td>
-                            <td>aqui la fecha</td>
-                            <td>150000</td>
-                            <!-- Acciones: editar y cancelar. -->
+                            <th class="enc" scope="row"><%=atencion.getId() %></th>
+                            <td><%=atencion.getIdFichaTecnica().getIdVehiculo().getPlaca() %></td>
+                            <td><%=atencion.getIdFichaTecnica().getIdVehiculo().getIdMarca().getNombre() %></td>
+                            <td><%=atencion.getKilometraje() %></td>
+                            <td><%=atencion.getIdPersona().getCedula() %></td>
+                            <td><%=atencion.getIdPersona().getNombres() %></td>
+                            <td><%=atencion.getDescripcion() %></td>
+                            <td><%=sdf.format(atencion.getFecha())%></td>
+                            <td><%=atencion.getIdFactura().getTotal() %></td>
 
                         </tr>
-
+                        <%  }%>
 
                     </tbody>
                 </table>
@@ -222,33 +227,53 @@
         <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-
+        
         <script>
+            function filtrar(){
+                    $('#example').DataTable().draw();
+            }
             $(document).ready(function() {
+                
+                $.fn.dataTable.ext.search.push(
+                       function (settings, data, dataIndex) {
+                           var desde = $('#desde').val();
+                           var hasta = $('#hasta').val();
+                           var fechaFila = data[7];
+
+                           if ((desde == '' && hasta == '') ||(desde == '' && Date.parse(fechaFila) <= Date.parse(hasta)) ||
+                               (Date.parse(desde) <= Date.parse(fechaFila) && hasta == '') ||
+                               (Date.parse(desde) <= Date.parse(fechaFila) && Date.parse(fechaFila) <= Date.parse(hasta))) {
+                               return true;
+                           }
+                           return false;
+                       }
+                   );
+            
             $('#example').DataTable({
 
-            "language":{
-            "lengthMenu": "Mostrar_MENU_registros",
-            "zeroRecords": "No se encontraron resultados",
-            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "infoFiltered": "(Filtrado de un total de _MAX_ registros)",
-            "sSearch": "Buscar:",
-            "oPaginate": {
-            "sFirst": "Primero",
-            "sLast": "Ãltimo",
-            "sNext": "Siguiente",
-            "sPrevious": "Anterior"
-            },
-            "sProcessing": "Procesando...",
-            }
+                    "language":{
+                    "lengthMenu": "Mostrar_MENU_registros",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "infoFiltered": "(Filtrado de un total de _MAX_ registros)",
+                    "sSearch": "Buscar:",
+                    "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "ultimo",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                    },
+                    "sProcessing": "Procesando...",
 
-            }
-            );
-            } );
+                    } 
+                    
+            });
+            
+            });
         </script>
-
+        
+        
         <!-- ValidaciÃ³n de formulario -->
         <script>
             (function () {
