@@ -176,6 +176,10 @@
         <servlet-class>ControladorVistas.UpdatePassword</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>MostrarEstadisticas</servlet-name>
+        <servlet-class>ControladorVistas.MostrarEstadisticas</servlet-class>
+        </servlet>
+        <servlet>
         <servlet-name>ValoresEstadisticas</servlet-name>
         <servlet-class>ControladorVistas.ValoresEstadisticas</servlet-class>
     </servlet>
@@ -328,6 +332,10 @@
         <url-pattern>/UpdatePassword.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>MostrarEstadisticas</servlet-name>
+        <url-pattern>/MostrarEstadisticas.do</url-pattern>
+        </servlet-mapping>
+        <servlet-mapping>
         <servlet-name>ValoresEstadisticas</servlet-name>
         <url-pattern>/ValoresEstadisticas.do</url-pattern>
     </servlet-mapping>
