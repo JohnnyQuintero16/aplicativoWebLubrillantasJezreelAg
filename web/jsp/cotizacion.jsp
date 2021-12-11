@@ -120,140 +120,111 @@
         </div>
     </main>
 
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title" id="exampleModalLabel">Productos del servicio</h3>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" id="modalContenido">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Productos del servicio</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
 
-        <div class="header-body">
-            <div class="row">
-                <div class="col-md-8 ser-nombre">
-                    <h4>Nombre del servicio</h4>
-                    <p>Duración: 
-                        <i class="far fa-clock"></i>
-                        <span>30 minutos</span>
-                    </p>
-                    
-                </div>
-                <div class="col-md-4 ser-total">
-                    <h4>Total:</h4>
-                    <p>$ 30.000</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="modal-body">
+                <div class="header-body" id="headerModal">
+                    <template id="modal-header">
+                        <div class="row">
+                            <div class="col-md-8 ser-nombre">
+                                <h4>Nombre del servicio</h4>
+                                <p>Duración: 
+                                    <i class="far fa-clock"></i>
+                                    <span>30 minutos</span>
+                                </p>
 
-            <div class="row fila">
-                <div class="col-md-4 f-nombre">
-                    <h5>Nombre</h5>
-                    <p>Mobil Super 2000.</p>
+                            </div>
+                            <div class="col-md-4 ser-total">
+                                <h4>Total:</h4>
+                                <p>$ 30.000</p>
+                            </div>
+                        </div>
+                    </template>
                 </div>
-                <div class="col-md-4 f-marca">
-                    <h5>Marca</h5>
-                    <select name="select">
-                        <option value="value1">Marca 1</option>
-                        <option value="value2">Marca 2</option>
-                        <option value="value3">Marca 3</option>
-                      </select>
-                </div>
-                <div class="col-md-4 f-precio">
-                    <h5>Precio</h5>
-                    <p>$15.000</p>
-                </div>
-            </div>
 
-            <div class="row fila">
-                <div class="col-md-4 f-nombre">
-                    <h5>Nombre</h5>
-                    <p>Mobil Super 2000.</p>
+                <div class="modal-body" id="modal-Body-Cuerpo">
+                    <template id = "modalBody"> 
+                    <div class="row fila">
+                        <div class="col-md-3 f-nombre">
+                            <h5>Nombre</h5>
+                            <p>Mobil Super 2000.</p>
+                        </div>
+                        <div class="col-md-3 f-nombre">
+                            <h5>Marca</h5>
+                            <p>Helix</p>
+                        </div>
+                        <div class="col-md-3 f-precio">
+                            <h5>Precio</h5>
+                            <p>$15.000</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <button type="button" class="btn btn-outline-success btn-block w-100 active btnProducto"> Seleccionar</button>
+                        </div>
+                    </div>
+                </template>
                 </div>
-                <div class="col-md-4 f-marca">
-                    <h5>Marca</h5>
-                    <select name="select">
-                        <option value="value1">Marca 1</option>
-                        <option value="value2">Marca 2</option>
-                        <option value="value3">Marca 3</option>
-                      </select>
-                </div>
-                <div class="col-md-4 f-precio">
-                    <h5>Precio</h5>
-                    <p>$15.000</p>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-cerrar limpiarModal" data-bs-dismiss="modal">Hecho</button>
                 </div>
             </div>
 
-            <div class="row fila">
-                <div class="col-md-4 f-nombre">
-                    <h5>Nombre</h5>
-                    <p>Mobil Super 2000.</p>
-                </div>
-                <div class="col-md-4 f-marca">
-                    <h5>Marca</h5>
-                    <select name="select">
-                        <option value="value1">Marca 1</option>
-                        <option value="value2">Marca 2</option>
-                        <option value="value3">Marca 3</option>
-                      </select>
-                </div>
-                <div class="col-md-4 f-precio">
-                    <h5>Precio</h5>
-                    <p>$15.000</p>
-                </div>
-            </div>
-
-
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success btn-cerrar" data-bs-dismiss="modal">Hecho</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
-    <!--FOOTER-->
-    <footer>
-        <div class="container-fluid">
-            <div class="row ">
-                <div class="col-12 redes" style="background-color: #00114e;">
-                    <a href="https://api.whatsapp.com/send/?phone=573112810082&text&app_absent=0"><img src="<%=basePath%>/img/whatsapp.png" ></a>
-                    <a href="https://web.facebook.com/profile.php?id=100075532121136"><img src="<%=basePath%>/img/facebook.png" ></a>
-                    <a href="https://www.instagram.com/lubrillantasjag/"><img src="<%=basePath%>/img/instagram.png" ></a>
-                </div>
-            </div>
-            <div class="row" style="background-color: #001971;">
-
-                <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-                    <img src="<%=basePath%>/img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
-                </div>
-
-                <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
-                    <h4 >HORARIOS DE ATENCIÓN</h4>
-                    <p>Lunes a Viernes</p>
-                    <p>7:30 AM a 6:00 PM</p>
-                    <p>Sábado</p>
-                    <p>7:30 AM a 5:00 PM</p>
-                </div>
-
-                <div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
-                    <h4 > CONTACTO </h4>
-                    <P>Av 5 # 0N-54 Barrio La Merced</P>
-                    <p>San José de Cúcuta - Colombia</p>
-                    <p>albeirofonseca74@gmail.com</p>
-                    <p>+57 3112810082</p>
-                </div>
-
+<!--FOOTER-->
+<footer>
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-12 redes" style="background-color: #00114e;">
+                <a href="https://api.whatsapp.com/send/?phone=573112810082&text&app_absent=0"><img src="<%=basePath%>/img/whatsapp.png" ></a>
+                <a href="https://web.facebook.com/profile.php?id=100075532121136"><img src="<%=basePath%>/img/facebook.png" ></a>
+                <a href="https://www.instagram.com/lubrillantasjag/"><img src="<%=basePath%>/img/instagram.png" ></a>
             </div>
         </div>
-    </footer>
-    <!--FIN FOOTER-->
+        <div class="row" style="background-color: #001971;">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="./js/sesion.js"></script>
+            <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+                <img src="<%=basePath%>/img/LogoLJAG.png" alt="Logo Jezreel" id="imgFooter">
+            </div>
+
+            <div class="col-12  col-sm-4 col-md-4 col-lg-4 horario" >
+                <h4 >HORARIOS DE ATENCIÓN</h4>
+                <p>Lunes a Viernes</p>
+                <p>7:30 AM a 6:00 PM</p>
+                <p>Sábado</p>
+                <p>7:30 AM a 5:00 PM</p>
+            </div>
+
+            <div class="col-12  col-sm-4 col-md-4 col-lg-4 footer-contacto" >
+                <h4 > CONTACTO </h4>
+                <P>Av 5 # 0N-54 Barrio La Merced</P>
+                <p>San José de Cúcuta - Colombia</p>
+                <p>albeirofonseca74@gmail.com</p>
+                <p>+57 3112810082</p>
+            </div>
+
+        </div>
+    </div>
+</footer>
+<!--FIN FOOTER-->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="./js/sesion.js"></script>
+<script src="./js/cotizacion.js"></script>
+<script>
+    let serviciosJavaS = '<%=request.getSession().getAttribute("serviciosJS").toString()%>'.split(";");
+    let productoJavaS = '<%=request.getSession().getAttribute("productosJS").toString()%>'.split(";");
+    infoDataJSP(serviciosJavaS, productoJavaS);
+</script>
 </body>
 </html>
+

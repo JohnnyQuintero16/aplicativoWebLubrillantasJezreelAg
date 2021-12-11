@@ -375,7 +375,6 @@
                 li = li.parentNode;
                 li = li.parentNode;
                 datos = li.querySelectorAll("td");
-                console.log(datos);
                 modalBodyInput = modalEditarCliente.querySelector('.modal-body').querySelectorAll('input');
                 modalBodyInput[0].value = datos[0].innerHTML;//nombre
                 modalBodyInput[1].value = datos[1].innerHTML;//cc

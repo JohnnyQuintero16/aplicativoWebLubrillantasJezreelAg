@@ -102,6 +102,40 @@
             <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/DAO/main.java</file>
             <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/jsp/adminreportesatencion.jsp</file>
             <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/tipoReporte.java</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/serviciosUsu.jsp</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/servicios.jsp</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/vehiculos.jsp</file>
+        </group>
+        <group>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarServiProduAdmin.java</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/adminClientes.jsp</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarServiciosCotizacion.java</file>
+        </group>
+        <group/>
+        <group>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/productos.jsp</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/CargarAddVehiculo.java</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/datosAgendamiento.jsp</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/FichaTecnicaAdd.jsp</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarProductos.java</file>
+        </group>
+        <group>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/productos.jsp</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/CargarAddVehiculo.java</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/datosAgendamiento.jsp</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/FichaTecnicaAdd.jsp</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarProductos.java</file>
+        </group>
+        <group>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/productos.jsp</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/CargarAddVehiculo.java</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/datosAgendamiento.jsp</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/FichaTecnicaAdd.jsp</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarProductos.java</file>
         </group>
     </open-files>
 </project-private>
