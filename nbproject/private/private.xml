@@ -2,8 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
-        <group/>
         <group>
             <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/jsp/registrarse.jsp</file>
             <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/Registro.java</file>
@@ -176,6 +174,17 @@
             <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/DAO/FacturaDAO.java</file>
             <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/datosAgendamiento.jsp</file>
             <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/productosAdmin.jsp</file>
+        </group>
+        <group>
+            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarFichaTecnica.java</file>
+            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
+        </group>
+        <group>
+            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/conf/persistence.xml</file>
+            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/fichaTecnica.jsp</file>
+            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/WEB-INF/web.xml</file>
+            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarFichaTecnica.java</file>
+            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
         </group>
     </open-files>
 </project-private>

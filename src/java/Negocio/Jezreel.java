@@ -812,6 +812,11 @@ public class Jezreel {
         formatoNumero.setMaximumFractionDigits(2);
         int i = 1;
         for (AtencionServicio s : servi) {
+            String calificacion = "N/A";
+            if(!s.getCalificacionList().isEmpty() ){
+                calificacion =  s.getCalificacionList().get(0).getValor() +", "+ s.getCalificacionList().get(0).getDescripcion();
+            
+            }
             tbody += "<tr>\n"
                     + "                            <th class=\"enc\" scope=\"row\">" + i + "</th>\n"
                     + "                            <td>" + s.getIdFichaTecnica().getIdVehiculo().getPlaca() + "</td>\n"
@@ -820,8 +825,9 @@ public class Jezreel {
                     + "                            <td>" + s.getDescripcion() + "</td>\n"
                     + "                            <td>" + s.formatoFecha(s.getFecha()) + "</td>\n"
                     + "                            <td>" + s.getIdPersona().getNombres() + " " + s.getIdPersona().getApellidos() + "</td>\n"
+                    + "                            <td>" +  calificacion+ "</td>\n"
                     + "                            <td>" + s.getIdFactura().getDescuento() + "%" + "</td>\n"
-                    + "                            <td>" + formatoNumero.format(s.getIdFactura().getTotal()) + "</td>\n"
+                    + "                            <td>" +"$"+ formatoNumero.format(s.getIdFactura().getTotal()) + "</td>\n"
                     + "\n"
                     + "                        </tr>";
             i++;
