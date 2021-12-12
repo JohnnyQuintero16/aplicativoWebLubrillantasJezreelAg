@@ -298,7 +298,7 @@
 
             <div class="container text-center">
 
-                <form action="">
+                <form action="<%=basePath%>/MostrarReportesCitas.do" method="POST">
                     <select class="option" style="width:350px; font-size:19px" name ="tipo" required>
                         <option value="">Reportes Disponibles:</option>
                         <option value="1">Citas</option>
