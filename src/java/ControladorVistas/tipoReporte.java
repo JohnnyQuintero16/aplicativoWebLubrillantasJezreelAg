@@ -36,7 +36,7 @@ public class tipoReporte extends HttpServlet {
             request.getRequestDispatcher("jsp/adminreportesatencion.jsp").forward(request, response);
         }else{
             
-            request.getRequestDispatcher("jsp/adminreportesatencion.jsp").forward(request, response);
+            request.getRequestDispatcher("./MostrarReportesCitas.do").forward(request, response);
         }
     }
 

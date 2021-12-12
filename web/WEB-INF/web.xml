@@ -184,6 +184,14 @@
         <servlet-class>ControladorVistas.ValoresEstadisticas</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>MostrarReportesCitas</servlet-name>
+        <servlet-class>ControladorVistas.MostrarReportesCitas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FiltrarReporteCitas</servlet-name>
+        <servlet-class>ControladorVistas.FiltrarReporteCitas</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>MostrarServiciosCotizacion</servlet-name>
         <servlet-class>ControladorVistas.MostrarServiciosCotizacion</servlet-class>
     </servlet>
@@ -342,6 +350,14 @@
     <servlet-mapping>
         <servlet-name>ValoresEstadisticas</servlet-name>
         <url-pattern>/ValoresEstadisticas.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarReportesCitas</servlet-name>
+        <url-pattern>/MostrarReportesCitas.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FiltrarReporteCitas</servlet-name>
+        <url-pattern>/FiltrarReporteCitas.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MostrarServiciosCotizacion</servlet-name>
