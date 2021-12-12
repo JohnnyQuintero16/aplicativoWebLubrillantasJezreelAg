@@ -193,3 +193,60 @@ a:hover span:nth-child(4){
     transition: 1s;
     transition-delay: 0.75s;
 } */
+
+.modal-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-body{
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-top: 20px;
+    padding: 10px;
+
+}
+
+.ser-nombre p,
+.ser-total p{
+    margin-left: 5px;
+    font-size: 18px;
+}
+
+.fila{
+    width: 90%;
+    margin: 10px 0;
+    padding: 10px 10px;
+    background: rgb(219, 219, 219);
+    border-radius: 10px;
+}
+
+.fila p {
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 18px;
+}
+
+h5{
+    text-align: center;
+}
+
+.btn-cerrar{
+    width: 20% !important;
+}
+
+.f-marca{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.f-marca select{
+    width: 75%;
+    height: 30px;
+    padding: 5px;
+    border: 0;
+    border-radius: 8px;
+    font-size: 18px;
+}

@@ -65,7 +65,7 @@
                     <span class="tooltip">Agendamientos</span>
                 </li>
                 <li>
-                    <a href="<%=basePath%>./jsp/adminClientes.jsp">
+                    <a href="<%=basePath%>jsp/adminClientes.jsp">
                         <i class="icon fas fa-user"></i>
                         <span class="links_name">Clientes</span>
                     </a>

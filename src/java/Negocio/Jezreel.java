@@ -27,6 +27,7 @@ import DAO.ProductoDAO;
 import DAO.ServicioDAO;
 import DAO.TipoDAO;
 import DAO.main;
+import DTO.Calificacion;
 import DTO.Cita;
 import DTO.Marca;
 import DTO.Persona;
@@ -91,17 +92,40 @@ public class Jezreel {
 
     }
 
+   public boolean saberSiEsNuloTodos(String[] tipo , ProductoDAO da ){
+
+        boolean verificar=false;
+        int contador=0;
+         for (int i = 4; i < tipo.length; i++) {
+             List<Producto> pt = da.findProductoTipo(tipo[i]);
+              if (pt.isEmpty()) {
+              
+              contador++;
+              }
+         
+         }
+         System.out.println(contador);
+         if(contador==3) verificar=true;
+        return verificar;
+    
+    }
+
     public String[] mostrarProductos() {
-         NumberFormat formatoNumero = NumberFormat.getNumberInstance();
-        formatoNumero.setMaximumFractionDigits(2);
-        String[] tipo = {"ACEITES", "FILTROS", "VALVULINAS", "ADITIVOS", "OTROS"};
+        String[] tipo = {"ACEITES", "FILTROS", "VALVULINAS", "ADITIVOS", "LLANTAS","BUJIAS","LUCES"};
         ProductoDAO da = new ProductoDAO();
         String[] rta = new String[tipo.length];
+        
+      boolean vef= saberSiEsNuloTodos(tipo,da);
+        
         for (int i = 0; i < tipo.length; i++) {
 
             List<Producto> pt = da.findProductoTipo(tipo[i]);
-
-            if (!pt.isEmpty()) {
+            
+               
+            
+            if(i<=3){
+            
+                   if (!pt.isEmpty()) {
                 rta[i] = "";
                 for (Producto pro : pt) {
 
@@ -121,7 +145,36 @@ public class Jezreel {
                 rta[i] = "<h4> No se econtraron resultados</h4>";
             }
 
+            }else{
+                 
+                    if (!pt.isEmpty()) {
+                rta[i] = "";
+                for (Producto pro : pt) {
+
+                    rta[i] += "					<div class=\"card\">\n"
+                            + "						<img src=" + '"' + pro.getImgUrl() + '"' + " alt=\"\">\n"
+                            + "						<h4 class=\"titulo-card\">" + pro.getNombre() + " </h4>\n"
+                            + "						<p  id=\"desc\">" + pro.getDescripcion() + "</p>\n"
+                            + "						<p><strong id=\"ref-prec\">Referencia:</strong>" + pro.getReferencia() + "</p>				\n"
+                            + "						<p><strong id=\"ref-prec\">Precio: $ </strong>" + pro.getPrecioVenta() + "</p>\n"
+                            + "\n"
+                            + "						\n"
+                            + "					</div> \n";
+
+                }
+            }  else {
+
+              rta[i] = "<h4></h4>";
+            }
+            
+            
+            }
+
         }
+        
+      if(vef)   rta[4] = "<h4> No se econtraron resultados</h4>";
+        
+        
         return rta;
 
     }
@@ -484,9 +537,8 @@ public class Jezreel {
     }
 
     //PARSEO LA SEMANA CON LAS HORAS A STRING PARA MANIPULARLO EN EL JS
-    public String cargarHorarios() {
-
-        String rta = "";
+    public String cargarHorarios(){
+        String rta="";
         ArrayList<Dia> semana = this.cargarHorario();
 
         for (Dia d : semana) {
@@ -557,17 +609,17 @@ public class Jezreel {
         Calendar calendar = Calendar.getInstance();
         //MODELO DE FECHA QUE QUIERO
         SimpleDateFormat formatearFecha = new SimpleDateFormat("yyyy-MM-dd", new Locale("es_ES"));
-        if (dia.equals("DOMINGO")) {//O ESTA FUERA DEL HORARIO LABORAL
-            //COMIENZO A BUSCAR A PARTIR DEL LUNES en adelante
-            calendar.add(Calendar.DAY_OF_WEEK, 1); //AQUI OBTENGO EL DIA(domingo) Y LE SUMO 1
-            Date fechaManana = calendar.getTime();
-            //LA PARTE STRING DE LA FECHA
-            String parteFecha = formatearFecha.format(fechaManana);
-            //LA PARTE DE HORAS DE LA FECHA(INICIO HORARIO LABORAL)
-            String parteHora = "7:30:00";
-            //MODELO DE FORMATO DE FECHA Y HORA A LA QUE VOY A CONVERTIR PARA HACER RESTAS
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
+        if(dia.equals("SUNDAY")){//O ESTA FUERA DEL HORARIO LABORAL
+             //COMIENZO A BUSCAR A PARTIR DEL LUNES en adelante
+             calendar.add(Calendar.DAY_OF_WEEK, 1); //AQUI OBTENGO EL DIA(domingo) Y LE SUMO 1
+             Date fechaManana = calendar.getTime();
+             //LA PARTE STRING DE LA FECHA
+             String parteFecha = formatearFecha.format(fechaManana);
+             //LA PARTE DE HORAS DE LA FECHA(INICIO HORARIO LABORAL)
+             String parteHora = "7:30:00";
+             //MODELO DE FORMATO DE FECHA Y HORA A LA QUE VOY A CONVERTIR PARA HACER RESTAS
+             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            
             try {
                 fechaAmandar = sdf.parse(parteFecha + " " + parteHora);
             } catch (ParseException ex) {
@@ -1031,7 +1083,7 @@ public class Jezreel {
         for (Producto pro : productoss) {
             if (pro.getEstado().equals("ACTIVO")) {
                 rta += pro.getCodigo() + ","
-                        + pro.getDescripcion() + ","
+                        + pro.getNombre() + ","
                         + pro.getIdMarca().getNombre() + ","
                         + pro.getTipo() + ","
                         + pro.getPrecioVenta() + ";";
@@ -1049,9 +1101,9 @@ public class Jezreel {
             if (ser.getEstado().equals("ACTIVO")) {
                 rta += ser.getId() + ","
                         + ser.getNombre() + ","
-                        + ser.getTipoProdcuto() + ";";
+                        + ser.getTipoProdcuto() + ","
+                        + ser.getDuracion() + ";";
             }
-
         }
         return rta;
     }
@@ -1066,10 +1118,6 @@ public class Jezreel {
         } else {
             List<AtencionServicio> atenciones = atencion.findAtencionFicha(idFicha);
             Collections.sort(atenciones);
-            for (AtencionServicio servi : atenciones) {
-                System.out.println(" Fecha: " + servi.getFecha().toString() + " Vehculo: " + servi.getIdFichaTecnica().getIdVehiculo().getPlaca());
-                System.out.println(servi);
-            }
             kilo = atenciones.get(0).getKilometraje();
         }
 
@@ -1117,5 +1165,79 @@ public class Jezreel {
     
    
    
+
+    public int getAtendidas() {
+        return this.cuenta("ATENDIDO");
+    }
+    
+    public int getCanceladas() {
+       return this.cuenta("CANCELADA");
+    }
+    
+    private int cuenta(String estado){
+    
+        CitaDAO c = new CitaDAO();
+        List<Cita> citas = c.read();
+        int cont = 0;
+        for (Cita ci : citas) {
+            if(ci.getEstado().equals(estado))
+                cont++;
+        }
+        
+        return cont;
+    }
+
+    public String getCalificacionesPorPuntaje() {
+
+        int cal [] = new int[5];
+        CalificacionDAO ca = new CalificacionDAO();
+        List<Calificacion> calificaciones = ca.read();
+        for (Calificacion calif : calificaciones) {
+            cal[calif.getValor()-1]++;
+        }
+        return cal[0]+","+cal[1]+","+cal[2]+","+cal[3]+","+cal[4];
+    }
+
+    public String getMesesEst() {
+
+        int meses [] = new int[12];
+        CitaDAO ci = new CitaDAO();
+        List<Cita> citas = ci.getCitasAtendidasAnioActual();
+        Calendar calendar = Calendar.getInstance();
+        for (Cita cit : citas) {
+            calendar.setTime(cit.getFecha());
+            meses[calendar.get(Calendar.MONTH)]++;
+        }
+        return meses[0]+","+meses[1]+","+meses[2]+","+meses[3]+","+meses[4]+","+meses[5]+","+meses[6]+","
+                +meses[7]+","+meses[8]+","+meses[9]+","+meses[10]+","+meses[11];
+    }
+    
+    private String getMes(Date fecha){
+        SimpleDateFormat sdf = new SimpleDateFormat("MM");
+        return sdf.format(fecha);
+    }
+    public String MostrarServiciosCotizaciones() {
+        String rta = "";
+        ServicioDAO s = new ServicioDAO();
+        List<Servicio> servi = s.readServiciosActivos();
+        for (Servicio ser : servi) {
+
+            rta += "<div class=\"card\">\n"
+                    + "<div class=\"imagen\">\n"
+                    + "<img src=" + '"' + ser.getImgUrl() + '"' + " alt=\"...\">\n"
+                    + " <div class=\"titulo\">\n"
+                    + "<h3 class=\"text-primary\">" + ser.getNombre() + "</h3>\n"
+                    + "</div>\n"
+                    + "</div>\n"
+                    + "<div class=\"descripcion\">\n"
+                    + "<div class=\"texto\">\n"
+                    + "<p>" + ser.getDescripcion() + "</p>\n"
+                    + "</div>\n"
+                    + "<button type=\"button\" class=\"btn btn-primary selectCotizacion\" data-id=" + '"' + ser.getId() + '"' + " data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">COTIZAR</button>\n"
+                    + "</div>\n"
+                    + "</div>\n";
+        }
+        return rta;
+    }
 
 }

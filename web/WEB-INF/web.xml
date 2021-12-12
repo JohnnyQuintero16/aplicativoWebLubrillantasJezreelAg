@@ -176,6 +176,10 @@
         <servlet-class>ControladorVistas.UpdatePassword</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>MostrarEstadisticas</servlet-name>
+        <servlet-class>ControladorVistas.MostrarEstadisticas</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ValoresEstadisticas</servlet-name>
         <servlet-class>ControladorVistas.ValoresEstadisticas</servlet-class>
     </servlet>
@@ -186,6 +190,14 @@
     <servlet>
         <servlet-name>FiltrarReporteCitas</servlet-name>
         <servlet-class>ControladorVistas.FiltrarReporteCitas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarServiciosCotizacion</servlet-name>
+        <servlet-class>ControladorVistas.MostrarServiciosCotizacion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>tipoReporte</servlet-name>
+        <servlet-class>ControladorVistas.tipoReporte</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
@@ -332,6 +344,10 @@
         <url-pattern>/UpdatePassword.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>MostrarEstadisticas</servlet-name>
+        <url-pattern>/MostrarEstadisticas.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ValoresEstadisticas</servlet-name>
         <url-pattern>/ValoresEstadisticas.do</url-pattern>
     </servlet-mapping>
@@ -342,6 +358,14 @@
     <servlet-mapping>
         <servlet-name>FiltrarReporteCitas</servlet-name>
         <url-pattern>/FiltrarReporteCitas.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarServiciosCotizacion</servlet-name>
+        <url-pattern>/MostrarServiciosCotizacion.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>tipoReporte</servlet-name>
+        <url-pattern>/tipoReporte.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>35</session-timeout>

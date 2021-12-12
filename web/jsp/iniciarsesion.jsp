@@ -57,6 +57,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="<%=basePath%>/MostrarProductos.do">PRODUCTOS</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<%=basePath%>MostrarServiciosCotizacion.do">COTIZA YA!</a>
+                        </li>
                     </ul>
                         <ul class="navbar-nav ml-auto m-4">
                             <li class="nav-item">

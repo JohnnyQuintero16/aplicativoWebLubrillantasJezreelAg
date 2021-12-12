@@ -37,7 +37,8 @@ public class main {
     public static void main(String[] args) {
         Jezreel j = new Jezreel();
         CitaDAO c = new CitaDAO();
-        System.out.println(j.cargarHorarios());
+        System.out.println(j.getMesesEst());
+//        System.out.println(j.cargarHorarios());
 //        Date d = new Date(2021-1900, 12-1, 03, 11, 0, 0);
 //        Date horac = new Date(2021-1900, 12-1, 03, 11, 0, 0);
 //        PersonaDAO p = new PersonaDAO();

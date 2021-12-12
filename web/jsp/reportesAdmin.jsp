@@ -123,7 +123,7 @@
                 </div>
 
                 <div class="boton">
-                    <button type="button" class="btn btn-primary btn-lg" onclick="location.href = '#'">Estadísticas</button>
+                    <button type="button" class="btn btn-primary btn-lg" onclick="location.href='<%=basePath%>MostrarEstadisticas.do'">Estadísticas</button>
                 </div>
 
             </div>
@@ -298,7 +298,7 @@
 
             <div class="container text-center">
 
-                <form action="<%=basePath%>/MostrarReportesCitas.do" method="POST">
+                <form action="tipoReporte.do">
                     <select class="option" style="width:350px; font-size:19px" name ="tipo" required>
                         <option value="">Reportes Disponibles:</option>
                         <option value="1">Citas</option>
