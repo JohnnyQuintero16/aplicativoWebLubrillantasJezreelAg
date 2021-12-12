@@ -114,7 +114,8 @@ public class Jezreel {
         String[] tipo = {"ACEITES", "FILTROS", "VALVULINAS", "ADITIVOS", "LLANTAS","BUJIAS","LUCES"};
         ProductoDAO da = new ProductoDAO();
         String[] rta = new String[tipo.length];
-        
+        NumberFormat formatoNumero = NumberFormat.getNumberInstance();
+        formatoNumero.setMaximumFractionDigits(2);
       boolean vef= saberSiEsNuloTodos(tipo,da);
         
         for (int i = 0; i < tipo.length; i++) {
