@@ -172,8 +172,8 @@
                                     </div>        
                                 <br><br>
                                     <div class="col-12">
-                                        <select id="inputState" class="form-select">
-                                            <option selected required>Seleccione un vehiculo</option>
+                                        <select id="inputState" class="form-select" required>
+                                            <option selected value="">Seleccione un vehiculo</option>
                                             <%=request.getSession().getAttribute("getVehiculo").toString()%>
                                         </select>
                                     </div>

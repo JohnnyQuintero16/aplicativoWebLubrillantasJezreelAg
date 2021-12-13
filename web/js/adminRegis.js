@@ -28,11 +28,13 @@ const templaeteItemPro = document.getElementById(
   "TablaProductosCliente"
 ).content;
 const selectOption = document.getElementById("selectProductos");
-
+const limpiarPage = document.getElementById("limpiarPage");
 var index = 0;
 listaServicio.addEventListener("click", (e) => {
   eliminarServicio(e);
 });
+
+
 const btn = document.querySelectorAll(".btnAddServicio");
 
 var itemSelects = [];
@@ -370,7 +372,6 @@ let cargarProductosHTML = () =>{
     "<td class='tg-amwm' center>" + formatCurrency("es-CO", "COP", 2, (product[4]*1.19) * cantidadesProducto[i].value) + "</td>"+
   "</tr>";
   }
-
   return html;
 }
 
@@ -382,3 +383,12 @@ function formatCurrency (locales, currency, fractionDigits, number) {
   }).format(number);
   return formatted;
 }
+
+limpiarPage.addEventListener("click", () =>{
+  itemsTiposProductos.clear();
+    selectOption.disabled = true;
+    tableBody.innerHTML = "";
+    idsProducto = [];
+    cargarSelectProductos();
+    console.log("entra");
+})

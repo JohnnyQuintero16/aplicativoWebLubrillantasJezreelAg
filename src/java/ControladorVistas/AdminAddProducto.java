@@ -52,8 +52,14 @@ public class AdminAddProducto extends HttpServlet {
                     case "4":
                         tipo = "ADITIVOS";
                         break;
-                    default:
-                        tipo = "OTROS";
+                    case "5":
+                        tipo = "LLANTAS";
+                        break;
+                    case "6":
+                        tipo = "BUJIAS";
+                        break;
+                    case "7":
+                        tipo = "LUCES";
                         break;
                 }
                 nuevo.setCodigo(codigo);

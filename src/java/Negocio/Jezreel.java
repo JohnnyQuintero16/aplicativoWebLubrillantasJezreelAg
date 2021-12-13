@@ -987,7 +987,7 @@ public class Jezreel {
         FichaTecnicaDAO ficha = new FichaTecnicaDAO();
         if (ficha.findFichaVehiculo(placa) == null) {
             FichaTecnica nueva = new FichaTecnica();
-            nueva.setId(null);
+            nueva.setId(0);
             VehiculoDAO v = new VehiculoDAO();
             nueva.setIdVehiculo(v.readVehiculo(placa));
             ficha.create(nueva);
