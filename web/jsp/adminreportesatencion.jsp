@@ -1,3 +1,4 @@
+<%@page import="java.text.NumberFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="DAO.AtencionServicioDAO"%>
@@ -173,6 +174,9 @@
                             AtencionServicioDAO a = new AtencionServicioDAO();
                             List<AtencionServicio> atenciones = a.read();
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                            SimpleDateFormat sdfHora = new SimpleDateFormat("hh: mm: ss");
+                            NumberFormat formatoNumero = NumberFormat.getNumberInstance();
+                            formatoNumero.setMaximumFractionDigits(2);
                             for (AtencionServicio atencion : atenciones) {
                         %>
                         <tr>
@@ -183,8 +187,8 @@
                             <td><%=atencion.getIdPersona().getCedula() %></td>
                             <td><%=atencion.getIdPersona().getNombres() %></td>
                             <td><%=atencion.getDescripcion() %></td>
-                            <td><%=sdf.format(atencion.getFecha())%></td>
-                            <td><%=atencion.getIdFactura().getTotal() %></td>
+                            <td><%=sdf.format(atencion.getFecha()) + " / \n" + sdfHora.format(atencion.getHora())%></td>
+                            <td>$<%=formatoNumero.format(atencion.getIdFactura().getTotal()) %></td>
 
                         </tr>
                         <%  }%>

@@ -166,7 +166,7 @@
                     <span class="tooltip">Productos</span>
                 </li>
                 <li>
-                    <a href="<%=basePath%>">
+                    <a href="<%=basePath%>ValoresEstadisticas.do">
                         <i class="fas fa-chart-pie"></i>
                         <span class="links_name" >Reportes y Estadísticas</span>
                     </a>
@@ -192,7 +192,9 @@
                 </div>
 
                 <div class="boton">
-                    <button type="button" class="btn btn-primary btn-lg" >Regresar a Reportes</button>
+                    <a href="<%=basePath%>ValoresEstadisticas.do">
+                        <button type="button" class="btn btn-primary btn-lg"  >Regresar a Reportes</button>
+                    </a>
                 </div>
 
             </div>
