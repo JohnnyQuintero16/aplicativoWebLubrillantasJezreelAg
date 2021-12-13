@@ -127,7 +127,7 @@
 
 
                     <!--fecha ini -->
-                    <div class="col-4">
+                    <div class="col-3">
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Desde:</label>
                             <div class="col-sm-8">
@@ -137,7 +137,7 @@
                     </div>
 
                     <!--fecha fin -->
-                    <div class="col-4">
+                    <div class="col-3">
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Hasta:</label>
                             <div class="col-sm-8">
@@ -147,9 +147,13 @@
                     </div>
 
                     <!--fecha boton-->
-                    <div class="col-4">
+                    <div class="col-3">
                         <button type="button" class="btn btn-primary btn-lg" onclick="filtrar()">Consultar</button>
+                        
                     </div> 
+                    <div class="col-3">
+                        <label>Total Acumulado</label><input id="acumulado" type="text" value="0" />
+                    </div>
                 </div>
             </div>
 
@@ -165,7 +169,8 @@
                             <th class="enc" scope="col">Cedula</th>
                             <th class="enc" scope="col">Nombres</th>
                             <th class="enc" scope="col">Descripcion</th>
-                            <th class="enc" scope="col">Fecha / Hora</th>
+                            <th class="enc" scope="col">Fecha</th>
+                            <th class="enc" scope="col">Hora</th>
                             <th class="enc" scope="col">Total Factura</th>
                         </tr>
                     </thead>
@@ -174,9 +179,7 @@
                             AtencionServicioDAO a = new AtencionServicioDAO();
                             List<AtencionServicio> atenciones = a.read();
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                            SimpleDateFormat sdfHora = new SimpleDateFormat("hh: mm: ss");
-                            NumberFormat formatoNumero = NumberFormat.getNumberInstance();
-                            formatoNumero.setMaximumFractionDigits(2);
+                            SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm a");
                             for (AtencionServicio atencion : atenciones) {
                         %>
                         <tr>
@@ -187,8 +190,9 @@
                             <td><%=atencion.getIdPersona().getCedula() %></td>
                             <td><%=atencion.getIdPersona().getNombres() %></td>
                             <td><%=atencion.getDescripcion() %></td>
-                            <td><%=sdf.format(atencion.getFecha()) + " / \n" + sdfHora.format(atencion.getHora())%></td>
-                            <td>$<%=formatoNumero.format(atencion.getIdFactura().getTotal()) %></td>
+                            <td><%=sdf.format(atencion.getFecha())%></td>
+                            <td><%=sdf2.format(atencion.getHora())%></td>
+                            <td>$ <%= String.format("%,.2f", atencion.getIdFactura().getTotal()) %></td>
 
                         </tr>
                         <%  }%>
@@ -240,11 +244,13 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
         <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
         
         <script>
             
             function filtrar(){
+                document.getElementById('acumulado').value="0";
                   $('#example').DataTable().draw();
             }
             
@@ -255,10 +261,20 @@
                            var desde = $('#desde').val();
                            var hasta = $('#hasta').val();
                            var fechaFila = data[7];
-
+                           var valorFila = data[9];  //el valor que viene de la fila
+                           var currency = valorFila;  
+                           var number = Number(currency.replace(/[^0-9\.]+/g,""));  // lo cambio de formato
+                           
                            if ((desde == '' && hasta == '') ||(desde == '' && Date.parse(fechaFila) <= Date.parse(hasta)) ||
                                (Date.parse(desde) <= Date.parse(fechaFila) && hasta == '') ||
                                (Date.parse(desde) <= Date.parse(fechaFila) && Date.parse(fechaFila) <= Date.parse(hasta))) {
+                               console.log(number);
+                               var montoAcumulado = document.getElementById('acumulado').value; //$ 2,222.00
+                               var actual = parseFloat(Number(montoAcumulado.replace(/[^0-9\.]+/g,""))); //2222
+                               console.log('valor actual '+actual)
+                               var suma = actual+number;
+                               var myNumeral = numeral (suma); //le vuelvo a dar formato moneda
+                               document.getElementById('acumulado').value = myNumeral.format('$0,0.00');
                                return true;
                            }
                            return false;
