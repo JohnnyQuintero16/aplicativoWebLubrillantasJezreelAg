@@ -16,6 +16,7 @@ import DTO.Vehiculo;
 import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +40,8 @@ public class AddVehiculo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        int idCita = Integer.parseInt((String) request.getSession().getAttribute("idCitaServicio"));
+        System.out.println("CITA: " + idCita);
         String placa = request.getParameter("placa");
         String modelo = request.getParameter("modelo");
         String color = request.getParameter("color");
@@ -56,6 +59,7 @@ public class AddVehiculo extends HttpServlet {
         MarcaDAO m = new MarcaDAO();
         TipoDAO t = new TipoDAO();
         Jezreel j = new Jezreel();
+        
         nuevo.setPlaca(placa);
         nuevo.setModelo(modelo);
         nuevo.setColor(color);
@@ -66,12 +70,32 @@ public class AddVehiculo extends HttpServlet {
         nuevo.setPeso(peso);
         nuevo.setNumeroMotor(motor);
         nuevo.setDimension(dimension);
-        nuevo.setIdMarca(m.readMarca(Integer.parseInt(marca)));
+        List<Marca> lista = m.read();
+        int idMarca = -1;
+        for(Marca ma : lista){
+            if(marca.equalsIgnoreCase(ma.getNombre())){
+                idMarca = ma.getId();
+            }
+        }
+        if(idMarca == -1){
+            Marca nuevaMarca = new Marca();
+            nuevaMarca.setFabricante(marca + "motors");
+            nuevaMarca.setId(0);
+            nuevaMarca.setNombre(marca);
+            m.create(nuevaMarca);
+        }
+        for(Marca ma : lista){
+            if(marca.equalsIgnoreCase(ma.getNombre())){
+                idMarca = ma.getId();
+            }
+        }
+        nuevo.setIdMarca(m.readMarca(idMarca));
         nuevo.setIdTipo(t.readTipo(Integer.parseInt(tipo)));
         Persona p = new Persona();
         PersonaDAO per = new PersonaDAO();
         p = per.readPersona((String) request.getSession().getAttribute("cedula"));
         nuevo.setIdPersona(p);
+        System.out.println(nuevo.toString());
         ve.create(nuevo);
         j.crearFichaVehiculo(placa);
         request.getRequestDispatcher("./MostrarDatosAgendaConfirAdmin.do").forward(request,response);

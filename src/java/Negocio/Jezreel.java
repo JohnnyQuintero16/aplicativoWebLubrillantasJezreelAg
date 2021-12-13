@@ -35,6 +35,7 @@ import DTO.Producto;
 import DTO.Servicio;
 import DTO.Tipo;
 import DTO.Vehiculo;
+import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -51,7 +52,8 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import javax.persistence.criteria.Path;
+
 
 /**
  *
@@ -89,16 +91,63 @@ public class Jezreel {
 
     }
 
-    public String[] mostrarProductos() {
+   public boolean saberSiEsNuloTodos(String[] tipo , ProductoDAO da ){
 
-        String[] tipo = {"ACEITES", "FILTROS", "VALVULINAS", "ADITIVOS", "OTROS"};
+        boolean verificar=false;
+        int contador=0;
+         for (int i = 4; i < tipo.length; i++) {
+             List<Producto> pt = da.findProductoTipo(tipo[i]);
+              if (pt.isEmpty()) {
+              
+              contador++;
+              }
+         
+         }
+         System.out.println(contador);
+         if(contador==3) verificar=true;
+        return verificar;
+    
+    }
+
+    public String[] mostrarProductos() {
+        String[] tipo = {"ACEITES", "FILTROS", "VALVULINAS", "ADITIVOS", "LLANTAS","BUJIAS","LUCES"};
         ProductoDAO da = new ProductoDAO();
         String[] rta = new String[tipo.length];
+        NumberFormat formatoNumero = NumberFormat.getNumberInstance();
+        formatoNumero.setMaximumFractionDigits(2);
+      boolean vef= saberSiEsNuloTodos(tipo,da);
+        
         for (int i = 0; i < tipo.length; i++) {
 
             List<Producto> pt = da.findProductoTipo(tipo[i]);
+            
+               
+            
+            if(i<=3){
+            
+                   if (!pt.isEmpty()) {
+                rta[i] = "";
+                for (Producto pro : pt) {
 
-            if (!pt.isEmpty()) {
+                    rta[i] += "					<div class=\"card\">\n"
+                            + "						<img src=" + '"' + pro.getImgUrl() + '"' + " alt=\"\">\n"
+                            + "						<h4 class=\"titulo-card\">" + pro.getNombre() + " </h4>\n"
+                            + "						<p  id=\"desc\">" + pro.getDescripcion() + "</p>\n"
+                            + "						<p><strong id=\"ref-prec\">Referencia:</strong>" + pro.getReferencia() + "</p>				\n"
+                            + "						<p><strong id=\"ref-prec\">Precio: $ </strong>" + formatoNumero.format( pro.getPrecioVenta()) + "</p>\n"
+                            + "\n"
+                            + "						\n"
+                            + "					</div> \n";
+
+                }
+            } else {
+
+                rta[i] = "<h4> No se econtraron resultados</h4>";
+            }
+
+            }else{
+                 
+                    if (!pt.isEmpty()) {
                 rta[i] = "";
                 for (Producto pro : pt) {
 
@@ -113,12 +162,19 @@ public class Jezreel {
                             + "					</div> \n";
 
                 }
-            } else {
+            }  else {
 
-                rta[i] = "<h4> No se econtraron resultados</h4>";
+              rta[i] = "<h4></h4>";
+            }
+            
+            
             }
 
         }
+        
+      if(vef)   rta[4] = "<h4> No se econtraron resultados</h4>";
+        
+        
         return rta;
 
     }
@@ -755,6 +811,11 @@ public class Jezreel {
         formatoNumero.setMaximumFractionDigits(2);
         int i = 1;
         for (AtencionServicio s : servi) {
+            String calificacion = "N/A";
+            if(!s.getCalificacionList().isEmpty() ){
+                calificacion =  s.getCalificacionList().get(0).getValor() +", "+ s.getCalificacionList().get(0).getDescripcion();
+            
+            }
             tbody += "<tr>\n"
                     + "                            <th class=\"enc\" scope=\"row\">" + i + "</th>\n"
                     + "                            <td>" + s.getIdFichaTecnica().getIdVehiculo().getPlaca() + "</td>\n"
@@ -763,8 +824,9 @@ public class Jezreel {
                     + "                            <td>" + s.getDescripcion() + "</td>\n"
                     + "                            <td>" + s.formatoFecha(s.getFecha()) + "</td>\n"
                     + "                            <td>" + s.getIdPersona().getNombres() + " " + s.getIdPersona().getApellidos() + "</td>\n"
+                    + "                            <td>" +  calificacion+ "</td>\n"
                     + "                            <td>" + s.getIdFactura().getDescuento() + "%" + "</td>\n"
-                    + "                            <td>" + formatoNumero.format(s.getIdFactura().getTotal()) + "</td>\n"
+                    + "                            <td>" +"$"+ formatoNumero.format(s.getIdFactura().getTotal()) + "</td>\n"
                     + "\n"
                     + "                        </tr>";
             i++;
@@ -925,7 +987,7 @@ public class Jezreel {
         FichaTecnicaDAO ficha = new FichaTecnicaDAO();
         if (ficha.findFichaVehiculo(placa) == null) {
             FichaTecnica nueva = new FichaTecnica();
-            nueva.setId(null);
+            nueva.setId(0);
             VehiculoDAO v = new VehiculoDAO();
             nueva.setIdVehiculo(v.readVehiculo(placa));
             ficha.create(nueva);
@@ -1067,6 +1129,48 @@ public class Jezreel {
 
         return kilo;
     }
+    
+    public List<Cita> filtrarCitaFechas(List<Cita> citas, int fecha1, int fecha2){
+    
+        List<Cita> filtro = new ArrayList<>();
+        for(Cita c: citas){
+        
+            System.out.println("FECHA CITA : " + c.parseLongFecha2(c.getFecha()));
+             System.out.println("FECHA inciial : " + fecha1);
+              System.out.println("FECHA FICNAL : " + fecha2);
+            if(c.parseLongFecha2(c.getFecha())>= fecha1 && c.parseLongFecha2(c.getFecha())<= fecha2){
+            filtro.add(c);
+            }
+            
+        }
+    return filtro;
+    }
+    
+    public List<Cita> filtrarCitaTipo(List<Cita> citas, String tipo){
+    
+        List<Cita> filtro = new ArrayList<>();
+        for(Cita c: citas){
+        
+            if(c.getEstado().equals(tipo)){
+            filtro.add(c);
+            }
+            
+        }
+    return filtro;
+    }
+    
+    public int formatofechaInt(String [] fecha){
+    
+        int dato =0;
+        int dia = Integer.parseInt(fecha[2]);
+        String diaS = (dia<10)?("0"+fecha[2]) : fecha[2];
+        
+        return Integer.parseInt(fecha[0]+fecha[1] + fecha[2]);
+    }
+
+    
+   
+   
 
     public int getAtendidas() {
         return this.cuenta("ATENDIDO");

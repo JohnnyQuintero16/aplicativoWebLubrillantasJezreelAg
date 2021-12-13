@@ -249,12 +249,7 @@
     
                     </div>
                     <div class="row shadow rounded-3 bg-body m-auto" style=" background-color: white; width: 95%;  overflow-x: hidden">
-                        <div class="col-6 " style="padding-top: 1rem; display: flex; justify-content: center; align-items: center ">
-                            <div style="margin-bottom: 1rem;">
-                                <button type="reset" class="btn btn-primary btn-lg"  style="background-color: rgb(235, 71, 71) !important; width: 20rem">Cancelar</button>
-                            </div>
-                        </div>    
-                        <div class="col-6 " style="padding-top: 1rem; display: flex; justify-content: center; align-items: center ">
+                        <div class="col-12 " style="padding-top: 1rem; display: flex; justify-content: center; align-items: center ">
                             <div style="margin-bottom: 1rem;">
                                 <button type="button" class="btn btn-primary btn-lg"  style = "background-color: blue  !important;  width: 20rem;" onclick = "javascript:sendEmail('<%=request.getSession().getAttribute("usuarioCorreo")%>');" value='Agregar'>Agregar</button>
                             </div>

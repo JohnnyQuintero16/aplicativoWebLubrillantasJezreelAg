@@ -4,6 +4,7 @@
     Author     : Acer
 --%>
 
+<%@page import="java.text.NumberFormat"%>
 <%@page import="DTO.MarcaProducto"%>
 <%@page import="DAO.MarcaProductoDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -92,12 +93,12 @@
                     <span class="tooltip">Productos</span>
                 </li>
 
-                  <li>
-                  <a href="<%=basePath%>ValoresEstadisticas.do">
-                    <i class="fas fa-chart-pie"></i>
-                    <span class="links_name">Reportes y Estadísticas</span>
-                  </a>
-                  <span class="tooltip">Reportes y Estadísticas</span>
+                <li>
+                    <a href="<%=basePath%>ValoresEstadisticas.do">
+                        <i class="fas fa-chart-pie"></i>
+                        <span class="links_name">Reportes y Estadísticas</span>
+                    </a>
+                    <span class="tooltip">Reportes y Estadísticas</span>
                 </li> 
 
 
@@ -151,8 +152,12 @@
 
                     <tbody>
                         <%
-                            int i = 1;
+                            NumberFormat formatoNumero = NumberFormat.getNumberInstance();
+                            formatoNumero.setMaximumFractionDigits(2);
+
                             for (Producto p : productos) {
+                                String precioVenta = "$" + formatoNumero.format(p.getPrecioVenta());
+                                String precioUnitario = "$" + formatoNumero.format(p.getPrecioUnitario());
                         %>
                         <tr>
                             <th class="enc" scope="row"><%=p.getCodigo()%></th>
@@ -161,8 +166,8 @@
                             <td><%=p.getTipo()%></td>
                             <td><%=p.getReferencia()%></td>
                             <td><%=p.getDescripcion()%></td>
-                            <td><%=p.getPrecioUnitario()%></td>
-                            <td><%=p.getPrecioVenta()%></td>
+                            <td><%=precioUnitario%></td>
+                            <td><%=precioVenta%></td>
                             <td><%=p.getCantidad()%></td>
 
                             <!-- Acciones: editar y cancelar. -->
@@ -183,7 +188,7 @@
                             </td>
                         </tr>
                         <%
-                                    i++;
+
                                 }
                             }%>
                     </tbody>
@@ -240,17 +245,17 @@
                                 </div>
 
                                 <div class="col-md-6">
-
-                                    <div class="mb-3 ">
-                                        <label for="exampleInputMarca" class="form-label">Marca</label>
-                                        <select class="form-select"  name = "marca" aria-label="Default select example" required>
+                                    <div class="mb-3">
+                                        <label for="exampleInputCant" class="form-label">Tipo</label>
+                                        <select class="form-select"  name = "tipo" aria-label="Default select example" required>
                                             <option value="">Selecciona un tipo:</option>
-                                            <%
-                                                MarcaProductoDAO mar = new MarcaProductoDAO();
-                                                for (MarcaProducto m : mar.read()) {
-                                            %>
-                                            <option value="<%=m.getId()%>"><%=m.getNombre()%></option>
-                                            <%}%>
+                                            <option value="1">ACEITES</option>
+                                            <option value="2">FILTROS</option>
+                                            <option value="3">VALVULINAS</option>
+                                            <option value="4">ADITIVOS</option>
+                                            <option value="5">LLANTAS</option>
+                                            <option value="6">BUJIAS</option>
+                                            <option value="7">LUCES</option>
                                         </select>
                                     </div>
 
@@ -286,19 +291,18 @@
                                 </div>
 
                                 <div class="col-md-6">
-
-                                    <div class="mb-3">
-                                        <label for="exampleInputCant" class="form-label">Tipo</label>
-                                        <select class="form-select"  name = "tipo" aria-label="Default select example" required>
+                                    <div class="mb-3 ">
+                                        <label for="exampleInputMarca" class="form-label">Marca</label>
+                                        <select class="form-select"  name = "marca" aria-label="Default select example" required>
                                             <option value="">Selecciona un tipo:</option>
-                                            <option value="1">ACEITES</option>
-                                            <option value="2">FILTROS</option>
-                                            <option value="3">VALVULINAS</option>
-                                            <option value="4">ADITIVOS</option>
-                                            <option value="5">OTROS</option>
+                                            <%
+                                                MarcaProductoDAO mar = new MarcaProductoDAO();
+                                                for (MarcaProducto m : mar.read()) {
+                                            %>
+                                            <option value="<%=m.getId()%>"><%=m.getNombre()%></option>
+                                            <%}%>
                                         </select>
                                     </div>
-
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputImagenURL" class="form-label">ImagenURL</label>
@@ -373,19 +377,18 @@
                                 </div>
 
                                 <div class="col-md-6">
-
-                                    <div class="mb-3 ">
-                                        <label for="exampleInputMarca" class="form-label">Marca</label>
-                                        <select class="form-select"  name = "marca" aria-label="Default select example" required>
+                                    <div class="mb-3">
+                                        <label for="exampleInputCant" class="form-label">Tipo</label>
+                                        <select class="form-select"  name = "tipo" aria-label="Default select example" required>
                                             <option value="">Selecciona un tipo:</option>
-                                            <%
-                                                
-                                                for (MarcaProducto m : mar.read()) {
-                                            %>
-                                            <option value="<%=m.getId()%>"><%=m.getNombre()%></option>
-                                            <%}%>
+                                            <option value="1">ACEITES</option>
+                                            <option value="2">FILTROS</option>
+                                            <option value="3">VALVULINAS</option>
+                                            <option value="4">ADITIVOS</option>
+                                            <option value="5">LLANTAS</option>
+                                            <option value="6">BUJIAS</option>
+                                            <option value="7">LUCES</option>
                                         </select>
-
                                     </div>
 
 
@@ -395,7 +398,7 @@
 
                                     <div class="mb-3">
                                         <label for="exampleInputPrecioU" class="form-label">Precio Unitario</label>
-                                        <input type="number"  class="form-control" id="exampleInputPrecioU" name="precioUnitario" required>
+                                        <input type="text"  class="form-control" id="exampleInputPrecioU" name="precioUnitario" required>
                                     </div>
 
                                 </div>
@@ -404,7 +407,7 @@
 
                                     <div class="mb-3">
                                         <label for="exampleInputPrecioV" class="form-label">Precio Venta</label>
-                                        <input type="number"  class="form-control" id="exampleInputPrecioV" name="precioVenta" required>
+                                        <input type="text"  class="form-control" id="exampleInputPrecioV" name="precioVenta" required>
                                     </div>
 
                                 </div>
@@ -420,19 +423,18 @@
                                 </div>
 
                                 <div class="col-md-6">
-
-                                    <div class="mb-3">
-                                        <label for="exampleInputCant" class="form-label">Tipo</label>
-                                        <select class="form-select" aria-label="Default select example" name = "select" required>
+                                    <div class="mb-3 ">
+                                        <label for="exampleInputMarca" class="form-label">Marca</label>
+                                        <select class="form-select"  name = "marca" aria-label="Default select example" required>
                                             <option value="">Selecciona un tipo:</option>
-                                            <option selected value="1">ACEITES</option>
-                                            <option value="2">FILTROS</option>
-                                            <option value="3">VALVULINAS</option>
-                                            <option value="4">ADITIVOS</option>
-                                            <option value="5">OTROS</option>
+                                            <%
+                                                
+                                                for (MarcaProducto m : mar.read()) {
+                                            %>
+                                            <option value="<%=m.getId()%>"><%=m.getNombre()%></option>
+                                            <%}%>
                                         </select>
                                     </div>
-
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputImagenURL" class="form-label">ImagenURL</label>
@@ -564,9 +566,15 @@
             console.log(datosRecipien);
             modalBodyInput = modalEliminarProducto.querySelector('.modal-footer').querySelectorAll('input');
             modalBodyInput[0].value = datosRecipien;
-
             });
-
+            function formatCurrency (locales, currency, fractionDigits, number) {
+            var formatted = new Intl.NumberFormat(locales, {
+            style: 'currency',
+            currency: currency,
+            minimumFractionDigits: fractionDigits
+            }).format(number);
+            return formatted;
+            }
         </script>
 
     </body>

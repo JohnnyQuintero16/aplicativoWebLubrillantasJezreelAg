@@ -205,5 +205,13 @@ public class Cita implements Serializable, Comparable<Cita>{
 
         return Long.parseLong(split[2] + split[1] + split[0]+split2[0]+split2[1]);
     }
+    public long    parseLongFecha2(Date fecha) {
+
+        String[] split = formatoFecha(fecha).split("/");
+        
+       
+
+        return Long.parseLong(split[2] + split[1] + split[0]);
+    }
     
 }
