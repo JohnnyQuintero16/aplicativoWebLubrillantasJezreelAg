@@ -186,6 +186,15 @@
             <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/productosAdmin.jsp</file>
         </group>
         <group>
+            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarFichaTecnica.java</file>
+            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
+        </group>
+        <group>
+            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/conf/persistence.xml</file>
+            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/fichaTecnica.jsp</file>
+            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/WEB-INF/web.xml</file>
+            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarFichaTecnica.java</file>
+            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/WEB-INF/web.xml</file>
         </group>
