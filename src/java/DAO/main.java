@@ -13,6 +13,7 @@ import Negocio.Hora;
 import Negocio.Jezreel;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.text.NumberFormat;
 //import java.sql.Date;
 import java.util.Date;
 import java.text.ParseException;
@@ -35,9 +36,15 @@ import java.util.logging.Logger;
 public class main {
     
     public static void main(String[] args) {
-        Jezreel j = new Jezreel();
-        CitaDAO c = new CitaDAO();
-        System.out.println(j.getMesesEst());
+        
+//        double money = 5668768;
+//        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+//        String moneyString = formatter.format(money);
+        double amount = 323424;
+        System.out.println(String.format("%,.2f", amount));
+//        Jezreel j = new Jezreel();
+//        CitaDAO c = new CitaDAO();
+//        System.out.println(j.getMesesEst());
 //        System.out.println(j.cargarHorarios());
 //        Date d = new Date(2021-1900, 12-1, 03, 11, 0, 0);
 //        Date horac = new Date(2021-1900, 12-1, 03, 11, 0, 0);
