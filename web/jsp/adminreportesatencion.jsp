@@ -156,6 +156,7 @@
                     </div> 
                     <div class="col-3">
                         <label>Total Acumulado </label><br><h3 style="color: blue" id="acumulado"></h3>
+                        
                     </div>
                 </div>
             </div>
@@ -182,7 +183,7 @@
                             AtencionServicioDAO a = new AtencionServicioDAO();
                             List<AtencionServicio> atenciones = a.read();
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                            SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm a");
+                            SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
                             for (AtencionServicio atencion : atenciones) {
                         %>
                         <tr>
@@ -235,7 +236,7 @@
        
         
         
-        <script src="../js/menuAdministrador.js"></script>
+        <script src="<%=basePath%>js/menuAdministrador.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
