@@ -156,6 +156,7 @@
                     </div> 
                     <div class="col-3">
                         <label>Total Acumulado </label><br><h3 style="color: blue" id="acumulado"></h3>
+                        
                     </div>
                 </div>
             </div>
