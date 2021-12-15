@@ -5,6 +5,8 @@
  */
 package ControladorVistas;
 
+import DAO.CitaDAO;
+import DTO.Cita;
 import Negocio.Jezreel;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,7 +34,16 @@ public class CargarAddVehiculo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String cedulaCliente = request.getParameter("cedula");
+        int idCita = Integer.parseInt((String) request.getSession().getAttribute("idCitaServicio"));
+        CitaDAO c = new CitaDAO();
         Jezreel j = new Jezreel();
+        Cita cita = c.readCita(idCita);
+        
+        String [] citas = cita.getDescripcion().split(",");
+        request.getSession().setAttribute("placaAdd", citas[0]);
+        request.getSession().setAttribute("modeloAdd", citas[1]);
+        request.getSession().setAttribute("marcaAdd", citas[2]);
+        request.getSession().setAttribute("kmAdd", citas[4]);
         request.getSession().setAttribute("tipo", j.selectTipo());
         request.getSession().setAttribute("marca", j.selectMarca());
         request.getSession().setAttribute("cedula", cedulaCliente);

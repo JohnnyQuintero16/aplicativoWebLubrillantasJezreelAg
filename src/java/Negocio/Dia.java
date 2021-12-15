@@ -19,7 +19,7 @@ public class Dia {
     public Dia(String nombre) {
        horas = new ArrayList<Hora>();
        
-       if(!nombre.equals("DOMINGO")){
+       if(!nombre.equals("SUNDAY")){
             horas.add(new Hora("8",0));
             horas.add(new Hora("9",0));
             horas.add(new Hora("10",0));
@@ -29,7 +29,7 @@ public class Dia {
             horas.add(new Hora("14",0));
             horas.add(new Hora("15",0));
             horas.add(new Hora("16",0));
-            if(!nombre.equals("SÁBADO")){
+            if(!nombre.equals("SATURDAY")){
                  horas.add(new Hora("17",0));
             }
        }else{

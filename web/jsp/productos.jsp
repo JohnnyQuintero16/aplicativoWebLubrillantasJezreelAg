@@ -244,7 +244,8 @@
                     <h2>Categoría Otros: </h2>
                     <div class="container ctn">
                         <%= productos[4]%>
-
+                         <%= productos[5]%>
+                          <%= productos[6]%>
                     </div>
 
                 </div>

@@ -62,7 +62,7 @@ public class ProcesarAtencionServicio extends HttpServlet {
             }
             int idcita = Integer.parseInt(idCita);
             
-            Factura factura = j.crearFactura(lista, 0, idcita);
+            Factura factura = j.crearFactura(lista, Double.parseDouble(desc), idcita);
             
             String placa = (String) request.getSession().getAttribute("placa");
             

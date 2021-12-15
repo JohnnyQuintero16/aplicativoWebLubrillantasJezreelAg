@@ -2,7 +2,6 @@ var select = document.getElementById("inputState");
 var vehiculos;
 let datosJSP = (data) => {
     vehiculos = data;
-    console.log("DATA VEHICULO " + data)
 };
 
 var cnt = 0;
@@ -12,7 +11,6 @@ select.addEventListener("change", () => {
   cargarContenido(optionSelec);
 });
 function cargarContenido(option) {
-  console.log("DATA VEHICULO " + vehiculos)
   for (var i = 0; i < vehiculos.length; i++) {
     var arrVehiculo = vehiculos[i].split(",");
     if (arrVehiculo[0] == option) {

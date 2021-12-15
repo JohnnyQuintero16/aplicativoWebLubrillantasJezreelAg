@@ -172,6 +172,7 @@
                             <th class="enc" scope="col">Descripcion</th>
                             <th class="enc" scope="col">Fecha</th>
                             <th class="enc" scope="col">Mecanico</th>
+                            <th class="enc" scope="col">Calificación</th>
                             <th class="enc" scope="col">Descuento</th>
                             <th class="enc" scope="col">Total</th
 
@@ -323,14 +324,14 @@
                             var i = 0;
                             for (i = 0; i < modalBodyOptionMarca.length; i++) {
 
-                                console.log("SOY DATO : " + datos[1].innerHTML);
+                               
                                 if (modalBodyOptionMarca[i].innerHTML === datos[1].innerHTML) {
                                     modalBodyOptionMarca[i].setAttribute("selected", "");
-                                    console.log("Seleccionado : " + modalBodyOptionMarca[i].innerHTML);
+                                    
 
                                 } else {
                                     modalBodyOptionMarca[i].removeAttribute("selected");
-                                    console.log("SOY RESET : " + modalBodyOptionMarca[i].innerHTML);
+                                    
                                 }
 
                             }
