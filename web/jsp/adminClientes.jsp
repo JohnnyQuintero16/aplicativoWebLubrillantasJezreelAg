@@ -83,13 +83,14 @@
                     </a>
                     <span class="tooltip">Productos</span>
                 </li>
-                <!-- <li>
-                  <a href="#">
+                <li>
+                  <a href="<%=basePath%>ValoresEstadisticas.do">
                     <i class="fas fa-chart-pie"></i>
-                    <span class="links_name">Reportes</span>
+                    <span class="links_name">Reportes y Estadísticas</span>
                   </a>
-                  <span class="tooltip">Reportes</span>
-                </li> -->
+                  <span class="tooltip">Reportes y Estadísticas</span>
+                </li> 
+                
                 <li class="profile">
                     <a href="<%=basePath%>cerrarSesion.do">
                         <i class='bx bx-log-out'></i>
@@ -374,7 +375,6 @@
                 li = li.parentNode;
                 li = li.parentNode;
                 datos = li.querySelectorAll("td");
-                console.log(datos);
                 modalBodyInput = modalEditarCliente.querySelector('.modal-body').querySelectorAll('input');
                 modalBodyInput[0].value = datos[0].innerHTML;//nombre
                 modalBodyInput[1].value = datos[1].innerHTML;//cc

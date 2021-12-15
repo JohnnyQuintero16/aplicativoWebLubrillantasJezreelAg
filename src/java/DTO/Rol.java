@@ -37,12 +37,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Rol.findByDescripcion", query = "SELECT r FROM Rol r WHERE r.descripcion = :descripcion")})
 public class Rol implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Short id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -53,6 +47,13 @@ public class Rol implements Serializable {
     @Size(min = 1, max = 150)
     @Column(name = "descripcion")
     private String descripcion;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Short id;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRol")
     private List<Persona> personaList;
 
@@ -77,21 +78,6 @@ public class Rol implements Serializable {
         this.id = id;
     }
 
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
     @XmlTransient
     public List<Persona> getPersonaList() {
@@ -125,6 +111,22 @@ public class Rol implements Serializable {
     @Override
     public String toString() {
         return "DTO.Rol[ id=" + id + " ]";
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
     
 }

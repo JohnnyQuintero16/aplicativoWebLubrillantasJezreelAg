@@ -85,5 +85,26 @@ public class AtencionServicioDAO {
       return rta;
     }
     
+    public List<AtencionServicio> findAtencionFicha(String idFicha){
+        List<AtencionServicio> find = new ArrayList<>();
+        List<AtencionServicio> lista = this.read();
+        for(AtencionServicio servi:lista){
+            if(servi.getIdFichaTecnica().getIdVehiculo().getPlaca().equals(idFicha)){
+                find.add(servi);
+            }
+        }
+        return (find.size() != 0)?find:null;
+    }
+    
+     public int cantidadAtenciones() {
+        int cant = 0;
+        List<AtencionServicio> atenciones = read();
+        if (atenciones != null) {
+            cant = atenciones.size();
+        }
+
+        return cant;
+    }
+
    
 }

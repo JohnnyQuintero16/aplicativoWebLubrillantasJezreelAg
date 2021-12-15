@@ -18,7 +18,7 @@ import javax.persistence.criteria.Root;
 
 /**
  *
- * @author USUARIO
+ * @author johnny
  */
 public class ServicioJpaController implements Serializable {
 

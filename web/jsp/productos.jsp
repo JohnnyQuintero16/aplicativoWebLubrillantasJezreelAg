@@ -58,6 +58,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page"href="#">PRODUCTOS</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<%=basePath%>MostrarServiciosCotizacion.do">COTIZA YA!</a>
+                        </li>
                     </ul>
 
 
@@ -241,7 +244,8 @@
                     <h2>Categoría Otros: </h2>
                     <div class="container ctn">
                         <%= productos[4]%>
-
+                         <%= productos[5]%>
+                          <%= productos[6]%>
                     </div>
 
                 </div>

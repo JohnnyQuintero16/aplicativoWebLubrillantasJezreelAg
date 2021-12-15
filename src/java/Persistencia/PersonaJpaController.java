@@ -21,12 +21,13 @@ import DTO.Persona;
 import Persistencia.exceptions.IllegalOrphanException;
 import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.exceptions.PreexistingEntityException;
+import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author USUARIO
+ * @author johnny
  */
 public class PersonaJpaController implements Serializable {
 
@@ -386,6 +387,7 @@ public class PersonaJpaController implements Serializable {
 
     public int getPersonaCount() {
         EntityManager em = getEntityManager();
+     
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
             Root<Persona> rt = cq.from(Persona.class);
@@ -396,5 +398,16 @@ public class PersonaJpaController implements Serializable {
             em.close();
         }
     }
+    //PRUEBA DE CONSULTA 
+    /*public  List<Object[]> getPersonaClienteCount() {
+        EntityManager em = getEntityManager();
+        Query nativeQuery = em.createNativeQuery("SELECT count(cedula) as cantidad FROM (SELECT u.cedula, Persona p inner join Vehiculo v where) ;
+     
+       List<Object[]> results = nativeQuery.getResultList();
+     
+         //Object[] result = (Object[]) nativeQuery.getSingleResult();
+        return results;
+    } */  
+
     
 }

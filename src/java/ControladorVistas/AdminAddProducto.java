@@ -5,6 +5,7 @@
  */
 package ControladorVistas;
 
+import DAO.MarcaProductoDAO;
 import DAO.ProductoDAO;
 import DTO.Producto;
 import java.io.IOException;
@@ -51,14 +52,21 @@ public class AdminAddProducto extends HttpServlet {
                     case "4":
                         tipo = "ADITIVOS";
                         break;
-                    default:
-                        tipo = "OTROS";
+                    case "5":
+                        tipo = "LLANTAS";
+                        break;
+                    case "6":
+                        tipo = "BUJIAS";
+                        break;
+                    case "7":
+                        tipo = "LUCES";
                         break;
                 }
                 nuevo.setCodigo(codigo);
                 nuevo.setNombre(request.getParameter("nombre"));
                 nuevo.setReferencia(request.getParameter("referencia"));
-                nuevo.setMarca(request.getParameter("marca"));
+                MarcaProductoDAO mar = new MarcaProductoDAO();
+                nuevo.setIdMarca(mar.readMarcaProducto(Integer.parseInt(request.getParameter("marca"))));
                 nuevo.setPrecioUnitario(Double.parseDouble(request.getParameter("precioUnitario")));
                 nuevo.setPrecioVenta(Double.parseDouble(request.getParameter("precioVenta")));
                 nuevo.setCantidad(Integer.parseInt(request.getParameter("cantidad")));

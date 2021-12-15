@@ -15,7 +15,6 @@
             String path = request.getContextPath();
             String basePath = request.getScheme() + "://" + request.getServerName() + ":"
                     + request.getServerPort() + path + "/";
-
         %>
         <base href="<%=basePath%>">
         <meta charset="UTF-8">
@@ -89,13 +88,15 @@
                     </a>
                     <span class="tooltip">Productos</span>
                 </li>
-                <!-- <li>
-                  <a href="#">
+                
+                 <li>
+                  <a href="<%=basePath%>ValoresEstadisticas.do">
                     <i class="fas fa-chart-pie"></i>
-                    <span class="links_name">Reportes</span>
+                    <span class="links_name">Reportes y Estadísticas</span>
                   </a>
-                  <span class="tooltip">Reportes</span>
-                </li> -->
+                  <span class="tooltip">Reportes y Estadísticas</span>
+                </li> 
+                
                 <li class="profile">
                     <a href="<%=basePath%>cerrarSesion.do">
                         <i class='bx bx-log-out'></i>
@@ -280,7 +281,7 @@
         $(document).ready(function () {
             
             $('#example').DataTable({
-                "order": [[5, "asc"]],
+                "order": [[5, "desc"]],
                 "language": {
                     "lengthMenu": "Mostrar_MENU_registros",
                     "zeroRecords": "No se encontraron resultados",

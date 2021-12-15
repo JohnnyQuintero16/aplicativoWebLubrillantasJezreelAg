@@ -16,6 +16,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Lubrillantas Jezreel AG - Administración</title>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
 
         <!-- Fuente de google: Open Sans - Regular 400 -->
         <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
@@ -85,6 +86,14 @@
                     </a>
                     <span class="tooltip">Productos</span>
                 </li>
+                
+                 <li>
+                  <a href="<%=basePath%>ValoresEstadisticas.do">
+                    <i class="fas fa-chart-pie"></i>
+                    <span class="links_name">Reportes y Estadísticas</span>
+                  </a>
+                  <span class="tooltip">Reportes y Estadísticas</span>
+                </li> 
 
                 <li class="profile">
                     <a href="<%=basePath%>cerrarSesion.do">
@@ -104,9 +113,9 @@
 
             </div>
 
-            <form action = "<%=basePath%>ProcesarAtencionServicio.do" method = "POST">
-                <div class="row" style=" background-color: white; padding-top: 1rem; width: 100%; ">
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
+            <form action = "<%=basePath%>ProcesarAtencionServicio.do" method = "GET" id="procesasAtencion">
+                <div class="row shadow m-auto rounded-3 bd-body" style=" background-color: white; padding: 2rem; width: 95%; overflow-x: hidden;">
+                    <div class="col-6" style="padding-left: 1rem; border-right: 1px solid #323;">
                         <h2 style="color: #001971;">Escoja los servicio:</h2>
                         <p>Lista de servicios: </p>
                         <table class="table" >
@@ -128,7 +137,7 @@
                             <tr>
                                 <td value = '<%=ser.getId()%>'><%=ser.getId()%></td>
                                 <td value = '<%=ser.getNombre()%>'><%=ser.getNombre()%></td>
-                                <td> <button type="button" value = "<%=i%>"  onclick="addServicio('<%=servi%>')" class="btn btn-primary btn-lg btnAddServicio" style="background-color: green !important;">+</button></td>                        
+                                <td> <button type="button" data-bs-id = "<%=ser.getId()%>"  onclick="javascript:addServicio('<%=servi%>')" class="btn btn-primary btn-lg btnAddServicio" style="background-color: green !important;">+</button></td>                        
                             </tr>
                             <%i++;
                                 }%>
@@ -137,7 +146,7 @@
                     </div>
 
 
-                    <div class="search-container col-12 col-sm-6 col-md-6 col-lg-6" style="padding: 1rem;"> <br>
+                    <div class="search-container col-6" style="padding: 1rem;"> <br>
                         <p>Servicios seleccionados: </p>
                         <table class="table" >
                             <tr>
@@ -145,107 +154,111 @@
                                 <th>Nombre del servicio</th>
                                 <th>Accion</th>
                             </tr>
-                            <tbody id="TablaServicioCliente">
-
+                            <tbody id = "TablaServicioCliente">
+                                <template id = "template-ServicioSelect">
+                                    <tr>
+                                        <td scope="row">1</td>
+                                        <td>Montallantas</td>
+                                        <td> <button type="button" class="btn btn-primary btn-lg eliminarServicio" style="background-color: red !important;">-</button></td>                        
+                                        </tr>
+                                </template>
                             </tbody>
                         </table>
-
-
                     </div>
-
-
-
                 </div>
 
-
-
-
-                <div class="row" style=" background-color: white; padding-top: 1rem; width: 100%;">
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 5rem">
+                <div class="row shadow rounded-3 bg-body m-auto my-3" style=" background-color: white; width: 95%;  overflow-x: hidden; padding: 2rem;">
+                    <div class="col-12" style="padding-left: 0.5rem">
                         <h2 style="color: #001971;">Escoja el Producto:</h2>
+                        <br>
+                        <select class = "selectPro" id="selectProductos" disabled = "true">
+                            <option selectted >Elegir Producto</option>
+                        </select>
+
                         <p>Lista de productos con los que se llevo a cabo el servicio.</p>
-                        <%int j = 0;%>
                         <table class="table" >
                             <tr>
-                                <th>Cantidad</th>
-                                <th>Acción</th>
                                 <th>id</th>
                                 <th>Nombre</th>
+                                <th>cantidad</th>
+                                <th>Acción</th>
                             </tr>
-                            <tbody id="tablaBody">
+                            <tbody id="tablaBodyPro">
                             <template id="TablaProductosCliente">
-                                
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td><input name = "cantidadProducto" placeholder="Digite cantidad" style="height: 30px; width: 100px;"></td>
-                                    
-                                    <td> <button type="button" id="<%=j%>" class="btn btn-primary btn-lg" style="background-color: red !important;" onclick="eliminarElement()">X</button></td>                        
+                                    <td scope = "row">1</td>
+                                    <td>Aceite Max</td>
+                                    <td><input type="number" id = "cntPro" name = "cantidadProducto" value="1" min="1" max="50" placeholder="Cantidad"></td>
+                                    <td> <button type="button" class="btn btn-primary btn-lg eliminarProducto m-auto d-flex align-items-center" style="background-color: red !important;">X</button></td>
+                                    <input type="text" id = "cntPro" name="idp" style="display: none;" value="0">
                                 </tr>
                             </template>
                             </tbody>
+                            <tfoot  id = "footer" style="border-top: 3px solid #000;">
+                                <tr>
+                                    <th scope="row" colspan="4">No se ha seleccionado productos, seleccione!</th>
+                                </tr>
+                            </tfoot>
+                            <template id = "template-footerPrev">
+                                <p class = "vw-100" style="margin: 10px !important;">Por favor digite descuento (Se aplica al total de los productos)</p>
+                                <div class="row vw-100">
+                                    <div class="col-4">
+                                        <input type="number" class ="inputDescuento" id="descuento" name="descuento" placeholder="Descuento (ejem: 40)" value = "0" min="0" max="100"><span>%</span>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="button" class="btn btn-primary calcularCostos">Calcular Costo</button>
+                                    </div>
+                                </div>
+                                
+                            </template>
+                            <template id="template-footerNex">
+                                <div class="row vw-100">
+                                    <div class="col">
+                                        <p>Costo Total</p>
+                                        <h5 style="color: forestgreen;">5000</h5>
+                                    </div>
+                                    <div class="col">
+                                        <p>Costo Total Con Descuento</p>
+                                        <h5 style="color: firebrick;">5000</h5>
+                                    </div>
+                                </div>                            
+                            </template>
                         </table>
-                                <%j++;%>
                     </div>
-
-
-                    <div class="search-container col-12 col-sm-6 col-md-6 col-lg-6" style="padding: 1rem;"> <br>
-                        <select class = "selectPro" id="selectProductos">
-                            <option selected readonly>Elegir Producto</option>
-                            <%
-                                List<Producto> productos = (List<Producto>) request.getSession().getAttribute("productos");
-                                for (Producto pro : productos) {
-                                    String value = pro.getCodigo() + "," + pro.getNombre();
-                            %>
-                            <option value="<%=value%>"><%=pro.getNombre()%></option>
-                            <%}%>
-                        </select>
-                        <br><br>
-                        <p>Por favor digite descuento (es opcional)</p>
-                        <input type="number" id="descuento" name="descuento" placeholder="Descuento" value = "0" min="0" max="100"> 
-                        <br><br>
-                        <p>Kilometraje actual del vehiculo</p>
-                        <input type="text" id="kilometraje" value='<%=request.getSession().getAttribute("km")%>' readonly> <br>
-                        <br>
-                        <p>Por favor digite el kilometraje del vehiculo:</p>
-                        <input type="number" id="kilometraje" name="kilometraje" placeholder="kilometraje"  required min="0"> <br> <br>
-                    </div>
-
-
-
-                </div> <br><br>
-
-                <div class="row" style="margin-bottom: 4rem; width: 100%;" >
-
-
-
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 3rem">
-                        <h2 style="color: #001971;">Escoja el Mecánico:</h2>
-                        <select style=" background-color: rgb(214, 205, 205);"  name="mecanico">
-                            <%=request.getSession().getAttribute("mecanicos").toString()%>
-                        </select>
-                        <!--<img src="<%=basePath%>img/vehicle.png" alt="LogoA"  width="140px" height="120px" >-->
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-6" style="padding-left: 3rem">
-                        <h2 style="color: #001971;">Descripción del servicio realizado</h2>
-                        <textarea id="txtarea" name="descri" rows="5" cols="30" required=""></textarea>
-                    </div>
-
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3" style="padding-top: 3rem; display: flex; justify-content: center; align-items: center ">
-                        <div style="margin-top: 2rem;">
-                            <button type="reset" class="btn btn-primary btn-lg"  style="background-color: rgb(235, 71, 71) !important; width: 20rem">Cancelar</button>
-                            <input type="submit" class="btn btn-primary btn-lg"  style="background-color: #001971  !important;  width: 20rem;" value='Agregar'>
-                        </div>
-                    </div>
-
-
                 </div>
+                </div>
+                
+                    <div class="row shadow rounded-3 bg-body m-auto" style=" background-color: #ffffff; width: 95%;  overflow-x: hidden; padding: 2rem; display: flex; align-items: center; justify-content: center;">
+                        <div class="search-container col-4" style="padding: 1rem;"> <br>                        
+                            <h4 style="color: #001971;">Ultimo kilometraje registrado del vehiculo</h4>
+                            <input type="text" id="kilometraje" value='<%=request.getSession().getAttribute("km")%>' readonly style="background-color: rgb(219, 219, 219); text-align: center;"> <br>
+                            <br>
+                            <h4 style="color: #001971;">Por favor digite el kilometraje del vehiculo</h4>
+                            <input type="number" id="kilometraje" name="kilometraje" placeholder="kilometraje"  required min="0" text-align: center> <br> <br>
+                        </div>
+                        <div class="search-container col-3 " style="padding: 1rem;"> <br> 
+                            <h4 style="color: #001971;">Escoja el Mecánico:</h4>
+                            <select style=" background-color: rgb(214, 205, 205);"  name="mecanico">
+                                <%=request.getSession().getAttribute("mecanicos").toString()%>
+                            </select>
+                        </div>                        
+                        <div class="col-5" style="padding-left: 3rem">
+                            <h4 style="color: #001971;">Descripción del servicio realizado</h4>
+                            <textarea id="txtarea" name="descri" rows="5" cols="25" required=""></textarea>
+                        </div>
+    
+                    </div>
+                    <div class="row shadow rounded-3 bg-body m-auto" style=" background-color: white; width: 95%;  overflow-x: hidden">
+                        <div class="col-12 " style="padding-top: 1rem; display: flex; justify-content: center; align-items: center ">
+                            <div style="margin-bottom: 1rem;">
+                                <button type="button" class="btn btn-primary btn-lg"  style = "background-color: blue  !important;  width: 20rem;" onclick = "javascript:sendEmail('<%=request.getSession().getAttribute("usuarioCorreo")%>');" value='Agregar'>Agregar</button>
+                            </div>
+                        </div>    
+                    </div>
             </form>
-
-
-
         </section>
         <script src="<%=basePath%>js/menuAdministrador.js"></script>
+        <script src="<%=basePath%>js/adminRegis.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
@@ -254,8 +267,14 @@
 
 
         <script>
+            let serviciosJavaS = '<%=request.getSession().getAttribute("serviciosJS").toString()%>'.split(";");
+            let productoJavaS = '<%=request.getSession().getAttribute("productosJS").toString()%>'.split(";");
+            let tipo =  '<%=request.getSession().getAttribute("tipoVehiculo")%>';
+            infoDataJSP(serviciosJavaS, productoJavaS);
+
             $(document).ready(function () {
-            $(".selectPro").select2();
+            $(".selectPro").select2();            
+            $(".selecPro").css("with","300px");
             });
 
             $(document).ready(function() {
@@ -279,107 +298,13 @@
 
             }
             );
-            } );
-
-            //Servicios
-
-            const listaServicio = document.querySelector('#TablaServicioCliente');
-
-            const btn = document.querySelectorAll(".btnAddServicio");
-
-
-            function addServicio(servicio) {
-            const tr = document.createElement("TR");
-            let td1 = document.createElement("TD");
-            let td2 = document.createElement("TD");
-            let td3 = document.createElement("TD");
-            let input = document.createElement("INPUT");
-            let buton = document.createElement("BUTTON");
-            var ServicioArr = servicio.split(";");
-            var arr = ServicioArr[0].split(",");
-            td1.value = arr[0];
-            td1.innerHTML = arr[0];
-            btn[arr[2]].innerHTML = "-";
-            btn[arr[2]].style.backgroundColor = "#ff1";
-            btn[arr[2]].disabled = true;
-            td2.value = arr[1];
-            td2.innerHTML = arr[1];            
-            buton.setAttribute("type","button");
-            buton.setAttribute("style","background-color: red !important");
-            buton.classList.add("btn", "btn-primary", "btn-lg");
-            buton.addEventListener("click",eliminarServicioLista(tr));
-            buton.textContent = "-";
-            input.setAttribute("name", "ids");
-            input.setAttribute("value", arr[0]);
-            input.setAttribute("style","display: none");
-            td3.appendChild(buton);
-            tr.appendChild(td1);
-            tr.appendChild(td2);
-            tr.appendChild(td3);
-            tr.appendChild(input);
-            listaServicio.appendChild(tr);
-            }
-
-            function eliminarServicioLista(fila){
-            console.log(fila.target)
-            console.log("Entra a eliminaR");
-            console.log(fila);
-            /*btn[arr[2]].innerHTML = "-";
-            btn[arr[2]].style.backgroundColor = "#ff1";
-            btn[arr[2]].disabled = true;,*/
-            }
-
-            //Productos
-            const padreTemplate = document.getElementById("TablaProductosCliente").content;
-            const hijoTr = padreTemplate.querySelector("tr");
-            const hijoTd = hijoTr.querySelectorAll("td");
-            let cntPro = 0;
-
-            $(".selectPro").on("select2:select", function (e) { 
             
-            var select_val = $(e.currentTarget).val();
-            cargarProductos(select_val);
+            } );            
+            
+            $(".selectPro").on("select2:select", function (e) {
+                var select_val = $(e.currentTarget).val();
+                cargarProductos(select_val);
             });
-            let idsProducto = [];
-            function cargarProductos(value){
-            var valor = value.split(",");
-            let existe = idsProducto.indexOf(valor[0]);
-            if(existe == -1){
-            cntPro++;
-            idsProducto.push(valor[0]);
-            const fragment = document.createDocumentFragment();    
-            let input = document.createElement("INPUT");
-            input.setAttribute("name", "idp");
-            input.setAttribute("value", valor[0]);
-            input.setAttribute("style","display: none");
-
-            hijoTd[0].innerHTML = valor[0];
-            hijoTd[0].setAttribute("value",valor[0]);
-            hijoTd[0].setAttribute("name",valor[0]);
-            hijoTd[1].innerHTML = valor[1];
-            hijoTd[1].setAttribute("value",valor[1]);
-            hijoTr.appendChild(hijoTd[0]);
-            hijoTr.appendChild(hijoTd[1]);
-            hijoTr.appendChild(input);
-            const clone = hijoTr.cloneNode(true);
-            fragment.appendChild(clone);
-
-            document.getElementById("tablaBody").appendChild(fragment);
-            }else{
-            alert("Ya tiene seleccionado este producto, elija otro");
-            }
-            }
-            function eliminarElement(){
-                element = document.getElementById(cntPro);
-                
-                function eliminarElemento(id){	
-                padre = element.parentNode;
-                
-                padre.removeChild(element);
-                cntPro--;
-                }
-            }
-            
             function verificarCantidad(){
             let error = '<%=request.getSession().getAttribute("error")%>';
             console.log(error);
@@ -388,10 +313,29 @@
             }
             }
             verificarCantidad();
-        </script>
+            
+            function sendEmail(correo){
+                let asunto = "";
+                let cuerpo = "";
+                asunto = "FACTURA DE SU SERVICIO";
+                cuerpo = returnDataJS(tipo);
+                mail(correo,asunto,cuerpo)
+            }
+            function mail(correo,asunto,cuerpo){
+                alert('se enviara un mensaje a '+correo);
+                Email.send({
+                    Host: "smtp.gmail.com",
+                    Username: 'lubrillantasjezreel@gmail.com',
+                    Password: "rvuxyiyppggwcrvx",
+                    To: correo,
+                    From: 'lubrillantasjezreel@gmail.com',
+                    Subject: asunto,
+                    Body: cuerpo,
+                
+                }).then((message) => document.getElementById("procesasAtencion").submit());
+            }
 
-        <!-- Validación de formulario -->
-        <script>
+
             (function () {
             'use strict'
 

@@ -81,14 +81,15 @@
                     </a>
                     <span class="tooltip">Productos</span>
                 </li>
-                <!--   <li>
-                    <a href="#">
-                      <i class="fas fa-chart-pie"></i>
-                      <span class="links_name">Reportes</span>
-                    </a>
-                    <span class="tooltip">Reportes</span>
-                  </li> -->
-
+                
+                 <li>
+                  <a href="<%=basePath%>ValoresEstadisticas.do">
+                    <i class="fas fa-chart-pie"></i>
+                    <span class="links_name">Reportes y Estadísticas</span>
+                  </a>
+                  <span class="tooltip">Reportes y Estadísticas</span>
+                </li> 
+                
 
                 <li class="profile">
                     <a href="<%=basePath%>cerrarSesion.do">
@@ -111,12 +112,12 @@
         
                 <div class="col-md-4" style="text-align: center;">
                     <strong for="validationCustom01" class="form-label">No. Placa</strong>
-                    <input type="text" name = "placa" class="form-control" id="validationCustom01" required>
+                    <input type="text" name = "placa" value="<%=request.getSession().getAttribute("placaAdd").toString()%>" class="form-control" id="validationCustom01" required>
                 </div>
         
                 <div class="col-md-4" style="text-align: center;">
                     <strong for="validationCustom01" class="form-label">Modelo</strong>
-                    <input type="text" name = "modelo" class="form-control" id="validationCustom01" required>
+                    <input type="text" name = "modelo" value="<%=request.getSession().getAttribute("modeloAdd").toString()%>" class="form-control" id="validationCustom01" required>
                 </div>
         
                 <div class="col-md-4" style="text-align: center;">
@@ -136,7 +137,7 @@
         
                 <div class="col-md-4" style="text-align: center;">
                     <strong for="validationCustom01" class="form-label">Kilometraje</strong>
-                    <input type="number" name="km" class="form-control" id="validationCustom01" required>
+                    <input type="text" name="km" class="form-control" id="validationCustom01" value = "<%=request.getSession().getAttribute("kmAdd").toString()%>"required>
                 </div>
         
                 <div class="col-md-4" style="text-align: center;">
@@ -163,7 +164,7 @@
                 <div class="col-md-3 mx-2" style="text-align: center;">
                     <strong for="validationCustom01" class="form-label">Marca</strong>
                     <select name = "Marca" class = "form-control">
-                        <option selected value = " ">Seleccione Marca</option>
+                        <option selected value="<%=request.getSession().getAttribute("marcaAdd").toString()%>"><%=request.getSession().getAttribute("marcaAdd").toString()%></option>
                         <%=request.getSession().getAttribute("marca").toString()%>
                     </select>                    
                 </div>

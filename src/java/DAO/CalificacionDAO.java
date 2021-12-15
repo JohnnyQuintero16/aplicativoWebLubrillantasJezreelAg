@@ -69,7 +69,7 @@ public class CalificacionDAO {
         for (Calificacion ca: c ) {
             
             if(ca.getAtencionServicio().getId().equals(a.getId())){
-                System.out.println("ENCONTRE UNA CALIFICION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + a.getId());
+               
                return true;
                 
             }
@@ -77,5 +77,16 @@ public class CalificacionDAO {
         }
         return false;
     }
+    
+     public int cantidadCalificacion() {
+        int cant = 0;
+        List<Calificacion> cali = read();
+        if (cali != null) {
+            cant = cali.size();
+        }
+
+        return cant;
+    }
+
 
 }
