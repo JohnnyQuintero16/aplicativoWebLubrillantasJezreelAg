@@ -119,6 +119,9 @@
                 <div class="titulo">
                     <h1>Reportes de atencion de servicios de clientes</h1>
                 </div>
+                <div class="boton">
+                    <a type="button" href="<%=basePath%>jsp/reportesAdmin.jsp" class="btn btn-primary btn-lg">Regresar</a>
+                </div>
             </div>
 
             <div class="container-fluid">
@@ -152,7 +155,7 @@
                         
                     </div> 
                     <div class="col-3">
-                        <label>Total Acumulado</label><input id="acumulado" type="text" value="0" />
+                        <label>Total Acumulado </label><br><h3 style="color: blue" id="acumulado"></h3>
                     </div>
                 </div>
             </div>
@@ -250,7 +253,7 @@
         <script>
             
             function filtrar(){
-                document.getElementById('acumulado').value="0";
+                document.getElementById('acumulado').innerHTML = "0";
                   $('#example').DataTable().draw();
             }
             
@@ -264,17 +267,16 @@
                            var valorFila = data[9];  //el valor que viene de la fila
                            var currency = valorFila;  
                            var number = Number(currency.replace(/[^0-9\.]+/g,""));  // lo cambio de formato
-                           
                            if ((desde == '' && hasta == '') ||(desde == '' && Date.parse(fechaFila) <= Date.parse(hasta)) ||
                                (Date.parse(desde) <= Date.parse(fechaFila) && hasta == '') ||
                                (Date.parse(desde) <= Date.parse(fechaFila) && Date.parse(fechaFila) <= Date.parse(hasta))) {
                                console.log(number);
-                               var montoAcumulado = document.getElementById('acumulado').value; //$ 2,222.00
+                               var montoAcumulado = document.getElementById('acumulado').innerHTML; //$ 2,222.00
                                var actual = parseFloat(Number(montoAcumulado.replace(/[^0-9\.]+/g,""))); //2222
                                console.log('valor actual '+actual)
                                var suma = actual+number;
                                var myNumeral = numeral (suma); //le vuelvo a dar formato moneda
-                               document.getElementById('acumulado').value = myNumeral.format('$0,0.00');
+                               document.getElementById('acumulado').innerHTML = myNumeral.format('$0,0.00');
                                return true;
                            }
                            return false;
