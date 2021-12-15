@@ -218,11 +218,17 @@ Author     : Jefersonrr
 
             <br>
             <!-- reporte -->
-
-            <button type="button" id="btn" class=" arreglo btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1">Generar excel</button>
-
-
-
+            <style>
+                .botonF{
+                    margin-right: 35px;
+                    margin-top: -20px;
+                    margin-bottom: 20px;
+                }
+            </style> 
+            
+            <div class="botonF " align="right">
+                  <button type="button" id="btn" class=" arreglo btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal1">Generar excel</button>   
+            </div>
         </section>
         <div class="modal fade" tabindex="-1" role="dialog" id="modal1" aria-labelledby="modal1" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
