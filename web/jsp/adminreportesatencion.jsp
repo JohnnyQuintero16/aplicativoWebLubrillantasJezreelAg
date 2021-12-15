@@ -182,7 +182,7 @@
                             AtencionServicioDAO a = new AtencionServicioDAO();
                             List<AtencionServicio> atenciones = a.read();
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                            SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm a");
+                            SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
                             for (AtencionServicio atencion : atenciones) {
                         %>
                         <tr>
