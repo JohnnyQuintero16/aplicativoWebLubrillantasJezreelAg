@@ -11,46 +11,6 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
-        <group>
-            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/jsp/registrarse.jsp</file>
-            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/Registro.java</file>
-            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
-            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/DAO/AtencionServicioDAO.java</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/datosCliente.jsp</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/reportesAdmin.jsp</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarServiciosAdmin.java</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/fichaTecnica.jsp</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/adminClientes.jsp</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/agendarCitaUsu.jsp</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/DAO/CalificacionDAO.java</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/serviciosAdmin.jsp</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/MarcaProductoJpaController.java</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/FichaTecnicaAdd.jsp</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/DAO/AtencionServicioDAO.java</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/ValoresEstadisticas.java</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarServiProduAdmin.java</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/DTO/Persona.java</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/adminRegis.jsp</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/DAO/CitaDAO.java</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MisServiciosUsu.java</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/DAO/PersonaDAO.java</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Excel.java</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/citasAdmin.jsp</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/DAO/ServicioDAO.java</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/Persistencia/PersonaJpaController.java</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/src/java/DAO/FacturaDAO.java</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/datosAgendamiento.jsp</file>
-            <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/productosAdmin.jsp</file>
-        </group>
-        <group>
-            <file>file:/D:/Lubrillantas%20v1/aplicativoWebLubrillantasJezreelAg/web/js/formulario.js</file>
-        </group>
-        <group>
-            <file>file:/D:/Lubrillantas%20v1/aplicativoWebLubrillantasJezreelAg/web/jsp/agendarCitaUsu.jsp</file>
-            <file>file:/D:/Lubrillantas%20v1/aplicativoWebLubrillantasJezreelAg/web/js/formulario.js</file>
-        </group>
         <group>
             <file>file:/D:/Lubrillantas%20v1/aplicativoWebLubrillantasJezreelAg/web/jsp/agendarCitaUsu.jsp</file>
             <file>file:/D:/Lubrillantas%20v1/aplicativoWebLubrillantasJezreelAg/web/js/formulario.js</file>
@@ -131,14 +91,6 @@
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/FichaTecnicaAdd.jsp</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/ControladorVistas/MostrarProductos.java</file>
         </group>
-        <group/>
-        <group>
-            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/jsp/reportesAdmin.jsp</file>
-            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/jsp/registrarse.jsp</file>
-            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/java/DAO/main.java</file>
-            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/src/conf/persistence.xml</file>
-            <file>file:/C:/Users/mcris/Desktop/Jezreel/aplicativoWebLubrillantasJezreelAg/web/jsp/adminreportesatencion.jsp</file>
         <group>
             <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/datosCliente.jsp</file>
             <file>file:/E:/2021-2/Proyectos%202021-2/API/aplicativoWebLubrillantasJezreelAg/web/jsp/reportesAdmin.jsp</file>
@@ -215,5 +167,13 @@
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/estadisticas.jsp</file>
             <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/adminreportesatencion.jsp</file>
         </group>
+        <group>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/adminreportesatencion.jsp</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/datosAgendamiento.jsp</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/FichaTecnicaAdd.jsp</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/web/jsp/estadisticas.jsp</file>
+            <file>file:/home/johnny/Desktop/programming/PROYECTOAPIDEF/DEF/aplicativoWebLubrillantasJezreelAg/src/java/Negocio/Jezreel.java</file>
+        </group>
+        <group/>
     </open-files>
 </project-private>
