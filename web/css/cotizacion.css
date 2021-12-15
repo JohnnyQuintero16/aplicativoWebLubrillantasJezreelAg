@@ -20,7 +20,7 @@ main{
     padding-top: 10px;
     padding-bottom: 10px;
 }
-
+/*
 .contenedor{
     position: relative;
     display: flex;
@@ -28,7 +28,7 @@ main{
     flex-wrap: wrap;
     padding: 20px;
 }
-
+*/
 .contenedor .card{
     position: relative;
     max-width: 500px;
@@ -89,6 +89,7 @@ main{
 
 h3{
     text-align: center;
+    font-size: 25px !important;
 }
 
 .boton{
@@ -249,4 +250,4 @@ h5{
     border: 0;
     border-radius: 8px;
     font-size: 18px;
-}
+} 

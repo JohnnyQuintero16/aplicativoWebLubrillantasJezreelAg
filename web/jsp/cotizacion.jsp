@@ -114,8 +114,10 @@
             <%
                 String serviciosMostrar = request.getSession().getAttribute("serviciosCoti").toString();
             %>
-            <div class="contenedor">
+            <div class="contenedor container-fluid">
+                <div class="row">
                 <%=serviciosMostrar%>
+                </div>
             </div>
         </div>
     </main>

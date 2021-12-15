@@ -1228,9 +1228,10 @@ public class Jezreel {
         List<Servicio> servi = s.readServiciosActivos();
         for (Servicio ser : servi) {
 
-            rta += "<div class=\"card\">\n"
+            rta += "<div class=\"col-md-4 col-sm-6 col-xs-12\">\n"
+                    +"<div class=\"card\">\n"
                     + "<div class=\"imagen\">\n"
-                    + "<img src=" + '"' + ser.getImgUrl() + '"' + " alt=\"...\">\n"
+                    + "<img src=" + '"' + ser.getImgUrl() + '"' + " class=\"img-fluid\">\n"
                     + " <div class=\"titulo\">\n"
                     + "<h3 class=\"text-primary\">" + ser.getNombre() + "</h3>\n"
                     + "</div>\n"
@@ -1240,6 +1241,7 @@ public class Jezreel {
                     + "<p>" + ser.getDescripcion() + "</p>\n"
                     + "</div>\n"
                     + "<button type=\"button\" class=\"btn btn-primary selectCotizacion\" data-id=" + '"' + ser.getId() + '"' + " data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">COTIZAR</button>\n"
+                    + "</div>\n"
                     + "</div>\n"
                     + "</div>\n";
         }
