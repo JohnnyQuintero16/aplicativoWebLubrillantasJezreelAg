@@ -6,30 +6,56 @@
     </filter>
     <filter-mapping>
         <filter-name>validarSesion.do</filter-name>
+        <url-pattern>/jsp/FichaTecnicaAdd.jsp</url-pattern>
         <url-pattern>/jsp/adminClientes.jsp</url-pattern>
+        <url-pattern>/jsp/adminRegis.jsp</url-pattern>
+        <url-pattern>/jsp/adminreportesatencion.jsp</url-pattern>
         <url-pattern>/jsp/citasAdmin.jsp</url-pattern>
         <url-pattern>/jsp/citasUsu.jsp</url-pattern>
-        <url-pattern>/jsp/editarCitaUsu.jsp</url-pattern>
+        <url-pattern>/jsp/datosAgendamiento.jsp</url-pattern>
+        <url-pattern>/jsp/datosCliente.jsp</url-pattern>
+        <url-pattern>/jsp/estadisticas.jsp</url-pattern>
         <url-pattern>/jsp/fichaTecnica.jsp</url-pattern>
         <url-pattern>/jsp/productosAdmin.jsp</url-pattern>
+        <url-pattern>/jsp/reportesAdmin.jsp</url-pattern>
+        <url-pattern>/jsp/reportesCitas.jsp</url-pattern>
         <url-pattern>/jsp/serviciosAdmin.jsp</url-pattern>
         <url-pattern>/jsp/serviciosUsu.jsp</url-pattern>
         <url-pattern>/jsp/vehiculos.jsp</url-pattern>
+        
         <url-pattern>/ActualizarProducto.do</url-pattern>
         <url-pattern>/ActualizarServicio.do</url-pattern>
+        <url-pattern>/AddVehiculo.do</url-pattern>
         <url-pattern>/AdminAddProducto.do</url-pattern>
         <url-pattern>/AdminAddServicio.do</url-pattern>
+        <url-pattern>/CalificarServicio.do</url-pattern>
+        <url-pattern>/CargarAddVehiculo.do</url-pattern>
+        <url-pattern>/CitasAdmin.do</url-pattern>
+        <url-pattern>/ConfirmaAsistenciaAdmin.do</url-pattern>
+        <url-pattern>/ConfirmaServicioAdmin.do</url-pattern>
+        <url-pattern>/EliminarCita.do</url-pattern>
         <url-pattern>/EliminarProducto.do</url-pattern>
         <url-pattern>/EliminarServicio.do</url-pattern>
         <url-pattern>/EliminarVehiculoUser.do</url-pattern>
+        <url-pattern>/FiltrarReporteCitas.do</url-pattern>
         <url-pattern>/MisServiciosUsu.do</url-pattern>
         <url-pattern>/MisVehiculos.do</url-pattern>
+        <url-pattern>/MostrarCitasUsu.do</url-pattern>
+        <url-pattern>/MostrarDatosAgendaConfirAdmin.do</url-pattern>
+        <url-pattern>/MostrarEstadisticas.do</url-pattern>
+        <url-pattern>/MostrarFichaTecnica.do</url-pattern>
         <url-pattern>/MostrarProductosAdmin.do</url-pattern>
+        <url-pattern>/MostrarReportesCitas.do</url-pattern>
+        <url-pattern>/MostrarServiProduAdmin.do</url-pattern>
         <url-pattern>/MostrarServiciosAdmin.do</url-pattern>
+        <url-pattern>/ProcesarAtencionServicio.do</url-pattern>
+        <url-pattern>/UpdatePassword.do</url-pattern>
+        <url-pattern>/UpdatePersona.do</url-pattern>
+        <url-pattern>/UpdateVehiculo.do</url-pattern>
+        <url-pattern>/ValoresEstadisticas.do</url-pattern>
         <url-pattern>/adminAddCliente.do</url-pattern>
         <url-pattern>/adminUpdateCliente.do</url-pattern>
-        <url-pattern>/ConfirmaServicioAdmin.do</url-pattern>
-        <url-pattern>/ConfirmaAsistenciaAdmin.do</url-pattern>
+        <url-pattern>/tipoReporte.do</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>IniciarSesion</servlet-name>

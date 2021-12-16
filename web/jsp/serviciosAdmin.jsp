@@ -160,7 +160,7 @@
                                 <div class="icons-acciones">
                                     <div>
 
-                                        <i class="fas fa-edit" id="e1" data-bs-toggle="modal" data-bs-target="#modal2" data-bs-whatever=""></i>
+                                        <i class="fas fa-edit" id="e1" data-bs-toggle="modal" data-bs-target="#modal2" data-bs-whatever="<%=s.getImgUrl()%>"></i>
                                     </div>
                                     <div>
                                         <i class="fas fa-trash-alt" data-bs-toggle="modal" data-bs-target="#modal3"></i>
@@ -222,11 +222,13 @@
                                         <label for="exampleInputCant" class="form-label">Productos relacionados</label>
                                         <select class="form-select"  name = "tipo" aria-label="Default select example" required>
                                             <option value="">Selecciona un tipo:</option>
-                                            <option value="ACEITES">ACEITES</option>
-                                            <option value="FILTROS">FILTROS</option>
-                                            <option value="VALVULINAS">VALVULINAS</option>
-                                            <option value="ADITIVOS">ADITIVOS</option>
-                                            <option value="OTROS">OTROS</option>
+                                            <option value="1">ACEITES</option>
+                                            <option value="2">FILTROS</option>
+                                            <option value="3">VALVULINAS</option>
+                                            <option value="4">ADITIVOS</option>
+                                            <option value="5">LLANTAS</option>
+                                            <option value="6">BUJIAS</option>
+                                            <option value="7">LUCES</option>
                                         </select>
                                     </div>
                                 </div>
@@ -315,11 +317,13 @@
                                         <label for="exampleInputCant" class="form-label">Productos relacionados</label>
                                         <select class="form-select"  name = "tipo" aria-label="Default select example" required>
                                             <option value="">Selecciona un tipo:</option>
-                                            <option value="ACEITES">ACEITES</option>
-                                            <option value="FILTROS">FILTROS</option>
-                                            <option value="VALVULINAS">VALVULINAS</option>
-                                            <option value="ADITIVOS">ADITIVOS</option>
-                                            <option value="OTROS">OTROS</option>
+                                            <option value="1">ACEITES</option>
+                                            <option value="2">FILTROS</option>
+                                            <option value="3">VALVULINAS</option>
+                                            <option value="4">ADITIVOS</option>
+                                            <option value="5">LLANTAS</option>
+                                            <option value="6">BUJIAS</option>
+                                            <option value="7">LUCES</option>
                                         </select>
                                     </div>
                                 </div>
@@ -438,6 +442,7 @@
             modalBodyInput[0].value = datos[0].innerHTML;
             modalBodyInput[1].value = datos[1].innerHTML;
             modalBodyInput[2].value = datos[4].innerHTML;
+            modalBodyInput[3].value = e.relatedTarget.getAttribute('data-bs-whatever');
             textA[0].value = datos[2].innerHTML;
 
             });
