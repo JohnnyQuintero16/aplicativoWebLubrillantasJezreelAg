@@ -43,16 +43,15 @@
             </div>
         </div>
     </body>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         function validarSesion(validar){
-        console.log(validar);
         if(validar == "null"){
-        console.log("entra");
         var myModal = new bootstrap.Modal(document.getElementById('modal'), {
         keyboard: false
         });
-
         myModal.show();
+            //swal("Oops!", "Su sesión ha expirado, por favor vuelva a ingresar!", "error");
         }
         }
     </script>

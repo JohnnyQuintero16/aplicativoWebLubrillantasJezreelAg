@@ -33,9 +33,32 @@ public class AdminAddServicio extends HttpServlet {
             throws ServletException, IOException {
      
         ServicioDAO serdao = new ServicioDAO();
-        
+         String tipo = request.getParameter("tipo");
+                switch (tipo) {
+                    case "1":
+                        tipo = "ACEITES";
+                        break;
+                    case "2":
+                        tipo = "FILTROS";
+                        break;
+                    case "3":
+                        tipo = "VALVULINAS";
+                        break;
+                    case "4":
+                        tipo = "ADITIVOS";
+                        break;
+                    case "5":
+                        tipo = "LLANTAS";
+                        break;
+                    case "6":
+                        tipo = "BUJIAS";
+                        break;
+                    case "7":
+                        tipo = "LUCES";
+                        break;
+                }
         serdao.create(new Servicio(null, request.getParameter("nombre"),request.getParameter("descripcion"),
-                request.getParameter("img"),Short.parseShort(request.getParameter("duracion")),"ACTIVO",request.getParameter("tipo")));
+                request.getParameter("img"),Short.parseShort(request.getParameter("duracion")),"ACTIVO", tipo));
         request.getRequestDispatcher("./MostrarServiciosAdmin.do").forward(request, response);
     }
 
