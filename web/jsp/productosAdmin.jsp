@@ -341,7 +341,7 @@
                               </button> -->
                     </div>
                     <div class="modal-body ">
-                        <form action="ActualizarProducto.do">
+                        <form action="./ActualizarProducto.do" method="POST">
                             <div class="row text-center m-3">
 
                                 <div class="col-md-6">
