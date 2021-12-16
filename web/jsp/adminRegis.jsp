@@ -171,8 +171,8 @@
                     <div class="col-12" style="padding-left: 0.5rem">
                         <h2 style="color: #001971;">Escoja el Producto:</h2>
                         <br>
-                        <select class = "selectPro" id="selectProductos" disabled = "true">
-                            <option selectted >Elegir Producto</option>
+                        <select class = "selectPro" id="selectProductos" disabled = "true" style="width: 350px;">
+                            <option selected >Elegir Producto</option>
                         </select>
 
                         <p>Lista de productos con los que se llevo a cabo el servicio.</p>
