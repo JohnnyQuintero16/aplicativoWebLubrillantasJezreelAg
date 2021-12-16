@@ -1,3 +1,4 @@
+<%@page import="java.text.DateFormat"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
@@ -183,7 +184,7 @@
                             AtencionServicioDAO a = new AtencionServicioDAO();
                             List<AtencionServicio> atenciones = a.read();
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                            SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+                            DateFormat sdf2 = new SimpleDateFormat("hh:mm a");
                             for (AtencionServicio atencion : atenciones) {
                         %>
                         <tr>
@@ -312,8 +313,9 @@
                         'excel'
                     ]
             });
-            
+             document.getElementsByClassName('form-control-sm')[0].setAttribute('onkeyup','filtrar()');
             });
+            
 
         </script>
         
