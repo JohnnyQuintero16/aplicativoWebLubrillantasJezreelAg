@@ -98,6 +98,7 @@ let eliminarServicio = (e) => {
     selectOption.disabled = true;
     tableBody.innerHTML = "";
     idsProducto = [];
+    entroYa = 0;
     tableFooter.innerHTML =
       '<tr><th scope="row" colspan="4">No se ha seleccionado productos, seleccione!</th></tr>';
   }
@@ -179,7 +180,7 @@ tableBody.addEventListener("click", (e) => {
 });
 tableFooter.addEventListener("click", (e) => {
   calcularCostos(e);
-  limpiarCostos(e);
+  //limpiarCostos();
 });
 let cargarProductos = (value) => {
   let existe = idsProducto.indexOf(value);
@@ -197,6 +198,7 @@ let cargarProductos = (value) => {
     tableBody.appendChild(fragment);
     tableFooter.innerHTML = "";
     cargarFooterPrev();
+    entroYa = 0;
   } else {
     alert("Ya tiene seleccionado este producto, elija otro");
   }
@@ -215,8 +217,10 @@ let eliminarProducto = (e) => {
     let pos = idsProducto.indexOf(e.target.dataset.id);
     idsProducto.splice(pos, 1);
     e.target.parentNode.parentNode.remove();
+    calcularCostos(e);
   }
 };
+
 let cargarFooterPrev = () => {
   const clone = templateFooterPrev.cloneNode(true);
   const fragment = document.createDocumentFragment();
@@ -230,7 +234,10 @@ let totalSinIva = 0.0;
       totalDescuento = 0.0;
       let descuento = 0;
 let calcularCostos = (e) => {
-  if (e.target.classList.contains("calcularCostos")) {
+  if (e.target.classList.contains("calcularCostos") || (e.target.classList.contains("eliminarProducto"))) {
+    if(entroYa != 0){
+      limpiarCostos();
+    }
     entroYa++;
     let valorDescuento = document.getElementById("descuento").value;
     let cantidadesProducto = document.getElementsByName("cantidadProducto");
@@ -242,11 +249,11 @@ let calcularCostos = (e) => {
       let cantidadUnitaria = cantidadesProducto[i].value;
       let precioVenta = parseFloat(productoSelec[4]);
       totalSinIva += precioVenta * cantidadUnitaria;
-      total += precioVenta * 1.19 * cantidadUnitaria;
+      total += ((precioVenta * 1.19) * cantidadUnitaria);
     }
     totalDescuento = total;
     if (descuento != 0) {
-      totalDescuento = total - (descuento / 100.0) * totalSinIva;
+      totalDescuento = (total - ((descuento / 100.0) * totalSinIva));
     }
     templateFooterNex.querySelectorAll("h5")[0].textContent = formatCurrency("es-CO", "COP", 2, Math.round(total));
     templateFooterNex.querySelectorAll("h5")[1].textContent = formatCurrency("es-CO", "COP", 2, Math.round(totalDescuento));
@@ -257,14 +264,17 @@ let calcularCostos = (e) => {
   }
 };
 
-let limpiarCostos = (e) => {
-  console.log(e.target.classList.contains("inputDescuento"));
-  if (e.target.classList.contains("inputDescuento")) {
+let limpiarCostos = () => {
+  //console.log(e.target.classList.contains("inputDescuento"));
+  //if ((e.target.classList.contains("inputDescuento")) || (e.target.classList.contains("calcularCostos"))) {
     if (entroYa != 0) {
       tableFooter.children[2].remove();
       entroYa = 0;
+      total = 0;
+      totalSinIva = 0;
+      totalDescuento = 0;
     }
-  }
+  //}
 };
 
 //Validar kilometraje

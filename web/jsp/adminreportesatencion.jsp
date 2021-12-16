@@ -313,8 +313,9 @@
                         'excel'
                     ]
             });
-            
+             document.getElementsByClassName('form-control-sm')[0].setAttribute('onkeyup','filtrar()');
             });
+            
 
         </script>
         
